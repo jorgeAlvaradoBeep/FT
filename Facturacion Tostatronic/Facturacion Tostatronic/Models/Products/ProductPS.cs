@@ -10,5 +10,6 @@ namespace Facturacion_Tostatronic.Models.Products
     {
         public string idProduct { get; set; }
         public string ps { get; set; }
+        public string upc { get; set; }
     }
 }

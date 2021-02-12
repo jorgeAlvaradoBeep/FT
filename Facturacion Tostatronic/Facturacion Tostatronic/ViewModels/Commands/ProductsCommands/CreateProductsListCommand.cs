@@ -24,7 +24,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         public void Execute(object parameter)
         {
-            VM.GenerateNewProductsList();
+            VM.GenerateProductList();
         }
     }
 }

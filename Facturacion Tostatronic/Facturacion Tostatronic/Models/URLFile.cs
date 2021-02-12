@@ -2,8 +2,8 @@
 {
     public class URLData
     {
-        //const string baseURL = "http://192.168.100.7/factura_api/controller/";//Enlace de prueba
-        const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
+        //const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
         public static string factured_sales = baseURL+"Sales/factured_sales.php";
         public static string invoice_save = baseURL+ "Sales/invoice_save.php";
         public static string sales = baseURL+ "Sales/sales.php";
@@ -18,5 +18,29 @@
         public static string product_new_product_list = baseURL+ "Products/newProductsList.php";
         public static string product_distributor_price = baseURL+ "Products/DistributorPrice.php";
         public static string product_distributor_price_np = baseURL+ "Products/DistributorPriceNP.php";
+        public static string product_public_price = baseURL+ "Products/PublicPrice.php";
+        public static string product_page_prices = baseURL+ "Products/ProductExcel.php";
+        public static string product_complete_codes = baseURL+ "Products/ProductCodes.php";
+        public static string product_add_new = baseURL+ "Products/CompleteProduct.php";
+        public static string product_add_ps_single = baseURL+ "Products/productPSSingle.php";
+        public static string product_sale_search = baseURL+ "Products/ProductSaleSearch.php";
+        public static string product_updtae_image = baseURL+ "Products/ProductImages.php";
+        //Parte de ventas
+        public static string sales_client_search = baseURL+ "Sales/saleClient.php";
+        public static string sales_save = baseURL+ "Sales/SaleSave.php";
+        //Variables para los almacenes
+        public static string save_new_warehouse = baseURL + "Warehouse/Warehouse.php";
+
+        //Variables para el servidor comercial
+        const string baseURLTosta = "https://tostatronic.com/store/NewWBST/";//Enlace de prueba
+        public static string updateProductsPriceTosta = baseURLTosta+"updatePrice.php";//Enlace de prueba
+
+
+        
+
+        //Variables del WebServices de Prestashop
+        public static string psBaseUrl = "https://tostatronic.com/store/api";
+        public static string psAccount = "TJNTQKNTUELZU2V86CGIBCSJMB92LCQI";
+        public static string psPassword = "";
     }
 }

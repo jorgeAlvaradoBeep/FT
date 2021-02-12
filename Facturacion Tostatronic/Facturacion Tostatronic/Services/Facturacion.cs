@@ -199,7 +199,10 @@ namespace Facturacion_Tostatronic.Services
                 oConcepto.Importe = Math.Round(decimal.Parse((a.Subtotal).ToString()), 3);
                 oConcepto.ClaveProdServ = a.CodigoSAT;
                 oConcepto.Cantidad = decimal.Parse(a.Cantidad.ToString());
-                oConcepto.ClaveUnidad = "H87";
+                if (a.Descripcion.ToUpper().Contains("ENVIO"))
+                    oConcepto.ClaveUnidad = "E48";
+                else
+                    oConcepto.ClaveUnidad = "H87";
                 oConcepto.Descripcion = a.Descripcion;
                 oConcepto.ValorUnitario = decimal.Parse((a.Precio).ToString());
                 //Impuestos
