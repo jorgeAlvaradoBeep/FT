@@ -287,13 +287,25 @@
                 Grid.RowSpan="2"
                 Grid.Column="5"
                 Height="100"
-                Margin="0,5,0,5">
+                Margin="0,5,0,5"
+                    Command="{Binding CancelCommand}">
                 <StackPanel>
                     <Image Source="/Images/cancel.png" Width="40" Height="40"/>
                     <TextBlock Text="Cancelar" FontSize="24"/>
                 </StackPanel>
             </Button>
-            <tr:ReportViewer Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="75,46,0,0" Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Top" Width="100"/>
+            <Button Grid.Row="10"
+                    Grid.RowSpan="2"
+                    Grid.Column="4"
+                    Height="100"
+                    Margin="5"
+                    Background="Gray"
+                    Command="{Binding SaveQuateCommand}">
+                <StackPanel>
+                    <Image Source="/Images/sale.png" Width="40" Height="40"/>
+                    <TextBlock Text="Cotizar" FontSize="24"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </telerik:RadBusyIndicator>
 </Window>

@@ -21,6 +21,8 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         public ChangeSaledQuantityCommand ChangeSaledQuantityCommand { get; set; }
         public NeedFacturaCommand NeedFacturaCommand { get; set; }
         public DeleteProductFromSalecommand DeleteProductFromSalecommand { get; set; }
+        public SaveQuateCommand SaveQuateCommand { get; set; }
+        public CancelCommand CancelCommand { get; set; }
         #endregion
 
         #region Propiedades
@@ -77,6 +79,8 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             ChangeSaledQuantityCommand = new ChangeSaledQuantityCommand(this);
             NeedFacturaCommand = new NeedFacturaCommand(this);
             DeleteProductFromSalecommand = new DeleteProductFromSalecommand(this);
+            SaveQuateCommand = new SaveQuateCommand(this);
+            CancelCommand = new CancelCommand(this);
             CompleteSale = new CompleteSaleM();
             CompleteSale.ClientSale = new ClientSale();
             CompleteSale.SearchedProducts = new List<Models.Products.ProductSaleSearch>();

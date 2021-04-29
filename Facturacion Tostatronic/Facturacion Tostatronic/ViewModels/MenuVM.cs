@@ -60,6 +60,7 @@ namespace Facturacion_Tostatronic.ViewModels
         public SetBarCodeCommand SetBarCodeCommand { get; set; }
         public ViewWarehouseMenuCommand ViewWarehouseMenuCommand { get; set; }
         public ViewUpdateImageCommand ViewUpdateImageCommand { get; set; }
+        public GetNewPICommand GetNewPICommand { get; set; }
         #endregion
         #region menuPages
         private Visibility menuPageOne;
@@ -102,6 +103,7 @@ namespace Facturacion_Tostatronic.ViewModels
             SetBarCodeCommand = new SetBarCodeCommand(this);
             ViewWarehouseMenuCommand = new ViewWarehouseMenuCommand(this);
             ViewUpdateImageCommand = new ViewUpdateImageCommand(this);
+            GetNewPICommand = new GetNewPICommand();
             #endregion
             MenuPageOne = Visibility.Visible;
             MenuPageTwo = Visibility.Hidden;
@@ -130,7 +132,7 @@ namespace Facturacion_Tostatronic.ViewModels
         public void CallSale()
         {
             SaleV sV = new SaleV();
-            sV.ShowDialog();
+            sV.Show();
         }
         public void CallProductAddingV()
         {
@@ -677,7 +679,8 @@ namespace Facturacion_Tostatronic.ViewModels
             int total = fileNames.Length;
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string baseImagePath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\Base Sin Logo.png");
-            string baseImageWithLogoPath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\Base Con Logo.png");
+            string baseImageWithLogoPath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\Base Con Logo v2.png");
+            //string baseImageWithLogoPath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\Base Con Logo v2.png");
             string tempPath = Path.Combine(fullPath, "Temp");
             string logoPath = Path.Combine(fullPath, "Acomodar");
             string lowQualityPath = Path.Combine(fullPath, "Acomodar WEB");
@@ -710,7 +713,8 @@ namespace Facturacion_Tostatronic.ViewModels
                 try
                 {
                     count++;
-                    errMessage += MergeImages(baseImageWithLogoPath, filename, logoPath);
+                    //errMessage += MergeImages(baseImageWithLogoPath, filename, logoPath);
+                    errMessage += MergeImagesOrder2(baseImageWithLogoPath, filename, logoPath, tempPath);
                     previos = (count * 100) / total;
                     previos /= 4;
                     if (progress != previos)
@@ -850,6 +854,64 @@ namespace Facturacion_Tostatronic.ViewModels
                         canvas.DrawImage(productImage,
                                          (bitmap.Width / 2) - (baseImageI.Width / 2),
                                          (bitmap.Height / 2) - (baseImageI.Height / 2));
+                        canvas.Save();
+                    }
+                    try
+                    {
+                        string name = Path.Combine(fullPath, Path.GetFileNameWithoutExtension(productImagePath));
+                        name += ".png";
+                        bitmap.Save(name, System.Drawing.Imaging.ImageFormat.Png);
+                        bitmap.Dispose();
+                        return string.Empty;
+                    }
+                    catch (Exception ex) { return ex.Message; }
+                }
+            }
+        }
+
+        string MergeImagesOrder2(string baseImagePath, string productImagePath, string fullPath, string tempPath)
+        {
+            Image baseImageI;
+            Image productImage;
+            int width = 2200, height = 2200;
+            try
+            {
+                baseImageI = Image.FromFile(baseImagePath);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            try
+            {
+                
+                productImage = Image.FromFile(Path.Combine(tempPath, Path.GetFileName(productImagePath)));
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            using (productImage)
+            {
+                using (var bitmap = new Bitmap(width, height))
+                {
+                    using (var canvas = Graphics.FromImage(bitmap))
+                    {
+                        
+                        canvas.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        canvas.DrawImage(productImage,
+                                         new Rectangle(0,
+                                                       0,
+                                                       width,
+                                                       height),
+                                         new Rectangle(0,
+                                                       0,
+                                                       baseImageI.Width,
+                                                       baseImageI.Height),
+                                         GraphicsUnit.Pixel);
+                        canvas.DrawImage(baseImageI,
+                                         (bitmap.Width / 2) - (productImage.Width / 2),
+                                         (bitmap.Height / 2) - (productImage.Height / 2));
                         canvas.Save();
                     }
                     try

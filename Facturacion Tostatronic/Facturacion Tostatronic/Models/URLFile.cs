@@ -25,11 +25,15 @@
         public static string product_add_ps_single = baseURL+ "Products/productPSSingle.php";
         public static string product_sale_search = baseURL+ "Products/ProductSaleSearch.php";
         public static string product_updtae_image = baseURL+ "Products/ProductImages.php";
+        public static string new_pi = baseURL+ "Products/NewOrderPI.php";
         //Parte de ventas
         public static string sales_client_search = baseURL+ "Sales/saleClient.php";
         public static string sales_save = baseURL+ "Sales/SaleSave.php";
+        public static string quote_save = baseURL+ "Sales/PreSaleSave.php";
         //Variables para los almacenes
         public static string save_new_warehouse = baseURL + "Warehouse/Warehouse.php";
+        public static string save_new_spaces = baseURL + "Warehouse/SaveSpaces.php";
+        public static string save_new_product_to_space = baseURL + "Warehouse/SaveProductsToSpace.php";
 
         //Variables para el servidor comercial
         const string baseURLTosta = "https://tostatronic.com/store/NewWBST/";//Enlace de prueba

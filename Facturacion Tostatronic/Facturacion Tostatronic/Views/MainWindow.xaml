@@ -174,5 +174,11 @@
                 <TextBlock Text="Codigos Universales" FontSize="14"/>
             </StackPanel>
         </Button>
+        <Button Height="50" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding GetNewPICommand}" Visibility="{Binding MenuPageOne}">
+            <StackPanel>
+                <Image Source="/Images/pi.png" Width="20" Height="20"/>
+                <TextBlock Text="Nueva Orden" FontSize="10"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
