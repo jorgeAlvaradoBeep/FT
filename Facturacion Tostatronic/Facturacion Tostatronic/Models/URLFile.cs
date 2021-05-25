@@ -2,8 +2,8 @@
 {
     public class URLData
     {
-        const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
-        //const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        //const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
+        const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
         public static string factured_sales = baseURL+"Sales/factured_sales.php";
         public static string invoice_save = baseURL+ "Sales/invoice_save.php";
         public static string sales = baseURL+ "Sales/sales.php";
@@ -24,8 +24,10 @@
         public static string product_add_new = baseURL+ "Products/CompleteProduct.php";
         public static string product_add_ps_single = baseURL+ "Products/productPSSingle.php";
         public static string product_sale_search = baseURL+ "Products/ProductSaleSearch.php";
+        public static string product_update = baseURL+ "Products/ProductUpdate.php";
         public static string product_updtae_image = baseURL+ "Products/ProductImages.php";
         public static string new_pi = baseURL+ "Products/NewOrderPI.php";
+        public static string search_product_localization = baseURL+ "Products/ShowProductPlaceC.php";
         //Parte de ventas
         public static string sales_client_search = baseURL+ "Sales/saleClient.php";
         public static string sales_save = baseURL+ "Sales/SaleSave.php";

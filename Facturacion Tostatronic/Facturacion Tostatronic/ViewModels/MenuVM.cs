@@ -32,6 +32,9 @@ using nQuant;
 using System.Text.RegularExpressions;
 using Facturacion_Tostatronic.ViewModels.Commands.MenuCommands;
 using Facturacion_Tostatronic.ViewModels.Commands.PDVCommands;
+using Bukimedia.PrestaSharp.Factories;
+using Bukimedia.PrestaSharp.Entities;
+using Bukimedia.PrestaSharp;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -61,6 +64,8 @@ namespace Facturacion_Tostatronic.ViewModels
         public ViewWarehouseMenuCommand ViewWarehouseMenuCommand { get; set; }
         public ViewUpdateImageCommand ViewUpdateImageCommand { get; set; }
         public GetNewPICommand GetNewPICommand { get; set; }
+        public SetDiiscountPricesViewCommand SetDiiscountPricesViewCommand { get; set; }
+        public UpdateQuantitiesViewCommand UpdateQuantitiesViewCommand { get; set; }
         #endregion
         #region menuPages
         private Visibility menuPageOne;
@@ -103,6 +108,8 @@ namespace Facturacion_Tostatronic.ViewModels
             SetBarCodeCommand = new SetBarCodeCommand(this);
             ViewWarehouseMenuCommand = new ViewWarehouseMenuCommand(this);
             ViewUpdateImageCommand = new ViewUpdateImageCommand(this);
+            SetDiiscountPricesViewCommand = new SetDiiscountPricesViewCommand(this);
+            UpdateQuantitiesViewCommand = new UpdateQuantitiesViewCommand(this);
             GetNewPICommand = new GetNewPICommand();
             #endregion
             MenuPageOne = Visibility.Visible;
@@ -376,11 +383,24 @@ namespace Facturacion_Tostatronic.ViewModels
                 return;
             }
             List<DistributorPrice> products = JsonConvert.DeserializeObject<List<DistributorPrice>>(res.data.ToString());
-            res = await WebService.InsertData(products, URLData.updateProductsPriceTosta);
-            if (res.succes)
+            ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
+            List<product> productList = new List<product>();
+            productList = await ArticuloFactory.GetAllAsync();
+            foreach (DistributorPrice p in products)
+            {
+                var obj = productList.FirstOrDefault(x => x.reference == p.idProduct);
+                if (obj != null)
+                    obj.price= Convert.ToDecimal(p.distribuidor);
+            }
+            try
+            {
+                await ArticuloFactory.UpdateListAsync(productList);
                 MessageBox.Show("Precios actualizados correctamente" + res.message, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
+            }
+            catch (PrestaSharpException e)
+            {
                 MessageBox.Show("Error al actualizar precios: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             pw.Close();
         }
 

@@ -36,6 +36,12 @@ namespace Facturacion_Tostatronic.Models.Products
             get { return description; }
             set { SetValue(ref description, value); }
         }
+
+        public static explicit operator ProductComplete(ProductSaleSearch v)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProductComplete()
         {
 

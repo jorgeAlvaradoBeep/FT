@@ -180,5 +180,17 @@
                 <TextBlock Text="Nueva Orden" FontSize="10"/>
             </StackPanel>
         </Button>
+        <Button Height="50" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetDiiscountPricesViewCommand}" Visibility="{Binding MenuPageOne}">
+            <StackPanel>
+                <Image Source="/Images/pi.png" Width="20" Height="20"/>
+                <TextBlock Text="Precios Descuento" FontSize="10"/>
+            </StackPanel>
+        </Button>
+        <Button Height="50" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateQuantitiesViewCommand}" Visibility="{Binding MenuPageOne}">
+            <StackPanel>
+                <Image Source="/Images/qty.png" Width="20" Height="20"/>
+                <TextBlock Text="Actualiza Cantidades" FontSize="10"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
