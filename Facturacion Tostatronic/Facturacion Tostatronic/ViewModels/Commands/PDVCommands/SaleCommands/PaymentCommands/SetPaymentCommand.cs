@@ -29,7 +29,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands.P
             if(VM.Payment.Remaining>0 || VM.Payment.Payment==0)
             {
                 DialogParameters parameters = new DialogParameters();
-                parameters.Content = "La venta aun no se paga por completo, desea conyinuar?"+
+                parameters.Content = "La venta aun no se paga por completo, desea continuar?"+
                     Environment.NewLine+
                     "***La venta se marcara como pendiente";
                 parameters.DefaultFocusedButton = ResponseButton.Accept;

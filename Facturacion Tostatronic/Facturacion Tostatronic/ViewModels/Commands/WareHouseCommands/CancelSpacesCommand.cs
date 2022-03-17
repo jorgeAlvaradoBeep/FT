@@ -24,7 +24,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.WareHouseCommands
 
         public void Execute(object parameter)
         {
-            VM.SelectedWareHouse = null;
+            //VM.SelectedWareHouse = null;
+            VM.SelectedSpace = null;
             VM.IsSelectionAvailable = true;
             VM.ProductsGrid = System.Windows.Visibility.Hidden;
             VM.NewProductInspace.Clear();

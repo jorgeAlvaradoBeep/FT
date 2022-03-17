@@ -35,7 +35,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
 
         private void getInfoForClosing(object sender, CancelEventArgs e)
         {
-            ClientSale client = (ClientSale)Application.Current.Properties["SelectedClient"]; ;
+            ClientSale client = (ClientSale)Application.Current.Properties["SelectedClient"];
             if (client != null)
             {
                 VM.CompleteSale.ClientSale = client;

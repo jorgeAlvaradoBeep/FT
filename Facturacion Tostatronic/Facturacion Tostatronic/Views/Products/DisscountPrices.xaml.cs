@@ -23,5 +23,21 @@ namespace Facturacion_Tostatronic.Views.Products
         {
             InitializeComponent();
         }
+
+        private void DataSelect(object sender, RoutedEventArgs e)
+
+        {
+
+            TextBox tb = (sender as TextBox);
+
+            if (tb != null)
+
+            {
+
+                tb.SelectAll();
+
+            }
+
+        }
     }
 }

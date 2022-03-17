@@ -3,7 +3,8 @@
     public class URLData
     {
         //const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
-        const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        //const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        const string baseURL = "http://143.198.173.21/factura_api/controller/";//Prueba de enlace con servidor dedicado
         public static string factured_sales = baseURL+"Sales/factured_sales.php";
         public static string invoice_save = baseURL+ "Sales/invoice_save.php";
         public static string sales = baseURL+ "Sales/sales.php";
@@ -48,5 +49,17 @@
         public static string psBaseUrl = "https://tostatronic.com/store/api";
         public static string psAccount = "TJNTQKNTUELZU2V86CGIBCSJMB92LCQI";
         public static string psPassword = "";
+
+
+
+        //URL Para NodeJS
+        const string baseURLNode = "http://143.198.173.21:3000/";
+        //const string baseURLNode = "http://localhost:3000/";
+        public static string quotes = baseURLNode + "short_quotes/";
+        public static string quotesByDate = baseURLNode + "short_quotes_date/";
+        public static string productsOfQuote = baseURLNode + "quote_products/";
+        public static string creditSales = baseURLNode + "credit_sales/";
+        public static string creditPayments = baseURLNode + "sales_payments/";
+        public static string addPaymentToSale = baseURLNode + "add_payment/";
     }
 }

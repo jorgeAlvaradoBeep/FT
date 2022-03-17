@@ -45,8 +45,8 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 Task.Run(() => SelectedProduct.UPC = PrestashopService.GetUPC(SelectedProduct.Code));
                 ProductData.NumberOfPiecesOfPackage = 1;
                 ProductData.PriceToCalculate = SelectedProduct.MinimumPrice;
-                ProductData.PublicationPrice = 15;
-                ProductData.ClassicPublicationComission = 13.5f;
+                ProductData.PublicationPrice = 25;
+                ProductData.ClassicPublicationComission = 14.5f;
                 ProductData.ClassicPublicationShippingCost = 95;
                 ProductData.PremiumublicationComission = 17;
                 ProductData.PremiumPublicationShippingCost = 95;

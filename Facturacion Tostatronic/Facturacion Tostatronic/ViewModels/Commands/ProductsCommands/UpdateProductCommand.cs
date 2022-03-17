@@ -94,7 +94,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 long stockAvailableId = updateProduct.associations.stock_availables[0].id;
                 stock_available myStockAvailable = stockAvailableFactory.Get(stockAvailableId);
                 myStockAvailable.quantity = (int)VM.Product.Existence; // Number of available products
-                myStockAvailable.out_of_stock = 1; // Must enable orders
+                myStockAvailable.out_of_stock = 2; // Must enable orders
 
                 try
                 {

@@ -107,12 +107,12 @@
 
             <TextBox x:Name="txtPrestashop" Text="{Binding Product.Code, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo Prestashop:" materialDesign:HintAssist.IsFloating="True" IsEnabled="False" Visibility="{Binding BaseProductVisibility}"/>
             <TextBox x:Name="txtName" Text="{Binding Product.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Nombre Producto:" materialDesign:HintAssist.IsFloating="True" IsEnabled="False" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtQty" Text="{Binding Product.Existence, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Cantidad:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtQtyMin" Text="{Binding Product.MinimumQuantity, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Cantidad Min:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtBuyPrice" Text="{Binding Product.BuyPrice, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Compra:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtMinPrice" Text="{Binding Product.MinimumPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Minimo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtDisPrice" Text="{Binding Product.DistributorPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Distribuidor:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
-            <TextBox x:Name="txtPubPrice" Text="{Binding Product.PublicPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Publico:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}"/>
+            <TextBox x:Name="txtQty" Text="{Binding Product.Existence, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Cantidad:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
+            <TextBox x:Name="txtQtyMin" Text="{Binding Product.MinimumQuantity, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Cantidad Min:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
+            <TextBox x:Name="txtBuyPrice" Text="{Binding Product.BuyPrice, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Compra:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
+            <TextBox x:Name="txtMinPrice" Text="{Binding Product.MinimumPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Minimo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
+            <TextBox x:Name="txtDisPrice" Text="{Binding Product.DistributorPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Distribuidor:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
+            <TextBox x:Name="txtPubPrice" Text="{Binding Product.PublicPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Publico:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
             
             
             
@@ -125,12 +125,12 @@
                             <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                         </telerik:LayoutControlGroup>
                         <telerik:LayoutControlGroup Orientation="Horizontal">
-                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[0].Quantity}">
+                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[0].Quantity}" TabIndex="1">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo NumberDecimalDigits="0"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
                             </telerik:RadNumericUpDown>
-                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[0].Price}">
+                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[0].Price}" TabIndex="2">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -144,12 +144,12 @@
                             <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                         </telerik:LayoutControlGroup>
                         <telerik:LayoutControlGroup Orientation="Horizontal">
-                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[1].Quantity}">
+                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[1].Quantity}" TabIndex="3">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo NumberDecimalDigits="0"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
                             </telerik:RadNumericUpDown>
-                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[1].Price}">
+                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[1].Price}" TabIndex="4">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -163,12 +163,12 @@
                             <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                         </telerik:LayoutControlGroup>
                         <telerik:LayoutControlGroup Orientation="Horizontal">
-                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[2].Quantity}">
+                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[2].Quantity}" TabIndex="5">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo NumberDecimalDigits="0"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
                             </telerik:RadNumericUpDown>
-                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[2].Price}">
+                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[2].Price}" TabIndex="6">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -182,12 +182,12 @@
                             <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                         </telerik:LayoutControlGroup>
                         <telerik:LayoutControlGroup Orientation="Horizontal">
-                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[3].Quantity}">
+                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[3].Quantity}" TabIndex="7">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo NumberDecimalDigits="0"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
                             </telerik:RadNumericUpDown>
-                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[3].Price}">
+                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[3].Price}" TabIndex="8">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -201,12 +201,12 @@
                             <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                         </telerik:LayoutControlGroup>
                         <telerik:LayoutControlGroup Orientation="Horizontal">
-                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[4].Quantity}">
+                            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[4].Quantity}" TabIndex="9">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo NumberDecimalDigits="0"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>
                             </telerik:RadNumericUpDown>
-                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[4].Price}">
+                            <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[4].Price}" TabIndex="10">
                                 <telerik:RadNumericUpDown.NumberFormatInfo>
                                     <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                                 </telerik:RadNumericUpDown.NumberFormatInfo>

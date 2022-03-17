@@ -100,7 +100,7 @@
                                 NewRowPosition="Bottom"
                                 Visibility="{Binding AddSpacesGridVisible}"
                                 ValidationType="Default"
-                                 ScrollMode="RealTime">
+                                ScrollMode="RealTime">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
                                                 Header="Nombre del espacio"

@@ -19,6 +19,14 @@
             <Setter Property="local2:GridViewAttachedProperties.ScrollToNewItem" Value="True" />
         </Style>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SetIvaPrices, Source={StaticResource saleVM}}"
+                    Gesture="F1" />
+        <KeyBinding Command="{Binding UndoIvaPrices, Source={StaticResource saleVM}}"
+                    Gesture="F2" />
+        <KeyBinding Command="{Binding GetQuoteCommand, Source={StaticResource saleVM}}"
+                    Gesture="F8" />
+    </Window.InputBindings>
     <telerik:RadBusyIndicator DataContext="{StaticResource saleVM}" IsBusy="{Binding GettingData}">
         <Grid DataContext="{StaticResource saleVM}">
             <Grid.ColumnDefinitions>

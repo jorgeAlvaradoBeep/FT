@@ -35,7 +35,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
         {
             WaitPlease pw = new WaitPlease();
             pw.Show();
-            Response res = await WebService.GetData("cs", " ", URLData.product_update);
+            Response res = await WebService.GetData("cs", "", URLData.product_update);
             if (!res.succes)
             {
                 MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -56,9 +56,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         if (obj.quantity != (int)p.Existence)
                         {
                             obj.quantity = (int)p.Existence;
+                            obj.out_of_stock = 2;
                             updatedList.Add(obj);
                         }
-                            
+
                     }
                         
                 }

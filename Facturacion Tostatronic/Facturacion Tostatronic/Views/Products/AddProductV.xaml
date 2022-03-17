@@ -17,13 +17,14 @@
     </Window.Resources>
     <Grid DataContext="{StaticResource addProductVM}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="273*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -38,7 +39,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Margin="5,5,0,0" Height="80">
+        <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Margin="5,5,0,0" Height="80">
             <TextBlock Text="Agregar Producto" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </materialDesign:ColorZone>
         <TextBox x:Name="txtCode" Grid.Row="1" Grid.Column="0" Margin="10" FontSize="20" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding EnableProductBase}" TabIndex="0">
@@ -103,8 +104,8 @@
             <telerik:Label Content="Selecciona Imagenes" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
             <telerik:RadFilePathPicker Margin="5" FilePath="{Binding ImagePath, Mode=TwoWay}" IsEnabled="{Binding EnableProductBase}" TabIndex="8"/>
         </telerik:LayoutControlGroup>
-        
-        
+
+
         <!--Segunda parte del agregar productos-->
 
         <TextBox x:Name="txtUPC" Grid.Row="1" Grid.Column="2"  Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="UPC:" materialDesign:HintAssist.IsFloating="True" Visibility="{Binding BaseProductVisibility}">
@@ -117,7 +118,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBox x:Name="txtPrestashop" Text="{Binding Product.PrestashopID, Mode=TwoWay}" Grid.Row="2" Grid.Column="2"  Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo Prestashop:" materialDesign:HintAssist.IsFloating="True" IsEnabled="True" Visibility="{Binding BaseProductVisibility}"/>
-        <telerik:GroupBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="7" Header="Precios específicos" FontSize="24" Foreground="#FF848484" Visibility="{Binding BaseProductVisibility}">
+        <telerik:GroupBox Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="3" Grid.RowSpan="7" Header="Precios específicos" FontSize="24" Foreground="#FF848484" Visibility="{Binding BaseProductVisibility}">
             <telerik:LayoutControlGroup Orientation="Vertical">
                 <telerik:LayoutControlGroup Orientation="Vertical">
                     <telerik:Label Content="Precio 1" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
@@ -126,12 +127,12 @@
                         <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                     </telerik:LayoutControlGroup>
                     <telerik:LayoutControlGroup Orientation="Horizontal">
-                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[0].Quantity}">
+                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[0].Quantity}" TabIndex="0">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo NumberDecimalDigits="0"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
                         </telerik:RadNumericUpDown>
-                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[0].Price}">
+                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[0].Price}" TabIndex="1">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -145,12 +146,12 @@
                         <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                     </telerik:LayoutControlGroup>
                     <telerik:LayoutControlGroup Orientation="Horizontal">
-                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[1].Quantity}">
+                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[1].Quantity}" TabIndex="2">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo NumberDecimalDigits="0"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
                         </telerik:RadNumericUpDown>
-                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[1].Price}">
+                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[1].Price}"  TabIndex="3">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -164,12 +165,12 @@
                         <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                     </telerik:LayoutControlGroup>
                     <telerik:LayoutControlGroup Orientation="Horizontal">
-                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[2].Quantity}">
+                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[2].Quantity}"  TabIndex="4">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo NumberDecimalDigits="0"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
                         </telerik:RadNumericUpDown>
-                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[2].Price}">
+                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[2].Price}" TabIndex="5">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -183,12 +184,12 @@
                         <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                     </telerik:LayoutControlGroup>
                     <telerik:LayoutControlGroup Orientation="Horizontal">
-                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[3].Quantity}">
+                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[3].Quantity}"  TabIndex="6">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo NumberDecimalDigits="0"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
                         </telerik:RadNumericUpDown>
-                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[3].Price}">
+                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[3].Price}" TabIndex="7">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -202,12 +203,12 @@
                         <telerik:Label Content="                             Precio" Margin="3"  FontSize="20" Foreground="#FF8F8F8F"/>
                     </telerik:LayoutControlGroup>
                     <telerik:LayoutControlGroup Orientation="Horizontal">
-                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[4].Quantity}">
+                        <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.SpecificPrices[4].Quantity}" TabIndex="8">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo NumberDecimalDigits="0"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
                         </telerik:RadNumericUpDown>
-                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[4].Price}">
+                        <telerik:RadNumericUpDown Margin="5" ValueFormat="Currency" Value="{Binding Product.SpecificPrices[4].Price}" TabIndex="9">
                             <telerik:RadNumericUpDown.NumberFormatInfo>
                                 <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
                             </telerik:RadNumericUpDown.NumberFormatInfo>
@@ -216,13 +217,13 @@
                 </telerik:LayoutControlGroup>
             </telerik:LayoutControlGroup>
         </telerik:GroupBox>
-        <Button Height="70" Grid.Column="6" Grid.Row="10" Margin="5" Command="{Binding AddNewProductCommand}">
+        <Button Height="70" Grid.Column="7" Grid.Row="10" Margin="5,12,5,13" Command="{Binding AddNewProductCommand}">
             <StackPanel>
                 <Image Source="/Images/save.png" Width="35" Height="20"/>
                 <TextBlock Text="Guardar" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Height="70" Grid.Column="5" Grid.Row="10" Margin="5" Command="{Binding CreateNewInvoiceCommand}">
+        <Button Height="70" Grid.Column="6" Grid.Row="10" Margin="5,12,5,13" Command="{Binding CreateNewInvoiceCommand}">
             <StackPanel>
                 <Image Source="/Images/cancel.png" Width="35" Height="20"/>
                 <TextBlock Text="Cancelar" FontSize="14"/>

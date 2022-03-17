@@ -43,8 +43,5 @@ namespace Facturacion_Tostatronic.Models.WareHouse
             get { return organizationFornitures; }
             set { SetValue(ref organizationFornitures, value); }
         }
-
-
-
     }
 }

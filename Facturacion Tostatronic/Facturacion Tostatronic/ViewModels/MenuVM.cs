@@ -66,6 +66,8 @@ namespace Facturacion_Tostatronic.ViewModels
         public GetNewPICommand GetNewPICommand { get; set; }
         public SetDiiscountPricesViewCommand SetDiiscountPricesViewCommand { get; set; }
         public UpdateQuantitiesViewCommand UpdateQuantitiesViewCommand { get; set; }
+        public CreateFacebookListCommand CreateFacebookListCommand { get; set; }
+        public ViewClientsMenuCommand ViewClientsMenuCommand { get; set; }
         #endregion
         #region menuPages
         private Visibility menuPageOne;
@@ -82,6 +84,27 @@ namespace Facturacion_Tostatronic.ViewModels
             get { return menuPageTwo; }
             set { SetValue(ref menuPageTwo, value); }
         }
+        #endregion
+
+        #region Properties
+        private bool gettingData;
+
+        public bool GettingData
+        {
+            get { return gettingData; }
+            set { SetValue(ref gettingData, value); }
+        }
+
+        private string progressVal;
+
+        public string ProgressVal
+        {
+            get { return progressVal; }
+            set { SetValue(ref progressVal, value); }
+        }
+
+
+
         #endregion
         public MenuVM()
         {
@@ -111,9 +134,12 @@ namespace Facturacion_Tostatronic.ViewModels
             SetDiiscountPricesViewCommand = new SetDiiscountPricesViewCommand(this);
             UpdateQuantitiesViewCommand = new UpdateQuantitiesViewCommand(this);
             GetNewPICommand = new GetNewPICommand();
+            CreateFacebookListCommand = new CreateFacebookListCommand(this);
+            ViewClientsMenuCommand = new ViewClientsMenuCommand(this);
             #endregion
             MenuPageOne = Visibility.Visible;
             MenuPageTwo = Visibility.Hidden;
+            GettingData = false;
         }
 
         public void CreateInvoice()
@@ -351,57 +377,67 @@ namespace Facturacion_Tostatronic.ViewModels
             pw.Close();
         }
 
-        public async void UpdatePublicPrice()
+        public void UpdatePublicPrice()
         {
-            WaitPlease pw = new WaitPlease();
-            pw.Show();
-            Response res = await WebService.GetDataForInvoice(URLData.product_public_price);
-            if (!res.succes)
-            {
-                MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
-                return;
-            }
-            List<DistributorPrice> products = JsonConvert.DeserializeObject<List<DistributorPrice>>(res.data.ToString());
-            res = await WebService.InsertData(products, URLData.updateProductsPriceTosta);
-            if (res.succes)
-                MessageBox.Show("Precios actualizados correctamente" + res.message, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
-                MessageBox.Show("Error al actualizar precios: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            pw.Close();
+            
+
+            //WaitPlease pw = new WaitPlease();
+            //pw.Show();
+            //Response res = await WebService.GetDataForInvoice(URLData.product_public_price);
+            //if (!res.succes)
+            //{
+            //    MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    pw.Close();
+            //    return;
+            //}
+            //List<DistributorPrice> products = JsonConvert.DeserializeObject<List<DistributorPrice>>(res.data.ToString());
+            //ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
+            //List<product> productList = new List<product>();
+            //productList = await ArticuloFactory.GetAllAsync();
+            //List<product> updatedList = new List<product>();
+            //foreach (DistributorPrice p in products)
+            //{
+            //    var obj = productList.FirstOrDefault(x => x.reference == p.idProduct);
+            //    if (obj != null)
+            //    {
+            //        if (obj.price != Convert.ToDecimal(p.distribuidor))
+            //        {
+            //            obj.price = Convert.ToDecimal(p.distribuidor);
+            //            updatedList.Add(obj);
+            //        }
+
+            //    }
+
+            //}
+            //try
+            //{
+            //    await ArticuloFactory.UpdateListAsync(updatedList);
+            //    MessageBox.Show("Precios actualizados correctamente" + res.message, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //catch (PrestaSharpException e)
+            //{
+            //    MessageBox.Show("Error al actualizar precios: " + e.ResponseErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //pw.Close();
         }
 
         public async void UpdateDistributorPrice()
         {
-            WaitPlease pw = new WaitPlease();
-            pw.Show();
-            Response res = await WebService.GetDataForInvoice(URLData.product_distributor_price);
-            if (!res.succes)
-            {
-                MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
-                return;
-            }
-            List<DistributorPrice> products = JsonConvert.DeserializeObject<List<DistributorPrice>>(res.data.ToString());
-            ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-            List<product> productList = new List<product>();
-            productList = await ArticuloFactory.GetAllAsync();
-            foreach (DistributorPrice p in products)
-            {
-                var obj = productList.FirstOrDefault(x => x.reference == p.idProduct);
-                if (obj != null)
-                    obj.price= Convert.ToDecimal(p.distribuidor);
-            }
+
+        }
+
+        public async Task<string> UpdateDistributorPricePage(List<product> listToUpdate, ProductFactory ArticuloFactory)
+        {
+            string err = "";
             try
             {
-                await ArticuloFactory.UpdateListAsync(productList);
-                MessageBox.Show("Precios actualizados correctamente" + res.message, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                await ArticuloFactory.UpdateListAsync(listToUpdate);
             }
             catch (PrestaSharpException e)
             {
-                MessageBox.Show("Error al actualizar precios: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                err = "Error al actualizar precios: " + e.ResponseErrorMessage + Environment.NewLine;
             }
-            pw.Close();
+            return err;
         }
 
         public async void GetPagePricesExcel()
@@ -704,79 +740,79 @@ namespace Facturacion_Tostatronic.ViewModels
             string tempPath = Path.Combine(fullPath, "Temp");
             string logoPath = Path.Combine(fullPath, "Acomodar");
             string lowQualityPath = Path.Combine(fullPath, "Acomodar WEB");
-            foreach (string filename in fileNames)
-            {
-                try
-                {
-                    count++;
-                    errMessage += MergeImages(baseImagePath, filename, tempPath);
-                    //newImage.Save(@"C:\Users\Tostatronic\Documents\MEGAsync\Imagenes Nuevas Pagina\imagen sin fondo\1.png", System.Drawing.Imaging.ImageFormat.Png);
-                    previos = (count * 100) / total;
-                    previos /= 4;
-                    if (progress != previos)
-                    {
-                        progress = previos;
-                        pw.Dispatcher.Invoke(() =>
-                        {
-                            pw.changeProgress(progress);
-                        });
-                    }
+            //foreach (string filename in fileNames)
+            //{
+            //    try
+            //    {
+            //        count++;
+            //        errMessage += MergeImages(baseImagePath, filename, tempPath);
+            //        //newImage.Save(@"C:\Users\Tostatronic\Documents\MEGAsync\Imagenes Nuevas Pagina\imagen sin fondo\1.png", System.Drawing.Imaging.ImageFormat.Png);
+            //        previos = (count * 100) / total;
+            //        previos /= 4;
+            //        if (progress != previos)
+            //        {
+            //            progress = previos;
+            //            pw.Dispatcher.Invoke(() =>
+            //            {
+            //                pw.changeProgress(progress);
+            //            });
+            //        }
 
-                }
-                catch (Exception e)
-                {
-                    errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
-                }
-            }
-            foreach (string filename in fileNames)
-            {
-                try
-                {
-                    count++;
-                    //errMessage += MergeImages(baseImageWithLogoPath, filename, logoPath);
-                    errMessage += MergeImagesOrder2(baseImageWithLogoPath, filename, logoPath, tempPath);
-                    previos = (count * 100) / total;
-                    previos /= 4;
-                    if (progress != previos)
-                    {
-                        progress = previos;
-                        pw.Dispatcher.Invoke(() =>
-                        {
-                            pw.changeProgress(progress);
-                        });
-                    }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
+            //    }
+            //}
+            //foreach (string filename in fileNames)
+            //{
+            //    try
+            //    {
+            //        count++;
+            //        //errMessage += MergeImages(baseImageWithLogoPath, filename, logoPath);
+            //        errMessage += MergeImagesOrder2(baseImageWithLogoPath, filename, logoPath, tempPath);
+            //        previos = (count * 100) / total;
+            //        previos /= 4;
+            //        if (progress != previos)
+            //        {
+            //            progress = previos;
+            //            pw.Dispatcher.Invoke(() =>
+            //            {
+            //                pw.changeProgress(progress);
+            //            });
+            //        }
 
-                }
-                catch (Exception e)
-                {
-                    errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
-                }
-            }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
+            //    }
+            //}
             string[] fileEntries = Directory.GetFiles(logoPath);
-            foreach (string filename in fileEntries)
-            {
-                try
-                {
-                    count++;
-                    string imageNameA = Path.Combine(lowQualityPath, Path.GetFileName(filename));
-                    VaryQualityLevel(filename, imageNameA);
-                    previos = (count * 100) / total;
-                    previos /= 4;
-                    if (progress != previos)
-                    {
-                        progress = previos;
-                        pw.Dispatcher.Invoke(() =>
-                        {
-                            pw.changeProgress(progress);
-                        });
-                    }
+            //foreach (string filename in fileEntries)
+            //{
+            //    try
+            //    {
+            //        count++;
+            //        string imageNameA = Path.Combine(lowQualityPath, Path.GetFileName(filename));
+            //        VaryQualityLevel(filename, imageNameA);
+            //        previos = (count * 100) / total;
+            //        previos /= 4;
+            //        if (progress != previos)
+            //        {
+            //            progress = previos;
+            //            pw.Dispatcher.Invoke(() =>
+            //            {
+            //                pw.changeProgress(progress);
+            //            });
+            //        }
 
-                }
-                catch (Exception e)
-                {
-                    errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
-                }
-            }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        errMessage += "Error al crear " + Path.GetFileName(filename) + ": " + e.Message + Environment.NewLine;
+            //    }
+            //}
             //Seccion para organizar las imagenes en carpetas
             //Variables para la organizacion
             string pathForBaseImages = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\Temp");
@@ -785,7 +821,12 @@ namespace Facturacion_Tostatronic.ViewModels
             string finalProductPath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\NI\NP");
             string ImageWOBPath = Path.Combine(basePath, @"MEGAsync\Imagenes Nuevas Pagina\Producto final");
             string baseProductFolder="", lqProductFolder="", completeProductFolder="", imageWOBFolder="";
-            string imageName, auxImageName=string.Empty; 
+            string imageName, auxImageName=string.Empty;
+            //Borrar variables de aqui
+            previos = 0;
+            count = 0;
+            progress = 0;
+            //Hasta aqui
             foreach (string filename in fileEntries)
             {
                 try
@@ -814,7 +855,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     File.Copy(Path.Combine(ImageWOBPath, Path.GetFileName(filename)), Path.Combine(imageWOBFolder, Path.GetFileName(filename)), true);
                    
                     previos = (count * 100) / total;
-                    previos /= 4;
+                    previos /= 2;//cambiar el 2 por el 4
                     if (progress != previos)
                     {
                         progress = previos;

@@ -24,6 +24,9 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         public SaveQuateCommand SaveQuateCommand { get; set; }
         public CancelCommand CancelCommand { get; set; }
         public SearchProductFromSalecommand SearchProductFromSalecommand { get; set; }
+        public SetIvaPrices SetIvaPrices { get; set; }
+        public UndoIvaPrices UndoIvaPrices { get; set; }
+        public GetQuoteCommand GetQuoteCommand { get; set; }
         #endregion
 
         #region Propiedades
@@ -57,6 +60,8 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             set { SetValue(ref productCriterialSearch, value); }
         }
 
+        public bool IvaPricesSet { get; set; }
+
 
         #endregion
         public SaleVM()
@@ -68,6 +73,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
                     "Publico"
                 };
             InitializeCompleteSale();
+            IvaPricesSet = false;
         }
         public void InitializeCompleteSale()
         {
@@ -83,6 +89,11 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             SaveQuateCommand = new SaveQuateCommand(this);
             CancelCommand = new CancelCommand(this);
             SearchProductFromSalecommand = new SearchProductFromSalecommand(this);
+            SetIvaPrices = new SetIvaPrices(this);
+            UndoIvaPrices = new UndoIvaPrices(this);
+            GetQuoteCommand = new GetQuoteCommand(this);
+
+            //Objetos
             CompleteSale = new CompleteSaleM();
             CompleteSale.ClientSale = new ClientSale();
             CompleteSale.SearchedProducts = new List<Models.Products.ProductSaleSearch>();
@@ -90,6 +101,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             CompleteSale.NeedFactura = false;
             CompleteSale.SalerID = 1;
             ProductCriterialSearch = "";
+            IvaPricesSet = false;
         }
     }
 }

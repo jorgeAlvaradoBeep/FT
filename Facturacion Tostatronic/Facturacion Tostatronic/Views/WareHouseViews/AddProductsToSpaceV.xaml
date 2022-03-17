@@ -46,7 +46,7 @@
                                       Grid.RowSpan="2"
                                       Grid.ColumnSpan="8" 
                                       Margin="5,5,0,0">
-                <TextBlock Text="Agregar Espacios a Mueble" 
+                <TextBlock Text="Agregar Productos a Espacios" 
                            FontSize="32px"  
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center"/>

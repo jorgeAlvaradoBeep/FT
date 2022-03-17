@@ -231,5 +231,77 @@ namespace Facturacion_Tostatronic.Services
                 return result;
             }
         }
+
+        public static async Task<Response> GetDataNode(string url, string criterialSearch)
+        {
+            url += criterialSearch;
+            var client = new RestClient(url);
+            client.Timeout = 15000;
+
+            var request = new RestRequest(Method.GET);
+
+            
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                Response result;
+                if (response.IsSuccessful)
+                    result = JsonConvert.DeserializeObject<Response>(response.Content);
+                else
+                    result = new Response() { succes = false, message = response.ErrorMessage, statusCode = 404 };
+                return result;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return result;
+            }
+        }
+
+        public static Response GetDataNodeNoAsync(string url, string criterialSearch)
+        {
+            url += criterialSearch;
+            var client = new RestClient(url);
+            client.Timeout = 15000;
+
+            var request = new RestRequest(Method.GET);
+
+
+            IRestResponse response;
+            try
+            {
+                response = client.Execute(request);
+                Response result;
+                if (response.IsSuccessful)
+                    result = JsonConvert.DeserializeObject<Response>(response.Content);
+                else
+                    result = new Response() { succes = false, message = response.ErrorMessage, statusCode = 404 };
+                return result;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return result;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Facturacion_Tostatronic.Models.Sales
 {
@@ -169,6 +170,40 @@ namespace Facturacion_Tostatronic.Models.Sales
         }
 
         public PaymentM Payment { get; set; }
+
+        public bool SetIVAPrices()
+        {
+            if(SaledProducts.Count>0)
+            {
+                string message = "";
+                foreach (ProductSaleSaled product in SaledProducts)
+                {
+                    if ((product.DisplayPrice / 1.16f) >= (product.MinimumPrice / 1.16f))
+                        product.DisplayPrice /= 1.16f;
+                    else
+                        message += $"El precio actual ({product.DisplayPrice}) del producto {product.Name} ya esta en su minimo permitido{Environment.NewLine}";
+                }
+                GetSubtotal();
+                NeedFactura = true;
+                if (!message.Equals(""))
+                    MessageBox.Show(message, "Algunos precios no se cambiaron", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            return true;   
+        }
+
+        public bool UndoIVAPrices()
+        {
+            if (SaledProducts.Count > 0)
+            {
+                foreach (ProductSaleSaled product in SaledProducts)
+                {
+                    product.DisplayPrice *= 1.16f;
+                }
+                GetSubtotal();
+                NeedFactura = false;
+            }
+            return true;
+        }
 
     }
 }

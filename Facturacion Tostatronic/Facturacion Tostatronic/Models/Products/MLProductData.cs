@@ -40,7 +40,11 @@ namespace Facturacion_Tostatronic.Models.Products
         public float PublicationPrice
         {
             get { return publicationPrice; }
-            set { SetValue(ref publicationPrice, value); }
+            set 
+            { 
+                SetValue(ref publicationPrice, value);
+                UpdatePrice();
+            }
         }
 
 
@@ -132,9 +136,9 @@ namespace Facturacion_Tostatronic.Models.Products
         {
             float p = PriceToCalculate;
             p = p * NumberOfPiecesOfPackage;
+            p += PublicationPrice;
             p = p * (1 + (ClassicPublicationComission / 100));
             p *= 1.1f;
-            p += PublicationPrice;
             p *= 1.04f;
             ClassicPriceWOS = p;
             ClassicPriceWS = p + ClassicPublicationShippingCost;

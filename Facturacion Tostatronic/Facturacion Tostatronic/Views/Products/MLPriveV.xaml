@@ -59,7 +59,7 @@
                                              FontSize="20"
                                              Text="{Binding ProductCriterialSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <telerik:RadWatermarkTextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding SearchProductsForSalecommand}"/>
+                            <KeyBinding Key="Enter" Command="{Binding SearchProductsForMLPricecommand}"/>
                         </telerik:RadWatermarkTextBox.InputBindings>
                     </telerik:RadWatermarkTextBox>
                     <telerik:RadButton Background="Transparent" 

@@ -17,8 +17,11 @@ namespace Facturacion_Tostatronic.Models.Products
             {
                 if (displayPrice.Equals(value))
                     return;
-                if(value<MinimumPrice)
-                    throw new ValidationException($"El precio no puede ser menor al precio minimo Marcado: {MinimumPrice.ToString("$0.00")}");
+                if(value<(MinimumPrice/1.17))
+                {
+                    throw new ValidationException($"El precio no puede ser menor al precio minimo Marcado: {(MinimumPrice).ToString("$0.00")}");
+                }
+                    
                 SetValue(ref displayPrice, value); 
             }
         }
