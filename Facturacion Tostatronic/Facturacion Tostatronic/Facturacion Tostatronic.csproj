@@ -268,6 +268,7 @@
     <Compile Include="Models\Products\ProductSaleSaled.cs" />
     <Compile Include="Models\Products\ProductSaleSearch.cs" />
     <Compile Include="Models\Products\SpecificPrice.cs" />
+    <Compile Include="Models\Products\SucursalProduct\SucursalProduct.cs" />
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="ViewModels\Commands\PrinterConfigCommand.cs" />
     <Compile Include="ViewModels\Commands\PrinterConfigCommands\SetPrinterCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\AddNewProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\CallSucursalPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\CreateFacebookListCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\CreateNewProductsListCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\CreateProductsCommand.cs" />
@@ -350,10 +352,12 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\GetProductsWNImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SaveNewImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductForSucursalPrice.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductsForDisscountPricecommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductsForMLPricecommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductsForUpdateImagecommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SelectDisscountPriceProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\SelectSucursalPriceProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SetBarCodeCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SetPSIDCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateDistributorPriceCommand.cs" />
@@ -361,6 +365,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdatePublicPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateQuantitiesViewCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\UpdateSucursalPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\SaleSelectedCommand.cs" />
     <Compile Include="ViewModels\Commands\SeeInvoiceCommand.cs" />
     <Compile Include="ViewModels\Commands\SeeInvoiceCommands\CloseFormCommand.cs" />
@@ -383,6 +388,7 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
     <Compile Include="ViewModels\Products\DisscountPricesVM.cs" />
+    <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
     <Compile Include="ViewModels\Sales\SearchQuoteVM.cs" />
     <Compile Include="ViewModels\WareHouse\AddProductsToSpaceVM.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveLocalizationFornituresCommand.cs" />
@@ -444,6 +450,9 @@
     </Compile>
     <Compile Include="Views\Products\MLPriveV.xaml.cs">
       <DependentUpon>MLPriveV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\SucursalPrice.xaml.cs">
+      <DependentUpon>SucursalPrice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Products\UpdateImageV.xaml.cs">
       <DependentUpon>UpdateImageV.xaml</DependentUpon>
@@ -551,6 +560,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Products\MLPriveV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Products\SucursalPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

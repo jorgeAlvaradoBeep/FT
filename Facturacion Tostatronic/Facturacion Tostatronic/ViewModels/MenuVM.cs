@@ -68,6 +68,7 @@ namespace Facturacion_Tostatronic.ViewModels
         public UpdateQuantitiesViewCommand UpdateQuantitiesViewCommand { get; set; }
         public CreateFacebookListCommand CreateFacebookListCommand { get; set; }
         public ViewClientsMenuCommand ViewClientsMenuCommand { get; set; }
+        public CallSucursalPriceCommand CallSucursalPriceCommand { get; set; }
         #endregion
         #region menuPages
         private Visibility menuPageOne;
@@ -136,6 +137,7 @@ namespace Facturacion_Tostatronic.ViewModels
             GetNewPICommand = new GetNewPICommand();
             CreateFacebookListCommand = new CreateFacebookListCommand(this);
             ViewClientsMenuCommand = new ViewClientsMenuCommand(this);
+            CallSucursalPriceCommand = new CallSucursalPriceCommand();
             #endregion
             MenuPageOne = Visibility.Visible;
             MenuPageTwo = Visibility.Hidden;

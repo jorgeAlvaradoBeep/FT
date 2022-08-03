@@ -112,10 +112,13 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         row++;
                         workSheet.Cells[row, "A"] = obj.reference;
                         workSheet.Cells[row, "B"] = obj.name[0].Value;
-                        workSheet.Cells[row, "C"] = HtmlUtilities.ConvertToPlainText(obj.description_short[0].Value);
+                        if (String.IsNullOrEmpty(obj.description_short[0].Value))
+                            workSheet.Cells[row, "C"] = "Sin Descripción";
+                        else
+                            workSheet.Cells[row, "C"] = HtmlUtilities.ConvertToPlainText(obj.description_short[0].Value);
                         workSheet.Cells[row, "D"] = "in stock";
                         workSheet.Cells[row, "E"] = "new";
-                        workSheet.Cells[row, "F"] = obj.wholesale_price.ToString("#.##") + " MXN";
+                        workSheet.Cells[row, "F"] = obj.price.ToString("#.##") + " MXN";
                         workSheet.Cells[row, "G"] = link;
                         workSheet.Cells[row, "H"] = linkImage;
                         workSheet.Cells[row, "I"] = "Tostatronic";

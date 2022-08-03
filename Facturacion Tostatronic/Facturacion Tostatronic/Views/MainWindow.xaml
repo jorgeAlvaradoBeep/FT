@@ -78,7 +78,7 @@
                     <TextBlock Text="Ordenes Pagina" FontSize="14"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateMLPricesCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateMLPricesCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/ml.jpg" Width="20" Height="20"/>
                     <TextBlock Text="Precios ML" FontSize="14"/>
@@ -92,7 +92,7 @@
                     <TextBlock Text="Agregar Producto" FontSize="14"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateProductsListCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateProductsListCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/list.png" Width="20" Height="20"/>
                     <TextBlock Text="Lista Productos" FontSize="14"/>
@@ -129,7 +129,7 @@
                     <TextBlock Text="To PNG" FontSize="10"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateImagesCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateImagesCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/image_create.png" Width="20" Height="20"/>
                     <TextBlock Text="Crear Imagenes" FontSize="10"/>
@@ -193,22 +193,34 @@
                     <TextBlock Text="Nueva Orden" FontSize="10"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetDiiscountPricesViewCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetDiiscountPricesViewCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/pi.png" Width="20" Height="20"/>
                     <TextBlock Text="Precios Descuento" FontSize="10"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateQuantitiesViewCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateQuantitiesViewCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/qty.png" Width="20" Height="20"/>
                     <TextBlock Text="Actualiza Cantidades" FontSize="10"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateFacebookListCommand}" Visibility="{Binding MenuPageOne}">
+            <Button Height="50" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateFacebookListCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/face.png" Width="20" Height="20"/>
                     <TextBlock Text="Productos Facebook" FontSize="10"/>
+                </StackPanel>
+            </Button>
+            <Button Height="50" 
+                    Grid.Column="4" 
+                    Grid.Row="5" 
+                    HorizontalAlignment="Stretch" 
+                    Margin="5px" 
+                    Command="{Binding CallSucursalPriceCommand}" 
+                    Visibility="{Binding MenuPageOne}" Cursor="Hand">
+                <StackPanel>
+                    <Image Source="/Images/pi.png" Width="20" Height="20"/>
+                    <TextBlock Text="Productos Sucursal" FontSize="10"/>
                 </StackPanel>
             </Button>
         </Grid>

@@ -134,21 +134,22 @@ namespace Facturacion_Tostatronic.Models.Products
 
         void UpdatePrice()
         {
+            if (PriceToCalculate == 0 || NumberOfPiecesOfPackage == 0 || PublicationPrice == 0 ||
+               ClassicPublicationComission == 0 || ClassicPublicationShippingCost == 0 || PremiumublicationComission == 0)
+                return;
             float p = PriceToCalculate;
             p = p * NumberOfPiecesOfPackage;
             p += PublicationPrice;
-            p = p * (1 + (ClassicPublicationComission / 100));
-            p *= 1.1f;
-            p *= 1.04f;
+            p = p / (1 - (ClassicPublicationComission / 100));
+            p /= 0.9f;
             ClassicPriceWOS = p;
             ClassicPriceWS = p + ClassicPublicationShippingCost;
 
             p = PriceToCalculate;
             p = p * NumberOfPiecesOfPackage;
-            p = p * (1 + (PremiumublicationComission / 100));
-            p *= 1.1f;
             p += PublicationPrice;
-            p *= 1.04f;
+            p = p / (1 - (PremiumublicationComission / 100));
+            p /= 0.9f;
 
             PremiumPriceWOS = p;
             PremiumPriceWS = p + PremiumPublicationShippingCost;

@@ -50,24 +50,25 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 ProductData.ClassicPublicationShippingCost = 95;
                 ProductData.PremiumublicationComission = 17;
                 ProductData.PremiumPublicationShippingCost = 95;
+
+                /*
                 float p = SelectedProduct.MinimumPrice;
                 p = p * ProductData.NumberOfPiecesOfPackage;
-                p = p * (1 + (ProductData.ClassicPublicationComission / 100));
-                p *= 1.1f;
                 p += ProductData.PublicationPrice;
-                p *= 1.04f;
+                p = p / (1 - (ProductData.ClassicPublicationComission / 100));
+                p /= 1.1f;
+                //p *= 1.04f;
                 ProductData.ClassicPriceWOS = p;
                 ProductData.ClassicPriceWS = p + ProductData.ClassicPublicationShippingCost;
 
                 p = SelectedProduct.MinimumPrice;
                 p = p * ProductData.NumberOfPiecesOfPackage;
-                p = p * (1 + (ProductData.PremiumublicationComission / 100));
-                p *= 1.1f;
                 p += ProductData.PublicationPrice;
-                p *= 1.04f;
+                p = p / (1 - (ProductData.PremiumublicationComission / 100));
+                p /= 1.1f;
 
                 ProductData.PremiumPriceWOS = p;
-                ProductData.PremiumPriceWS = p + ProductData.PremiumPublicationShippingCost;
+                ProductData.PremiumPriceWS = p + ProductData.PremiumPublicationShippingCost;*/
                 GettingData = false;
             }
         }

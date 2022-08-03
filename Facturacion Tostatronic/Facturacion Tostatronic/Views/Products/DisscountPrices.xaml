@@ -223,7 +223,7 @@
                 Margin="5,5,5,5"
                 Background="Green"
                 Command="{Binding UpdateProductCommand}"
-                Visibility="{Binding BaseProductVisibility}">
+                Visibility="{Binding BaseProductVisibility}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/save.png" Width="40" Height="40"/>
                     <TextBlock Text="Guardar" FontSize="24"/>

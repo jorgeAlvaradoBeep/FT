@@ -61,5 +61,7 @@
         public static string creditSales = baseURLNode + "credit_sales/";
         public static string creditPayments = baseURLNode + "sales_payments/";
         public static string addPaymentToSale = baseURLNode + "add_payment/";
+        public static string setSucursalPrice = baseURLNode + "existe_sucursal_price/";
+        public static string addSucursalPrice = baseURLNode + "add_sucursal_price/";
     }
 }
