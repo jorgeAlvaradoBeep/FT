@@ -49,6 +49,13 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
                 VM.CompleteSale.InvoiceData.FormaDePago = fp;
             }
             catch (Exception e) { }
+            try
+            {
+                RegimenFiscal index = (RegimenFiscal)parameter;
+                
+                VM.CompleteSale.InvoiceData.RegimenFiscal = index.RegimenFiscalP;
+            }
+            catch (Exception e) { }
 
         }
     }

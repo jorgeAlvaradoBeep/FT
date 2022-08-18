@@ -11,5 +11,6 @@ namespace Facturacion_Tostatronic.Models
         public string Rfc { get; set; }
         public string CompleteName { get; set; }
         public string Email { get; set; }
+        public string CP { get; set; }
     }
 }

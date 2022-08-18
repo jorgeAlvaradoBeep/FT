@@ -93,7 +93,7 @@ namespace Facturacion_Tostatronic.Services
             CreateXML(oComprobante);
 
             string cadenaOriginal = "";
-            string pathxsl = Directory.GetCurrentDirectory() + @"/Fiel/cadenaoriginal_3_3.xslt";
+            string pathxsl = Directory.GetCurrentDirectory() + @"/Fiel/cadenaoriginal_4_0.xslt";
             System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
             transformador.Load(pathxsl);
 
@@ -132,7 +132,7 @@ namespace Facturacion_Tostatronic.Services
             }
         }
 
-        public async static Task<string> CreaFactura(string folio, string formaPago, string metodoDePago, List<ProductoSat> productos, float subtotal, string rfc, string rz, string usoCFDI, string mail, float iva, float total)
+        public async static Task<string> CreaFactura(string folio, string formaPago, string metodoDePago, List<ProductoSat> productos, float subtotal, string rfc, string rz, string usoCFDI, string mail, float iva, float total, string regimenFiscal, string CPCliente)
         {
             string pathCer = Directory.GetCurrentDirectory() + @"/Fiel/Certifiado.cer";
             string pathKey = Directory.GetCurrentDirectory() + @"/Fiel/Key.key";
@@ -149,7 +149,7 @@ namespace Facturacion_Tostatronic.Services
             float t = total;
             string ts = t.ToString();
             Comprobante oComprobante = new Comprobante();
-            oComprobante.Version = "3.3";
+            oComprobante.Version = "4.0";
             oComprobante.Serie = "H";
             oComprobante.Folio = folio;
             oComprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -165,19 +165,22 @@ namespace Facturacion_Tostatronic.Services
             oComprobante.TipoDeComprobante = "I";
             oComprobante.MetodoPago = metodoDePago;
             oComprobante.LugarExpedicion = "44860";
+            oComprobante.Exportacion = "01";
 
 
 
             ComprobanteEmisor oEmisor = new ComprobanteEmisor();
 
             oEmisor.Rfc = "AATJ9502061EA";
-            oEmisor.Nombre = "Jorge Humberto Alvarado Tostado";
+            oEmisor.Nombre = "JORGE HUMBERTO ALVARADO TOSTADO";
             oEmisor.RegimenFiscal = "612";
 
             ComprobanteReceptor oReceptor = new ComprobanteReceptor();
             oReceptor.Nombre = rz;
             oReceptor.Rfc = rfc;
             oReceptor.UsoCFDI = usoCFDI;
+            oReceptor.RegimenFiscalReceptor = regimenFiscal;
+            oReceptor.DomicilioFiscalReceptor = CPCliente;
 
             //asigno emisor y receptor
             oComprobante.Emisor = oEmisor;
@@ -190,14 +193,13 @@ namespace Facturacion_Tostatronic.Services
             ComprobanteConceptoImpuestosTraslado imAux;
             ComprobanteConceptoImpuestosTraslado[] impuestosTrasladados;
             decimal impAux = 0;
-
+            decimal totalDefi = 0;
             foreach (ProductoSat a in productos)
             {
                 oConcepto = new ComprobanteConcepto();
                 impuestos = new ComprobanteConceptoImpuestos();
                 imAux = new ComprobanteConceptoImpuestosTraslado();
                 impuestosTrasladados = new ComprobanteConceptoImpuestosTraslado[1];
-                oConcepto.Importe = Math.Round(decimal.Parse((a.Subtotal).ToString()), 3);
                 oConcepto.ClaveProdServ = a.CodigoSAT;
                 oConcepto.Cantidad = decimal.Parse(a.Cantidad.ToString());
                 if (a.Descripcion.ToUpper().Contains("ENVIO"))
@@ -205,20 +207,23 @@ namespace Facturacion_Tostatronic.Services
                 else
                     oConcepto.ClaveUnidad = "H87";
                 oConcepto.Descripcion = a.Descripcion;
-                oConcepto.ValorUnitario = decimal.Parse((a.Precio).ToString());
+                oConcepto.ValorUnitario = Math.Round(decimal.Parse(a.Precio.ToString()), 4);
+                oConcepto.ObjetoImp = "02";
+                oConcepto.Importe = oConcepto.ValorUnitario*oConcepto.Cantidad;
                 //Impuestos
-                imAux.Base = decimal.Parse(a.Subtotal.ToString());
                 imAux.ImporteSpecified = true;
                 imAux.TasaOCuotaSpecified = true;
                 imAux.TipoFactor = "Tasa";
-                imAux.Importe = Math.Round(decimal.Parse((a.Subtotal * 0.16).ToString()), 2);
-                impAux += imAux.Importe;
                 imAux.TasaOCuota = decimal.Parse("0.160000");
                 imAux.Impuesto = "002";
+                imAux.Base = oConcepto.Importe;
+                imAux.Importe = Math.Round(imAux.TasaOCuota * imAux.Base, 2);
+                impAux += imAux.Importe;
                 impuestosTrasladados[0] = imAux;
                 impuestos.Traslados = impuestosTrasladados;
                 oConcepto.Impuestos = impuestos;
                 lstConceptos.Add(oConcepto);
+                totalDefi += imAux.Base;
             }
             oComprobante.Conceptos = lstConceptos.ToArray();
 
@@ -226,9 +231,11 @@ namespace Facturacion_Tostatronic.Services
             ComprobanteImpuestosTraslado imComprobanteTraladados = new ComprobanteImpuestosTraslado();
             ComprobanteImpuestosTraslado[] imComprobanteTraladadosArray = new ComprobanteImpuestosTraslado[1];
 
+            oComprobante.SubTotal = Math.Round(totalDefi, 2);
             imComprobanteTraladados.TipoFactor = "Tasa";
             imComprobanteTraladados.TasaOCuota = decimal.Parse("0.160000");
             imComprobanteTraladados.Impuesto = "002";
+            imComprobanteTraladados.Base = oComprobante.SubTotal;
             imComprobanteTraladados.Importe = Math.Round(impAux, 2);
             oComprobante.Total = oComprobante.SubTotal + imComprobanteTraladados.Importe;
 
@@ -246,7 +253,7 @@ namespace Facturacion_Tostatronic.Services
             CreateXML(oComprobante);
 
             string cadenaOriginal = "";
-            string pathxsl = Directory.GetCurrentDirectory() + @"/Fiel/cadenaoriginal_3_3.xslt";
+            string pathxsl = Directory.GetCurrentDirectory() + @"/Fiel/cadenaoriginal_4_0.xslt";
             System.Xml.Xsl.XslCompiledTransform transformador = new System.Xml.Xsl.XslCompiledTransform(true);
             transformador.Load(pathxsl);
 
@@ -318,7 +325,7 @@ namespace Facturacion_Tostatronic.Services
             //SERIALIZAMOS.-------------------------------------------------
 
             XmlSerializerNamespaces xmlNameSpace = new XmlSerializerNamespaces();
-            xmlNameSpace.Add("cfdi", "http://www.sat.gob.mx/cfd/3");
+            xmlNameSpace.Add("cfdi", "http://www.sat.gob.mx/cfd/4");
             xmlNameSpace.Add("tfd", "http://www.sat.gob.mx/TimbreFiscalDigital");
             xmlNameSpace.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
 

@@ -63,5 +63,6 @@
         public static string addPaymentToSale = baseURLNode + "add_payment/";
         public static string setSucursalPrice = baseURLNode + "existe_sucursal_price/";
         public static string addSucursalPrice = baseURLNode + "add_sucursal_price/";
+        public static string regimenFiscal = baseURLNode + "Regimen/";
     }
 }

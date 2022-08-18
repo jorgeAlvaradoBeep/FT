@@ -68,6 +68,14 @@ namespace Facturacion_Tostatronic.ViewModels
             get { return paymentForm; }
             set { SetValue(ref paymentForm, value); }
         }
+
+        private List<RegimenFiscal> regimenFiscal;
+
+        public List<RegimenFiscal> RegimenFiscal
+        {
+            get { return regimenFiscal; }
+            set { SetValue(ref regimenFiscal, value); }
+        }
         private List<CFDIUse> cFDIUse;
 
         public List<CFDIUse> CFDIUse
@@ -98,6 +106,7 @@ namespace Facturacion_Tostatronic.ViewModels
             CFDIUse = new List<CFDIUse>();
             PaymentForm = new List<PaymentForm>();
             PaymentMethod = new List<PaymentMethod>();
+            RegimenFiscal = new List<RegimenFiscal>();
             //Al inicio no se permite la seleccion de datos
             DataEntranceSavailable = false;
             SearchSaleCommand = new SearchSaleCommand(this);
@@ -196,6 +205,14 @@ namespace Facturacion_Tostatronic.ViewModels
                     PaymentForm = JsonConvert.DeserializeObject<List<PaymentForm>>(rmp.data.ToString());
                 }
             }
+            if (RegimenFiscal.Count == 0)
+            {
+                Response rmp = await WebService.GetDataForInvoice(URLData.regimenFiscal);
+                if (rmp.succes)
+                {
+                    RegimenFiscal = JsonConvert.DeserializeObject<List<RegimenFiscal>>(rmp.data.ToString());
+                }
+            }
             InvoiceNumber = string.Empty;
             if (r.statusCode == 404)
             {
@@ -234,7 +251,10 @@ namespace Facturacion_Tostatronic.ViewModels
                 articulos.Add(ps);
             }
 
-            string error = await Facturacion.CreaFactura(CompleteSale.Folio, CompleteSale.InvoiceData.FormaDePago, CompleteSale.InvoiceData.MetodoDePago,articulos,CompleteSale.SubTotal, CompleteSale.Client.Rfc, CompleteSale.Client.CompleteName, CompleteSale.InvoiceData.UsoCFDI, CompleteSale.Client.Email, CompleteSale.Tax, CompleteSale.Total);
+            string error = await Facturacion.CreaFactura(CompleteSale.Folio, CompleteSale.InvoiceData.FormaDePago, 
+                CompleteSale.InvoiceData.MetodoDePago,articulos,CompleteSale.SubTotal, CompleteSale.Client.Rfc, 
+                CompleteSale.Client.CompleteName, CompleteSale.InvoiceData.UsoCFDI, CompleteSale.Client.Email, 
+                CompleteSale.Tax, CompleteSale.Total, CompleteSale.InvoiceData.RegimenFiscal, CompleteSale.Client.CP);
             wp.Close();
             if (error == "")
                 return true;

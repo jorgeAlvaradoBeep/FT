@@ -28,11 +28,11 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
         {
             var values = (object[])parameter;
             bool aux = true;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 aux &= !(bool)values[i];
             }
-            CreateInvoiceV vAux = (CreateInvoiceV)values[2];
+            CreateInvoiceV vAux = (CreateInvoiceV)values[3];
             if(!aux)
             {
                 MessageBox.Show("Tiene Errores En el Formulario.");
@@ -67,6 +67,18 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
             else if (string.IsNullOrEmpty(VM.CompleteSale.Client.Email))
             {
                 MessageBox.Show("El correo electronico es necesario.");
+                return;
+
+            }
+            else if (string.IsNullOrEmpty(VM.CompleteSale.Client.CP))
+            {
+                MessageBox.Show("El CP es necesario.");
+                return;
+
+            }
+            else if (string.IsNullOrEmpty(VM.CompleteSale.InvoiceData.RegimenFiscal))
+            {
+                MessageBox.Show("El Regimen Fiscal es necesario.");
                 return;
 
             }

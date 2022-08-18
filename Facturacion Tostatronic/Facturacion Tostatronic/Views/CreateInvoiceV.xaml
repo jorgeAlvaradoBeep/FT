@@ -6,9 +6,11 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views" xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations" xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views" 
+        xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations"
+        xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services"
         mc:Ignorable="d"
-        Title="Crear Factura" Height="450" Width="800"
+        Title="Crear Factura" Height="800" Width="1000"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         x:Name="WCreateInvoice">
@@ -84,6 +86,41 @@
                     </i:Interaction.Triggers>
                 </ComboBox>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtCodigoPostal" 
+                         Margin="20,1,1,1" 
+                         Width="150" 
+                         HorizontalContentAlignment="Left" 
+                         materialDesign:HintAssist.Hint="CP*" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         IsEnabled="{Binding DataEntranceSavailable}">
+                    <TextBox.Text>
+                        <Binding Path="CompleteSale.Client.CP" 
+                                 Mode="TwoWay" 
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local1:CPValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ComboBox x:Name="cmbRegimenFiscal" 
+                          Margin="20,1,1,1" 
+                          Width="350" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding RegimenFiscal}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="Regimen Fiscal*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SetSelectedCFDIUseCommando}" 
+                                                   CommandParameter="{Binding ElementName=cmbRegimenFiscal, Path=SelectedItem}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="5" Orientation="Vertical" Grid.RowSpan="7">
             <DatePicker x:Name="dpEventDate" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="0,0,0,5">
@@ -130,7 +167,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Margin="5" DataContext="{Binding CompleteSale}" ItemsSource="{Binding Products}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="5">
+        <ListView Margin="5,25,5,5" DataContext="{Binding CompleteSale}" 
+                  ItemsSource="{Binding Products}" 
+                  Grid.Column="0" 
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Codigo" Width="120" DisplayMemberBinding="{Binding idProduct}" />
@@ -156,6 +198,7 @@
                 <MultiBinding Converter="{StaticResource validatinDataConverter}">
                     <Binding Path="(Validation.HasError)" ElementName="txtRfc"/>
                     <Binding Path="(Validation.HasError)" ElementName="txtEmail"/>
+                    <Binding Path="(Validation.HasError)" ElementName="txtCodigoPostal"/>
                     <Binding ElementName="WCreateInvoice"/>
                 </MultiBinding>
             </Button.CommandParameter>

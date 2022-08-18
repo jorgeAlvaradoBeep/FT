@@ -11,5 +11,6 @@ namespace Facturacion_Tostatronic.Models
         public string UsoCFDI { get; set; }
         public string MetodoDePago { get; set; }
         public string FormaDePago { get; set; }
+        public string RegimenFiscal { get; set; }
     }
 }

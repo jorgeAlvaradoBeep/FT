@@ -247,6 +247,7 @@
     <Compile Include="Models\CFDI\CFDIUse.cs" />
     <Compile Include="Models\CFDI\PaymentForm.cs" />
     <Compile Include="Models\CFDI\PaymentMethod.cs" />
+    <Compile Include="Models\CFDI\RegimenFiscal.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Clients\ClientSale.cs" />
     <Compile Include="Models\Clients\CreditClient.cs" />
@@ -280,7 +281,7 @@
     <Compile Include="Models\WareHouse\ProductInSpace.cs" />
     <Compile Include="Models\WareHouse\WareHouseM.cs" />
     <Compile Include="Services\Facturacion.cs" />
-    <Compile Include="Services\Facturacion\cfdv33_tdCFDI_catCFDI.cs" />
+    <Compile Include="Services\Facturacion\CFDI4.cs" />
     <Compile Include="Services\Facturacion\opensslkey.cs" />
     <Compile Include="Services\Facturacion\SelloDigital.cs" />
     <Compile Include="Services\Facturacion\StringWriterWithEncoding.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="Services\Ticket\TermalTicket.cs" />
     <Compile Include="Services\Ticket\Ticket.cs" />
     <Compile Include="Services\ValidatinDataConverter.cs" />
+    <Compile Include="Validations\CPValidationRule.cs" />
     <Compile Include="Validations\EmailsValidation.cs" />
     <Compile Include="Validations\EmailValidationRule.cs" />
     <Compile Include="Validations\Productos\EmptyDataRule.cs" />
