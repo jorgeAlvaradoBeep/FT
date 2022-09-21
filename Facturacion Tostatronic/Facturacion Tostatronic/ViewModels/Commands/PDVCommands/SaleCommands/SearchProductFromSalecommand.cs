@@ -40,7 +40,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                 MessageBox.Show($"El producto lo puede localizar en:{Environment.NewLine}{res.message}", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
-                MessageBox.Show($"No existe registro del producto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"No existe registro del producto", "Error1", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
     }
