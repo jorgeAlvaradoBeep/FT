@@ -51,36 +51,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "OwnerKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "OwnerKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "OwnerKey" = "8:_9811D49F4DDC432DD2E3E1C77403F3AB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_067681E0A012B80FED850A224A76DC1B"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,32 +81,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "OwnerKey" = "8:_E76870D7BC596348ED768A44FB734427"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "OwnerKey" = "8:_F8CED37521B0AADF3FCF4317FDEBDCE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0AD5DA2FACFC130C0AA96F8895EF41F8"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0C0E0A7FB86141E48663B2697C08D080"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -147,13 +99,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0C81DCED82204DB494E8E07800AB50BC"
+        "MsmKey" = "8:_0F6A08A0CD6C4F53A3D8CF18A800A317"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0D59A9C529C84C0F8630509C893217CA"
+        "MsmKey" = "8:_0FB879D9FE5D4F6BB14E0B0387F5BD4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -167,12 +119,6 @@
         {
         "MsmKey" = "8:_0FCF6CAD32887B837B20C5E2E7932A54"
         "OwnerKey" = "8:_D59B7B725F8FFA841CCA866D4E5EF431"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0FCF6CAD32887B837B20C5E2E7932A54"
-        "OwnerKey" = "8:_3F7F80C868237D8A156AB5E021324C4A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,7 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0FCF6CAD32887B837B20C5E2E7932A54"
-        "OwnerKey" = "8:_72B9C32400809259ABA793E828530246"
+        "OwnerKey" = "8:_1B617D83B0AAE63FA9F31587AB0648D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -213,7 +159,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1291F58CEF3E4EB68FD9D25375F66C85"
+        "MsmKey" = "8:_134A60A2FCEB4FD9ADF5C754F05EC3F8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,14 +177,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1409AAAC614340FEB4DB3539984428F9"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_1442D14EF86DFD0153D0028D906F3ACE"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1442D14EF86DFD0153D0028D906F3ACE"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmKey" = "8:_14599243EC56432288CCE108F736083C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -273,6 +219,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_185BC28B758545AE99F88B0F2A2841F6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1881D38DFAD4A7AC59A269E59FE760C2"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -297,68 +249,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1B19CCEA622D4DAE876C51113CC0D1F7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_E76870D7BC596348ED768A44FB734427"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_F8CED37521B0AADF3FCF4317FDEBDCE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
+        "MsmKey" = "8:_1B2B351A7BECB6D92C0BFC23E004B220"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_9811D49F4DDC432DD2E3E1C77403F3AB"
+        "MsmKey" = "8:_1B617D83B0AAE63FA9F31587AB0648D9"
+        "OwnerKey" = "8:_6A6E2D82AB50051820CAA29C0997D99F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
-        "OwnerKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1B9BEAA439544869BA5C64BE91FD77C0"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_1B617D83B0AAE63FA9F31587AB0648D9"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -381,7 +285,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1E606CA4222D49588ADB245813821A14"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1F47D6F07639ED2133BE3C745A331292"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_20BF70C4BDCA89F9E90389DABAAEE07A"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -395,6 +311,30 @@
         {
         "MsmKey" = "8:_2392FC7DB336031DB4E0792BDDA28AC0"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "OwnerKey" = "8:_20BF70C4BDCA89F9E90389DABAAEE07A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "OwnerKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -435,6 +375,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_286AC46C7E4E041E769E65FA07605524"
+        "OwnerKey" = "8:_BDD847096E6B6B7DF278DB310A9FF897"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_29BA4022EBFD0EEBCA41A341B02AF8FA"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -453,12 +399,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2C5AD451DB5046219280B4BE16E8DAE1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2CCC7A271984C39E6560C164B9E52F9D"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -471,20 +411,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_31B8070676D64ED0BB4AAF37CB9E4BB6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_34781A65852926DF5DED987B45E46416"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3692B56F2B984295B8839F9E23AB8896"
+        "MsmKey" = "8:_35D2A8417ABB4833AC64DFFC8AABF211"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -497,6 +437,12 @@
         {
         "MsmKey" = "8:_399E7ADE2C5A896F1AE201DE8EF6936C"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_39BAF15D486F41A98E83FAF1999699DF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -519,13 +465,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3F540CB3CD5CC70F01D434BE9EC6D667"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmKey" = "8:_3EF390623CA34237A1FACD6BDDF55E65"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3F7F80C868237D8A156AB5E021324C4A"
+        "MsmKey" = "8:_3F540CB3CD5CC70F01D434BE9EC6D667"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -549,8 +495,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmKey" = "8:_456065A842FD4F2C8AB70884B4F8F012"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -585,19 +531,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_45A26BD7E6484198A16FEB944161D2D9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4691B59E828A871032482FB4D38756C0"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_49EB694EECFE443C8C967E88CB1B8793"
+        "MsmKey" = "8:_4B78D3C1500D414D9D6FB43E8E8E5173"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -621,19 +561,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4E3BB84487B14FFE928FE3A29E5D8668"
+        "MsmKey" = "8:_4F523615005641BEBEF44DAB1F5865C4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4E4CBF607F764377B5465DB4521321EB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4EDEB7B9F1624E8E80034EB6D142B7D9"
+        "MsmKey" = "8:_4FC21736A6A94A2794AE1587BF09E6B1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -693,6 +627,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_589DC72492E84F70939DC47D72C50121"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_59603CA09A0AC9DA06B5D0CF80585BBB"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -717,7 +657,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_60A1D6466B8C48B994B105301D9EC272"
+        "MsmKey" = "8:_5C0D1DDE69C542CB8021A6350F334A22"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5C2CD00BEFA7422CB56673A86A870E15"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -735,20 +681,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6196030B928400459EDA763E0EF76B75"
-        "OwnerKey" = "8:_3F7F80C868237D8A156AB5E021324C4A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6196030B928400459EDA763E0EF76B75"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_626CF72E8F8C49228DF0BC8E18942142"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_62E8E62DEFD8DAB44FE47583313FFD82"
+        "OwnerKey" = "8:_BDD847096E6B6B7DF278DB310A9FF897"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -761,6 +695,12 @@
         {
         "MsmKey" = "8:_6468C4C2C2904C4B93B18117FD555786"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_655E158DC5BB46938E82A52D51D8B199"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -801,6 +741,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6AD64E0004D84ED4B54656308F75E43A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6D5DD1E5562FCD826283137F6DCA3E5E"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -837,13 +783,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_72B9C32400809259ABA793E828530246"
-        "OwnerKey" = "8:_6A6E2D82AB50051820CAA29C0997D99F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72C2525FF4D54D1AAB79F2497F97B569"
+        "MsmKey" = "8:_737081ECF55047098B457FCFE836CB51"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -851,12 +791,6 @@
         {
         "MsmKey" = "8:_7562E46BEE2445E4CA808BFDF39A9D3B"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_763828CEC0704882B19CC553515CE743"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -873,6 +807,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_78777445DC1C40C4BF2F768AC8CF2E44"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_78FEB1578CE46A4944CC951C914C08D7"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
@@ -885,20 +825,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_79A83D04E19B4E469FEA65B5183C622C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_79D09BD84F717CB36DBBA24506B1E6FC"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7A86877E367C4656B0A2D36000D364E4"
+        "MsmKey" = "8:_7C6B1B4C2D46474C8E0B82484573CCB1"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "OwnerKey" = "8:_20BF70C4BDCA89F9E90389DABAAEE07A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "OwnerKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "OwnerKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -927,8 +891,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7EA67751035776FBFCF4FC154EA115E6"
+        "OwnerKey" = "8:_BDD847096E6B6B7DF278DB310A9FF897"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_80C8DF8117B19CA087E11BFD5AA7B626"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_80EFB229EDF4433ABD6F74D3D368D68F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_80F360D545B74D26864D1B18A437716D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -981,19 +963,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_88EB4AFA776343E8B391B4B73E91FC43"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8A01DABBB32A2D39EF04C77FE2C7807E"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D0F89885EE6492CA2CAA5C052B5B843"
+        "MsmKey" = "8:_8B8A1304465145DC8081DA2B6F5969BA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1013,12 +989,6 @@
         {
         "MsmKey" = "8:_90EFE11D3BD0614941EBD3166C461071"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_91A09D0EF2274BB2AAA8C6DC4EF4198A"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1047,13 +1017,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_97E0F013E0AA748A7D661FF00E55B105"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmKey" = "8:_96062893791C4DB5A92DFE32652808C8"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9811D49F4DDC432DD2E3E1C77403F3AB"
+        "MsmKey" = "8:_97E0F013E0AA748A7D661FF00E55B105"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1077,7 +1047,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_99394596E846444184081860FE2BDE9C"
+        "MsmKey" = "8:_9A34C55006B347F58ED4D1539B9AF42E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1113,13 +1083,61 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A3B8BF51C07B4D72B3DF4AEFC51FA0F0"
+        "MsmKey" = "8:_A0F1D64F9D0645D0A2D13B13DF47670B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A70C9418F9BF4A049635D4B34CD8C161"
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_20BF70C4BDCA89F9E90389DABAAEE07A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_B24C2EBE122328A72C80CC68B62FF5B6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+        "OwnerKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A791F7A0628943BE9F1A6AB9002B9FA0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1133,6 +1151,12 @@
         {
         "MsmKey" = "8:_AB488E60859BD10A32823309FD0D621F"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AB69EB71EA6E4BF6BE5617CE19094B87"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1173,7 +1197,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B1C71C8D22484D75A425758EF94CDF64"
+        "MsmKey" = "8:_B088E2B126F94D23AC5F0885692051E0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B11EA0CB58BE46558C0D874F3BCB8CE9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1185,19 +1215,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B276B5A4B1DAAFF86E8DCC1305D76F11"
+        "MsmKey" = "8:_B24C2EBE122328A72C80CC68B62FF5B6"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
+        "MsmKey" = "8:_B276B5A4B1DAAFF86E8DCC1305D76F11"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1239,32 +1263,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "OwnerKey" = "8:_E76870D7BC596348ED768A44FB734427"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "OwnerKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "OwnerKey" = "8:_9811D49F4DDC432DD2E3E1C77403F3AB"
+        "MsmKey" = "8:_B6612787A8DE4251BD5EBFBB9B98F3C7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1275,8 +1275,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BDB57F15F17F4783BCE101CDCE9DBC43"
+        "MsmKey" = "8:_BD05A444A5484A3EB58998E441F78025"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BDD847096E6B6B7DF278DB310A9FF897"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
+        "OwnerKey" = "8:_B24C2EBE122328A72C80CC68B62FF5B6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1293,19 +1317,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C232C58AD0DC45559E0723F6D43E4558"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C25151FD41874A98829A128DA266C03E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C2C2063374F248C780F4649E0E7C5242"
+        "MsmKey" = "8:_C24C5F3E66264892A0DD4BD9B1599BB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1319,18 +1331,6 @@
         {
         "MsmKey" = "8:_C4B0BAC5C19E8562E96169C71C6F522A"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C5C7980909AB40A6ACAB26912EF554C8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C62B2BC9ADB14AF98F49B663A1BD0ABE"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1353,8 +1353,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CFD974AEB0334FDCBF27237356155DA0"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_C9D7308BBD3BFE6084F8CEFB31EDCE5E"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1367,6 +1367,12 @@
         {
         "MsmKey" = "8:_D41A0EC7F2712E42CDD5FF2C2AAE9EBC"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D446380AC8A34C10B4B07C08C3D9D0A1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1391,12 +1397,6 @@
         {
         "MsmKey" = "8:_D59B7B725F8FFA841CCA866D4E5EF431"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D59F354DAB874202A4504CAA20EDF94D"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1431,7 +1431,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DBE0B57F20634D9FA0D902A73DDC8526"
+        "MsmKey" = "8:_DCBE2F291C5C4E2BB251E5B07BCA1EF9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1439,6 +1439,12 @@
         {
         "MsmKey" = "8:_DF80293E0D99F134E2BA722DAC219472"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E3453B56D65544648736C0E6E410FB9F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1456,6 +1462,18 @@
         "Entry"
         {
         "MsmKey" = "8:_E76870D7BC596348ED768A44FB734427"
+        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1491,19 +1509,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ECF50BB8B645487C8EE086DA4E99AA92"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EDED0E08626341E99DC41EBC8BEE20B2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EF440E35151849C0AEC8BB01A64B7741"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFE76F4B92E84F7F83BE4C47703E3106"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1539,7 +1551,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F505016634734749B70E02B7B02C23ED"
+        "MsmKey" = "8:_F49ABB33F4D140DBAD5DE8F0746BB767"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1551,8 +1563,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F58E1ABA182443B29E450215A0014DB4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F6727AE971DB5503A410C3132D5579B6"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F74396C1F61E4070916C4D0E28B33587"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1587,14 +1611,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F8CED37521B0AADF3FCF4317FDEBDCE4"
+        "MsmKey" = "8:_F8E2A65B7C27A781250C50DC83DB09E6"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F8E2A65B7C27A781250C50DC83DB09E6"
-        "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmKey" = "8:_F9D9DEDE1E2842B681E5F2EEB2711704"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1613,6 +1637,18 @@
         {
         "MsmKey" = "8:_FD59A1303E320F163E2A5AD39844F58B"
         "OwnerKey" = "8:_064B200BD0354350BD677F646EBF4E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FE7DDDC050B14701B56A40EDE85D648E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FF6FAC1DDDCD4EA8A9AE46E9CDA4FE49"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1696,6 +1732,24 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_62E8E62DEFD8DAB44FE47583313FFD82"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7EA67751035776FBFCF4FC154EA115E6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C9D7308BBD3BFE6084F8CEFB31EDCE5E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_399E7ADE2C5A896F1AE201DE8EF6936C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1714,13 +1768,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3F7F80C868237D8A156AB5E021324C4A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6196030B928400459EDA763E0EF76B75"
+        "OwnerKey" = "8:_1B2B351A7BECB6D92C0BFC23E004B220"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1811,6 +1859,54 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D4A0EB7FE273A006D7E295FD19AFDE14"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_37E5C4A25157E7362B4166DA9A95D991"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E811D2E13C1364BC806F068179F0D8EB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B24C2EBE122328A72C80CC68B62FF5B6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BF775ADDE2ED69BB961ED5DF67354843"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_20BF70C4BDCA89F9E90389DABAAEE07A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7DAE9F8F180C58F1619927076D121AD9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_23E94CD9BEB8EDC79D4653E1AD68E582"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2206,7 +2302,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_72B9C32400809259ABA793E828530246"
+        "OwnerKey" = "8:_1B617D83B0AAE63FA9F31587AB0648D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2482,55 +2578,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_44F0A9FFA261CF8EC0C67A545702E923"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B2A7ADEA71DD01E8E973BE76114F31E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F8CED37521B0AADF3FCF4317FDEBDCE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9811D49F4DDC432DD2E3E1C77403F3AB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E76870D7BC596348ED768A44FB734427"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_09F974D44D8CCE6E420D91B1F871EAF0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0664A4933EA54633D6263DF32ACBEBAE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B6145414D36138C380E1C8DE07BADA6F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1B3EC5A5479D91B8777F9D884B2DCF02"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2588,6 +2636,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -2612,6 +2668,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -2687,37 +2751,6 @@
                     }
                 }
             "SourcePath" = "8:System.Security.Claims.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0664A4933EA54633D6263DF32ACBEBAE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Data, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_0664A4933EA54633D6263DF32ACBEBAE"
-                    {
-                    "Name" = "8:Telerik.Windows.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -2879,37 +2912,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_09F974D44D8CCE6E420D91B1F871EAF0"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Navigation, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_09F974D44D8CCE6E420D91B1F871EAF0"
-                    {
-                    "Name" = "8:Telerik.Windows.Controls.Navigation.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Controls.Navigation.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0AD5DA2FACFC130C0AA96F8895EF41F8"
             {
             "AssemblyRegister" = "3:1"
@@ -2939,6 +2941,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C0E0A7FB86141E48663B2697C08D080"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecb.xslt"
+            "TargetName" = "8:ecb.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0C401482BD0BD775BF54336BC0A3D544"
@@ -2972,10 +2994,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C81DCED82204DB494E8E07800AB50BC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F6A08A0CD6C4F53A3D8CF18A800A317"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecc.xslt"
-            "TargetName" = "8:ecc.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\consumodecombustibles.xslt"
+            "TargetName" = "8:consumodecombustibles.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -2992,10 +3014,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D59A9C529C84C0F8630509C893217CA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FB879D9FE5D4F6BB14E0B0387F5BD4F"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ventavehiculos11.xslt"
-            "TargetName" = "8:ventavehiculos11.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\renovacionysustitucionvehiculos.xslt"
+            "TargetName" = "8:renovacionysustitucionvehiculos.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -3105,10 +3127,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1291F58CEF3E4EB68FD9D25375F66C85"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_134A60A2FCEB4FD9ADF5C754F05EC3F8"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\consumodecombustibles.xslt"
-            "TargetName" = "8:consumodecombustibles.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\certificadodedestruccion.xslt"
+            "TargetName" = "8:certificadodedestruccion.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -3156,26 +3178,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1409AAAC614340FEB4DB3539984428F9"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\psgecfd.xslt"
-            "TargetName" = "8:psgecfd.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1442D14EF86DFD0153D0028D906F3ACE"
             {
             "AssemblyRegister" = "3:1"
@@ -3205,6 +3207,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_14599243EC56432288CCE108F736083C"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\nomina11.xslt"
+            "TargetName" = "8:nomina11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_158FD27E979B8FDB7D2DC81FAE1F5890"
@@ -3298,6 +3320,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_185BC28B758545AE99F88B0F2A2841F6"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\IngresosHidrocarburos.xslt"
+            "TargetName" = "8:IngresosHidrocarburos.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1881D38DFAD4A7AC59A269E59FE760C2"
@@ -3424,40 +3466,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B19CCEA622D4DAE876C51113CC0D1F7"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Key.key"
-            "TargetName" = "8:Key.key"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B3EC5A5479D91B8777F9D884B2DCF02"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B2B351A7BECB6D92C0BFC23E004B220"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1B3EC5A5479D91B8777F9D884B2DCF02"
+                    "_1B2B351A7BECB6D92C0BFC23E004B220"
                     {
-                    "Name" = "8:Telerik.Windows.Controls.dll"
+                    "Name" = "8:HtmlAgilityPack.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Telerik.Windows.Controls.dll"
+            "SourcePath" = "8:HtmlAgilityPack.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -3475,12 +3497,23 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B9BEAA439544869BA5C64BE91FD77C0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B617D83B0AAE63FA9F31587AB0648D9"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecb.xslt"
-            "TargetName" = "8:ecb.xslt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_1B617D83B0AAE63FA9F31587AB0648D9"
+                    {
+                    "Name" = "8:System.Net.Http.WebRequest.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.WebRequest.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3492,7 +3525,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C19E15FF28771E40A75EB8FCD222D34"
@@ -3588,6 +3621,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1E606CA4222D49588ADB245813821A14"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecc12.xslt"
+            "TargetName" = "8:ecc12.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1F47D6F07639ED2133BE3C745A331292"
             {
             "AssemblyRegister" = "3:1"
@@ -3602,6 +3655,37 @@
                     }
                 }
             "SourcePath" = "8:System.Runtime.Numerics.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_20BF70C4BDCA89F9E90389DABAAEE07A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Data, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_20BF70C4BDCA89F9E90389DABAAEE07A"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -3664,6 +3748,37 @@
                     }
                 }
             "SourcePath" = "8:System.Text.Encoding.CodePages.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23E94CD9BEB8EDC79D4653E1AD68E582"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Input, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_23E94CD9BEB8EDC79D4653E1AD68E582"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.Input.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.Input.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -3867,26 +3982,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C5AD451DB5046219280B4BE16E8DAE1"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\TuristaPasajeroExtranjero.xslt"
-            "TargetName" = "8:TuristaPasajeroExtranjero.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2CCC7A271984C39E6560C164B9E52F9D"
             {
             "AssemblyRegister" = "3:1"
@@ -3949,26 +4044,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31B8070676D64ED0BB4AAF37CB9E4BB6"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\renovacionysustitucionvehiculos.xslt"
-            "TargetName" = "8:renovacionysustitucionvehiculos.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_34781A65852926DF5DED987B45E46416"
             {
             "AssemblyRegister" = "3:1"
@@ -4000,10 +4075,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3692B56F2B984295B8839F9E23AB8896"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35D2A8417ABB4833AC64DFFC8AABF211"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\pfic.xslt"
-            "TargetName" = "8:pfic.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ComercioExterior10.xslt"
+            "TargetName" = "8:ComercioExterior10.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -4018,6 +4093,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_37E5C4A25157E7362B4166DA9A95D991"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.FileDialogs, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_37E5C4A25157E7362B4166DA9A95D991"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.FileDialogs.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.FileDialogs.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3956615788D83A1BBB6171398C654A94"
@@ -4082,6 +4188,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_39BAF15D486F41A98E83FAF1999699DF"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\pfic.xslt"
+            "TargetName" = "8:pfic.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3AB8455705B3DD3C6A78AB552E88D993"
             {
             "AssemblyRegister" = "3:1"
@@ -4144,6 +4270,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EF390623CA34237A1FACD6BDDF55E65"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\consumodeCombustibles11.xslt"
+            "TargetName" = "8:consumodeCombustibles11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F540CB3CD5CC70F01D434BE9EC6D667"
             {
             "AssemblyRegister" = "3:1"
@@ -4158,37 +4304,6 @@
                     }
                 }
             "SourcePath" = "8:System.Threading.Tasks.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F7F80C868237D8A156AB5E021324C4A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:IronPdf, Version=2020.12.3.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_3F7F80C868237D8A156AB5E021324C4A"
-                    {
-                    "Name" = "8:IronPdf.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:IronPdf.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -4299,23 +4414,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_44F0A9FFA261CF8EC0C67A545702E923"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_456065A842FD4F2C8AB70884B4F8F012"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.FileDialogs, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_44F0A9FFA261CF8EC0C67A545702E923"
-                    {
-                    "Name" = "8:Telerik.Windows.Controls.FileDialogs.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Controls.FileDialogs.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\detallista.xslt"
+            "TargetName" = "8:detallista.xslt"
             "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4327,7 +4431,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_457ED962D9E619B6ED56289A2A757DB1"
@@ -4392,26 +4496,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45A26BD7E6484198A16FEB944161D2D9"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cadenaoriginal_3_3.xslt"
-            "TargetName" = "8:cadenaoriginal_3_3.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4691B59E828A871032482FB4D38756C0"
             {
             "AssemblyRegister" = "3:1"
@@ -4443,10 +4527,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49EB694EECFE443C8C967E88CB1B8793"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B78D3C1500D414D9D6FB43E8E8E5173"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ComercioExterior11.xslt"
-            "TargetName" = "8:ComercioExterior11.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\iedu.xslt"
+            "TargetName" = "8:iedu.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -4556,10 +4640,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E3BB84487B14FFE928FE3A29E5D8668"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F523615005641BEBEF44DAB1F5865C4"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Pagos10.xslt"
-            "TargetName" = "8:Pagos10.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\valesdedespensa.xslt"
+            "TargetName" = "8:valesdedespensa.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -4576,30 +4660,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E4CBF607F764377B5465DB4521321EB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FC21736A6A94A2794AE1587BF09E6B1"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Certifiado.cer"
-            "TargetName" = "8:Certifiado.cer"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EDEB7B9F1624E8E80034EB6D142B7D9"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\spei.xslt"
-            "TargetName" = "8:spei.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\terceros11.xslt"
+            "TargetName" = "8:terceros11.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -4802,6 +4866,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_589DC72492E84F70939DC47D72C50121"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\servicioparcialconstruccion.xslt"
+            "TargetName" = "8:servicioparcialconstruccion.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_59603CA09A0AC9DA06B5D0CF80585BBB"
             {
             "AssemblyRegister" = "3:1"
@@ -4833,10 +4917,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_60A1D6466B8C48B994B105301D9EC272"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C0D1DDE69C542CB8021A6350F334A22"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\detallista.xslt"
-            "TargetName" = "8:detallista.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecc11.xslt"
+            "TargetName" = "8:ecc11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C2CD00BEFA7422CB56673A86A870E15"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Pagos20.xslt"
+            "TargetName" = "8:Pagos20.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -4884,20 +4988,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6196030B928400459EDA763E0EF76B75"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62E8E62DEFD8DAB44FE47583313FFD82"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:IronPdf.Assets.Rendering.Windows, Version=21.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Runtime.InteropServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6196030B928400459EDA763E0EF76B75"
+                    "_62E8E62DEFD8DAB44FE47583313FFD82"
                     {
-                    "Name" = "8:IronPdf.Assets.Rendering.Windows.dll"
+                    "Name" = "8:System.Runtime.InteropServices.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:IronPdf.Assets.Rendering.Windows.dll"
+            "SourcePath" = "8:System.Runtime.InteropServices.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -4913,26 +5017,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_626CF72E8F8C49228DF0BC8E18942142"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\divisas.xslt"
-            "TargetName" = "8:divisas.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6445F737E6A5BBDA7223BDCA51DD095A"
@@ -4995,6 +5079,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_655E158DC5BB46938E82A52D51D8B199"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\vehiculousado.xslt"
+            "TargetName" = "8:vehiculousado.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_65D62ED75139512EE276307DD9B62CED"
@@ -5183,6 +5287,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6AD64E0004D84ED4B54656308F75E43A"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\leyendasFisc.xslt"
+            "TargetName" = "8:leyendasFisc.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D5DD1E5562FCD826283137F6DCA3E5E"
             {
             "AssemblyRegister" = "3:1"
@@ -5369,41 +5493,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_72B9C32400809259ABA793E828530246"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_737081ECF55047098B457FCFE836CB51"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http.WebRequest, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_72B9C32400809259ABA793E828530246"
-                    {
-                    "Name" = "8:System.Net.Http.WebRequest.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.WebRequest.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_72C2525FF4D54D1AAB79F2497F97B569"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ine10.xslt"
-            "TargetName" = "8:ine10.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\divisas.xslt"
+            "TargetName" = "8:divisas.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -5451,26 +5544,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_763828CEC0704882B19CC553515CE743"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\servicioparcialconstruccion.xslt"
-            "TargetName" = "8:servicioparcialconstruccion.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_776C28B468AD37A8402638C8F5860AE8"
             {
             "AssemblyRegister" = "3:1"
@@ -5500,6 +5573,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_78777445DC1C40C4BF2F768AC8CF2E44"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\utilerias.xslt"
+            "TargetName" = "8:utilerias.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_78FEB1578CE46A4944CC951C914C08D7"
@@ -5564,26 +5657,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79A83D04E19B4E469FEA65B5183C622C"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\leyendasFisc.xslt"
-            "TargetName" = "8:leyendasFisc.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_79D09BD84F717CB36DBBA24506B1E6FC"
             {
             "AssemblyRegister" = "3:1"
@@ -5615,10 +5688,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7A86877E367C4656B0A2D36000D364E4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C6B1B4C2D46474C8E0B82484573CCB1"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\terceros11.xslt"
-            "TargetName" = "8:terceros11.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cadenaoriginal_4_0.xslt"
+            "TargetName" = "8:cadenaoriginal_4_0.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -5633,6 +5706,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7DAE9F8F180C58F1619927076D121AD9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Data, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7DAE9F8F180C58F1619927076D121AD9"
+                    {
+                    "Name" = "8:Telerik.Windows.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Data.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7DECF919EA470CD95738CFEB188FEAAD"
@@ -5728,6 +5832,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7EA67751035776FBFCF4FC154EA115E6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7EA67751035776FBFCF4FC154EA115E6"
+                    {
+                    "Name" = "8:System.Net.Primitives.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Primitives.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_80C8DF8117B19CA087E11BFD5AA7B626"
             {
             "AssemblyRegister" = "3:1"
@@ -5757,6 +5892,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80EFB229EDF4433ABD6F74D3D368D68F"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\aerolineas.xslt"
+            "TargetName" = "8:aerolineas.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80F360D545B74D26864D1B18A437716D"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ine10.xslt"
+            "TargetName" = "8:ine10.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_813C8F95D183145C01B81AB9C8D00478"
@@ -5976,26 +6151,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88EB4AFA776343E8B391B4B73E91FC43"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\iedu.xslt"
-            "TargetName" = "8:iedu.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8A01DABBB32A2D39EF04C77FE2C7807E"
             {
             "AssemblyRegister" = "3:1"
@@ -6027,10 +6182,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D0F89885EE6492CA2CAA5C052B5B843"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B8A1304465145DC8081DA2B6F5969BA"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cadenaoriginal_3_3.xslt~"
-            "TargetName" = "8:cadenaoriginal_3_3.xslt~"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cadenaoriginal_3_3.xslt"
+            "TargetName" = "8:cadenaoriginal_3_3.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -6138,26 +6293,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_91A09D0EF2274BB2AAA8C6DC4EF4198A"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\vehiculousado.xslt"
-            "TargetName" = "8:vehiculousado.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_929806DE4CED19C53C3F7A1545A1DCBF"
@@ -6284,6 +6419,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96062893791C4DB5A92DFE32652808C8"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ComercioExterior11.xslt"
+            "TargetName" = "8:ComercioExterior11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97E0F013E0AA748A7D661FF00E55B105"
             {
             "AssemblyRegister" = "3:1"
@@ -6298,37 +6453,6 @@
                     }
                 }
             "SourcePath" = "8:System.Xml.XPath.XDocument.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9811D49F4DDC432DD2E3E1C77403F3AB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Data, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_9811D49F4DDC432DD2E3E1C77403F3AB"
-                    {
-                    "Name" = "8:Telerik.Windows.Controls.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Controls.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -6377,10 +6501,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99394596E846444184081860FE2BDE9C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A34C55006B347F58ED4D1539B9AF42E"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\donat11.xslt"
-            "TargetName" = "8:donat11.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecc.xslt"
+            "TargetName" = "8:ecc.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -6552,10 +6676,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A3B8BF51C07B4D72B3DF4AEFC51FA0F0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0F1D64F9D0645D0A2D13B13DF47670B"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\obrasarteantiguedades.xslt"
-            "TargetName" = "8:obrasarteantiguedades.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\psgecfd.xslt"
+            "TargetName" = "8:psgecfd.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -6572,10 +6696,41 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A70C9418F9BF4A049635D4B34CD8C161"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\pagoenespecie.xslt"
-            "TargetName" = "8:pagoenespecie.xslt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A3DABE284F3F0E38DBAD7A2A9A8F0A0F"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A791F7A0628943BE9F1A6AB9002B9FA0"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\AcreditamientoIEPS10.xslt"
+            "TargetName" = "8:AcreditamientoIEPS10.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -6652,6 +6807,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AB69EB71EA6E4BF6BE5617CE19094B87"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\obrasarteantiguedades.xslt"
+            "TargetName" = "8:obrasarteantiguedades.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACFD724E3FD8CCBC719D62E093F20177"
@@ -6809,10 +6984,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B1C71C8D22484D75A425758EF94CDF64"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B088E2B126F94D23AC5F0885692051E0"
             {
             "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\nomina12.xslt"
             "TargetName" = "8:nomina12.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B11EA0CB58BE46558C0D874F3BCB8CE9"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\CartaPorte20.xslt"
+            "TargetName" = "8:CartaPorte20.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -6860,20 +7055,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B276B5A4B1DAAFF86E8DCC1305D76F11"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B24C2EBE122328A72C80CC68B62FF5B6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Xml.XmlSerializer, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Docking, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B276B5A4B1DAAFF86E8DCC1305D76F11"
+                    "_B24C2EBE122328A72C80CC68B62FF5B6"
                     {
-                    "Name" = "8:System.Xml.XmlSerializer.dll"
+                    "Name" = "8:Telerik.Windows.Controls.Docking.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Xml.XmlSerializer.dll"
+            "SourcePath" = "8:Telerik.Windows.Controls.Docking.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -6891,20 +7086,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B2A7ADEA71DD01E8E973BE76114F31E4"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B276B5A4B1DAAFF86E8DCC1305D76F11"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.GridView, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:System.Xml.XmlSerializer, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_B2A7ADEA71DD01E8E973BE76114F31E4"
+                    "_B276B5A4B1DAAFF86E8DCC1305D76F11"
                     {
-                    "Name" = "8:Telerik.Windows.Controls.GridView.dll"
+                    "Name" = "8:System.Xml.XmlSerializer.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Telerik.Windows.Controls.GridView.dll"
+            "SourcePath" = "8:System.Xml.XmlSerializer.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -7015,23 +7210,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B6145414D36138C380E1C8DE07BADA6F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6612787A8DE4251BD5EBFBB9B98F3C7"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Input, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B6145414D36138C380E1C8DE07BADA6F"
-                    {
-                    "Name" = "8:Telerik.Windows.Controls.Input.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Controls.Input.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\spei.xslt"
+            "TargetName" = "8:spei.xslt"
             "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7043,7 +7227,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B864B76C288FA79AD638F1C114383254"
@@ -7077,10 +7261,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BDB57F15F17F4783BCE101CDCE9DBC43"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD05A444A5484A3EB58998E441F78025"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\nomina11.xslt"
-            "TargetName" = "8:nomina11.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\implocal.xslt"
+            "TargetName" = "8:implocal.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -7095,6 +7279,68 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BDD847096E6B6B7DF278DB310A9FF897"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BDD847096E6B6B7DF278DB310A9FF897"
+                    {
+                    "Name" = "8:System.Net.Http.Primitives.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.Primitives.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF775ADDE2ED69BB961ED5DF67354843"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Navigation, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BF775ADDE2ED69BB961ED5DF67354843"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.Navigation.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.Navigation.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1D15721DB211F233255F476972407B9"
@@ -7159,50 +7405,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C232C58AD0DC45559E0723F6D43E4558"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C24C5F3E66264892A0DD4BD9B1599BB2"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\aerolineas.xslt"
-            "TargetName" = "8:aerolineas.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C25151FD41874A98829A128DA266C03E"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ine11.xslt"
-            "TargetName" = "8:ine11.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2C2063374F248C780F4649E0E7C5242"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\AcreditamientoIEPS10.xslt"
-            "TargetName" = "8:AcreditamientoIEPS10.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Key.key"
+            "TargetName" = "8:Key.key"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -7279,46 +7485,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5C7980909AB40A6ACAB26912EF554C8"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\utilerias.xslt"
-            "TargetName" = "8:utilerias.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C62B2BC9ADB14AF98F49B663A1BD0ABE"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cfdiregistrofiscal.xslt"
-            "TargetName" = "8:cfdiregistrofiscal.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C62FD664DE865B55DA00131CD76CA00B"
@@ -7414,12 +7580,23 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFD974AEB0334FDCBF27237356155DA0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C9D7308BBD3BFE6084F8CEFB31EDCE5E"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ComercioExterior10.xslt"
-            "TargetName" = "8:ComercioExterior10.xslt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C9D7308BBD3BFE6084F8CEFB31EDCE5E"
+                    {
+                    "Name" = "8:System.Net.Http.Extensions.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.Extensions.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7431,7 +7608,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D3F2D462BD8528E3FCF4925AE0DB31CE"
@@ -7496,6 +7673,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D446380AC8A34C10B4B07C08C3D9D0A1"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\donat11.xslt"
+            "TargetName" = "8:donat11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D4A0EB7FE273A006D7E295FD19AFDE14"
             {
             "AssemblyRegister" = "3:1"
@@ -7556,26 +7753,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D59F354DAB874202A4504CAA20EDF94D"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ecc11.xslt"
-            "TargetName" = "8:ecc11.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D76FE75FEDD1E2644CC8838B5C38BB09"
@@ -7733,10 +7910,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DBE0B57F20634D9FA0D902A73DDC8526"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DCBE2F291C5C4E2BB251E5B07BCA1EF9"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\notariospublicos.xslt"
-            "TargetName" = "8:notariospublicos.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Pagos10.xslt"
+            "TargetName" = "8:Pagos10.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -7782,6 +7959,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E3453B56D65544648736C0E6E410FB9F"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\pagoenespecie.xslt"
+            "TargetName" = "8:pagoenespecie.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3D5ADD8CCD1C43D23FCB926D345F1BF"
@@ -7860,6 +8057,37 @@
                     }
                 }
             "SourcePath" = "8:Telerik.ReportViewer.Wpf.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E811D2E13C1364BC806F068179F0D8EB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.GridView, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E811D2E13C1364BC806F068179F0D8EB"
+                    {
+                    "Name" = "8:Telerik.Windows.Controls.GridView.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Telerik.Windows.Controls.GridView.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -8001,52 +8229,32 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ECF50BB8B645487C8EE086DA4E99AA92"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\certificadodedestruccion.xslt"
-            "TargetName" = "8:certificadodedestruccion.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EDED0E08626341E99DC41EBC8BEE20B2"
-            {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\valesdedespensa.xslt"
-            "TargetName" = "8:valesdedespensa.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF440E35151849C0AEC8BB01A64B7741"
             {
             "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\MailResources\\client_id.json"
             "TargetName" = "8:client_id.json"
             "Tag" = "8:"
             "Folder" = "8:_3755D7137B7446B9A2C4BE13A1B7AF03"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFE76F4B92E84F7F83BE4C47703E3106"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\TuristaPasajeroExtranjero.xslt"
+            "TargetName" = "8:TuristaPasajeroExtranjero.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8185,10 +8393,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F505016634734749B70E02B7B02C23ED"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F49ABB33F4D140DBAD5DE8F0746BB767"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\implocal.xslt"
-            "TargetName" = "8:implocal.xslt"
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\GastosHidrocarburos10.xslt"
+            "TargetName" = "8:GastosHidrocarburos10.xslt"
             "Tag" = "8:"
             "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
             "Condition" = "8:"
@@ -8236,6 +8444,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F58E1ABA182443B29E450215A0014DB4"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\notariospublicos.xslt"
+            "TargetName" = "8:notariospublicos.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6727AE971DB5503A410C3132D5579B6"
             {
             "AssemblyRegister" = "3:1"
@@ -8267,6 +8495,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F74396C1F61E4070916C4D0E28B33587"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\Certifiado.cer"
+            "TargetName" = "8:Certifiado.cer"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8251176D372FA4F8BEF9EFEB2698FB3"
             {
             "AssemblyRegister" = "3:1"
@@ -8281,37 +8529,6 @@
                     }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8CED37521B0AADF3FCF4317FDEBDCE4"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Telerik.Windows.Controls.Docking, Version=2020.3.1020.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F8CED37521B0AADF3FCF4317FDEBDCE4"
-                    {
-                    "Name" = "8:Telerik.Windows.Controls.Docking.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Telerik.Windows.Controls.Docking.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
@@ -8358,6 +8575,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9D9DEDE1E2842B681E5F2EEB2711704"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ventavehiculos11.xslt"
+            "TargetName" = "8:ventavehiculos11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA9B69502556F464FE190CD33B5A3B68"
@@ -8451,6 +8688,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FE7DDDC050B14701B56A40EDE85D648E"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\ine11.xslt"
+            "TargetName" = "8:ine11.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF6FAC1DDDCD4EA8A9AE46E9CDA4FE49"
+            {
+            "SourcePath" = "8:..\\Facturacion Tostatronic\\bin\\Debug\\Fiel\\cfdiregistrofiscal.xslt"
+            "TargetName" = "8:cfdiregistrofiscal.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_936C10F5A42546D4AC5C04D7ADFB37B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -9081,7 +9358,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_064B200BD0354350BD677F646EBF4E76"
             {
-            "SourcePath" = "8:..\\Facturacion Tostatronic\\obj\\Release\\Facturacion Tostatronic.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8B639297595D4006B25F34A8DF81B0FB"
