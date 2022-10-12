@@ -64,5 +64,18 @@
         public static string setSucursalPrice = baseURLNode + "existe_sucursal_price/";
         public static string addSucursalPrice = baseURLNode + "add_sucursal_price/";
         public static string regimenFiscal = baseURLNode + "Regimen/";
+
+        //URL Para API de .net
+        const string baseURLNET = "http://192.168.100.38:5249/api/";
+        //const string baseURLNET = "http://143.198.173.21:5249/api/";
+
+        public static string addClient = baseURLNET + "Clientes/Create";
+        public static string rfcExist = baseURLNET + "Clientes/RFCExist/";
+        public static string editClient = baseURLNET + "Clientes/Edit/";
+        public static string getClients = baseURLNET + "Clientes";
+        public static string getClientOrders = baseURLNET + "Ventas/ClientOrders/";
+        public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
+
+
     }
 }

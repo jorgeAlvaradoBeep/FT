@@ -35,22 +35,28 @@
             <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="5,5,0,0" Height="46">
                 <TextBlock Text="Clientes" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </materialDesign:ColorZone>
-            <Button Height="50" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding AddNewWareHouseCommand}">
+            <Button Height="50" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallNewClientViewCommand}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/add.png" Width="20" Height="20"/>
                     <TextBlock Text="Agregar cliente" FontSize="14"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding AddFornitureSpacesCommand}">
+            <Button Height="50" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallSeeClientViewCommand}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/search.png" Width="20" Height="20"/>
                     <TextBlock Text="Ver Clientes" FontSize="14"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallCreditClientCreditCommand}">
+            <Button Height="50" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallCreditClientCreditCommand}" Cursor="Hand">
                 <StackPanel>
                     <Image Source="/Images/credit.png" Width="20" Height="20"/>
                     <TextBlock Text="Credito" FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Button>
+            <Button Height="50" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallClientOrdersViewCommand}" Cursor="Hand">
+                <StackPanel>
+                    <Image Source="/Images/orders.png" Width="20" Height="20"/>
+                    <TextBlock Text="Ordenes" FontSize="12" TextWrapping="Wrap"/>
                 </StackPanel>
             </Button>
         </Grid>

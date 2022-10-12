@@ -249,6 +249,8 @@
     <Compile Include="Models\CFDI\PaymentMethod.cs" />
     <Compile Include="Models\CFDI\RegimenFiscal.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Clients\ClientComplete.cs" />
+    <Compile Include="Models\Clients\ClientOrder.cs" />
     <Compile Include="Models\Clients\ClientSale.cs" />
     <Compile Include="Models\Clients\CreditClient.cs" />
     <Compile Include="Models\Clients\CreditSale.cs" />
@@ -299,12 +301,17 @@
     <Compile Include="Validations\Productos\EmptyDataRule.cs" />
     <Compile Include="Validations\RFCValidationRule.cs" />
     <Compile Include="ViewModels\AssingUCVM.cs" />
+    <Compile Include="ViewModels\Clients\AddClient\AddClientVM.cs" />
     <Compile Include="ViewModels\Clients\CreditClientsCommands\ClientsCreditVM.cs" />
+    <Compile Include="ViewModels\Clients\SeeClientOrdersVM.cs" />
+    <Compile Include="ViewModels\Clients\SeeClientVM.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\CancelUPCCommand.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SaveUPCCommand.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SelectedProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\Clients\AddClient\SaveClientCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\CallSearchClientCreditCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\GetPaymentForSaleCommand.cs" />
+    <Compile Include="ViewModels\Commands\Clients\ModifyClient\ModifyClientCommand.cs" />
     <Compile Include="ViewModels\Commands\CreateNewInvoiceCommand.cs" />
     <Compile Include="ViewModels\Commands\ImagesCommands\ConvertImageToPNGCommand.cs" />
     <Compile Include="ViewModels\Commands\ImagesCommands\CreateImagesCommand.cs" />
@@ -380,7 +387,10 @@
     <Compile Include="ViewModels\Commands\SelectedDateChangedCommand.cs" />
     <Compile Include="ViewModels\Commands\SetDiiscountPricesViewCommand.cs" />
     <Compile Include="ViewModels\Commands\SetSelectedCFDIUseCommando.cs" />
+    <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallClientOrdersViewCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallCreditClientCreditCommand.cs" />
+    <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallNewClientViewCommand.cs" />
+    <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallSeeClientViewCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\WareHouseCommands\AddFornitureSpacesCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\WareHouseCommands\AddNewWareHouseCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\WareHouseCommands\AddProductToSpacesCommand.cs" />
@@ -411,9 +421,19 @@
     <Compile Include="ViewModels\WareHouse\AddNewWareHouseVM.cs" />
     <Compile Include="ViewModels\WareHouse\SaveNewWHCommand.cs" />
     <Compile Include="Views\AttachedProperties\GridViewAttachedProperties.cs" />
+    <Compile Include="Views\Clients\AddClientV.xaml.cs">
+      <DependentUpon>AddClientV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Clients\ClientOrdersView.xaml.cs">
+      <DependentUpon>ClientOrdersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Clients\ClientsCreditV.xaml.cs">
       <DependentUpon>ClientsCreditV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Clients\SeeClients.xaml.cs">
+      <DependentUpon>SeeClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Clients\SeeClientStyles\RowStyleSelector.cs" />
     <Compile Include="Views\InvoiceConfig.xaml.cs">
       <DependentUpon>InvoiceConfig.xaml</DependentUpon>
     </Compile>
@@ -481,7 +501,19 @@
     <Compile Include="Views\WareHouseViews\WareHouseContetView.xaml.cs">
       <DependentUpon>WareHouseContetView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Clients\AddClientV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients\ClientOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Clients\ClientsCreditV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients\SeeClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -754,7 +786,9 @@
   <ItemGroup>
     <Resource Include="Images\face.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\orders.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\clientsm.png" />
   </ItemGroup>

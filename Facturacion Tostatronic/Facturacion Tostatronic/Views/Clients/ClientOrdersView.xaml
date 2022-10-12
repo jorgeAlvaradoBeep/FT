@@ -1,0 +1,80 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.Clients.ClientOrdersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Clients" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients"
+        mc:Ignorable="d"
+        Title="ClientOrdersView" Height="450" Width="800">
+    <Window.Resources>
+        <vm:SeeClientOrdersVM x:Key="seeClientOrdersVM"/>
+    </Window.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource seeClientOrdersVM}"
+                              IsBusy="{Binding GettingData}">
+        <Grid x:Name="LayoutRoot"
+		  Background="White">
+            <telerik:RadAutoCompleteBox	WatermarkContent="Ingrese el cliente..."
+									    x:Name="ClientsAutoCompleteBox"
+									    TextSearchMode="Contains"
+									    AutoCompleteMode="Suggest"
+									    SelectionMode="Single"
+									    TextSearchPath="Nombres"
+									    ItemsSource="{Binding Clients}"
+                                        SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
+									    Margin="20"
+                                        Height="25"
+                                        VerticalAlignment="Top"
+									    NoResultsContent="Song could not be found." Cursor="IBeam"/>
+            <telerik:RadGridView  x:Name="RadGridView1" GroupRenderMode="Flat"
+							  ItemsSource="{Binding ClientOrders}"
+							  Height="250"
+							  RowIndicatorVisibility="Collapsed"
+							  AutoGenerateColumns="False"
+							  CanUserFreezeColumns="False"
+							  BorderThickness="0"
+							  CanUserResizeColumns="False"
+							  ShowGroupPanel="False"
+							  BorderBrush="{x:Null}"
+							  Margin="0">
+                <telerik:RadGridView.RowDetailsTemplate>
+                    <DataTemplate>
+                        <telerik:RadGridView AutoGenerateColumns="False"
+										 IsFilteringAllowed="False"
+										 ItemsSource="{Binding Details}"
+										 CanUserReorderColumns="False"
+										 CanUserFreezeColumns="False"
+										 CanUserResizeColumns="False"
+										 ShowGroupPanel="False"
+										 Margin="6">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewDataColumn Header="Item"
+														DataMemberBinding="{Binding Product.ProductName}" />
+                                <telerik:GridViewDataColumn Header="UnitPrice"
+														DataMemberBinding="{Binding UnitPrice, StringFormat=c2}" />
+                                <telerik:GridViewDataColumn Header="Quantity"
+														DataMemberBinding="{Binding Quantity}" />
+                                <telerik:GridViewDataColumn Header="Discount"
+														DataMemberBinding="{Binding Discount, StringFormat=P}" />
+                            </telerik:RadGridView.Columns>
+                        </telerik:RadGridView>
+                    </DataTemplate>
+                </telerik:RadGridView.RowDetailsTemplate>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="ID Pedido"
+											DataMemberBinding="{Binding IdVenta}" 
+                                            Width="100"/>
+                    <telerik:GridViewDataColumn Header="Fecha Pedido"
+											DataMemberBinding="{Binding FechaDeVenta}"
+                                            Width="150"/>
+                    <telerik:GridViewExpressionColumn Header="Order Value"
+												  UniqueName="TotalValue"
+												  DataFormatString="{}{0:c2}"
+												  IsReadOnly="True" 
+                                                  Width="100"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Window>
