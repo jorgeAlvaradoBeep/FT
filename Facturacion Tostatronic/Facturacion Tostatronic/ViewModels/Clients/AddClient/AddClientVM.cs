@@ -45,7 +45,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients.AddClient
                         Client.IdTipoCliente = 1;
                         break;
                     case "Publico":
-                        Client.IdTipoCliente = 1;
+                        Client.IdTipoCliente = 2;
                         break;
                 }
             }
