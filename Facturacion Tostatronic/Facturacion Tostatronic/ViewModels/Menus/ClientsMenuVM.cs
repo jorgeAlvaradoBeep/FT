@@ -15,6 +15,7 @@ namespace Facturacion_Tostatronic.ViewModels.Menus
         public CallNewClientViewCommand CallNewClientViewCommand { get; set; }
         public CallSeeClientViewCommand CallSeeClientViewCommand { get; set; }
         public CallClientOrdersViewCommand CallClientOrdersViewCommand { get; set; }
+        public CallClientRegimenChangeCommand CallClientRegimenChangeCommand { get; set; }
         private bool isBusy;
 
         public bool IsBusy
@@ -30,6 +31,7 @@ namespace Facturacion_Tostatronic.ViewModels.Menus
             CallNewClientViewCommand = new CallNewClientViewCommand();
             CallSeeClientViewCommand = new CallSeeClientViewCommand();
             CallClientOrdersViewCommand = new CallClientOrdersViewCommand();
+            CallClientRegimenChangeCommand = new CallClientRegimenChangeCommand();
         }
     }
 }

@@ -76,9 +76,6 @@
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="LibPrintTicket">
-      <HintPath>..\..\..\..\..\Downloads\LibPrintTicket.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.6.1513, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.6\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -88,9 +85,6 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
@@ -126,6 +120,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
@@ -182,8 +177,18 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Reporting, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.ReportViewer.Wpf, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Reporting.Trial.14.2.20.1021\lib\net40\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Reporting.Trial.14.2.20.1021\lib\net40\Telerik.Reporting.OpenXmlRendering.2.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Reporting.Trial.14.2.20.1021\lib\net40\Telerik.Reporting.XpsRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Wpf, Version=14.2.20.1021, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.ReportViewer.Wpf.Trial.14.2.20.1021\lib\net40\Telerik.ReportViewer.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls, Version=2021.3.1109.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\RCWPF\2021.3.1109.45\Telerik.Windows.Controls.dll</HintPath>
@@ -302,6 +307,7 @@
     <Compile Include="Validations\RFCValidationRule.cs" />
     <Compile Include="ViewModels\AssingUCVM.cs" />
     <Compile Include="ViewModels\Clients\AddClient\AddClientVM.cs" />
+    <Compile Include="ViewModels\Clients\ClientRegimenChangeVM.cs" />
     <Compile Include="ViewModels\Clients\CreditClientsCommands\ClientsCreditVM.cs" />
     <Compile Include="ViewModels\Clients\SeeClientOrdersVM.cs" />
     <Compile Include="ViewModels\Clients\SeeClientVM.cs" />
@@ -309,9 +315,11 @@
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SaveUPCCommand.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SelectedProductCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\AddClient\SaveClientCommand.cs" />
+    <Compile Include="ViewModels\Commands\Clients\ModifyClient\CancellModifyClientCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\CallSearchClientCreditCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\GetPaymentForSaleCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\ModifyClient\ModifyClientCommand.cs" />
+    <Compile Include="ViewModels\Commands\Clients\ModifyClient\ModifyClientRegimenCommand.cs" />
     <Compile Include="ViewModels\Commands\CreateNewInvoiceCommand.cs" />
     <Compile Include="ViewModels\Commands\ImagesCommands\ConvertImageToPNGCommand.cs" />
     <Compile Include="ViewModels\Commands\ImagesCommands\CreateImagesCommand.cs" />
@@ -388,6 +396,7 @@
     <Compile Include="ViewModels\Commands\SetDiiscountPricesViewCommand.cs" />
     <Compile Include="ViewModels\Commands\SetSelectedCFDIUseCommando.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallClientOrdersViewCommand.cs" />
+    <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallClientRegimenChangeCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallCreditClientCreditCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallNewClientViewCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\ClientsCommands\CallSeeClientViewCommand.cs" />
@@ -426,6 +435,9 @@
     </Compile>
     <Compile Include="Views\Clients\ClientOrdersView.xaml.cs">
       <DependentUpon>ClientOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Clients\ClientRegimenChangeView.xaml.cs">
+      <DependentUpon>ClientRegimenChangeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Clients\ClientsCreditV.xaml.cs">
       <DependentUpon>ClientsCreditV.xaml</DependentUpon>
@@ -506,6 +518,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Clients\ClientOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients\ClientRegimenChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

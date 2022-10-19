@@ -20,7 +20,7 @@
 									    TextSearchMode="Contains"
 									    AutoCompleteMode="Suggest"
 									    SelectionMode="Single"
-									    TextSearchPath="Nombres"
+									    TextSearchPath="CompleteName"
 									    ItemsSource="{Binding Clients}"
                                         SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
 									    Margin="20"
@@ -28,16 +28,17 @@
                                         VerticalAlignment="Top"
 									    NoResultsContent="Song could not be found." Cursor="IBeam"/>
             <telerik:RadGridView  x:Name="RadGridView1" GroupRenderMode="Flat"
-							  ItemsSource="{Binding ClientOrders}"
-							  Height="250"
-							  RowIndicatorVisibility="Collapsed"
-							  AutoGenerateColumns="False"
-							  CanUserFreezeColumns="False"
-							  BorderThickness="0"
-							  CanUserResizeColumns="False"
-							  ShowGroupPanel="False"
-							  BorderBrush="{x:Null}"
-							  Margin="0">
+							      ItemsSource="{Binding ClientOrders}"
+                                  VerticalAlignment="Bottom"
+							      RowIndicatorVisibility="Collapsed"
+							      AutoGenerateColumns="False"
+							      CanUserFreezeColumns="False"
+							      BorderThickness="0"
+							      CanUserResizeColumns="False"
+							      ShowGroupPanel="False"
+							      BorderBrush="{x:Null}"
+                                  Height="370"
+							      Margin="10">
                 <telerik:RadGridView.RowDetailsTemplate>
                     <DataTemplate>
                         <telerik:RadGridView AutoGenerateColumns="False"

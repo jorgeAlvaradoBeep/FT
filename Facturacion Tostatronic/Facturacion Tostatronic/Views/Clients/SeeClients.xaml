@@ -39,7 +39,8 @@
 								 AutoGenerateColumns="False"
 								 CanUserFreezeColumns="False"
 								 CanUserResizeColumns="False"
-                                 Grid.Row="1">
+                                 Grid.Row="1"
+                                 SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewToggleRowDetailsColumn />
                     <telerik:GridViewDataColumn Header="ID"
@@ -54,6 +55,9 @@
                     <telerik:GridViewDataColumn Header="email"
 												DataMemberBinding="{Binding CorreoElectronico}"
                                                 Width="150"/>
+                    <telerik:GridViewDataColumn Header="Regimen"
+												DataMemberBinding="{Binding RegimenFiscal}"
+                                                Width="100"/>
                 </telerik:RadGridView.Columns>
                 <telerik:RadGridView.RowDetailsTemplate>
                     <DataTemplate>

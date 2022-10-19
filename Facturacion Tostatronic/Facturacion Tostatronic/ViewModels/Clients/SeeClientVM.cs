@@ -53,6 +53,15 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
             get { return editing; }
             set { SetValue(ref editing, value); }
         }
+        private ClientComplete selectedClient;
+
+        public ClientComplete SelectedClient
+        {
+            get { return selectedClient; }
+            set { SetValue(ref selectedClient, value); }
+        }
+
+
         public ModifyClientCommand ModifyClientCommand { get; set; }
 
         public SeeClientVM()
@@ -72,6 +81,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                     MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 GettingData = false;
             });
+            SelectedClient = null;
         }
 
         void GetProductsToList(Response res)

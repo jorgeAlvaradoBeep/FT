@@ -59,6 +59,12 @@
                     <TextBlock Text="Ordenes" FontSize="12" TextWrapping="Wrap"/>
                 </StackPanel>
             </Button>
+            <Button Height="50" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallClientRegimenChangeCommand}" Cursor="Hand">
+                <StackPanel>
+                    <Image Source="/Images/orders.png" Width="20" Height="20"/>
+                    <TextBlock Text="Cambio Regimen" FontSize="12" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </telerik:RadBusyIndicator>
 </Page>
