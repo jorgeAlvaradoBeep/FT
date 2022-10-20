@@ -27,18 +27,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
         {
             try
             {
-                CFDIUse index = (CFDIUse)parameter;
-                VM.CompleteSale.InvoiceData.UsoCFDI = index.CFDIUseP;
-            }
-            catch(Exception e) { }
-            try
-            {
-                PaymentMethod index = (PaymentMethod)parameter;
-                VM.CompleteSale.InvoiceData.MetodoDePago = index.PaymentMethodP;
-            }
-            catch (Exception e) { }
-            try
-            {
                 PaymentForm index = (PaymentForm)parameter;
                 string aux = "0";
                 int aucN;
@@ -47,13 +35,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
                 if (aucN < 10)
                     fp = aux + fp;
                 VM.CompleteSale.InvoiceData.FormaDePago = fp;
-            }
-            catch (Exception e) { }
-            try
-            {
-                RegimenFiscal index = (RegimenFiscal)parameter;
-                
-                VM.CompleteSale.InvoiceData.RegimenFiscal = index.RegimenFiscalP;
             }
             catch (Exception e) { }
 

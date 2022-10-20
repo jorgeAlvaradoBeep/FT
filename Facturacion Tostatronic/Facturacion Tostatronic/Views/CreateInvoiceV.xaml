@@ -50,22 +50,32 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <ComboBox x:Name="cmbCFDIUse" Margin="20,1,1,1" Width="250" HorizontalContentAlignment="Left" ItemsSource="{Binding CFDIUse}" DisplayMemberPath="CompleteName" materialDesign:HintAssist.Hint="USO CFDI*" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataEntranceSavailable}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding SetSelectedCFDIUseCommando}" CommandParameter="{Binding ElementName=cmbCFDIUse, Path=SelectedItem}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <ComboBox x:Name="cmbCFDIUse" 
+                          Margin="20,1,1,1" 
+                          Width="250" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding CFDIUse}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="USO CFDI*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay}">
+                    
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Margin="20,1,1,1" Width="335" Text="{Binding CompleteSale.Client.CompleteName}" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Razon Social*" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataEntranceSavailable}"/>
-                <ComboBox x:Name="cmbPaymentMethod" Margin="20,1,1,1" Width="100" HorizontalContentAlignment="Left" ItemsSource="{Binding PaymentMethod}" DisplayMemberPath="CompleteName" materialDesign:HintAssist.Hint="Metodo Pago*" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataEntranceSavailable}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding SetSelectedCFDIUseCommando}" CommandParameter="{Binding ElementName=cmbPaymentMethod, Path=SelectedItem}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <ComboBox x:Name="cmbPaymentMethod" 
+                          Margin="20,1,1,1" 
+                          Width="100" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding PaymentMethod}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="Metodo Pago*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedPaymentMethod}">
+                    
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -112,13 +122,8 @@
                           DisplayMemberPath="CompleteName" 
                           materialDesign:HintAssist.Hint="Regimen Fiscal*" 
                           materialDesign:HintAssist.IsFloating="True" 
-                          IsEnabled="{Binding DataEntranceSavailable}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding SetSelectedCFDIUseCommando}" 
-                                                   CommandParameter="{Binding ElementName=cmbRegimenFiscal, Path=SelectedItem}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedRegimen, Mode=TwoWay}">
                 </ComboBox>
             </StackPanel>
         </StackPanel>
@@ -186,7 +191,7 @@
         <TextBox Margin="1" HorizontalContentAlignment="Center" FontSize="24" IsEnabled="False" DataContext="{Binding CompleteSale, StringFormat=$0.00}" Text="{Binding SubTotal}" Grid.Row="8" materialDesign:HintAssist.Hint="Subtotal" materialDesign:HintAssist.IsFloating="True"/>
         <TextBox Margin="1" HorizontalContentAlignment="Center" FontSize="24" IsEnabled="False" DataContext="{Binding CompleteSale, StringFormat=$0.00}" Text="{Binding Tax}" Grid.Row="8" Grid.Column="1" materialDesign:HintAssist.Hint="IVA" materialDesign:HintAssist.IsFloating="True"/>
         <TextBox Margin="1" HorizontalContentAlignment="Center" FontSize="24" IsEnabled="False" DataContext="{Binding CompleteSale, StringFormat=$0.00}"  Text="{Binding Total}" Grid.Row="8" Grid.Column="2" materialDesign:HintAssist.Hint="Total" materialDesign:HintAssist.IsFloating="True"/>
-        <Button Height="50" Grid.Column="3" Grid.Row="8" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateNewInvoiceCommand}">
+        <Button Height="50" Grid.Column="3" Grid.Row="8" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateNewInvoiceCommand}" Cursor="Hand">
             <StackPanel>
                 <Image Source="/Images/invoice.png" Width="20" Height="10"/>
                 <TextBlock Text="Facturar" FontSize="14"/>

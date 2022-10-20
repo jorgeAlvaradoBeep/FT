@@ -1,5 +1,6 @@
 ﻿using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.CFDI;
+using Facturacion_Tostatronic.Models.Clients;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands;
 using Facturacion_Tostatronic.Views;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -83,8 +85,49 @@ namespace Facturacion_Tostatronic.ViewModels
             get { return cFDIUse; }
             set { SetValue(ref cFDIUse, value); }
         }
+        private RegimenFiscal selectedRegimen;
 
-        
+        public RegimenFiscal SelectedRegimen
+        {
+            get { return selectedRegimen; }
+            set 
+            {
+                SetValue(ref selectedRegimen, value);
+                if (value != null)
+                {
+                    CompleteSale.InvoiceData.RegimenFiscal = SelectedRegimen.RegimenFiscalP;
+                }
+            }
+        }
+        private CFDIUse selectedCFDIUse;
+
+        public CFDIUse SelectedCFDIUse
+        {
+            get { return selectedCFDIUse; }
+            set
+            {
+                if (value != null)
+                {
+                    SetValue(ref selectedCFDIUse, value);
+                    CompleteSale.InvoiceData.UsoCFDI = SelectedCFDIUse.CFDIUseP;
+                }
+            }
+        }
+
+        private PaymentMethod selectedPaymentMethod;
+
+        public PaymentMethod SelectedPaymentMethod
+        {
+            get { return selectedPaymentMethod; }
+            set
+            {
+                if (value != null)
+                {
+                    SetValue(ref selectedPaymentMethod, value);
+                    CompleteSale.InvoiceData.MetodoDePago = SelectedPaymentMethod.PaymentMethodP;
+                }
+            }
+        }
 
         public CompleteSale CompleteSale { get; set; }
 
@@ -207,7 +250,7 @@ namespace Facturacion_Tostatronic.ViewModels
             }
             if (RegimenFiscal.Count == 0)
             {
-                Response rmp = await WebService.GetDataForInvoice(URLData.regimenFiscal);
+                Response rmp = await WebService.GetDataForInvoice(URLData.regimenFiscalesNet);
                 if (rmp.succes)
                 {
                     RegimenFiscal = JsonConvert.DeserializeObject<List<RegimenFiscal>>(rmp.data.ToString());
@@ -234,6 +277,23 @@ namespace Facturacion_Tostatronic.ViewModels
                 satCode = (string)x["satCode"]
             }).ToList();
             CompleteSale.Client = JsonConvert.DeserializeObject<Client>(rc.data.ToString());
+            //Aqui Seleccionamos el regimen fiscal
+            Response rmps = await WebService.GetDataForInvoice(URLData.getClientByRFC+CompleteSale.Client.Rfc);
+            if (rmps.succes)
+            {
+                ClientComplete clientComplete = JsonConvert.DeserializeObject<List<ClientComplete>>(rmps.data.ToString())[0];
+                if(clientComplete != null)
+                {
+                    if(!string.IsNullOrEmpty(clientComplete.RegimenFiscal))
+                    {
+                        SelectedRegimen = RegimenFiscal.Where(x => x.RegimenFiscalP == clientComplete.RegimenFiscal).First();
+                    }
+                    else
+                        SelectedRegimen = null;
+                }
+            }
+            else
+                SelectedRegimen=null;
             wp.Close();
             DataEntranceSavailable = true;
         }
