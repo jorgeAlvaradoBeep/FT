@@ -74,20 +74,31 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 VM.GettingData = true;
                 string messages = string.Empty;
                 string errMSG = string.Empty;
+
                 ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
                 product updateProduct = await ArticuloFactory.GetAsync(long.Parse(VM.Product.PrestashopID));
-                updateProduct.wholesale_price = Convert.ToDecimal(VM.Product.BuyPrice);
-                updateProduct.price = Convert.ToDecimal(VM.Product.PublicPrice);
 
-                try
+                //Actualizamos precio de producto directamente en la base de datos sin WS
+                Response res = await WebService.InsertData(VM.Product, "https://tostatronic.com/store/NewWBST/updateProductSinglePrice.php");
+                if (!res.succes)
                 {
-                    await ArticuloFactory.UpdateAsync(updateProduct);
-                    messages += "Exito al actualizar precios en la pagina" + Environment.NewLine;
+                    errMSG += "Error: " + res.message + Environment.NewLine + "No se actualizaron precios";
+                    VM.GettingData = false;
                 }
-                catch (PrestaSharpException e)
-                {
-                    errMSG += "Error al actualizar precios en la pagina: " + e.ResponseErrorMessage + Environment.NewLine;
-                }
+
+                //Omitimos la actualización por WEBService nativo para cambiarlo por webservice propio
+                //updateProduct.wholesale_price = Convert.ToDecimal(VM.Product.BuyPrice);
+                //updateProduct.price = Convert.ToDecimal(VM.Product.PublicPrice);
+
+                //try
+                //{
+                //    await ArticuloFactory.UpdateAsync(updateProduct);
+                //    messages += "Exito al actualizar precios en la pagina" + Environment.NewLine;
+                //}
+                //catch (PrestaSharpException e)
+                //{
+                //    errMSG += "Error al actualizar precios en la pagina: " + e.ResponseErrorMessage + Environment.NewLine;
+                //}
 
                 // Aqui actualizamos las cantidades en prestashop
                 StockAvailableFactory stockAvailableFactory = new StockAvailableFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
