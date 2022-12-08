@@ -16,5 +16,6 @@ namespace Facturacion_Tostatronic.Models.Clients
         public bool Cancelada { get; set; }
         public float Impuesto { get; set; }
         public int Facturada { get; set; }
+        public float Total { get; set; }
     }
 }

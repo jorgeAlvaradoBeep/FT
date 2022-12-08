@@ -277,6 +277,7 @@
     <Compile Include="Models\Products\ProductSaleSearch.cs" />
     <Compile Include="Models\Products\SpecificPrice.cs" />
     <Compile Include="Models\Products\SucursalProduct\SucursalProduct.cs" />
+    <Compile Include="Models\Products\UpdateProductM.cs" />
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="ViewModels\Commands\AssingUCVCommands\CancelUPCCommand.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SaveUPCCommand.cs" />
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SelectedProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\CallSeeProductsCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\AddClient\SaveClientCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\ModifyClient\CancellModifyClientCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\CallSearchClientCreditCommand.cs" />
@@ -409,6 +411,7 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
     <Compile Include="ViewModels\Products\DisscountPricesVM.cs" />
+    <Compile Include="ViewModels\Products\SeeProductVM.cs" />
     <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
     <Compile Include="ViewModels\Sales\SearchQuoteVM.cs" />
     <Compile Include="ViewModels\WareHouse\AddProductsToSpaceVM.cs" />
@@ -484,6 +487,9 @@
     </Compile>
     <Compile Include="Views\Products\MLPriveV.xaml.cs">
       <DependentUpon>MLPriveV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\SeeProductsV.xaml.cs">
+      <DependentUpon>SeeProductsV.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Products\SucursalPrice.xaml.cs">
       <DependentUpon>SucursalPrice.xaml</DependentUpon>
@@ -610,6 +616,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Products\MLPriveV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Products\SeeProductsV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

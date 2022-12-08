@@ -84,6 +84,12 @@
                     <TextBlock Text="Precios ML" FontSize="14"/>
                 </StackPanel>
             </Button>
+            <Button Height="50" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallSeeProductsCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
+                <StackPanel>
+                    <Image Source="/Images/search.png" Width="20" Height="20"/>
+                    <TextBlock Text="Ver Productos" FontSize="14"/>
+                </StackPanel>
+            </Button>
 
             <!--Menu de productos-->
             <Button Height="50" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateProductsCommand}" Visibility="{Binding MenuPageOne}">

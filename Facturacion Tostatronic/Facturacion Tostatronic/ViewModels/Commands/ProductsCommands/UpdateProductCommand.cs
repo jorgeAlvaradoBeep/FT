@@ -133,7 +133,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         List<SpecificPrice> GetSpecificPrices()
         {
-            float minPricePage = VM.Product.MinimumPrice * 1.06f;
+            float minPricePage = VM.Product.MinimumPrice / 0.94f;
             float div = (VM.Product.PublicPrice - minPricePage) / 5f;
             float qtyDiv = VM.Product.Existence / 5f;
             List<SpecificPrice> specPrices = new List<SpecificPrice>();

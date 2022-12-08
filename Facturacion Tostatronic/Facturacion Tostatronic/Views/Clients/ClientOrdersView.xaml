@@ -7,7 +7,8 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients"
         mc:Ignorable="d"
-        Title="ClientOrdersView" Height="450" Width="800">
+        Title="ClientOrdersView" 
+        Height="500" Width="1100">
     <Window.Resources>
         <vm:SeeClientOrdersVM x:Key="seeClientOrdersVM"/>
     </Window.Resources>
@@ -15,6 +16,19 @@
                               IsBusy="{Binding GettingData}">
         <Grid x:Name="LayoutRoot"
 		  Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
             <telerik:RadAutoCompleteBox	WatermarkContent="Ingrese el cliente..."
 									    x:Name="ClientsAutoCompleteBox"
 									    TextSearchMode="Contains"
@@ -23,13 +37,17 @@
 									    TextSearchPath="CompleteName"
 									    ItemsSource="{Binding Clients}"
                                         SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
-									    Margin="20"
+									    Margin="10,0,10,0"
                                         Height="25"
-                                        VerticalAlignment="Top"
-									    NoResultsContent="Song could not be found." Cursor="IBeam"/>
-            <telerik:RadGridView  x:Name="RadGridView1" GroupRenderMode="Flat"
+                                        VerticalAlignment="Center"
+									    NoResultsContent="Song could not be found." 
+                                        Cursor="IBeam"
+                                        Grid.ColumnSpan="5"/>
+            <telerik:RadGridView  x:Name="RadGridView1" 
+                                  GroupRenderMode="Flat"
 							      ItemsSource="{Binding ClientOrders}"
-                                  VerticalAlignment="Bottom"
+                                  SelectedItem="{Binding SelectedClient}"
+                                  VerticalAlignment="Top"
 							      RowIndicatorVisibility="Collapsed"
 							      AutoGenerateColumns="False"
 							      CanUserFreezeColumns="False"
@@ -37,45 +55,99 @@
 							      CanUserResizeColumns="False"
 							      ShowGroupPanel="False"
 							      BorderBrush="{x:Null}"
-                                  Height="370"
-							      Margin="10">
-                <telerik:RadGridView.RowDetailsTemplate>
-                    <DataTemplate>
-                        <telerik:RadGridView AutoGenerateColumns="False"
-										 IsFilteringAllowed="False"
-										 ItemsSource="{Binding Details}"
-										 CanUserReorderColumns="False"
-										 CanUserFreezeColumns="False"
-										 CanUserResizeColumns="False"
-										 ShowGroupPanel="False"
-										 Margin="6">
-                            <telerik:RadGridView.Columns>
-                                <telerik:GridViewDataColumn Header="Item"
-														DataMemberBinding="{Binding Product.ProductName}" />
-                                <telerik:GridViewDataColumn Header="UnitPrice"
-														DataMemberBinding="{Binding UnitPrice, StringFormat=c2}" />
-                                <telerik:GridViewDataColumn Header="Quantity"
-														DataMemberBinding="{Binding Quantity}" />
-                                <telerik:GridViewDataColumn Header="Discount"
-														DataMemberBinding="{Binding Discount, StringFormat=P}" />
-                            </telerik:RadGridView.Columns>
-                        </telerik:RadGridView>
-                    </DataTemplate>
-                </telerik:RadGridView.RowDetailsTemplate>
+							      Margin="10"
+                                  Grid.Column="3"
+                                  Grid.ColumnSpan="2"
+                                  Grid.Row="1">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="ID Pedido"
-											DataMemberBinding="{Binding IdVenta}" 
-                                            Width="100"/>
+											    DataMemberBinding="{Binding IdVenta}" 
+                                                Width="80"/>
                     <telerik:GridViewDataColumn Header="Fecha Pedido"
-											DataMemberBinding="{Binding FechaDeVenta}"
-                                            Width="150"/>
-                    <telerik:GridViewExpressionColumn Header="Order Value"
-												  UniqueName="TotalValue"
-												  DataFormatString="{}{0:c2}"
-												  IsReadOnly="True" 
-                                                  Width="100"/>
+											    DataMemberBinding="{Binding FechaDeVenta}"
+                                                Width="135"/>
+                    <telerik:GridViewDataColumn Header="Total"
+                                                DataMemberBinding ="{Binding Total}"
+												UniqueName="TotalValue"
+												DataFormatString="{}{0:c2}"
+												IsReadOnly="True" 
+                                                Width="160"/>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
+            <telerik:RadGridView  x:Name="RadGridView2" 
+                                  GroupRenderMode="Flat"
+							      ItemsSource="{Binding SaleProducts}"
+                                  VerticalAlignment="Top"
+							      RowIndicatorVisibility="Collapsed"
+							      AutoGenerateColumns="False"
+							      CanUserFreezeColumns="False"
+							      BorderThickness="0"
+							      CanUserResizeColumns="False"
+							      ShowGroupPanel="False"
+							      BorderBrush="{x:Null}"
+							      Margin="10"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  Grid.Row="1">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Codigo"
+											    DataMemberBinding="{Binding idProducto}" 
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Nombre"
+											    DataMemberBinding="{Binding productoNavigation.nombre}"
+                                                Width="250"/>
+                    <telerik:GridViewDataColumn Header="Cantidad"
+                                                DataMemberBinding="{Binding cantidadComprada}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="PU"
+                                                DataMemberBinding="{Binding cantidadComprada}"
+												DataFormatString="{}{0:c2}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Sub Total"
+                                                DataMemberBinding="{Binding cantidadComprada}"
+												DataFormatString="{}{0:c2}"
+                                                Width="100"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="Subtotal"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                   <TextBlock Text="{Binding Path=CompleteSale.SubTotal, StringFormat={}{0:C}}"/>
+            </Label>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Content="IVA"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Path=CompleteSale.IVA, StringFormat={}{0:C}}"/>
+            </Label>
+            <Label Grid.Row="2"
+                   Grid.Column="2"
+                   Content="Total"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+            <Label Grid.Row="3"
+                   Grid.Column="2"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Path=CompleteSale.Total, StringFormat={}{0:C}}"/>
+            </Label>
         </Grid>
     </telerik:RadBusyIndicator>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.Clients;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Services;
 using Newtonsoft.Json;
 using System;
@@ -50,10 +51,16 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                 {
                     Task.Run(() =>
                     {
+                        GettingData = true;
                         Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getClientOrders + ClientComplete.IdCliente);
                         if (rmp.succes)
                         {
                             ClientOrders = JsonConvert.DeserializeObject<ObservableCollection<ClientOrder>>(rmp.data.ToString());
+                            foreach (ClientOrder aux in ClientOrders)
+                            {
+                                rmp = WebService.GetDataForInvoiceNoAsync(URLData.getTotalForSale + aux.IdVenta);
+                                aux.Total = float.Parse(rmp.data.ToString());
+                            }
                         }
                         else
                         {
@@ -66,10 +73,48 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
             }
         }
 
+        private ClientOrder selectedClient;
+
+        public ClientOrder SelectedClient
+        {
+            get { return selectedClient; }
+            set 
+            { 
+                SetValue(ref selectedClient, value);
+                if (SelectedClient != null)
+                {
+                    Task.Run(() =>
+                    {
+                        GettingData = true;
+                        Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getOrderData + SelectedClient.IdVenta);
+                        if (rmp.succes)
+                        {
+                            SaleProducts = JsonConvert.DeserializeObject<ObservableCollection<EFSaleProducts>>(rmp.data.ToString());
+                        }
+                        else
+                        {
+                            SaleProducts = new ObservableCollection<EFSaleProducts>();
+                            MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        GettingData = false;
+                    });
+                }
+            }
+        }
+
+        private ObservableCollection<EFSaleProducts> saleProducts;
+
+        public ObservableCollection<EFSaleProducts> SaleProducts
+        {
+            get { return saleProducts; }
+            set { SetValue(ref saleProducts, value); }
+        }
+
 
         public SeeClientOrdersVM()
         {
             GettingData = true;
+            SaleProducts = new ObservableCollection<EFSaleProducts>();
             Task.Run(() =>
             {
                 Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getClients);
