@@ -261,6 +261,8 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
+    <Compile Include="Models\EF Models\EFProduct\EFSaleProducts.cs" />
     <Compile Include="Models\EndSale.cs" />
     <Compile Include="Models\InvoiceData.cs" />
     <Compile Include="Models\Printer.cs" />

@@ -79,7 +79,7 @@
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Productos";
         public static string getTotalForSale = baseURLNET + "ProductosDeVenta/SaleTotal/";
-        public static string getORderData = baseURLNET + "ProductosDeVenta/";
+        public static string getOrderData = baseURLNET + "ProductosDeVenta/";
 
 
     }
