@@ -113,6 +113,7 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
         public SaleProductToSpaceCommand SaleProductToSpaceCommand { get; set; }
         public SaveProductsTospaceCommand SaveProductsTospaceCommand { get; set; }
         public CancelSpacesCommand CancelSpacesCommand { get; set; }
+        public DeleteProductFromForniturecommand DeleteProductFromForniturecommand { get; set; }
         #endregion
 
 
@@ -122,6 +123,7 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
             SaleProductToSpaceCommand = new SaleProductToSpaceCommand(this);
             SaveProductsTospaceCommand = new SaveProductsTospaceCommand(this);
             CancelSpacesCommand = new CancelSpacesCommand(this);
+            DeleteProductFromForniturecommand = new DeleteProductFromForniturecommand(this);
             ProductsGrid = Visibility.Hidden;
             WareHouseList = (List<WareHouseM>)Application.Current.Properties["WareHouses"];
             Application.Current.Properties["WareHouses"] = null;

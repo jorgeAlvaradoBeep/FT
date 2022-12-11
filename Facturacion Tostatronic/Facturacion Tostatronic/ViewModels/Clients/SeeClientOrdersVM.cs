@@ -49,6 +49,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                 SetValue(ref clientComplete, value); 
                 if(ClientComplete!=null)
                 {
+                    SaleProducts = new ObservableCollection<EFSaleProducts>();
                     Task.Run(() =>
                     {
                         GettingData = true;
@@ -59,7 +60,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                             foreach (ClientOrder aux in ClientOrders)
                             {
                                 rmp = WebService.GetDataForInvoiceNoAsync(URLData.getTotalForSale + aux.IdVenta);
-                                aux.Total = float.Parse(rmp.data.ToString());
+                                aux.SubTotal = float.Parse(rmp.data.ToString());
                             }
                         }
                         else

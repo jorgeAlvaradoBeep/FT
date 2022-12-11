@@ -408,6 +408,7 @@
     <Compile Include="ViewModels\Commands\SubMenuCommands\WareHouseCommands\AddNewWareHouseCommand.cs" />
     <Compile Include="ViewModels\Commands\SubMenuCommands\WareHouseCommands\AddProductToSpacesCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\CancelSpacesCommand.cs" />
+    <Compile Include="ViewModels\Commands\WareHouseCommands\DeleteProductFromForniturecommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaleProductToSpaceCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveProductsTospaceCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />

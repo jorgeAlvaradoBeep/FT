@@ -125,6 +125,16 @@
                                                 Header="Nombre Producto"
                                                 Width="480"
                                                 TextWrapping="Wrap"/>
+                    <telerik:GridViewColumn Header="Eliminar"
+											Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Delete"
+                                                    Command="{Binding DeleteProductFromForniturecommand, Source={StaticResource addFornitureSpace}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
             <telerik:RadWatermarkTextBox Width="350" 

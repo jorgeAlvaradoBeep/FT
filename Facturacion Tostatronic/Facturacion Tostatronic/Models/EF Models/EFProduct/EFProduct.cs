@@ -14,7 +14,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFProduct
         public int cantidadMinima { get; set; }
         public double precioCompra { get; set; }
         public double precioPublico { get; set; }
-        public int precioDistribuidor { get; set; }
+        public double precioDistribuidor { get; set; }
         public double precioMinimo { get; set; }
         public bool eliminado { get; set; }
         public string imagen { get; set; }

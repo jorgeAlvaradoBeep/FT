@@ -381,5 +381,45 @@ namespace Facturacion_Tostatronic.Services
                 return result;
             }
         }
+
+        public static async Task<Response> DeleteDataEF(string url, string[] ids)
+        {
+            foreach(string id in ids) 
+            {
+                url += id+"/";
+            }
+            
+            var client = new RestClient(url);
+            client.Timeout = 15000;
+
+            var request = new RestRequest(Method.DELETE);
+
+
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                Response result;
+                if (response.IsSuccessful)
+                    result = JsonConvert.DeserializeObject<Response>(response.Content);
+                else
+                    result = new Response() { succes = false, message = response.ErrorMessage, statusCode = 404 };
+                return result;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return result;
+            }
+        }
     }
 }
