@@ -35,6 +35,7 @@ using Facturacion_Tostatronic.ViewModels.Commands.PDVCommands;
 using Bukimedia.PrestaSharp.Factories;
 using Bukimedia.PrestaSharp.Entities;
 using Bukimedia.PrestaSharp;
+using System.Collections.ObjectModel;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -108,6 +109,42 @@ namespace Facturacion_Tostatronic.ViewModels
 
 
         #endregion
+
+        #region NuevoMenuDeclarations
+
+        private List<NavigationViewItemModel> items;
+        public List<NavigationViewItemModel> Items
+        {
+            get
+            {
+                return this.items;
+            }
+            set
+            {
+                if (this.items != value)
+                {
+                    this.items = value;
+                }
+            }
+        }
+
+
+        private NavigationViewItemModel selectedItemMenu;
+
+        public NavigationViewItemModel SelectedItemMenu
+        {
+            get { return selectedItemMenu; }
+            set 
+            { 
+                SetValue(ref selectedItemMenu, value); 
+                if(selectedItemMenu != null) 
+                {
+                    ApplActionMenu();
+                }
+            }
+        }
+
+        #endregion
         public MenuVM()
         {
             #region Inicializacion de comando
@@ -144,8 +181,13 @@ namespace Facturacion_Tostatronic.ViewModels
             MenuPageOne = Visibility.Visible;
             MenuPageTwo = Visibility.Hidden;
             GettingData = false;
+
+            #region InicializacionNuevoMenu
+            this.items = this.GetItems();
+            #endregion
         }
 
+        #region AntiguoMenu
         public void CreateInvoice()
         {
             CreateInvoiceV cI = new CreateInvoiceV();
@@ -595,6 +637,85 @@ namespace Facturacion_Tostatronic.ViewModels
             excelApp.Visible = true;
             return true;
         }
+        #endregion
+
+        
+        
+        #region MetodosNuevoMenu
+        private List<NavigationViewItemModel> GetItems()
+        {
+            var salesItem = new NavigationViewItemModel() { Icon = "&#xe143;", Title = "Ventas" };
+            salesItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Icon = "&#xe143;", Title = "Generara Venta" },
+                new NavigationViewItemModel() { Icon = "&#xe81f;", Title = "Ver Ventas" },
+            };
+
+            var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
+            clientsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Title = "Agregar Cliente" },
+                new NavigationViewItemModel() { Title = "Ver Cliente" },
+                new NavigationViewItemModel() { Title = "Credito Clientes" },
+                new NavigationViewItemModel() { Title = "Ordenes  Cliente" },
+                new NavigationViewItemModel() { Title = "Cambio Regimen Cliente" }
+            };
+
+            var warehouseItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Almacen" };
+            clientsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Title = "Agregar Almacen" },
+                new NavigationViewItemModel() { Title = "Agregar Espacio" },
+                new NavigationViewItemModel() { Title = "Agregar Producto" },
+            };
+
+            return new List<NavigationViewItemModel>
+            {
+                salesItem,
+                clientsItem,
+                warehouseItem
+            };
+        }
+
+        public void ApplActionMenu()
+        {
+            switch(SelectedItemMenu.Title)
+            {
+                case "Generara Venta":
+                    CreateSaleCommand.Execute(null);
+                    break;
+                case "Agregar Cliente":
+
+                    break;
+                case "Ver Cliente":
+
+                    break;
+                case "Credito Clientes":
+
+                    break;
+                case "Ordenes  Cliente":
+
+                    break;
+                case "Cambio Regimen Cliente":
+
+                    break;
+                case "Agregar Espacio":
+
+                    break;
+                case "Agregar Almacen":
+
+                    break;
+                case "Agregar Producto":
+
+                    break;
+            }
+        }
+
+        void VentasActionMenu()
+        {
+
+        }
+        #endregion
 
         //Seccion de Imagenes
 

@@ -4,231 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Facturacion_Tostatronic" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Facturacion Tostatronic" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
     <Window.Resources>
         <vm:MenuVM x:Key="invoiceCreationVM"/>
+        <telerik:StringToGlyphConverter x:Key="StringToGlyphConverter" />
+        <telerik:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
+            <Setter Property="IconTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <telerik:RadGlyph Glyph="{Binding Converter={StaticResource StringToGlyphConverter}}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ItemBaseStyle" TargetType="telerik:RadNavigationViewItem" BasedOn="{StaticResource ItemPreviewStyle}">
+            <Setter Property="Content" Value="{Binding Title}" />
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="Icon" Value="{Binding Icon}" />
+            <Setter Property="IconVisibility" Value="{Binding Icon, Converter={StaticResource NullToVisibilityConverter}}"/>
+        </Style>
+        <Style x:Key="ItemStyle" TargetType="telerik:RadNavigationViewItem" BasedOn="{StaticResource ItemBaseStyle}">
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ItemBaseStyle}"/>
+        </Style>
     </Window.Resources>
-    <telerik:RadBusyIndicator DataContext="{StaticResource invoiceCreationVM}" IsBusy="{Binding GettingData}" IsIndeterminate="True" BusyContent="{Binding ProgressVal}">
-        <Grid DataContext="{StaticResource invoiceCreationVM}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="5,5,0,0" Height="46">
-                <TextBlock Text="Facturacion Tostatronic" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <Button Height="50" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateInvoiceCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/invoice.png" Width="20" Height="20"/>
-                    <TextBlock Text="Crear Factura" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding InvoiceConfigCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/config.png" Width="20" Height="20"/>
-                    <TextBlock Text="Config. Factura" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SeeInvoiceCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/search.png" Width="20" Height="20"/>
-                    <TextBlock Text="Ver Factura" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding PrinterConfigCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/print.png" Width="20" Height="20"/>
-                    <TextBlock Text="Configurar Impresora" FontSize="14"/>
-                </StackPanel>
-            </Button>
-        
-        
-            <!--Menu del PDV-->
-            <Button Height="50" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateSaleCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/sale.png" Width="20" Height="20"/>
-                    <TextBlock Text="Generar Venta" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreatePagePricesCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/money.png" Width="20" Height="20"/>
-                    <TextBlock Text="Precios Pagina" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding GetOrdersFromPSCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/sale.png" Width="20" Height="20"/>
-                    <TextBlock Text="Ordenes Pagina" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateMLPricesCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/ml.jpg" Width="20" Height="20"/>
-                    <TextBlock Text="Precios ML" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CallSeeProductsCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/search.png" Width="20" Height="20"/>
-                    <TextBlock Text="Ver Productos" FontSize="14"/>
-                </StackPanel>
-            </Button>
-
-            <!--Menu de productos-->
-            <Button Height="50" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateProductsCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/addProduct.png" Width="20" Height="20"/>
-                    <TextBlock Text="Agregar Producto" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateProductsListCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/list.png" Width="20" Height="20"/>
-                    <TextBlock Text="Lista Productos" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetPSIDCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/set.png" Width="20" Height="20"/>
-                    <TextBlock Text="Set ID PS" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateNewProductsListCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/list.png" Width="20" Height="20"/>
-                    <TextBlock Text="New Product List" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateDistributorPriceNPCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/upload.png" Width="20" Height="20"/>
-                    <TextBlock Text="Precios Distribuidor NP" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdatePublicPriceCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/upload.png" Width="20" Height="20"/>
-                    <TextBlock Text="Precios Publico" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <!--Menu de imagenes-->
-            <Button Height="50" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding ConvertImageToPNGCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/png.png" Width="20" Height="20"/>
-                    <TextBlock Text="To PNG" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateImagesCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/image_create.png" Width="20" Height="20"/>
-                    <TextBlock Text="Crear Imagenes" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding ViewWarehouseMenuCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/warehouse.png" Width="20" Height="20"/>
-                    <TextBlock Text="Almacenes" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding ViewUpdateImageCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/image_create.png" Width="20" Height="20"/>
-                    <TextBlock Text="Mod. Imagenes" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" 
-                    Grid.Column="3" 
-                    Grid.Row="5" 
-                    HorizontalAlignment="Stretch" 
-                    Margin="5px" 
-                    Command="{Binding ViewClientsMenuCommand}" 
-                    Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/clientsm.png" Width="20" Height="20"/>
-                    <TextBlock Text="Clientes" FontSize="10"/>
-                </StackPanel>
-            </Button>
-        
-            <!--Botones para siguiente y anterior del menu-->
-            <Button Height="50" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding MenuPageTwoCommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/next.png" Width="20" Height="20"/>
-                    <TextBlock Text="Siguiente" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding MenuToPageOneCommand}" Visibility="{Binding MenuPageTwo}">
-                <StackPanel>
-                    <Image Source="/Images/back.png" Width="20" Height="20"/>
-                    <TextBlock Text="atras" FontSize="10"/>
-                </StackPanel>
-            </Button>
-
-            <!--Segundo Menu-->
-            <Button Height="50" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateDistributorPriceCommand}" Visibility="{Binding MenuPageTwo}">
-                <StackPanel>
-                    <Image Source="/Images/upload.png" Width="20" Height="20"/>
-                    <TextBlock Text="Precios distribuidor" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetBarCodeCommand}" Visibility="{Binding MenuPageTwo}">
-                <StackPanel>
-                    <Image Source="/Images/barcode.png" Width="20" Height="20"/>
-                    <TextBlock Text="Codigos Universales" FontSize="14"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding GetNewPICommand}" Visibility="{Binding MenuPageOne}">
-                <StackPanel>
-                    <Image Source="/Images/pi.png" Width="20" Height="20"/>
-                    <TextBlock Text="Nueva Orden" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SetDiiscountPricesViewCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/pi.png" Width="20" Height="20"/>
-                    <TextBlock Text="Precios Descuento" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding UpdateQuantitiesViewCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/qty.png" Width="20" Height="20"/>
-                    <TextBlock Text="Actualiza Cantidades" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CreateFacebookListCommand}" Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/face.png" Width="20" Height="20"/>
-                    <TextBlock Text="Productos Facebook" FontSize="10"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" 
-                    Grid.Column="4" 
-                    Grid.Row="5" 
-                    HorizontalAlignment="Stretch" 
-                    Margin="5px" 
-                    Command="{Binding CallSucursalPriceCommand}" 
-                    Visibility="{Binding MenuPageOne}" Cursor="Hand">
-                <StackPanel>
-                    <Image Source="/Images/pi.png" Width="20" Height="20"/>
-                    <TextBlock Text="Productos Sucursal" FontSize="10"/>
-                </StackPanel>
-            </Button>
-        </Grid>
-    </telerik:RadBusyIndicator>
+    <Grid DataContext="{StaticResource invoiceCreationVM}">
+        <telerik:RadNavigationView x:Name="NavigationView" 
+                                   ItemsSource="{Binding Items}"
+                                   SelectedItem="{Binding SelectedItemMenu, Mode=TwoWay}"
+                                   ItemContainerStyle="{StaticResource ItemStyle}"
+                                   AutoChangeDisplayMode="{Binding IsChecked, ElementName=AutoChangeDisplayModeCb}"
+                                   DisplayMode="{Binding SelectedValue, ElementName=DisplayModeCombo}"
+                                   AllowMultipleExpandedItems="{Binding IsChecked, ElementName=AllowMultipleExpandedItemsCb}"
+                                   SubItemsIndentation="{Binding Value, ElementName=SubItemsIndentationSlider}"
+                                   telerik:AnimationManager.IsAnimationEnabled="{Binding IsChecked, ElementName=IsAnimationEnabledCb}"
+                                   Loaded="OnNavigationViewLoaded"
+                                   SelectionChanged="OnNavigationViewSelectionChanged"
+                                   ItemExpanded="OnNavigationViewItemExpanded"
+                                   ItemCollapsed="OnNavigationViewItemCollapsed"
+                                   ItemClick="OnNavigationViewItemClick">
+            <StackPanel VerticalAlignment="Center" Width="250" Margin="40">
+                
+            </StackPanel>
+        </telerik:RadNavigationView>
+    </Grid>
 </Window>

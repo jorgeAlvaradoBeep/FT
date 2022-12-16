@@ -11,6 +11,9 @@ namespace Facturacion_Tostatronic
     /// <summary>
     /// Lógica de interacción para App.xaml
     /// </summary>
+    /// 
+
+
     public partial class App : Application
     {
     }
