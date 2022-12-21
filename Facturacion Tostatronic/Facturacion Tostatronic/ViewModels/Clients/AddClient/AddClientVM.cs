@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace Facturacion_Tostatronic.ViewModels.Clients.AddClient
 {
-    public class AddClientVM : BaseNotifyPropertyChanged
+    public class AddClientVM : BaseNotifyPropertyChanged, IPageViewModel
     {
 		private ClientComplete client;
 
@@ -133,6 +133,8 @@ namespace Facturacion_Tostatronic.ViewModels.Clients.AddClient
                 return ValidateText();
             }
         }
+
+        public string Name { get; set; } = "AddClientVM";
 
         public string this[string columnName]
         {

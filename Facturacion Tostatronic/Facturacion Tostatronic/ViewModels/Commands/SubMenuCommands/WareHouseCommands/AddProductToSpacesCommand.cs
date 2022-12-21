@@ -16,10 +16,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SubMenuCommands.WareHouseC
 {
     public class AddProductToSpacesCommand : ICommand
     {
-        public WareHouseMenuVM VM { get; set; }
+        public MenuVM VM { get; set; }
         public event EventHandler CanExecuteChanged;
 
-        public AddProductToSpacesCommand(WareHouseMenuVM vm)
+        public AddProductToSpacesCommand(MenuVM vm)
         {
             VM = vm;
         }
@@ -30,18 +30,18 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SubMenuCommands.WareHouseC
 
         public async void Execute(object parameter)
         {
-            VM.IsBusy = true;
+            VM.GettingData = true;
             Response res = await WebService.GetData("wh", null, URLData.save_new_warehouse);
             if (!res.succes)
             {
                 MessageBox.Show("Error al consultar en la BD." +
                         Environment.NewLine + "Motivos: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                VM.IsBusy = false;
+                VM.GettingData = false;
                 return;
             }
             List<WareHouseM> wh = JsonConvert.DeserializeObject<List<WareHouseM>>(res.data.ToString());
             Application.Current.Properties["WareHouses"] = wh;
-            VM.IsBusy = false;
+            VM.GettingData = false;
             WareHouseContetView wHCV = new WareHouseContetView(new AddProductsToSpaceV());
             wHCV.ShowDialog();
         }

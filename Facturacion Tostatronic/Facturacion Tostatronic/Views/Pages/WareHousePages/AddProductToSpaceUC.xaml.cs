@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Facturacion_Tostatronic.Views.WareHouseViews
+namespace Facturacion_Tostatronic.Views.Pages.WareHousePages
 {
     /// <summary>
-    /// Lógica de interacción para AddProductsToSpaceV.xaml
+    /// Lógica de interacción para AddProductToSpaceUC.xaml
     /// </summary>
-    public partial class AddProductsToSpaceV : Page
+    public partial class AddProductToSpaceUC : UserControl
     {
-        public AddProductsToSpaceV()
+        public AddProductToSpaceUC()
         {
             InitializeComponent();
-        }
-
-        public static implicit operator ContentControl(AddProductsToSpaceV v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

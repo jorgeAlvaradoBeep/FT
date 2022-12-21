@@ -12,7 +12,6 @@ namespace Facturacion_Tostatronic.ViewModels.Menus
     {
         public AddNewWareHouseCommand AddNewWareHouseCommand { get; set; }
         public AddFornitureSpacesCommand AddFornitureSpacesCommand { get; set; }
-        public AddProductToSpacesCommand AddProductToSpacesCommand { get; set; }
         private bool isBusy;
 
         public bool IsBusy
@@ -25,7 +24,6 @@ namespace Facturacion_Tostatronic.ViewModels.Menus
         {
             AddNewWareHouseCommand = new AddNewWareHouseCommand(this);
             AddFornitureSpacesCommand = new AddFornitureSpacesCommand(this);
-            AddProductToSpacesCommand = new AddProductToSpacesCommand(this);
             IsBusy = false;
         }
     }

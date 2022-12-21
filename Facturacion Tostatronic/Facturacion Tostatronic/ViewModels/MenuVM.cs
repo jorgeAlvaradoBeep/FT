@@ -36,6 +36,13 @@ using Bukimedia.PrestaSharp.Factories;
 using Bukimedia.PrestaSharp.Entities;
 using Bukimedia.PrestaSharp;
 using System.Collections.ObjectModel;
+using Facturacion_Tostatronic.ViewModels.Commands.SubMenuCommands.WareHouseCommands;
+using System.Web.UI;
+using Telerik.Windows.Controls;
+using Facturacion_Tostatronic.ViewModels.WareHouse;
+using System.Windows.Controls;
+using Facturacion_Tostatronic.Views.WareHouseViews;
+using Facturacion_Tostatronic.ViewModels.Clients.AddClient;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -144,6 +151,26 @@ namespace Facturacion_Tostatronic.ViewModels
             }
         }
 
+        //Seccion para administrar las vistas
+        private IPageViewModel currentView;
+
+        public IPageViewModel CurrentView
+        {
+            get { return currentView; }
+            set { SetValue(ref currentView, value); }
+        }
+
+        private List<IPageViewModel> viewsList;
+
+        public List<IPageViewModel> ViewsList
+        {
+            get { return viewsList; }
+            set { viewsList = value; }
+        }
+
+
+
+        public AddProductToSpacesCommand AddProductToSpacesCommand { get; set; }
         #endregion
         public MenuVM()
         {
@@ -184,7 +211,13 @@ namespace Facturacion_Tostatronic.ViewModels
 
             #region InicializacionNuevoMenu
             this.items = this.GetItems();
+            ViewsList = new List<IPageViewModel>();
+            InsertViewsToList();
+            AddProductToSpacesCommand = new AddProductToSpacesCommand(this);
             #endregion
+
+            //Aqui asiganamos la vista inicial. 
+            CurrentView = null;
         }
 
         #region AntiguoMenu
@@ -647,8 +680,8 @@ namespace Facturacion_Tostatronic.ViewModels
             var salesItem = new NavigationViewItemModel() { Icon = "&#xe143;", Title = "Ventas" };
             salesItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
-                new NavigationViewItemModel() { Icon = "&#xe143;", Title = "Generara Venta" },
-                new NavigationViewItemModel() { Icon = "&#xe81f;", Title = "Ver Ventas" },
+                new NavigationViewItemModel() { Title = "Generara Venta" },
+                new NavigationViewItemModel() { Title = "Ver Ventas" },
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -661,8 +694,8 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Cambio Regimen Cliente" }
             };
 
-            var warehouseItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Almacen" };
-            clientsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            var warehouseItem = new NavigationViewItemModel() { Icon = "&#xe665;", Title = "Almacen" };
+            warehouseItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
                 new NavigationViewItemModel() { Title = "Agregar Almacen" },
                 new NavigationViewItemModel() { Title = "Agregar Espacio" },
@@ -685,7 +718,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     CreateSaleCommand.Execute(null);
                     break;
                 case "Agregar Cliente":
-
+                    CurrentView = ViewsList[1];
                     break;
                 case "Ver Cliente":
 
@@ -706,16 +739,21 @@ namespace Facturacion_Tostatronic.ViewModels
 
                     break;
                 case "Agregar Producto":
-
+                    CurrentView = ViewsList[0];
                     break;
             }
         }
 
-        void VentasActionMenu()
+        void InsertViewsToList()
         {
-
+            ViewsList.Add(new AddProductsToSpaceVM());
+            ViewsList.Add(new AddClientVM());
         }
+
+
         #endregion
+
+
 
         //Seccion de Imagenes
 
@@ -1001,12 +1039,12 @@ namespace Facturacion_Tostatronic.ViewModels
 
         string MergeImages(string baseImagePath, string productImagePath, string fullPath)
         {
-            Image baseImageI;
-            Image productImage;
+            System.Drawing.Image baseImageI;
+            System.Drawing.Image productImage;
             int width=2200, height=2200;
             try
             {
-                baseImageI = Image.FromFile(baseImagePath);
+                baseImageI = System.Drawing.Image.FromFile(baseImagePath);
             }
             catch (Exception ex)
             {
@@ -1014,7 +1052,7 @@ namespace Facturacion_Tostatronic.ViewModels
             }
             try
             {
-                productImage = Image.FromFile(productImagePath);
+                productImage = System.Drawing.Image.FromFile(productImagePath);
             }
             catch (Exception ex)
             {
@@ -1057,12 +1095,12 @@ namespace Facturacion_Tostatronic.ViewModels
 
         string MergeImagesOrder2(string baseImagePath, string productImagePath, string fullPath, string tempPath)
         {
-            Image baseImageI;
-            Image productImage;
+            System.Drawing.Image baseImageI;
+            System.Drawing.Image productImage;
             int width = 2200, height = 2200;
             try
             {
-                baseImageI = Image.FromFile(baseImagePath);
+                baseImageI = System.Drawing.Image.FromFile(baseImagePath);
             }
             catch (Exception ex)
             {
@@ -1070,8 +1108,8 @@ namespace Facturacion_Tostatronic.ViewModels
             }
             try
             {
-                
-                productImage = Image.FromFile(Path.Combine(tempPath, Path.GetFileName(productImagePath)));
+                    
+                productImage = System.Drawing.Image.FromFile(Path.Combine(tempPath, Path.GetFileName(productImagePath)));
             }
             catch (Exception ex)
             {

@@ -296,6 +296,8 @@
     <Compile Include="Services\Facturacion\SelloDigital.cs" />
     <Compile Include="Services\Facturacion\StringWriterWithEncoding.cs" />
     <Compile Include="Services\HtmlUtilities.cs" />
+    <Compile Include="Services\IPageViewModel.cs" />
+    <Compile Include="Services\NavigationContentTemplateSelector.cs" />
     <Compile Include="Services\NavigationViewItemModel.cs" />
     <Compile Include="Services\PrestashopService.cs" />
     <Compile Include="Services\Ticket\NewTicket.cs" />
@@ -465,6 +467,12 @@
     <Compile Include="Views\Menus\SubMenuContent.xaml.cs">
       <DependentUpon>SubMenuContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Clients\AddClientUC.xaml.cs">
+      <DependentUpon>AddClientUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\WareHousePages\AddProductToSpaceUC.xaml.cs">
+      <DependentUpon>AddProductToSpaceUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PDV\Quotes\SearchQuote.xaml.cs">
       <DependentUpon>SearchQuote.xaml</DependentUpon>
     </Compile>
@@ -584,6 +592,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menus\SubMenuContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Clients\AddClientUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\WareHousePages\AddProductToSpaceUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -826,6 +842,7 @@
     <Resource Include="Images\credit.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\MenuM\" />
     <Folder Include="ViewModels\Commands\NewMenuCommands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

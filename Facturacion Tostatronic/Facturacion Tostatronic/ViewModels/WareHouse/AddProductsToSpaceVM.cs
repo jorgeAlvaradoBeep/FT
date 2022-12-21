@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Facturacion_Tostatronic.ViewModels.WareHouse
 {
-    public class AddProductsToSpaceVM : BaseNotifyPropertyChanged
+    public class AddProductsToSpaceVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         #region Propiedades
         private bool isBusy;
@@ -72,7 +73,13 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
             }
         }
 
-        public List<WareHouseM> WareHouseList { get; set; }
+        private List<WareHouseM> wareHouseList;
+
+        public List<WareHouseM> WareHouseList
+        {
+            get { return wareHouseList; }
+            set { SetValue(ref wareHouseList, value); }
+        }
 
         private bool isSelectionAvailable;
 
@@ -114,6 +121,8 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
         public SaveProductsTospaceCommand SaveProductsTospaceCommand { get; set; }
         public CancelSpacesCommand CancelSpacesCommand { get; set; }
         public DeleteProductFromForniturecommand DeleteProductFromForniturecommand { get; set; }
+
+        public string Name { get; set; } = "AddProductsToSpaceVM";
         #endregion
 
 
@@ -125,8 +134,21 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
             CancelSpacesCommand = new CancelSpacesCommand(this);
             DeleteProductFromForniturecommand = new DeleteProductFromForniturecommand(this);
             ProductsGrid = Visibility.Hidden;
-            WareHouseList = (List<WareHouseM>)Application.Current.Properties["WareHouses"];
-            Application.Current.Properties["WareHouses"] = null;
+            IsBusy = true;
+            Task.Run(() =>
+            {
+                Response res = WebService.GetDataNoasync("wh", null, URLData.save_new_warehouse);
+                if (!res.succes)
+                {
+                    MessageBox.Show("Error al consultar en la BD." +
+                        Environment.NewLine + "Motivos: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsBusy = false;
+                    return;
+                }
+                WareHouseList = JsonConvert.DeserializeObject<List<WareHouseM>>(res.data.ToString());
+                IsBusy = false;
+            });
+            //new Action(async () => await GetWareHouses())();
             IsSelectionAvailable = true;
         }
         ObservableCollection<ProductInSpace> GetProductsFromspace(int idSpace)
@@ -145,6 +167,21 @@ namespace Facturacion_Tostatronic.ViewModels.WareHouse
             if(nL.Count==0)
                 return new ObservableCollection<ProductInSpace>();
             return nL;
+        }
+        async Task<List<WareHouseM>> GetWareHouses()
+        {
+            Response res = await WebService.GetData("wh", null, URLData.save_new_warehouse);
+            if (!res.succes)
+            {
+                MessageBox.Show("Error al consultar en la BD." +
+                        Environment.NewLine + "Motivos: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                IsBusy = false;
+                WareHouseList = new List<WareHouseM>();
+                return new List<WareHouseM>();
+            }
+            WareHouseList = JsonConvert.DeserializeObject<List<WareHouseM>>(res.data.ToString());
+            IsBusy = false;
+            return new List<WareHouseM>();
         }
     }
 }

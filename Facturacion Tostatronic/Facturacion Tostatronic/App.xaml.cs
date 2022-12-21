@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,5 +17,14 @@ namespace Facturacion_Tostatronic
 
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            MainWindow app = new MainWindow();
+            MenuVM context = new MenuVM();
+            app.DataContext = context;
+            app.Show();
+        }
     }
 }
