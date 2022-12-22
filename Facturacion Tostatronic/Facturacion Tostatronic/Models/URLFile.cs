@@ -66,15 +66,15 @@
         public static string regimenFiscal = baseURLNode + "Regimen/";
 
         //URL Para API de .net
-        //const string baseURLNET = "http://192.168.3.15:5249/api/";
-        const string baseURLNET = "http://143.198.173.21:5249/api/";
+        const string baseURLNET = "http://192.168.3.15:5249/api/";
+        //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";
         public static string editClient = baseURLNET + "Clientes/Edit/";
         public static string getClientByRFC = baseURLNET + "Clientes/ClientRFC/";
         public static string getClients = baseURLNET + "Clientes";
-        public static string getClientOrders = baseURLNET + "Ventas/ClientOrders/";
+        public static string getClientOrders = baseURLNET + "Ventas/ClientOrdersWT/";
         public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Productos";

@@ -17,31 +17,8 @@ namespace Facturacion_Tostatronic.Models.Clients
         public bool Cancelada { get; set; }
         public float Impuesto { get; set; }
         public int Facturada { get; set; }
-
-        public float Total
-        {
-            get 
-            { 
-                return SubTotal * Impuesto; 
-            }
-        }
-
-        public float IVA
-        {
-            get 
-            { 
-                if(Impuesto==1)
-                    return 0;
-                return SubTotal * 0.16f;
-            }
-        }
-
-        private float subTotal;
-
-        public float SubTotal
-        {
-            get { return subTotal; }
-            set { SetValue(ref subTotal, value); }
-        }
+        public float Total { get; set; }
+        public float Iva { get; set; }
+        public float SubTotal { get; set; }
     }
 }

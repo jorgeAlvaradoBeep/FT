@@ -92,22 +92,22 @@
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="Codigo"
 											    DataMemberBinding="{Binding idProducto}" 
-                                                Width="100"/>
+                                                Width="150"/>
                     <telerik:GridViewDataColumn Header="Nombre"
 											    DataMemberBinding="{Binding productoNavigation.nombre}"
-                                                Width="250"/>
+                                                Width="650"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
                                                 DataMemberBinding="{Binding cantidadComprada}"
                                                 Width="100"/>
                     <telerik:GridViewDataColumn Header="PU"
                                                 DataMemberBinding="{Binding precioAlMomento}"
 												DataFormatString="{}{0:c2}"
-                                                Width="100"/>
+                                                Width="150"/>
                     <telerik:GridViewExpressionColumn Header="Sub Total"
                                                       Expression="precioAlMomento*cantidadComprada"
                                                       UniqueName="TotalValue"
 												      DataFormatString="{}{0:c2}"
-                                                      Width="100"/>
+                                                      Width="170"/>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
             <Label Grid.Row="2"
@@ -134,7 +134,7 @@
                    FontSize="40"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
-                <TextBlock Text="{Binding Path=SelectedClient.IVA, StringFormat={}{0:C}}"/>
+                <TextBlock Text="{Binding Path=SelectedClient.Iva, StringFormat={}{0:C}}"/>
             </Label>
             <Label Grid.Row="2"
                    Grid.Column="2"

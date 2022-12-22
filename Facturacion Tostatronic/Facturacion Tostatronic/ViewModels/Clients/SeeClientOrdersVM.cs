@@ -122,11 +122,12 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
             if (rmp.succes)
             {
                 ClientOrders = JsonConvert.DeserializeObject<ObservableCollection<ClientOrder>>(rmp.data.ToString());
+                /*
                 foreach (ClientOrder aux in ClientOrders)
                 {
                     rmp = await WebService.GetDataForInvoice(URLData.getTotalForSale + aux.IdVenta);
                     aux.SubTotal = float.Parse(rmp.data.ToString());
-                }
+                }*/
             }
             else
             {
