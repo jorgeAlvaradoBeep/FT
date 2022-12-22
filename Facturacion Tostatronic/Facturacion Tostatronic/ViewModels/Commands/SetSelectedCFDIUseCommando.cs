@@ -25,6 +25,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
 
         public void Execute(object parameter)
         {
+            if(parameter== null) { return; }
             try
             {
                 PaymentForm index = (PaymentForm)parameter;

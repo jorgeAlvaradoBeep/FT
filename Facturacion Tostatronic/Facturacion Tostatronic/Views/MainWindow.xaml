@@ -7,10 +7,12 @@
         xmlns:local="clr-namespace:Facturacion_Tostatronic" 
         xmlns:views="clr-namespace:Facturacion_Tostatronic.Views.Pages.WareHousePages" 
         xmlns:viewsc="clr-namespace:Facturacion_Tostatronic.Views.Pages.Clients" 
+        xmlns:viewsin="clr-namespace:Facturacion_Tostatronic.Views.Pages.Invoice" 
         xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
         xmlns:vmw="clr-namespace:Facturacion_Tostatronic.ViewModels.WareHouse"
         xmlns:vmc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.AddClient"
         xmlns:vmce="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients"
+        xmlns:vmcc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Facturacion Tostatronic" Height="450" Width="800"
@@ -26,10 +28,24 @@
         <!--Seccion de clientes--> 
         <DataTemplate DataType="{x:Type vmc:AddClientVM}">
             <viewsc:AddClientUC />
-        </DataTemplate>
+        </DataTemplate> 
         <DataTemplate DataType="{x:Type vmce:SeeClientVM}">
             <viewsc:SeeClientsUC />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmcc:ClientsCreditVM}">
+            <viewsc:ClientsCreditUC /> 
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmce:SeeClientOrdersVM}">
+            <viewsc:SeeClientOrdersUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmce:ClientRegimenChangeVM}">
+            <viewsc:ClientRegimenChangeUC />
+        </DataTemplate>
+        <!--Seccion de facturacion-->
+        <DataTemplate DataType="{x:Type vm:CreateInvoiceVM}">
+            <viewsin:CreateInvoiceUC />
+        </DataTemplate>
+        <!--Seccion de estilos-->
         <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
             <Setter Property="IconTemplate">
                 <Setter.Value>

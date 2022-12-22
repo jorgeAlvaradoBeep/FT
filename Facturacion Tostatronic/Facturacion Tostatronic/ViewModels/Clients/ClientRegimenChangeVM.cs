@@ -15,8 +15,9 @@ using System.Windows;
 
 namespace Facturacion_Tostatronic.ViewModels.Clients
 {
-    public class ClientRegimenChangeVM:BaseNotifyPropertyChanged
+    public class ClientRegimenChangeVM:BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "ClientRegimenChangeVM";
         private ObservableCollection<ClientComplete> clientes;
 
         public ObservableCollection<ClientComplete> Clients

@@ -43,6 +43,8 @@ using Facturacion_Tostatronic.ViewModels.WareHouse;
 using System.Windows.Controls;
 using Facturacion_Tostatronic.Views.WareHouseViews;
 using Facturacion_Tostatronic.ViewModels.Clients.AddClient;
+using Facturacion_Tostatronic.ViewModels.Clients;
+using Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -687,11 +689,11 @@ namespace Facturacion_Tostatronic.ViewModels
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
             clientsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
-                new NavigationViewItemModel() { Title = "Agregar Cliente" },
-                new NavigationViewItemModel() { Title = "Ver Cliente" },
-                new NavigationViewItemModel() { Title = "Credito Clientes" },
-                new NavigationViewItemModel() { Title = "Ordenes  Cliente" },
-                new NavigationViewItemModel() { Title = "Cambio Regimen Cliente" }
+                new NavigationViewItemModel() { Title = "Agregar Cliente", VMName="AddClientVM" },
+                new NavigationViewItemModel() { Title = "Ver Cliente", VMName="SeeClientVM" },
+                new NavigationViewItemModel() { Title = "Credito Clientes", VMName="ClientsCreditVM" },
+                new NavigationViewItemModel() { Title = "Ordenes  Cliente", VMName="SeeClientOrdersVM" },
+                new NavigationViewItemModel() { Title = "Cambio Regimen Cliente", VMName="ClientRegimenChangeVM" }
             };
 
             var warehouseItem = new NavigationViewItemModel() { Icon = "&#xe665;", Title = "Almacen" };
@@ -699,14 +701,23 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 new NavigationViewItemModel() { Title = "Agregar Almacen" },
                 new NavigationViewItemModel() { Title = "Agregar Espacio" },
-                new NavigationViewItemModel() { Title = "Agregar Producto" },
+                new NavigationViewItemModel() { Title = "Agregar Producto", VMName="AddProductsToSpaceVM"  },
+            };
+
+            var facturacionItem = new NavigationViewItemModel() { Icon = "&#xe694;", Title = "Facturación" };
+            facturacionItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Title = "Crear Factura", VMName="CreateInvoiceVM" },
+                new NavigationViewItemModel() { Title = "Configurar Factura" },
+                new NavigationViewItemModel() { Title = "Ver facturas" },
             };
 
             return new List<NavigationViewItemModel>
             {
                 salesItem,
                 clientsItem,
-                warehouseItem
+                warehouseItem,
+                facturacionItem
             };
         }
 
@@ -717,29 +728,10 @@ namespace Facturacion_Tostatronic.ViewModels
                 case "Generara Venta":
                     CreateSaleCommand.Execute(null);
                     break;
-                case "Agregar Cliente":
-                    CurrentView = ViewsList[1];
-                    break;
-                case "Ver Cliente":
-
-                    break;
-                case "Credito Clientes":
-
-                    break;
-                case "Ordenes  Cliente":
-
-                    break;
-                case "Cambio Regimen Cliente":
-
-                    break;
-                case "Agregar Espacio":
-
-                    break;
-                case "Agregar Almacen":
-
-                    break;
-                case "Agregar Producto":
-                    CurrentView = ViewsList[0];
+                default:
+                    var aux = GetView(SelectedItemMenu.VMName);
+                    if (aux != null)
+                        CurrentView = aux;
                     break;
             }
         }
@@ -748,8 +740,16 @@ namespace Facturacion_Tostatronic.ViewModels
         {
             ViewsList.Add(new AddProductsToSpaceVM());
             ViewsList.Add(new AddClientVM());
+            ViewsList.Add(new SeeClientVM());
+            ViewsList.Add(new ClientsCreditVM());
+            ViewsList.Add(new SeeClientOrdersVM());
+            ViewsList.Add(new ClientRegimenChangeVM());
+            ViewsList.Add(new CreateInvoiceVM());
         }
-
+         IPageViewModel GetView(string vmName)
+        {
+            return ViewsList.Where(a=> a.Name== vmName).FirstOrDefault();    
+        }
 
         #endregion
 

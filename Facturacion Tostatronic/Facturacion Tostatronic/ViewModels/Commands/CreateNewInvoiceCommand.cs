@@ -26,13 +26,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
 
         public async void Execute(object parameter)
         {
+
             var values = (object[])parameter;
             bool aux = true;
             for (int i = 0; i < 3; i++)
             {
                 aux &= !(bool)values[i];
             }
-            CreateInvoiceV vAux = (CreateInvoiceV)values[3];
+            //CreateInvoiceV vAux = (CreateInvoiceV)values[3];
+            
             if(!aux)
             {
                 MessageBox.Show("Tiene Errores En el Formulario.");
@@ -85,9 +87,16 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
             if (await VM.CreateAndInsertInvoice())
             {
                 MessageBox.Show("Factura creada con existo", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
-                vAux.Close();
             }
-                
+            VM.CompleteSale.Client = new Models.Client();
+            VM.CompleteSale.Products = new List<Models.Product>();
+            VM.SelectedCFDIUse = null;
+            VM.SelectedPaymentMethod= null;
+            VM.SelectedRegimen=null;
+            VM.SelectedPaymentForm = null;
+            VM.DataEntranceSavailable = false;
+            VM.SelectedDateChangedCommand.Equals(null);//Validar que funcione correctamente. 
+
         }
     }
 }

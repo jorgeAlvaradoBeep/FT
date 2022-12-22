@@ -470,6 +470,21 @@
     <Compile Include="Views\Pages\Clients\AddClientUC.xaml.cs">
       <DependentUpon>AddClientUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Clients\ClientRegimenChangeUC.xaml.cs">
+      <DependentUpon>ClientRegimenChangeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Clients\ClientsCreditUC.xaml.cs">
+      <DependentUpon>ClientsCreditUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Clients\SeeClientOrdersUC.xaml.cs">
+      <DependentUpon>SeeClientOrdersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Clients\SeeClientsUC.xaml.cs">
+      <DependentUpon>SeeClientsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Invoice\CreateInvoiceUC.xaml.cs">
+      <DependentUpon>CreateInvoiceUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\WareHousePages\AddProductToSpaceUC.xaml.cs">
       <DependentUpon>AddProductToSpaceUC.xaml</DependentUpon>
     </Compile>
@@ -596,6 +611,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Clients\AddClientUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Clients\ClientRegimenChangeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Clients\ClientsCreditUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Clients\SeeClientOrdersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Clients\SeeClientsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Invoice\CreateInvoiceUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

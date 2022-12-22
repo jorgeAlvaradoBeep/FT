@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands
 {
-    public class ClientsCreditVM : BaseNotifyPropertyChanged
+    public class ClientsCreditVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         public CallSearchClientCreditCommand CallSearchClientCreditCommand { get; set; }
         public GetPaymentForSaleCommand GetPaymentForSaleCommand { get; set; }
+        public string Name { get; set; } = "ClientsCreditVM";
         private bool isBusy;
 
         public bool IsBusy

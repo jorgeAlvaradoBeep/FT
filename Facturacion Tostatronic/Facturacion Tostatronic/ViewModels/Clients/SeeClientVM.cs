@@ -15,7 +15,7 @@ using Facturacion_Tostatronic.ViewModels.Commands.Clients.ModifyClient;
 
 namespace Facturacion_Tostatronic.ViewModels.Clients
 {
-    public class SeeClientVM : BaseNotifyPropertyChanged
+    public class SeeClientVM : BaseNotifyPropertyChanged, IPageViewModel
     {
 		private string searchCriterial;
 
@@ -63,6 +63,8 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
 
 
         public ModifyClientCommand ModifyClientCommand { get; set; }
+
+        public string Name { get; set; } = "SeeClientVM";
 
         public SeeClientVM()
 		{

@@ -11,6 +11,7 @@ namespace Facturacion_Tostatronic.Services
     {
         public string Icon { get; set; }
         public string Title { get; set; }
+        public string VMName { get; set; }
         public ObservableCollection<NavigationViewItemModel> SubItems { get; set; }
     }
 }

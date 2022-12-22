@@ -19,8 +19,9 @@ using System.Windows.Data;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
-    public class CreateInvoiceVM : BaseNotifyPropertyChanged
+    public class CreateInvoiceVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "CreateInvoiceVM";
         private string invoiceNumber;
 
         public string InvoiceNumber
@@ -109,7 +110,8 @@ namespace Facturacion_Tostatronic.ViewModels
                 if (value != null)
                 {
                     SetValue(ref selectedCFDIUse, value);
-                    CompleteSale.InvoiceData.UsoCFDI = SelectedCFDIUse.CFDIUseP;
+                    if (value != null)
+                        CompleteSale.InvoiceData.UsoCFDI = SelectedCFDIUse.CFDIUseP;
                 }
             }
         }
@@ -124,10 +126,20 @@ namespace Facturacion_Tostatronic.ViewModels
                 if (value != null)
                 {
                     SetValue(ref selectedPaymentMethod, value);
-                    CompleteSale.InvoiceData.MetodoDePago = SelectedPaymentMethod.PaymentMethodP;
+                    if(value != null)
+                        CompleteSale.InvoiceData.MetodoDePago = SelectedPaymentMethod.PaymentMethodP;
                 }
             }
         }
+
+        private PaymentForm selectedPaymentForm;
+
+        public PaymentForm SelectedPaymentForm
+        {
+            get { return selectedPaymentForm; }
+            set { SetValue(ref selectedPaymentForm, value); }
+        }
+
 
         public CompleteSale CompleteSale { get; set; }
 
@@ -139,12 +151,26 @@ namespace Facturacion_Tostatronic.ViewModels
 
         public CreateInvoiceVM()
         {
+            InitialiceObjects();
+            //Aqui inicializamos los comandos
+            SearchSaleCommand = new SearchSaleCommand(this);
+            SaleSelectedCommand = new SaleSelectedCommand(this);
+            SelectedDateChangedCommand = new SelectedDateChangedCommand(this);
+            CreateNewInvoiceCommand = new CreateNewInvoiceCommand(this);
+            SetSelectedCFDIUseCommando = new SetSelectedCFDIUseCommando(this);
+            SelectedDateChangedCommand.Execute(null);
+        }
+
+        public void InitialiceObjects() 
+        {
             Sales = new ObservableCollection<Sale>();
             SelectedDate = DateTime.Now;
-            CompleteSale = new CompleteSale();
-            CompleteSale.Products = new List<Product>();
-            CompleteSale.InvoiceData = new InvoiceData();
-            CompleteSale.Client = new Client();
+            CompleteSale = new CompleteSale
+            {
+                Products = new List<Product>(),
+                InvoiceData = new InvoiceData(),
+                Client = new Client()
+            };
             //Aqui inicializamos los datos de las diferentes opciones de la factura
             CFDIUse = new List<CFDIUse>();
             PaymentForm = new List<PaymentForm>();
@@ -152,11 +178,6 @@ namespace Facturacion_Tostatronic.ViewModels
             RegimenFiscal = new List<RegimenFiscal>();
             //Al inicio no se permite la seleccion de datos
             DataEntranceSavailable = false;
-            SearchSaleCommand = new SearchSaleCommand(this);
-            SaleSelectedCommand = new SaleSelectedCommand(this);
-            SelectedDateChangedCommand = new SelectedDateChangedCommand(this);
-            CreateNewInvoiceCommand = new CreateNewInvoiceCommand(this);
-            SetSelectedCFDIUseCommando = new SetSelectedCFDIUseCommando(this);
         }
 
         public async void GetSalesData(string objectName, string keyString)

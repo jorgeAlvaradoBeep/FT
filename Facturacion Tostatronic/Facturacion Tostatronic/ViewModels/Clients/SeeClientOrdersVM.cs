@@ -10,11 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace Facturacion_Tostatronic.ViewModels.Clients
 {
-    public class SeeClientOrdersVM : BaseNotifyPropertyChanged
+    public class SeeClientOrdersVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "SeeClientOrdersVM";
         private ObservableCollection<ClientComplete> clientes;
 
         public ObservableCollection<ClientComplete> Clients
@@ -50,26 +52,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                 if(ClientComplete!=null)
                 {
                     SaleProducts = new ObservableCollection<EFSaleProducts>();
-                    Task.Run(() =>
-                    {
-                        GettingData = true;
-                        Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getClientOrders + ClientComplete.IdCliente);
-                        if (rmp.succes)
-                        {
-                            ClientOrders = JsonConvert.DeserializeObject<ObservableCollection<ClientOrder>>(rmp.data.ToString());
-                            foreach (ClientOrder aux in ClientOrders)
-                            {
-                                rmp = WebService.GetDataForInvoiceNoAsync(URLData.getTotalForSale + aux.IdVenta);
-                                aux.SubTotal = float.Parse(rmp.data.ToString());
-                            }
-                        }
-                        else
-                        {
-                            ClientOrders = new ObservableCollection<ClientOrder>();
-                            MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                        GettingData = false;
-                    });
+                    new Action(async () => await GetTotalesO())();
                 }
             }
         }
@@ -130,6 +113,27 @@ namespace Facturacion_Tostatronic.ViewModels.Clients
                 }
                 GettingData = false;
             });
+        }
+
+        async Task GetTotalesO()
+        {
+            GettingData = true;
+            Response rmp = await WebService.GetDataForInvoice(URLData.getClientOrders + ClientComplete.IdCliente);
+            if (rmp.succes)
+            {
+                ClientOrders = JsonConvert.DeserializeObject<ObservableCollection<ClientOrder>>(rmp.data.ToString());
+                foreach (ClientOrder aux in ClientOrders)
+                {
+                    rmp = await WebService.GetDataForInvoice(URLData.getTotalForSale + aux.IdVenta);
+                    aux.SubTotal = float.Parse(rmp.data.ToString());
+                }
+            }
+            else
+            {
+                ClientOrders = new ObservableCollection<ClientOrder>();
+                MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            GettingData = false;
         }
     }
 }

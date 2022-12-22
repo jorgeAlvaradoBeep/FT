@@ -1,0 +1,309 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Invoice.CreateInvoiceUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Invoice" 
+             xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services"
+             Background="White"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <vm:CreateInvoiceVM x:Key="createInvoiceVM"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource createInvoiceVM}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="5,5,0,0" Height="46">
+            <TextBlock Text="Facturacion Tostatronic" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </materialDesign:ColorZone>
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="3" 
+                    Grid.RowSpan="2" 
+                    Orientation="Vertical" >
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtRfc" 
+                         Margin="20,1,1,1" 
+                         Width="180" 
+                         MaxLength="13" 
+                         HorizontalContentAlignment="Left" 
+                         materialDesign:HintAssist.Hint="RFC*" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         IsEnabled="{Binding DataEntranceSavailable}">
+                    <TextBox.Text>
+                        <Binding Path="CompleteSale.Client.Rfc" 
+                                 Mode="TwoWay" 
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local1:RFCValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ComboBox x:Name="cmbCFDIUse" 
+                          Margin="20,1,1,1" 
+                          Width="250" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding CFDIUse}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="USO CFDI*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Margin="20,1,1,1" 
+                         Width="335" 
+                         Text="{Binding CompleteSale.Client.CompleteName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         HorizontalContentAlignment="Left" 
+                         materialDesign:HintAssist.Hint="Razon Social*" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         IsEnabled="{Binding DataEntranceSavailable}"/>
+                <ComboBox x:Name="cmbPaymentMethod" 
+                          Margin="20,1,1,1" 
+                          Width="100" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding PaymentMethod}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="Metodo Pago*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedPaymentMethod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtEmail" 
+                         Margin="20,1,1,1" 
+                         Width="335"
+                         HorizontalContentAlignment="Left" 
+                         materialDesign:HintAssist.Hint="Email*" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         IsEnabled="{Binding DataEntranceSavailable}">
+                    <TextBox.Text>
+                        <Binding Path="CompleteSale.Client.Email" 
+                                 Mode="TwoWay" 
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local1:EmailValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ComboBox x:Name="cmbPaymentForm" 
+                          Margin="20,1,1,1" 
+                          Width="100" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding PaymentForm}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="Forma de Pago*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedPaymentForm}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SetSelectedCFDIUseCommando}" 
+                                                   CommandParameter="{Binding ElementName=cmbPaymentForm, Path=SelectedItem}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtCodigoPostal" 
+                         Margin="20,1,1,1" 
+                         Width="150" 
+                         HorizontalContentAlignment="Left" 
+                         materialDesign:HintAssist.Hint="CP*" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         IsEnabled="{Binding DataEntranceSavailable}">
+                    <TextBox.Text>
+                        <Binding Path="CompleteSale.Client.CP" 
+                                 Mode="TwoWay" 
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local1:CPValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ComboBox x:Name="cmbRegimenFiscal" 
+                          Margin="20,1,1,1" 
+                          Width="350" 
+                          HorizontalContentAlignment="Left" 
+                          ItemsSource="{Binding RegimenFiscal}" 
+                          DisplayMemberPath="CompleteName" 
+                          materialDesign:HintAssist.Hint="Regimen Fiscal*" 
+                          materialDesign:HintAssist.IsFloating="True" 
+                          IsEnabled="{Binding DataEntranceSavailable}"
+                          SelectedItem="{Binding SelectedRegimen, Mode=TwoWay}">
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="3" 
+                    Grid.ColumnSpan="2" 
+                    Margin="5" 
+                    Orientation="Vertical" 
+                    Grid.RowSpan="7">
+            <DatePicker x:Name="dpEventDate" 
+                        SelectedDate="{Binding SelectedDate, Mode=TwoWay}" 
+                        Height="25" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Width="220" 
+                        Margin="0,0,0,5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectedDateChangedCommand}"
+                                   CommandParameter="{Binding ElementName=dpEventDate, Path=SelectedDate}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtIDSale" 
+                         materialDesign:HintAssist.Hint="# Venta" 
+                         materialDesign:HintAssist.IsFloating="True" 
+                         Width="180">
+                    <TextBox.Text>
+                        <Binding Path="InvoiceNumber" 
+                                 Mode="TwoWay" 
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local1:InvoiceNumberValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Height="30" 
+                        Width="70" 
+                        Margin="5px" 
+                        Command="{Binding SearchSaleCommand}">
+                    <StackPanel>
+                        <Image Source="/Images/search.png" Width="20" Height="20"/>
+                    </StackPanel>
+                    <Button.CommandParameter>
+                        <Binding Path="(Validation.HasError)"  
+                                 ElementName="txtIDSale"/>
+                    </Button.CommandParameter>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <ListView x:Name="lstSales" 
+                  Margin="5,-35,5,5" 
+                  ItemsSource="{Binding Sales}" 
+                  SelectedIndex="{Binding SelectedSale, Mode=TwoWay}" 
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="False" 
+                  Grid.Column="3" 
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="2" 
+                  Grid.RowSpan="5">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding SaleSelectedCommand}" 
+                                           CommandParameter="{Binding ElementName=lstSales, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Folio" Width="50" DisplayMemberBinding="{Binding idSale}" />
+                    <GridViewColumn Header="RFC" Width="130" DisplayMemberBinding="{Binding rfc}" />
+                    <GridViewColumn Header="Fecha" Width="150" DisplayMemberBinding="{Binding date}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Margin="5,25,5,5" 
+                  DataContext="{Binding CompleteSale}" 
+                  ItemsSource="{Binding Products, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.Column="0" 
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Codigo" Width="120" DisplayMemberBinding="{Binding idProduct}" />
+                    <GridViewColumn Header="Nombre" Width="250" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Cant." Width="75" DisplayMemberBinding="{Binding quantity}" />
+                    <GridViewColumn Header="Precio" Width="75" DisplayMemberBinding="{Binding priceAtMoment, StringFormat='c'}" />
+                    <GridViewColumn Header="SubTotal" Width="75" DisplayMemberBinding="{Binding SubTotal, StringFormat='c'}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Margin="1" 
+                 HorizontalContentAlignment="Center" 
+                 FontSize="24" 
+                 IsEnabled="False" 
+                 DataContext="{Binding CompleteSale, StringFormat=$0.00}" 
+                 Text="{Binding SubTotal, Mode=TwoWay}" 
+                 Grid.Row="8" 
+                 materialDesign:HintAssist.Hint="Subtotal" 
+                 materialDesign:HintAssist.IsFloating="True"/>
+        <TextBox Margin="1" 
+                 HorizontalContentAlignment="Center" 
+                 FontSize="24" 
+                 IsEnabled="False" 
+                 DataContext="{Binding CompleteSale, StringFormat=$0.00}" 
+                 Text="{Binding Tax, Mode=TwoWay}" 
+                 Grid.Row="8" 
+                 Grid.Column="1" 
+                 materialDesign:HintAssist.Hint="IVA" 
+                 materialDesign:HintAssist.IsFloating="True"/>
+        <TextBox Margin="1" 
+                 HorizontalContentAlignment="Center" 
+                 FontSize="24" 
+                 IsEnabled="False" 
+                 DataContext="{Binding CompleteSale, StringFormat=$0.00}"  
+                 Text="{Binding Total, Mode=TwoWay}" 
+                 Grid.Row="8" 
+                 Grid.Column="2" 
+                 materialDesign:HintAssist.Hint="Total" 
+                 materialDesign:HintAssist.IsFloating="True"/>
+        <Button Height="50" 
+                Grid.Column="3" 
+                Grid.Row="8" 
+                HorizontalAlignment="Stretch" 
+                Margin="5px" 
+                Command="{Binding CreateNewInvoiceCommand}" 
+                Cursor="Hand">
+            <StackPanel>
+                <Image Source="/Images/invoice.png" Width="20" Height="10"/>
+                <TextBlock Text="Facturar" FontSize="14"/>
+            </StackPanel>
+            <Button.Resources>
+                <ui:ValidatinDataConverter x:Key="validatinDataConverter"/>
+            </Button.Resources>
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource validatinDataConverter}">
+                    <Binding Path="(Validation.HasError)" ElementName="txtRfc"/>
+                    <Binding Path="(Validation.HasError)" ElementName="txtEmail"/>
+                    <Binding Path="(Validation.HasError)" ElementName="txtCodigoPostal"/>
+                    <Binding ElementName="WCreateInvoice"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.Models.Clients
 {
-    public class ClientOrder
+    public class ClientOrder: BaseNotifyPropertyChanged
     {
         public int IdVenta { get; set; }
         public int IdUsuario { get; set; }
@@ -35,7 +36,12 @@ namespace Facturacion_Tostatronic.Models.Clients
             }
         }
 
+        private float subTotal;
 
-        public float SubTotal { get; set; }
+        public float SubTotal
+        {
+            get { return subTotal; }
+            set { SetValue(ref subTotal, value); }
+        }
     }
 }
