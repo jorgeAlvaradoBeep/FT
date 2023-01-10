@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
-    public class AssingUCVM : BaseNotifyPropertyChanged
+    public class AssingUCVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "AssingUCVM";
         public SearchProductCommand SearchProductCommand { get; set; }
         public SelectedProductCommand SelectedProductCommand { get; set; }
         public SaveUPCCommand SaveUPCCommand { get; set; }

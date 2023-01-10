@@ -13,8 +13,9 @@ using System.Windows.Media.Imaging;
 
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
-    public class UpdateImageVM : BaseNotifyPropertyChanged
+    public class UpdateImageVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "UpdateImageVM";
         public string imagePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string imagePathBase = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         BitmapImage oldImage, newImage;

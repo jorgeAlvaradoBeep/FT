@@ -57,6 +57,12 @@
         <DataTemplate DataType="{x:Type vmp:AddProductVM}">
             <viewsp:AddProductUC />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmp:UpdateImageVM}">
+            <viewsp:UpdateImageUC />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AssingUCVM}">
+            <viewsp:AssingUCUC />
+        </DataTemplate>
         
         <!--Seccion de estilos-->
         <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">

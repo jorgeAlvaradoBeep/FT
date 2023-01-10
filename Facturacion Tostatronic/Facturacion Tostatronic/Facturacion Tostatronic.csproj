@@ -515,8 +515,14 @@
     <Compile Include="Views\Pages\Products\AddProductUC.xaml.cs">
       <DependentUpon>AddProductUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Products\AssingUCUC.xaml.cs">
+      <DependentUpon>AssingUCUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Products\MLPriceUC.xaml.cs">
       <DependentUpon>MLPriceUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Products\UpdateImageUC.xaml.cs">
+      <DependentUpon>UpdateImageUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\WareHousePages\AddProductToSpaceUC.xaml.cs">
       <DependentUpon>AddProductToSpaceUC.xaml</DependentUpon>
@@ -675,7 +681,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Products\AssingUCUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Products\MLPriceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Products\UpdateImageUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

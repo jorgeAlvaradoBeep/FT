@@ -727,11 +727,11 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Ver Productos", VMName="" },
                 new NavigationViewItemModel() { Title = "Lista De Productos" },
                 new NavigationViewItemModel() { Title = "Lista De Productos Nuevos" },
-                new NavigationViewItemModel() { Title = "Modificar Imagenes",VMName="" },
+                new NavigationViewItemModel() { Title = "Modificar Imagenes",VMName="UpdateImageVM" },
                 new NavigationViewItemModel() { Title = "Actualizar Producto",VMName="" },
                 new NavigationViewItemModel() { Title = "Actualizar Cantidades" },
                 new NavigationViewItemModel() { Title = "Lista De Productos Facebook" },
-                new NavigationViewItemModel() { Title = "Actualizar Codigo Universal",VMName="" },
+                new NavigationViewItemModel() { Title = "Actualizar Codigo Universal",VMName="AssingUCVM" },
             };
 
             return new List<NavigationViewItemModel>
@@ -790,6 +790,8 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new SeeInvoiceVM());
             ViewsList.Add(new MLPriceVM());
             ViewsList.Add(new AddProductVM());
+            ViewsList.Add(new UpdateImageVM());
+            ViewsList.Add(new AssingUCVM());
         }
          IPageViewModel GetView(string vmName)
         {
