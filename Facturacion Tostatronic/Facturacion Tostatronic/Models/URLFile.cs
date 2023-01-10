@@ -50,6 +50,13 @@
         public static string psAccount = "TJNTQKNTUELZU2V86CGIBCSJMB92LCQI";
         public static string psPassword = "";
 
+        //Variables del WebServices de WooCommerce
+        public static string wcBaseUrl = "https://www.tostatronic.com/wp-json/wc/v3/";
+        public static string wcKey = "ck_365d249e5d95320bac719698750403b22310e114";
+        public static string wcSecret = "cs_d870c7cc05e2ef673d1c695497439a9c27e8d509";
+        public static string wcProducts = wcBaseUrl+ "products";
+        public static string wcBatchProduct = wcBaseUrl + "products/batch";
+
 
 
         //URL Para NodeJS
@@ -66,8 +73,8 @@
         public static string regimenFiscal = baseURLNode + "Regimen/";
 
         //URL Para API de .net
-        const string baseURLNET = "http://192.168.3.15:5249/api/";
-        //const string baseURLNET = "http://143.198.173.21:5249/api/";
+        //const string baseURLNET = "http://192.168.3.15:5249/api/";
+        const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";

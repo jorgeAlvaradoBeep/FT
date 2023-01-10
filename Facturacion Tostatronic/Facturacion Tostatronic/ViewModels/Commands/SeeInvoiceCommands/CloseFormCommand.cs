@@ -24,7 +24,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SeeInvoiceCommands
 
         public async void Execute(object parameter)
         {
-            SeeInvoiceV v = (SeeInvoiceV)parameter;
             string prePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string path = Path.Combine(prePath, "Tostatronic");
             string pdfPath = @path + "\\" + VM.Folio + ".pdf";
@@ -33,7 +32,13 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SeeInvoiceCommands
                 File.Delete(pdfPath);
             if (File.Exists(xmlPath))
                 File.Delete(xmlPath);
-            v.Close();
+            VM.Rfc = string.Empty;
+            VM.Email = string.Empty;
+            VM.RazonSocial = string.Empty;
+            VM.IsDataLoaded= true;
+            VM.DataEntranceSavailable = false;
+            VM.SelectedDateChangedSICommand.Execute(null);
+            
         }
     }
 }

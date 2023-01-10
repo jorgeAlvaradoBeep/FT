@@ -22,6 +22,15 @@ namespace Facturacion_Tostatronic.ViewModels
     public class CreateInvoiceVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         public string Name { get; set; } = "CreateInvoiceVM";
+
+        private bool gettingData;
+
+        public bool GettingData
+        {
+            get { return gettingData; }
+            set { SetValue(ref gettingData, value); }
+        }
+
         private string invoiceNumber;
 
         public string InvoiceNumber
@@ -185,8 +194,7 @@ namespace Facturacion_Tostatronic.ViewModels
             int invoiceNumber;
             if(int.TryParse(InvoiceNumber, out invoiceNumber))
             {
-                WaitPlease wp = new WaitPlease();
-                wp.Show();
+                GettingData = true;
                 Response r = await WebService.GetData(objectName, keyString, URLData.sales);
                 if (r.statusCode == 404)
                 {
@@ -194,7 +202,7 @@ namespace Facturacion_Tostatronic.ViewModels
                         MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                         MessageBox.Show("No existen registros de ese folio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    wp.Close();
+                    GettingData = false;
                     Sales = new ObservableCollection<Sale>();
                     return;
                 }
@@ -206,7 +214,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     date = (string)x["date"]
                 }).ToList();
                 Sales = new ObservableCollection<Sale>(v);
-                wp.Close();
+                GettingData = false;
             }
             else
                 MessageBox.Show("El campo de busqueda esta vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -214,17 +222,14 @@ namespace Facturacion_Tostatronic.ViewModels
 
         public async void GetSalesDataByDate(string objectName, string keyString)
         {
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
+            GettingData = true;
             Response r = await WebService.GetData(objectName, keyString, URLData.sales);
             InvoiceNumber = string.Empty;
             if(r.statusCode==404)
             {
                 if (!string.IsNullOrEmpty(r.message))
                     MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                else
-                    MessageBox.Show("No existen registros de esa fecha", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                wp.Close();
+                GettingData = false;
                 Sales = new ObservableCollection<Sale>();
                 return;
             }
@@ -236,13 +241,12 @@ namespace Facturacion_Tostatronic.ViewModels
                 date = (string)x["date"]
             }).ToList();
             Sales = new ObservableCollection<Sale>(v);
-            wp.Close();
+            GettingData = false;
         }
 
         public async void GetProductsFromSale(string objectName, string keyString, string rfc)
         {
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
+            GettingData = true;
             Response r = await WebService.GetData(objectName, keyString, URLData.products);
             Response rc = await WebService.GetData("rfc", rfc, URLData.clients);
             if(PaymentMethod.Count==0)
@@ -284,7 +288,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     MessageBox.Show(r.message,"Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                     MessageBox.Show("No existen registros de esa venta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                wp.Close();
+                GettingData = false;
                 Sales = new ObservableCollection<Sale>();
                 return;
             }
@@ -315,14 +319,13 @@ namespace Facturacion_Tostatronic.ViewModels
             }
             else
                 SelectedRegimen=null;
-            wp.Close();
+            GettingData = false;
             DataEntranceSavailable = true;
         }
 
         public async Task<bool> CreateAndInsertInvoice()
         {
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
+            GettingData = true;
             List<ProductoSat> articulos = new List<ProductoSat>();
             foreach(Product a in CompleteSale.Products)
             {
@@ -336,7 +339,7 @@ namespace Facturacion_Tostatronic.ViewModels
                 CompleteSale.InvoiceData.MetodoDePago,articulos,CompleteSale.SubTotal, CompleteSale.Client.Rfc, 
                 CompleteSale.Client.CompleteName, CompleteSale.InvoiceData.UsoCFDI, CompleteSale.Client.Email, 
                 CompleteSale.Tax, CompleteSale.Total, CompleteSale.InvoiceData.RegimenFiscal, CompleteSale.Client.CP);
-            wp.Close();
+            GettingData = false;
             if (error == "")
                 return true;
             MessageBox.Show(error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -17,8 +17,9 @@ using System.Windows;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
-    public class SeeInvoiceVM : BaseNotifyPropertyChanged
+    public class SeeInvoiceVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "SeeInvoiceVM";
         #region Propiedades
         private string invoiceNumber;
 
@@ -88,6 +89,15 @@ namespace Facturacion_Tostatronic.ViewModels
             set { SetValue(ref isDataLoaded, value); }
         }
 
+        private bool gettingData;
+
+        public bool GettingData
+        {
+            get { return gettingData; }
+            set { SetValue(ref gettingData, value); }
+        }
+
+
         #endregion
 
         #region Commandos
@@ -124,8 +134,7 @@ namespace Facturacion_Tostatronic.ViewModels
             int invoiceNumber;
             if (int.TryParse(InvoiceNumber, out invoiceNumber))
             {
-                WaitPlease wp = new WaitPlease();
-                wp.Show();
+                GettingData= true;
                 Response r = await WebService.GetData(objectName, keyString, URLData.factured_sales);
                 if (r.statusCode == 404)
                 {
@@ -133,21 +142,20 @@ namespace Facturacion_Tostatronic.ViewModels
                         MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                         MessageBox.Show("No existen registros de ese folio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    wp.Close();
+                    GettingData = false;
                     Sales = new List<EndSale>();
                     return;
                 }
                 var t = r.data;
                 Sales = JsonConvert.DeserializeObject<List<EndSale>>(t.ToString());
-                wp.Close();
+                GettingData = false;
             }
             else
                 MessageBox.Show("El campo de busqueda esta vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         public async void GetSalesDataByDate(string objectName, string keyString)
         {
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
+            GettingData = true;
             Response r = await WebService.GetData(objectName, keyString, URLData.factured_sales);
             InvoiceNumber = string.Empty;
             if (r.statusCode == 404)
@@ -156,13 +164,13 @@ namespace Facturacion_Tostatronic.ViewModels
                     MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                     MessageBox.Show("No existen registros de esa fecha", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                wp.Close();
+                GettingData = false;
                 Sales = new List<EndSale>();
                 return;
             }
             var t = r.data;
             Sales = JsonConvert.DeserializeObject<List<EndSale>>(t.ToString());
-            wp.Close();
+            GettingData = false;
         }
 
         public async Task<bool> GenerateInvoice(byte[] cXml, string folio)

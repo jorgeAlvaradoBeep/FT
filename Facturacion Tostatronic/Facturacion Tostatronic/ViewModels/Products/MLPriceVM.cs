@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
-    public class MLPriceVM : BaseNotifyPropertyChanged
+    public class MLPriceVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         #region commands
         public SearchProductsForMLPricecommand SearchProductsForMLPricecommand { get; set; }
         #endregion
         #region Propiedades
+
+        public string Name { get; set; } = "MLPriceVM";
         private bool gettingData;
 
         public bool GettingData

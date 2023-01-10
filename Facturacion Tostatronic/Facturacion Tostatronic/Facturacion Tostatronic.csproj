@@ -46,8 +46,20 @@
     <Reference Include="ChilkatDotNet47, Version=9.5.0.84, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=AMD64">
       <HintPath>..\packages\chilkat-x64.9.5.0.84\lib\net471\ChilkatDotNet47.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="ESCPOS_NET, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ESCPOS_NET.1.5.0\lib\netstandard2.0\ESCPOS_NET.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.dll</HintPath>
@@ -168,6 +180,9 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -235,6 +250,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WooCommerce.NET, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WooCommerceNET.0.8.5\lib\netstandard2.0\WooCommerce.NET.dll</HintPath>
+    </Reference>
     <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
       <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
     </Reference>
@@ -280,6 +298,7 @@
     <Compile Include="Models\Products\SpecificPrice.cs" />
     <Compile Include="Models\Products\SucursalProduct\SucursalProduct.cs" />
     <Compile Include="Models\Products\UpdateProductM.cs" />
+    <Compile Include="Models\Products\WooCommerceProduct.cs" />
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
@@ -290,6 +309,11 @@
     <Compile Include="Models\WareHouse\OrganizationForniture.cs" />
     <Compile Include="Models\WareHouse\ProductInSpace.cs" />
     <Compile Include="Models\WareHouse\WareHouseM.cs" />
+    <Compile Include="Models\WooCommerceModels\Create.cs" />
+    <Compile Include="Models\WooCommerceModels\CRUDActionClass.cs" />
+    <Compile Include="Models\WooCommerceModels\Delete.cs" />
+    <Compile Include="Models\WooCommerceModels\ProductBaseClase.cs" />
+    <Compile Include="Models\WooCommerceModels\Update.cs" />
     <Compile Include="Services\Facturacion.cs" />
     <Compile Include="Services\Facturacion\CFDI4.cs" />
     <Compile Include="Services\Facturacion\opensslkey.cs" />
@@ -485,6 +509,15 @@
     <Compile Include="Views\Pages\Invoice\CreateInvoiceUC.xaml.cs">
       <DependentUpon>CreateInvoiceUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Invoice\SeeInvoiceUC.xaml.cs">
+      <DependentUpon>SeeInvoiceUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Products\AddProductUC.xaml.cs">
+      <DependentUpon>AddProductUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Products\MLPriceUC.xaml.cs">
+      <DependentUpon>MLPriceUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\WareHousePages\AddProductToSpaceUC.xaml.cs">
       <DependentUpon>AddProductToSpaceUC.xaml</DependentUpon>
     </Compile>
@@ -631,6 +664,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Invoice\CreateInvoiceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Invoice\SeeInvoiceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Products\AddProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Products\MLPriceUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

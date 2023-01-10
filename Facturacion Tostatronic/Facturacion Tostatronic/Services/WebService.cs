@@ -1,10 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using Facturacion_Tostatronic.Models;
+using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WooCommerceNET.WooCommerce.v3;
 
 namespace Facturacion_Tostatronic.Services
 {
@@ -189,6 +192,77 @@ namespace Facturacion_Tostatronic.Services
                 result.succes = false;
                 result.message = "Error... " + e.Message;
                 return result;
+            }
+        }
+
+        public static async Task<IRestResponse> GetDataWooCommercer(string url, string fields, string page)
+        {
+            // En el caso de Sandbox 
+            var client = new RestClient();
+            client.Timeout = 15000;
+            client.BaseUrl = new System.Uri(url);
+            client.Authenticator =
+                OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
+            client.AddDefaultQueryParameter("fields", fields);
+            client.AddDefaultQueryParameter("orderby", "id");
+            client.AddDefaultQueryParameter("per_page", "100");
+            client.AddDefaultQueryParameter("page", page);
+            
+            var request = new RestRequest(Method.GET);
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return null;
+            }
+        }
+
+        public static async Task<IRestResponse> InsertDataWooCommercer(string url, string jsonToInsert)
+        {
+            // En el caso de Sandbox 
+            var client = new RestClient();
+            client.Timeout = 35000;
+            client.BaseUrl = new System.Uri(url);
+            client.Authenticator =
+                OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
+
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("application/json", jsonToInsert, ParameterType.RequestBody);
+
+            request.AddHeader("Content-Type", "application/json");
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return null;
             }
         }
 

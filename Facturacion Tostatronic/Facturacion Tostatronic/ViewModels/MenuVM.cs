@@ -45,6 +45,9 @@ using Facturacion_Tostatronic.Views.WareHouseViews;
 using Facturacion_Tostatronic.ViewModels.Clients.AddClient;
 using Facturacion_Tostatronic.ViewModels.Clients;
 using Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands;
+using Facturacion_Tostatronic.ViewModels.Products;
+using System.Threading;
+using GalaSoft.MvvmLight.Threading;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -114,7 +117,7 @@ namespace Facturacion_Tostatronic.ViewModels
             get { return progressVal; }
             set { SetValue(ref progressVal, value); }
         }
-
+        public readonly SynchronizationContext _syncContext;
 
 
         #endregion
@@ -176,6 +179,8 @@ namespace Facturacion_Tostatronic.ViewModels
         #endregion
         public MenuVM()
         {
+            DispatcherHelper.Initialize();
+            _syncContext = SynchronizationContext.Current;
             #region Inicializacion de comando
             CreateInvoiceCommand = new CreateInvoiceCommand(this);
             InvoiceConfigCommand = new InvoiceConfigCommand(this);
@@ -709,7 +714,24 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 new NavigationViewItemModel() { Title = "Crear Factura", VMName="CreateInvoiceVM" },
                 new NavigationViewItemModel() { Title = "Configurar Factura" },
-                new NavigationViewItemModel() { Title = "Ver facturas" },
+                new NavigationViewItemModel() { Title = "Ver facturas", VMName="SeeInvoiceVM" },
+            };
+
+            var printConfig = new NavigationViewItemModel() { Icon = "&#xe10a;", Title = "Configurar Impresora" };
+
+            var productsItem = new NavigationViewItemModel() { Icon = "&#xe515;", Title = "Productos" };
+            productsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Title = "Precios ML", VMName="MLPriceVM" },
+                new NavigationViewItemModel() { Title = "Agregar Producto", VMName="AddProductVM" },
+                new NavigationViewItemModel() { Title = "Ver Productos", VMName="" },
+                new NavigationViewItemModel() { Title = "Lista De Productos" },
+                new NavigationViewItemModel() { Title = "Lista De Productos Nuevos" },
+                new NavigationViewItemModel() { Title = "Modificar Imagenes",VMName="" },
+                new NavigationViewItemModel() { Title = "Actualizar Producto",VMName="" },
+                new NavigationViewItemModel() { Title = "Actualizar Cantidades" },
+                new NavigationViewItemModel() { Title = "Lista De Productos Facebook" },
+                new NavigationViewItemModel() { Title = "Actualizar Codigo Universal",VMName="" },
             };
 
             return new List<NavigationViewItemModel>
@@ -717,7 +739,9 @@ namespace Facturacion_Tostatronic.ViewModels
                 salesItem,
                 clientsItem,
                 warehouseItem,
-                facturacionItem
+                facturacionItem,
+                productsItem,
+                printConfig,
             };
         }
 
@@ -727,6 +751,24 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 case "Generara Venta":
                     CreateSaleCommand.Execute(null);
+                    break;
+                case "Configurar Factura":
+                    InvoiceConfigCommand.Execute(null);
+                    break; 
+                case "Configurar Impresora":
+                    PrinterConfigCommand.Execute(null);
+                    break;
+                case "Lista De Productos":
+                    CreateProductsListCommand.Execute(null);
+                    break;
+                case "Lista De Productos Nuevos":
+                    CreateNewProductsListCommand.Execute(null);
+                    break;
+                case "Actualizar Cantidades":
+                    UpdateQuantitiesViewCommand.Execute(null);
+                    break;
+                case "Lista De Productos Facebook":
+                    CreateFacebookListCommand.Execute(null);
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);
@@ -745,6 +787,9 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new SeeClientOrdersVM());
             ViewsList.Add(new ClientRegimenChangeVM());
             ViewsList.Add(new CreateInvoiceVM());
+            ViewsList.Add(new SeeInvoiceVM());
+            ViewsList.Add(new MLPriceVM());
+            ViewsList.Add(new AddProductVM());
         }
          IPageViewModel GetView(string vmName)
         {

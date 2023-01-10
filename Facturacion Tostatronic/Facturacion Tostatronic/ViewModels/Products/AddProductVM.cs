@@ -10,9 +10,10 @@ using System.Windows;
 
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
-    public class AddProductVM : BaseNotifyPropertyChanged
+    public class AddProductVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         public AddNewProductCommand AddNewProductCommand { get; set; }
+        public string Name { get; set; } = "AddProductVM";
         private ProductComplete product;
 
         public ProductComplete Product

@@ -31,11 +31,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SeeInvoiceCommands
             VM.Email = s.Email;
             VM.IsDataLoaded = false;
             VM.Sales = null;
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
+            VM.GettingData= true;
             bool result = await VM.GenerateInvoice(s.XmlFull, s.idSale.ToString());
             VM.DataEntranceSavailable = true;
-            wp.Close();
+            VM.GettingData = false;
         }
     }
 }
