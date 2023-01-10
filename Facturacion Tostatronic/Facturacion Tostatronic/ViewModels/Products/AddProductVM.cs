@@ -43,6 +43,20 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             get { return enableProductBase; }
             set { SetValue(ref enableProductBase, value); }
         }
+        private bool gettinData;
+
+        public bool GettingData
+        {
+            get { return gettinData; }
+            set { SetValue(ref gettinData,value); }
+        }
+        private string progressVal;
+
+        public string ProgressVall
+        {
+            get { return progressVal; }
+            set { SetValue(ref progressVal, value); }
+        }
 
 
         public AddProductVM()
@@ -58,6 +72,8 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             ImagePath = string.Empty;
             BaseProductVisibility = Visibility.Hidden;
             EnableProductBase = true;
+            GettingData= false;
+            ProgressVall = string.Empty;
         }
     }
 }

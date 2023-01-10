@@ -5,112 +5,147 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations.Productos" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1080" 
+             d:DesignWidth="1920"
+             Background="White">
     <UserControl.Resources>
         <vm1:AddProductVM x:Key="addProductVM"/>
     </UserControl.Resources>
-    <Grid DataContext="{StaticResource addProductVM}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="274*"/>
-            <ColumnDefinition Width="273*"/>
-            <ColumnDefinition Width="273*"/>
-            <ColumnDefinition Width="273*"/>
-            <ColumnDefinition Width="75*"/>
-            <ColumnDefinition Width="198*"/>
-            <ColumnDefinition Width="273*"/>
-            <ColumnDefinition Width="273*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Margin="5,5,0,0" Height="80">
-            <TextBlock Text="Agregar Producto" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </materialDesign:ColorZone>
-        <TextBox x:Name="txtCode" Grid.Row="1" Grid.Column="0" Margin="10" FontSize="20" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding EnableProductBase}" TabIndex="0">
-            <TextBox.Text>
-                <Binding Path="Product.Code" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local1:EmptyDataRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Nombre:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding EnableProductBase}" TabIndex="1">
-            <TextBox.Text>
-                <Binding Path="Product.Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local1:EmptyDataRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <telerik:LayoutControlGroup Grid.Row="3" Orientation="Vertical">
-            <telerik:Label Content="Cantidad" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.Existence}" IsEnabled="{Binding EnableProductBase}" TabIndex="2"/>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="4" Orientation="Vertical">
-            <telerik:Label Content="Cantidad Minima" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.MinimumQuantity}" IsEnabled="{Binding EnableProductBase}" TabIndex="3"/>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="5" Orientation="Vertical">
-            <telerik:Label Content="Precio Compra" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.BuyPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="4">
-                <telerik:RadNumericUpDown.NumberFormatInfo>
-                    <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
-                </telerik:RadNumericUpDown.NumberFormatInfo>
-            </telerik:RadNumericUpDown>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="6" Orientation="Vertical">
-            <telerik:Label Content="Precio Minimo" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.MinimumPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="5">
-                <telerik:RadNumericUpDown.NumberFormatInfo>
-                    <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
-                </telerik:RadNumericUpDown.NumberFormatInfo>
-            </telerik:RadNumericUpDown>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="7" Orientation="Vertical">
-            <telerik:Label Content="Precio Distribuidor" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.DistributorPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="6">
-                <telerik:RadNumericUpDown.NumberFormatInfo>
-                    <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
-                </telerik:RadNumericUpDown.NumberFormatInfo>
-            </telerik:RadNumericUpDown>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="8" Orientation="Vertical">
-            <telerik:Label Content="Precio Publico" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.PublicPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="7">
-                <telerik:RadNumericUpDown.NumberFormatInfo>
-                    <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
-                </telerik:RadNumericUpDown.NumberFormatInfo>
-            </telerik:RadNumericUpDown>
-        </telerik:LayoutControlGroup>
-        <telerik:LayoutControlGroup Grid.Row="9" Grid.ColumnSpan="2" Orientation="Vertical">
-            <telerik:Label Content="Selecciona Imagenes" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
-            <telerik:RadFilePathPicker Margin="5" FilePath="{Binding ImagePath, Mode=TwoWay}" IsEnabled="{Binding EnableProductBase}" TabIndex="8"/>
-        </telerik:LayoutControlGroup>
-
-
-        <!--Segunda parte del agregar productos-->
-
-        <TextBox x:Name="txtUPC" Grid.Row="1" Grid.Column="2"  Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="UPC:" materialDesign:HintAssist.IsFloating="True" Visibility="{Binding BaseProductVisibility}">
-            <TextBox.Text>
-                <Binding Path="Product.UPC" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local1:EmptyDataRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+    <telerik:RadBusyIndicator DataContext="{StaticResource addProductVM}"
+                              IsBusy="{Binding GettingData}"
+                              BusyContent="{Binding ProgressVall}">
+        <Grid DataContext="{StaticResource addProductVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="274*"/>
+                <ColumnDefinition Width="273*"/>
+                <ColumnDefinition Width="273*"/>
+                <ColumnDefinition Width="273*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="198*"/>
+                <ColumnDefinition Width="273*"/>
+                <ColumnDefinition Width="273*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerik:LayoutControlGroup Grid.Row="1" 
+                                    Orientation="Vertical"
+                                    Visibility="{Binding EnableProductBase}">
+                <Label Content="Agregar a la Pagina WEB?"
+                   FontSize="22"/>
+                <CheckBox HorizontalAlignment="Center"
+                      Width="30"
+                      Height="30"/>
+            </telerik:LayoutControlGroup>
+            <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Margin="5,5,0,0" Height="80">
+                <TextBlock Text="Agregar Producto" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </materialDesign:ColorZone>
+            <TextBox x:Name="txtCode" Grid.Row="2" Grid.Column="0" Margin="10" FontSize="20" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding EnableProductBase}" TabIndex="0">
+                <TextBox.Text>
+                    <Binding Path="Product.Code" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <local1:EmptyDataRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox x:Name="txtName" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Nombre:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding EnableProductBase}" TabIndex="1">
+                <TextBox.Text>
+                    <Binding Path="Product.Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <local1:EmptyDataRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <telerik:LayoutControlGroup Grid.Row="4" Orientation="Vertical">
+                <telerik:Label Content="Cantidad" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.Existence}" IsEnabled="{Binding EnableProductBase}" TabIndex="2"/>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="5" Orientation="Vertical">
+                <telerik:Label Content="Cantidad Minima" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.MinimumQuantity}" IsEnabled="{Binding EnableProductBase}" TabIndex="3"/>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="6" Orientation="Vertical">
+                <telerik:Label Content="Precio Compra" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.BuyPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="4">
+                    <telerik:RadNumericUpDown.NumberFormatInfo>
+                        <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
+                    </telerik:RadNumericUpDown.NumberFormatInfo>
+                </telerik:RadNumericUpDown>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="7" Orientation="Vertical">
+                <telerik:Label Content="Precio Minimo" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.MinimumPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="5">
+                    <telerik:RadNumericUpDown.NumberFormatInfo>
+                        <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
+                    </telerik:RadNumericUpDown.NumberFormatInfo>
+                </telerik:RadNumericUpDown>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="8" Orientation="Vertical">
+                <telerik:Label Content="Precio Distribuidor" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.DistributorPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="6">
+                    <telerik:RadNumericUpDown.NumberFormatInfo>
+                        <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
+                    </telerik:RadNumericUpDown.NumberFormatInfo>
+                </telerik:RadNumericUpDown>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="9" Orientation="Vertical">
+                <telerik:Label Content="Precio Publico" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadNumericUpDown Margin="5" Value="{Binding Product.PublicPrice}" ValueFormat="Currency" IsEnabled="{Binding EnableProductBase}" TabIndex="7">
+                    <telerik:RadNumericUpDown.NumberFormatInfo>
+                        <global:NumberFormatInfo CurrencyDecimalDigits="2" CurrencySymbol="$"/>
+                    </telerik:RadNumericUpDown.NumberFormatInfo>
+                </telerik:RadNumericUpDown>
+            </telerik:LayoutControlGroup>
+            <telerik:LayoutControlGroup Grid.Row="10" Grid.ColumnSpan="2" Orientation="Vertical">
+                <telerik:Label Content="Selecciona Imagenes" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Foreground="#FF8F8F8F"/>
+                <telerik:RadFilePathPicker Margin="5" FilePath="{Binding ImagePath, Mode=TwoWay}" IsEnabled="{Binding EnableProductBase}" TabIndex="8"/>
+            </telerik:LayoutControlGroup>
+            <TextBox x:Name="txtUPC" 
+                 Grid.Row="1" 
+                 Grid.Column="2"  
+                 Margin="10" 
+                 FontSize="16" 
+                 HorizontalContentAlignment="Left" 
+                 materialDesign:HintAssist.Hint="UPC:" 
+                 materialDesign:HintAssist.IsFloating="True" 
+                 Visibility="{Binding EnableProductBase}">
+                <TextBox.Text>
+                    <Binding Path="Product.UPC" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                        <Binding.ValidationRules>
+                            <local1:EmptyDataRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <telerik:RadAutoCompleteBox	WatermarkContent="Codigo SAT..."
+                                    Grid.Column="2"
+                                    Grid.Row="2"
+									x:Name="SatCodeAutoCompleteBox"
+									TextSearchMode="Contains"
+									AutoCompleteMode="Suggest"
+									SelectionMode="Single"
+									TextSearchPath="CompleteName"
+									ItemsSource="{Binding Clients}"
+                                    SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
+									Margin="10,0,10,0"
+                                    Height="25"
+                                    VerticalAlignment="Center"
+									NoResultsContent="Codigo No Enocntrado..." 
+                                    Cursor="IBeam"
+                                    Visibility="{Binding EnableProductBase}"/>
+            <!--Segunda parte del agregar productos
         <TextBox x:Name="txtPrestashop" Text="{Binding Product.PrestashopID, Mode=TwoWay}" Grid.Row="2" Grid.Column="2"  Margin="10" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Codigo Prestashop:" materialDesign:HintAssist.IsFloating="True" IsEnabled="True" Visibility="{Binding BaseProductVisibility}"/>
         <telerik:GroupBox Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="3" Grid.RowSpan="7" Header="Precios específicos" FontSize="24" Foreground="#FF848484" Visibility="{Binding BaseProductVisibility}">
             <telerik:LayoutControlGroup Orientation="Vertical">
@@ -210,18 +245,27 @@
                     </telerik:LayoutControlGroup>
                 </telerik:LayoutControlGroup>
             </telerik:LayoutControlGroup>
-        </telerik:GroupBox>
-        <Button Height="70" Grid.Column="7" Grid.Row="10" Margin="5,12,5,13" Command="{Binding AddNewProductCommand}">
-            <StackPanel>
-                <Image Source="/Images/save.png" Width="35" Height="20"/>
-                <TextBlock Text="Guardar" FontSize="14"/>
-            </StackPanel>
-        </Button>
-        <Button Height="70" Grid.Column="6" Grid.Row="10" Margin="5,12,5,13" Command="{Binding CreateNewInvoiceCommand}">
-            <StackPanel>
-                <Image Source="/Images/cancel.png" Width="35" Height="20"/>
-                <TextBlock Text="Cancelar" FontSize="14"/>
-            </StackPanel>
-        </Button>
-    </Grid>
+        </telerik:GroupBox>-->
+            <Button Height="70" 
+                Grid.Column="7" 
+                Grid.Row="10" 
+                Margin="5,12,5,13" 
+                Command="{Binding AddNewProductCommand}">
+                <StackPanel>
+                    <Image Source="/Images/save.png" Width="35" Height="20"/>
+                    <TextBlock Text="Guardar" FontSize="14"/>
+                </StackPanel>
+            </Button>
+            <Button Height="70" 
+                Grid.Column="6" 
+                Grid.Row="10" 
+                Margin="5,12,5,13" 
+                Command="{Binding CreateNewInvoiceCommand}">
+                <StackPanel>
+                    <Image Source="/Images/cancel.png" Width="35" Height="20"/>
+                    <TextBlock Text="Cancelar" FontSize="14"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </telerik:RadBusyIndicator>
 </UserControl>

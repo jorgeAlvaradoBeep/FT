@@ -34,7 +34,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         public async void Execute(object parameter)
         {
-            WaitPlease wp = new WaitPlease();
             string errorMessage = string.Empty;
             if (VM.EnableProductBase)
             {
@@ -67,22 +66,21 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     }
 
                 }
+                if (string.IsNullOrEmpty(VM.Product.UPC))
+                    errorMessage += 
+                        "El producto debe tener un codigo universal" 
+                        + Environment.NewLine;
+
+                //En esta seccion va la validacion del codigo sat
 
                 if (!string.IsNullOrEmpty(errorMessage))
                     MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    wp.Show();
-                    ProductFactory product = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-                    Dictionary<string, string> dtn = new Dictionary<string, string>();
-                    dtn.Add("reference", VM.Product.Code);
-                    List<product> aux = await product.GetByFilterAsync(dtn, null, null);
-                    if (aux.Count > 0)
-                    {
-                        MessageBox.Show("El codigo que intenta ingresar ya existe, favor de cambiarlo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        wp.Close();
-                        return;
-                    }
+                    VM.GettingData=true;
+                    //Tenemos que validar si existe un codigo ya en el sistema
+
+                    //Si no existe, procedemos con la adicion del producto.
                     Response response = await WebService.InsertData(VM.Product, URLData.product_add_new);
                     string errMsg = string.Empty;
                     if (response.succes)
