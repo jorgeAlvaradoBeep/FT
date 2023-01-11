@@ -199,7 +199,7 @@ namespace Facturacion_Tostatronic.Services
         {
             // En el caso de Sandbox 
             var client = new RestClient();
-            client.Timeout = 15000;
+            client.Timeout = 25000;
             client.BaseUrl = new System.Uri(url);
             client.Authenticator =
                 OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);

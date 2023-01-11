@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Products.SeeProductsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:RowSelec="clr-namespace:Facturacion_Tostatronic.Views.Clients.SeeClientStyles"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:SeeProductVM x:Key="seeProductVM"/>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource seeProductVM}"
+                              IsBusy="{Binding GettingData}">
+        <Grid>
+            <Grid.Resources>
+                <telerik:BinaryImageConverter x:Key="converter" />
+                <RowSelec:RowStyleSelector x:Key="rowStyleSelector" />
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerik:RadWatermarkTextBox WatermarkContent="Buscar Producto"
+                                         Height="30"
+                                         Grid.Row="0"
+                                         Margin="8"
+                                         Text="{Binding SearchCriterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <telerik:RadGridView x:Name="RadGridView1"
+								 ItemsSource="{Binding Products}"
+								 RowStyleSelector="{StaticResource rowStyleSelector}"
+								 Margin="0" GroupRenderMode="Flat"
+								 RowIndicatorVisibility="Collapsed"
+								 IsReadOnly="True"
+								 ShowColumnSortIndexes="True"
+								 AutoGenerateColumns="False"
+								 CanUserFreezeColumns="False"
+								 CanUserResizeColumns="False"
+                                 Grid.Row="1"
+                                 SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewToggleRowDetailsColumn />
+                    <telerik:GridViewDataColumn Header="Codigo"
+												DataMemberBinding="{Binding Codigo}" 
+                                                Width="120"/>
+                    <telerik:GridViewDataColumn Header="Nombre"
+												DataMemberBinding="{Binding Nombre}"
+                                                Width="255"/>
+                    <telerik:GridViewDataColumn Header="Cantidad"
+												DataMemberBinding="{Binding Existencia}"
+                                                Width="80"/>
+                    <telerik:GridViewDataColumn Header="P. Compra"
+												DataMemberBinding="{Binding PrecioCompra}"
+                                                Width="80"/>
+                    <telerik:GridViewDataColumn Header="P. Publico"
+												DataMemberBinding="{Binding PrecioPublico}"
+                                                Width="80"/>
+                    <telerik:GridViewDataColumn Header="P. Distribuidor"
+												DataMemberBinding="{Binding PrecioDistribuidor}"
+                                                Width="80"/>
+                    <telerik:GridViewDataColumn Header="P. Minimo"
+												DataMemberBinding="{Binding PrecioMinimo}"
+                                                Width="80"/>
+                </telerik:RadGridView.Columns>
+                <telerik:RadGridView.RowDetailsTemplate>
+                    <DataTemplate>
+                        <telerik:RadTabControl x:Name="RadTabControl1"
+										       Width="702"
+										       HorizontalAlignment="Center"
+										       Margin="8"
+										       VerticalAlignment="Center">
+                            <telerik:RadTabItem Header="Modificar"
+											    DataContext="{Binding}"
+                                                x:Name="SelectedProduct">
+                                <Grid Width="Auto"
+								  HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <telerik:RadToggleSwitchButton 
+                                        CheckedContent="Editar" 
+                                        UncheckedContent="Visualizar"
+                                        Grid.Column="0"
+                                        Grid.RowSpan="8"
+                                        DataContext="{StaticResource seeProductVM}"
+                                        IsChecked="{Binding Editing, Mode=TwoWay}"
+                                        Cursor="Hand"/>
+                                    <TextBlock Text="Nombre: "
+										       VerticalAlignment="Center"
+										       FontWeight="Bold"
+										       Grid.Row="0"
+										       Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding Nombre}"
+										   Margin="5"
+										   Grid.Row="0"
+										   Grid.Column="2"
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+                                    <TextBlock  Text="Cantidad: "
+										        VerticalAlignment="Center"
+										        FontWeight="Bold"
+										        Grid.Row="1"
+										        Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding Existencia}"
+										       Margin="5"
+										       Grid.Row="1"
+										       Grid.Column="2"
+                                               IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+                                    <TextBlock Text="Precio Compra: "
+										       VerticalAlignment="Center"
+										       FontWeight="Bold"
+										       Grid.Row="2"
+										       Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding PrecioCompra}"
+										   Margin="5"
+										   Grid.Row="2"
+										   Grid.Column="2" 
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+                                    <TextBlock Text="Precio Publico: "
+										   VerticalAlignment="Center"
+										   FontWeight="Bold"
+										   Grid.Row="3"
+										   Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding PrecioPublico}"
+										   Margin="5"
+										   Grid.Row="3"
+										   Grid.Column="2"
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+                                    <TextBlock Text="Precio Distribuidor "
+										   VerticalAlignment="Center"
+										   FontWeight="Bold"
+										   Grid.Row="4"
+										   Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding PrecioDistribuidor}"
+										   Margin="5"
+										   Grid.Row="4"
+										   Grid.Column="2" 
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"
+                                           MaxLength="5"/>
+                                    <TextBlock Text="Precio Minimo: "
+										   VerticalAlignment="Center"
+										   FontWeight="Bold"
+										   Grid.Row="5"
+										   Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding PrecioMinimo}"
+										   Margin="5"
+										   Grid.Row="5"
+										   Grid.Column="2"
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+                                    <TextBlock Text="Cantidad Minima: "
+										   VerticalAlignment="Center"
+										   FontWeight="Bold"
+										   Grid.Row="6"
+										   Grid.Column="1" />
+                                    <telerik:RadWatermarkTextBox Text="{Binding CantidadMinima}"
+										   Margin="5"
+										   Grid.Row="6"
+										   Grid.Column="2" 
+                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"/>
+
+                                    <telerik:RadPathButton Margin="5"
+                                                           Height="60"
+                                                           Width="60"
+                                                           Grid.Column="3"
+                                                           Grid.Row="9"
+                                                           HorizontalAlignment="Right"
+                                                           PathGeometry="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z"
+                                                           Content="Guardar"
+                                                           IsEnabled="{Binding Source={StaticResource seeProductVM}, Path=Editing}"
+                                                           Command="{Binding Source={StaticResource seeProductVM}, Path=ModifyProductCommand}"
+                                                           CommandParameter="{Binding ElementName=SelectedProduct}"/>
+                                </Grid>
+                            </telerik:RadTabItem>
+                        </telerik:RadTabControl>
+                    </DataTemplate>
+                </telerik:RadGridView.RowDetailsTemplate>
+            </telerik:RadGridView>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

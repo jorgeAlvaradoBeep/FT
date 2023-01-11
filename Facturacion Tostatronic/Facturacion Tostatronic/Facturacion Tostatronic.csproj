@@ -279,8 +279,10 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFSaleProducts.cs" />
+    <Compile Include="Models\EF Models\EFProduct\EFUniversalCodes.cs" />
     <Compile Include="Models\EndSale.cs" />
     <Compile Include="Models\InvoiceData.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -302,6 +304,7 @@
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
+    <Compile Include="Models\SAT\SATCode.cs" />
     <Compile Include="Models\SaveInvoice.cs" />
     <Compile Include="Models\URLFile.cs" />
     <Compile Include="Models\WareHouse\FornitureSpaces.cs" />
@@ -521,6 +524,9 @@
     <Compile Include="Views\Pages\Products\MLPriceUC.xaml.cs">
       <DependentUpon>MLPriceUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Products\SeeProductsUC.xaml.cs">
+      <DependentUpon>SeeProductsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Products\UpdateImageUC.xaml.cs">
       <DependentUpon>UpdateImageUC.xaml</DependentUpon>
     </Compile>
@@ -686,6 +692,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Products\MLPriceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Products\SeeProductsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

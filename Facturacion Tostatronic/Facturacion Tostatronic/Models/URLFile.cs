@@ -84,10 +84,14 @@
         public static string getClientOrders = baseURLNET + "Ventas/ClientOrdersWT/";
         public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
-        public static string getProductsNet = baseURLNET + "Productos";
+        public static string getProductsNet = baseURLNET + "Products";
         public static string getTotalForSale = baseURLNET + "ProductosDeVenta/SaleTotal/";
         public static string getOrderData = baseURLNET + "ProductosDeVenta/";
         public static string productoEnEspacio = baseURLNET + "ProductoEnEspacio/";
+        public static string getCodigosSatNET = baseURLNET + "CodigoSat/";
+        public static string productExistNET = baseURLNET + "Products/ProductExist/";
+        public static string addProductCodesNET = baseURLNET + "CodigosUniversales/Create/";
+        public static string addProductSatCodeNET = baseURLNET + "ProductSatCode/Create/";
 
 
     }

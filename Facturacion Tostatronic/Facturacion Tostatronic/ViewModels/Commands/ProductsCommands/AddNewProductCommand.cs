@@ -14,6 +14,7 @@ using System.IO;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.Models.Products;
 using Bukimedia.PrestaSharp;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 {
@@ -53,6 +54,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     errorMessage += "El costo de precio distribuidor de un producto no puede ser menor o igual al precio minimo" + Environment.NewLine;
                 if (VM.Product.PublicPrice <= VM.Product.DistributorPrice)
                     errorMessage += "El costo de precio publico de un producto no puede ser menor o igual al precio de distribuidor" + Environment.NewLine;
+                if (string.IsNullOrEmpty(VM.Product.UPC))
+                    errorMessage +=  "El producto debe tener un codigo universal"+ Environment.NewLine;
+                if(VM.SelectedCode== null)
+                {
+                    errorMessage += "Debe Seleccionar un codigo de producto" + Environment.NewLine;
+                }
                 if (string.IsNullOrEmpty(VM.ImagePath))
                     VM.Product.Image = "No_image.png";
                 else
@@ -66,20 +73,35 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     }
 
                 }
-                if (string.IsNullOrEmpty(VM.Product.UPC))
-                    errorMessage += 
-                        "El producto debe tener un codigo universal" 
-                        + Environment.NewLine;
+                
 
                 //En esta seccion va la validacion del codigo sat
 
                 if (!string.IsNullOrEmpty(errorMessage))
+                {
                     MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    VM.GettingData = false;
+                }
                 else
                 {
                     VM.GettingData=true;
                     //Tenemos que validar si existe un codigo ya en el sistema
-
+                    Response rmp = await WebService.GetDataNode(URLData.productExistNET, VM.Product.Code);
+                    if(!rmp.succes)
+                    {
+                        MessageBox.Show(rmp.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        VM.GettingData = false;
+                        return;
+                    }
+                    else
+                    {
+                        if((bool)rmp.data)
+                        {
+                            MessageBox.Show($"El codigo que intenta introducir, ya existe.{Environment.NewLine}Favor de verificarlo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            VM.GettingData = false;
+                            return;
+                        }
+                    }
                     //Si no existe, procedemos con la adicion del producto.
                     Response response = await WebService.InsertData(VM.Product, URLData.product_add_new);
                     string errMsg = string.Empty;
@@ -100,74 +122,43 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             }
                         }
 
-                        //Aqui agregamos el producto a prestashop
-                        if (await InsertProductPrestashop())
+                        //Ahora damos de alta los codigos de los productos
+                        EFUniversalCodes pc = new EFUniversalCodes()
                         {
-                            MessageBox.Show("Producto insertado correctamente, inserte la informacion restante" + Environment.NewLine + errMsg, "Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
-                            VM.Product.SpecificPrices = GetSpecificPrices();
-                            VM.BaseProductVisibility = Visibility.Visible;
-                            VM.EnableProductBase = false;
+                            Referencia = VM.Product.Code,
+                            Upc = VM.Product.UPC
+                        };
+                        Response res = await WebService.InsertData(pc, URLData.addProductCodesNET);
+                        if (!res.succes)
+                        {
+                            errMsg += "Error al insertar UPC: " + res.message + Environment.NewLine;
                         }
+                        //Ahora insertamos el codigo del SAT
+                        EFCodigoSAT codigoSAT = new EFCodigoSAT()
+                        {
+                            Codigo = VM.Product.Code,
+                            CodigoPro = VM.SelectedCode.CClaveProdServ
+                        };
+                        res = await WebService.InsertData(codigoSAT, URLData.addProductSatCodeNET);
+                        if (!res.succes)
+                        {
+                            errMsg += "Error al modificar Codigo SAT: " + res.message + Environment.NewLine;
+                        }
+                        //Ahora validamos si se quiere guaradr en la pagina web.
+
+
+                        //Aqui vemos los errores generados
+                        if(!string.IsNullOrEmpty(errMsg)) { MessageBox.Show($"Producto Insertado Con Errores:{Environment.NewLine}{errMsg}",
+                            "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
                         else
-                            MessageBox.Show("Producto insertado correctamente en el sistema local, error al agregar en la pagina web" + Environment.NewLine + errMsg, "Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                            MessageBox.Show("Producto Insertado Correctamente",
+                            "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        VM.initialize();
                     }
-                    wp.Close();
+                    VM.GettingData= false;
                 }
-            }
-            else
-            {
-                string messages = string.Empty;
-                string errMSG = string.Empty;
-                if(string.IsNullOrEmpty(VM.Product.UPC))
-                {
-                    MessageBox.Show("Debe de Agregar un codigo universal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                wp.Show();
-                
-                ProductPS productAux = new ProductPS()
-                {
-                    idProduct = VM.Product.Code,
-                    ps = VM.Product.PrestashopID
-                };
-                Response res = await WebService.InsertData(productAux, URLData.product_add_ps_single);
-                if (res.succes)
-                    messages += "Codigo de PS agregado Correctamente" + Environment.NewLine;
-                else
-                    errMSG += "Error: " + res.message + res.message;
 
-                ProductCodes pc = new ProductCodes()
-                {
-                    idProduct = VM.Product.Code,
-                    universalCode = VM.Product.UPC
-                };
-                res = await WebService.InsertData(pc, URLData.product_complete_codes);
-                if (res.succes)
-                {
-                    messages+= "Exito al modificar el UPC" + Environment.NewLine;
-                }
-                else
-                    errMSG += "Error al modificar: "+res.message + Environment.NewLine;
-
-                //Aqui actualizamos el upc del producto por el ingresado del cliente
-                ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-                product addUPC = await ArticuloFactory.GetAsync(long.Parse(VM.Product.PrestashopID));
-                addUPC.ean13 = VM.Product.UPC;
-
-                try
-                {
-                    await ArticuloFactory.UpdateAsync(addUPC);
-                    messages += "Exito al agregar el UPC en ps" + Environment.NewLine;
-                }
-                catch(PrestaSharpException e)
-                {
-                    errMSG += "Error al agregar el UPC en ps, se debera de agregar manualmente: "+e.ResponseErrorMessage + Environment.NewLine;
-                }
-                messages+= await SetSpecificPrices();
-                MessageBox.Show("Exitos: " + Environment.NewLine + messages + "Errores" + Environment.NewLine + errMSG);
-                wp.Close();
-                VM.initialize();
+            
             }
         }
         async Task<bool> InsertProductPrestashop()

@@ -724,7 +724,7 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 new NavigationViewItemModel() { Title = "Precios ML", VMName="MLPriceVM" },
                 new NavigationViewItemModel() { Title = "Agregar Producto", VMName="AddProductVM" },
-                new NavigationViewItemModel() { Title = "Ver Productos", VMName="" },
+                new NavigationViewItemModel() { Title = "Ver Productos", VMName="SeeProductVM" },
                 new NavigationViewItemModel() { Title = "Lista De Productos" },
                 new NavigationViewItemModel() { Title = "Lista De Productos Nuevos" },
                 new NavigationViewItemModel() { Title = "Modificar Imagenes",VMName="UpdateImageVM" },
@@ -768,7 +768,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     UpdateQuantitiesViewCommand.Execute(null);
                     break;
                 case "Lista De Productos Facebook":
-                    CreateFacebookListCommand.Execute(null);
+                    //CreateFacebookListCommand.Execute(null);
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);
@@ -792,6 +792,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new AddProductVM());
             ViewsList.Add(new UpdateImageVM());
             ViewsList.Add(new AssingUCVM());
+            ViewsList.Add(new SeeProductVM());
         }
          IPageViewModel GetView(string vmName)
         {

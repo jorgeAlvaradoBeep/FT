@@ -11,35 +11,35 @@ namespace Facturacion_Tostatronic.Models.Products
     {
         private string code;
 
-        public string Code
+        public string Codigo
         {
             get { return code; }
-            set { code = value; }
+            set { SetValue(ref code, value); }
         }
         private string name;
 
-        public string Name
+        public string Nombre
         {
             get { return name; }
             set { name = value; }
         }
         private float existence;
 
-        public float Existence
+        public float Existencia
         {
             get { return existence; }
             set { existence = value; }
         }
         private float minimumQuantity;
 
-        public float MinimumQuantity
+        public float CantidadMinima
         {
             get { return minimumQuantity; }
             set { minimumQuantity = value; }
         }
         private float buyPrice;
 
-        public float BuyPrice
+        public float PrecioCompra
         {
             get { return buyPrice; }
             set 
@@ -50,21 +50,21 @@ namespace Facturacion_Tostatronic.Models.Products
         }
         private float minimumPrice;
 
-        public float MinimumPrice
+        public float PrecioMinimo
         {
             get { return minimumPrice; }
             set { minimumPrice = value; }
         }
         private float distributorPrice;
 
-        public float DistributorPrice
+        public float PrecioDistribuidor
         {
             get { return distributorPrice; }
             set { distributorPrice = value; }
         }
         private float publicPrice;
 
-        public float PublicPrice
+        public float PrecioPublico
         {
             get { return publicPrice; }
             set 
@@ -75,7 +75,7 @@ namespace Facturacion_Tostatronic.Models.Products
         }
         private string image;
 
-        public string Image
+        public string Imagen
         {
             get { return image; }
             set { image = value; }
@@ -99,15 +99,15 @@ namespace Facturacion_Tostatronic.Models.Products
         public UpdateProductM(string code, string name, float existence, float minimumQuantity, float buyPrice, float minimumPrice,
             float distributorPrice, float publicPrice, string image, string prestashopID)
         {
-            Code = code;
-            Name = name;
-            Existence = existence;
-            MinimumQuantity = minimumQuantity;
-            BuyPrice = buyPrice;
-            MinimumPrice = minimumPrice;
-            DistributorPrice = distributorPrice;
-            PublicPrice = publicPrice;
-            Image = image;
+            Codigo = code;
+            Nombre = name;
+            Existencia = existence;
+            CantidadMinima = minimumQuantity;
+            PrecioCompra = buyPrice;
+            PrecioMinimo = minimumPrice;
+            PrecioDistribuidor = distributorPrice;
+            PrecioPublico = publicPrice;
+            Imagen = image;
             PrestashopID = prestashopID;
             BuyPriceModified = false;
             PublicPriceModified = false;

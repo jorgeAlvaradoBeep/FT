@@ -39,10 +39,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <telerik:LayoutControlGroup Grid.Row="1" 
-                                    Orientation="Vertical"
-                                    Visibility="{Binding EnableProductBase}">
+                                        Grid.ColumnSpan="1"
+                                        Orientation="Vertical"
+                                        Visibility="{Binding EnableProductBase}">
                 <Label Content="Agregar a la Pagina WEB?"
-                   FontSize="22"/>
+                   FontSize="16"/>
                 <CheckBox HorizontalAlignment="Center"
                       Width="30"
                       Height="30"/>
@@ -137,8 +138,8 @@
 									AutoCompleteMode="Suggest"
 									SelectionMode="Single"
 									TextSearchPath="CompleteName"
-									ItemsSource="{Binding Clients}"
-                                    SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
+									ItemsSource="{Binding CodigoSat}"
+                                    SelectedItem="{Binding SelectedCode, Mode=TwoWay}"
 									Margin="10,0,10,0"
                                     Height="25"
                                     VerticalAlignment="Center"

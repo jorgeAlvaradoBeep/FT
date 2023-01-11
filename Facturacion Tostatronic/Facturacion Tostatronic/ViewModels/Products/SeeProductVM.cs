@@ -14,8 +14,9 @@ using Facturacion_Tostatronic.Models.Products;
 
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
-    public class SeeProductVM : BaseNotifyPropertyChanged
+    public class SeeProductVM : BaseNotifyPropertyChanged, IPageViewModel
     {
+        public string Name { get; set; } = "SeeProductVM";
         private string searchCriterial;
 
         public string SearchCriterial
@@ -97,7 +98,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
 
             var filteredEmployees = string.IsNullOrEmpty(textToSearch)
                 ? this._allProducts
-                : this._allProducts.Where(p => p.Name.ToLower().Contains(textToSearch.ToLower()) || p.Code.ToLower().Contains(textToSearch.ToLower()));
+                : this._allProducts.Where(p => p.Nombre.ToLower().Contains(textToSearch.ToLower()) || p.Codigo.ToLower().Contains(textToSearch.ToLower()));
 
             this.Products.Clear();
 

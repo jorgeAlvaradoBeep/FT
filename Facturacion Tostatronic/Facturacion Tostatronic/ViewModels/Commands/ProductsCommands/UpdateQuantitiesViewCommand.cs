@@ -160,6 +160,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 
                 cont++;
             }
+            //Ahora hacemos el procveso para los productos con variaciones
+            List<WooCommerceProduct> variationList = new List<WooCommerceProduct>();
+            foreach(WooCommerceProduct p in productsTemp)
+            {
+                if (string.IsNullOrEmpty(p.Sku))
+                    variationList.Add(p);
+            }
+
+
             VM.ProgressVal = string.Empty;
             VM.GettingData = false;
             if(error)
