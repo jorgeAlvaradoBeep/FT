@@ -8,6 +8,7 @@ using Facturacion_Tostatronic.Models.WooCommerceModels;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.Views;
 using GalaSoft.MvvmLight.Threading;
+using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -161,13 +162,84 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 cont++;
             }
             //Ahora hacemos el procveso para los productos con variaciones
+            DispatcherHelper.CheckBeginInvokeOnUI(
+            () =>
+            {
+                // Dispatch back to the main thread
+                VM.ProgressVal = $"Actualizando Productos con variantes.";
+            });
             List<WooCommerceProduct> variationList = new List<WooCommerceProduct>();
             foreach(WooCommerceProduct p in productsTemp)
             {
                 if (string.IsNullOrEmpty(p.Sku))
                     variationList.Add(p);
             }
+            //Extraemos las Variantes de Cada Producto
+            cont=0;
+            foreach (WooCommerceProduct p in variationList)
+            {
+                cont++;
+                var res2 = await WebService.GetProductVariationsWooCommercer(URLData.wcProducts, p.Id.ToString());
+                if(string.IsNullOrEmpty(res2.Content))
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Sin Variantes por obtener" +
+                        $"{Environment.NewLine}Productos analizados {cont}/{variationList.Count}";
+                    });
+                }
+                else
+                {
+                    List<WooCommerceProduct> products2 = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString(), settings);
+                    p.Variantes = products2;
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Variantes Obtenidas de {p.Id}: {p.Variantes.Count}" +
+                        $"{Environment.NewLine}Productos analizados {cont}/{variationList.Count}";
+                    });
+                }
+                
+            }
+            cont=0; 
+            updatedList.Clear();
+            foreach (WooCommerceProduct p in variationList)
+            {
+                cont++;
+                if(p.Variantes!=null)
+                {
+                    if (p.Variantes.Count > 0)
+                    {
+                        foreach (WooCommerceProduct q in p.Variantes)
+                        {
+                            var obj = aux.FirstOrDefault(x => x.Code == q.Sku);
+                            if (obj != null)
+                            {
+                                if (obj.Existence != (int)q.Stock_quantity)
+                                {
+                                    q.Stock_quantity = (int)obj.Existence;
+                                    updatedList.Add
+                                        (new Update() { id = q.Id, stock_quantity = q.Stock_quantity });
+                                }
 
+                            }
+                        }
+                        if (!await UpdateProductVariants(updatedList, cont, p.Id))
+                        {
+                            DispatcherHelper.CheckBeginInvokeOnUI(
+                            () =>
+                            {
+                                // Dispatch back to the main thread
+                                VM.ProgressVal = $"Variantes de Producto({p.Id}) #{cont}/{variationList.Count} actualizadas exitosamente.";
+                            });
+                        }
+                    }
+                }
+            }
+            
 
             VM.ProgressVal = string.Empty;
             VM.GettingData = false;
@@ -223,6 +295,25 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             */
         }
 
+        private async Task<bool> UpdateProductVariants(List<Update> variantsToBeUpdated, int cont, int idProduct)
+        {
+            bool error;
+            CRUDActionClass crud = new CRUDActionClass() { create = new List<Create>(), delete = new List<Delete>(), update = variantsToBeUpdated };
+            string json = JsonConvert.SerializeObject(crud, Newtonsoft.Json.Formatting.None,
+                            new JsonSerializerSettings
+                            {
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+            var res2 = await WebService.InsertDataWooCommercer($"{URLData.wcProducts}/{idProduct}/variations/batch", json);
+            if (!res2.IsSuccessful)
+            {
+                MessageBox.Show($"Error en la lista #{cont}{Environment.NewLine}Error: " + res2.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                error = true;
+            }
+            else
+                error = false;
+            return error;
+        }
         private async Task<List<stock_available>> GetStocks(StockAvailableFactory factory)
         {
             var stockList = await factory.GetAllAsync();

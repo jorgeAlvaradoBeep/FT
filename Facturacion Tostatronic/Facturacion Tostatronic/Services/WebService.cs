@@ -203,11 +203,47 @@ namespace Facturacion_Tostatronic.Services
             client.BaseUrl = new System.Uri(url);
             client.Authenticator =
                 OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
-            client.AddDefaultQueryParameter("fields", fields);
+            //client.AddDefaultQueryParameter("fields", fields);
             client.AddDefaultQueryParameter("orderby", "id");
             client.AddDefaultQueryParameter("per_page", "100");
             client.AddDefaultQueryParameter("page", page);
             
+            var request = new RestRequest(Method.GET);
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return null;
+            }
+        }
+        public static async Task<IRestResponse> GetProductVariationsWooCommercer(string url, string id)
+        {
+            // En el caso de Sandbox 
+            var client = new RestClient();
+            client.Timeout = 35000;
+            url += $"/{id}/variations";
+            client.BaseUrl = new System.Uri(url);
+            client.Authenticator =
+                OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
+            client.AddDefaultQueryParameter("orderby", "id");
+            client.AddDefaultQueryParameter("order", "asc");
+            client.AddDefaultQueryParameter("per_page", "50");
+            client.AddDefaultQueryParameter("page", "1");
+
             var request = new RestRequest(Method.GET);
             IRestResponse response;
             try

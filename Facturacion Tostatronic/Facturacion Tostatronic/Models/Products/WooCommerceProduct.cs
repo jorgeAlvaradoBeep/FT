@@ -13,5 +13,6 @@ namespace Facturacion_Tostatronic.Models.Products
         public int Id { get; set; }
         public float Sale_price { get; set; }
         public int Stock_quantity { get; set; }
+        public List<WooCommerceProduct> Variantes { get; set; }
     }
 }
