@@ -768,7 +768,7 @@ namespace Facturacion_Tostatronic.ViewModels
                     UpdateQuantitiesViewCommand.Execute(null);
                     break;
                 case "Lista De Productos Facebook":
-                    //CreateFacebookListCommand.Execute(null);
+                    CreateFacebookListCommand.Execute(null);
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);

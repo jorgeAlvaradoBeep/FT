@@ -2,7 +2,9 @@
 using Bukimedia.PrestaSharp.Factories;
 using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.Models.WooCommerceModels;
 using Facturacion_Tostatronic.Services;
+using GalaSoft.MvvmLight.Threading;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -50,6 +52,206 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         private async void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
+            VM.GettingData = true;
+            DispatcherHelper.CheckBeginInvokeOnUI(
+                () =>
+                {
+                    // Dispatch back to the main thread
+                    VM.ProgressVal = "Cargando Datos de existencia actuales.";
+                });
+
+            Response res = await WebService.GetDataNode(URLData.getProductCodesNET,"");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            DispatcherHelper.CheckBeginInvokeOnUI(
+                () =>
+                {
+                    // Dispatch back to the main thread
+                    VM.ProgressVal = $"Cargando de datos terminada.{Environment.NewLine}Obteniendo datos desde WEB.";
+                });
+
+            List<ProductCodesEF> aux = JsonConvert.DeserializeObject<List<ProductCodesEF>>(res.data.ToString());
+            List<WooCommerceProduct> productsTemp = new List<WooCommerceProduct>();
+            int pageNumber1 = 1;
+
+            bool endWhile1 = false;
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            while (!endWhile1)
+            {
+                var res2 = await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity", pageNumber1.ToString());
+                if (!res2.IsSuccessful)
+                {
+                    MessageBox.Show(res2.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+
+                    List<WooCommerceProduct> products2 = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString(), settings);
+                    if (products2.Count > 0)
+                    {
+                        productsTemp.AddRange(products2);
+                        pageNumber1++;
+                    }
+                    else
+                    {
+                        endWhile1 = true;
+                    }
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Productos Cargados: {productsTemp.Count}";
+                    });
+
+                }
+
+            }
+            DispatcherHelper.CheckBeginInvokeOnUI(
+            () =>
+            {
+                // Dispatch back to the main thread
+                VM.ProgressVal = $"Productos extraidos desde la web.{Environment.NewLine}Validando Codigos.";
+            });
+
+            List<ProductCodesEF> updatedList = new List<ProductCodesEF>();
+            List<ProductCodesEF> insertList = new List<ProductCodesEF>();
+            List<WooCommerceProduct> variationList = new List<WooCommerceProduct>();
+            foreach (WooCommerceProduct p in productsTemp)
+            {
+                if(!string.IsNullOrEmpty(p.Sku))
+                {
+                    try
+                    {
+                        var obj = aux.FirstOrDefault(x => x.Referencia == p.Sku);
+                        if (obj != null)
+                        {
+                            if (obj.Prestashop != (int)p.Id)
+                            {
+                                obj.Prestashop = (int)p.Id;
+                                updatedList.Add(obj);
+                            }
+
+                        }
+                        else
+                        {
+                            insertList.Add(new ProductCodesEF() { Referencia = p.Sku, Prestashop= (int)p.Id });
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                else
+                {
+                    variationList.Add(p);
+                }
+            }
+            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Productos a actualizar: {updatedList.Count}" +
+                $"{Environment.NewLine}Productos a insertar: {insertList.Count}" +
+                $"{Environment.NewLine}Productos con variantes: {variationList.Count}"; });
+            int cont = 1;
+            bool error = false;
+            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Actualizando Productos..."; });
+            res = await WebService.ModifyData(updatedList, URLData.updateProductCodesListNET);
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Producto Actualizados"; });
+            cont = 0;
+            foreach (WooCommerceProduct p in variationList)
+            {
+                cont++;
+                var res2 = await WebService.GetProductVariationsWooCommercer(URLData.wcProducts, p.Id.ToString());
+                if (string.IsNullOrEmpty(res2.Content))
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Sin Variantes por obtener" +
+                        $"{Environment.NewLine}Productos analizados {cont}/{variationList.Count}";
+                    });
+                }
+                else
+                {
+                    List<WooCommerceProduct> products2 = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString(), settings);
+                    p.Variantes = products2;
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Variantes Obtenidas de {p.Id}: {p.Variantes.Count}" +
+                        $"{Environment.NewLine}Productos analizados {cont}/{variationList.Count}";
+                    });
+                }
+
+            }
+            cont = 0;
+            updatedList.Clear();
+            foreach (WooCommerceProduct p in variationList)
+            {
+                cont++;
+                if (p.Variantes != null)
+                {
+                    if (p.Variantes.Count > 0)
+                    {
+                        foreach (WooCommerceProduct q in p.Variantes)
+                        {
+                            var obj = aux.FirstOrDefault(x => x.Referencia == q.Sku);
+                            if (obj != null)
+                            {
+                                if (obj.Prestashop != q.Id)
+                                {
+                                    obj.Prestashop = q.Id;
+                                    obj.InternationalSku = "Var";
+                                    updatedList.Add(obj);
+                                }
+
+                            }
+                        }
+                        res = await WebService.ModifyData(updatedList, URLData.updateProductCodesListNET);
+                        if (!res.succes)
+                        {
+                            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = "Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias"; });
+                            
+                        }
+                        DispatcherHelper.CheckBeginInvokeOnUI(
+                        () =>
+                        {
+                            // Dispatch back to the main thread
+                            VM.ProgressVal = $"Variantes de Producto({p.Id}) #{cont}/{variationList.Count} actualizadas exitosamente.";
+                        });
+                        updatedList.Clear();
+                    }
+                }
+            }
+            /*
+            VM.ProgressVal = $"Variantes actualizadas exitosamente.{Environment.NewLine}" +
+                $"Insertando Productos Faltantes.";
+            res = await WebService.InsertData(insertList, URLData.createProductCodesListNET);
+            if (!res.succes)
+            {
+                MessageBox.Show($"Error al insertar:{res.message}","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+            }*/
+
+            VM.ProgressVal = string.Empty;
+            VM.GettingData = false;
+            if (error)
+                MessageBox.Show("Codigos actualizadas pero con errores", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show("Codigos actualizadas Correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             /*
         Response res = await WebService.GetDataForInvoice(URLData.product_public_price);
         if (!res.succes)

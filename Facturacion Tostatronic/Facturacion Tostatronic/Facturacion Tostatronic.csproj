@@ -293,6 +293,7 @@
     <Compile Include="Models\Products\PageProduct.cs" />
     <Compile Include="Models\Products\ProductBase.cs" />
     <Compile Include="Models\Products\ProductCodes.cs" />
+    <Compile Include="Models\Products\ProductCodesEF.cs" />
     <Compile Include="Models\Products\ProductComplete.cs" />
     <Compile Include="Models\Products\ProductPS.cs" />
     <Compile Include="Models\Products\ProductSaleSaled.cs" />
