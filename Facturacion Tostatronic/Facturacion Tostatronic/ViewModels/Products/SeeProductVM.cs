@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands;
+using SkiaSharp;
 
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
@@ -61,11 +63,14 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             set { SetValue(ref selectedProduct, value); }
         }
 
+        public ModifyProductCommand ModifyProductCommand { get; set; }
+
         public SeeProductVM()
         {
             GettingData = false;
             Products = new ObservableCollection<UpdateProductM>();
             GettingData = true;
+            ModifyProductCommand = new ModifyProductCommand(this);
             Task.Run(() =>
             {
                 Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getProductsNet);

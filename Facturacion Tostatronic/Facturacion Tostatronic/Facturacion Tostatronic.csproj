@@ -401,6 +401,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\GetNewPICommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\GetProductsWCImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\GetProductsWNImageCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\ModifyProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SaveNewImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductForSucursalPrice.cs" />
