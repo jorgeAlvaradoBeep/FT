@@ -53,6 +53,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
         private async void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             VM.GettingData = true;
+            //Sección que se uso para actualizar los codigos de woocommerce
+            
             DispatcherHelper.CheckBeginInvokeOnUI(
                 () =>
                 {
@@ -161,15 +163,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 $"{Environment.NewLine}Productos con variantes: {variationList.Count}"; });
             int cont = 1;
             bool error = false;
-            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Actualizando Productos..."; });
-            res = await WebService.ModifyData(updatedList, URLData.updateProductCodesListNET);
-            if (!res.succes)
-            {
-                MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                VM.GettingData = false;
-                return;
-            }
-            DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Producto Actualizados"; });
+            //DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Actualizando Productos..."; });
+            //res = await WebService.ModifyData(updatedList, URLData.updateProductCodesListNET);
+            //if (!res.succes)
+            //{
+            //    MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    VM.GettingData = false;
+            //    return;
+            //}
+            //DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Producto Actualizados"; });
             cont = 0;
             foreach (WooCommerceProduct p in variationList)
             {
@@ -213,15 +215,16 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Referencia == q.Sku);
                             if (obj != null)
                             {
-                                if (obj.Prestashop != q.Id)
+                                if (obj.Prestashop == q.Id)
                                 {
                                     obj.Prestashop = q.Id;
-                                    obj.InternationalSku = "Var";
+                                    obj.InternationalSku = p.Id.ToString();
                                     updatedList.Add(obj);
                                 }
 
                             }
                         }
+                        string d = JsonConvert.SerializeObject(updatedList);
                         res = await WebService.ModifyData(updatedList, URLData.updateProductCodesListNET);
                         if (!res.succes)
                         {
