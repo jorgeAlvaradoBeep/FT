@@ -155,6 +155,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     variationList.Add(p);
                 }
             }
+            string data = JsonConvert.SerializeObject(insertList);
             DispatcherHelper.CheckBeginInvokeOnUI(() => { VM.ProgressVal = $"Productos a actualizar: {updatedList.Count}" +
                 $"{Environment.NewLine}Productos a insertar: {insertList.Count}" +
                 $"{Environment.NewLine}Productos con variantes: {variationList.Count}"; });
