@@ -25,7 +25,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.AssingUCVCommands
 
         public async void Execute(object parameter)
         {
-            VM.SelectedProduct = (ProductCodes)parameter;
+            //VM.SelectedProduct = (ProductCodes)parameter;
         }
     }
 }

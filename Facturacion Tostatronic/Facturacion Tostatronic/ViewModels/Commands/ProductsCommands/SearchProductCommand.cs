@@ -1,4 +1,6 @@
-﻿using Facturacion_Tostatronic.Models;
+﻿
+using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.Views;
@@ -30,17 +32,17 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         public async void Execute(object parameter)
         {
-            WaitPlease pw = new WaitPlease();
-            pw.Show();
-            Response res = await WebService.GetData("idProduct", VM.ProductID, URLData.product_complete_codes);
+            VM.GettingData=true;
+            VM.ProductToModify = new ProductCodesEF();
+            Response res = await WebService.GetDataNode(URLData.searchProductsNet,VM.ProductID);
             if (!res.succes)
             {
                 MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
+                VM.GettingData = false;
                 return;
             }
-            VM.Products = JsonConvert.DeserializeObject<List<ProductCodes>>(res.data.ToString());
-            pw.Close();
+            VM.Products = JsonConvert.DeserializeObject<List<EFProduct>>(res.data.ToString());
+            VM.GettingData = false;
         }
     }
 }

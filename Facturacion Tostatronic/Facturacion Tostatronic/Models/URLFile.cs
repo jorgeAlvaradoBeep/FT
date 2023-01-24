@@ -88,6 +88,7 @@
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products";
         public static string editProductsNet = baseURLNET + "Products/Edit/";
+        public static string searchProductsNet = baseURLNET + "Products/SearchProduct/";
         public static string getTotalForSale = baseURLNET + "ProductosDeVenta/SaleTotal/";
         public static string getOrderData = baseURLNET + "ProductosDeVenta/";
         public static string productoEnEspacio = baseURLNET + "ProductoEnEspacio/";
@@ -98,6 +99,8 @@
         public static string createProductCodesListNET = baseURLNET + "CodigosUniversales/CreateList/";
         public static string getProductTypeNET = baseURLNET + "CodigosUniversales/ProductType/";
         public static string getProductCodesNET = baseURLNET + "CodigosUniversales/";
+        public static string editProductCodesNET = baseURLNET + "CodigosUniversales/Edit/";
+        public static string getProductCodesIDNET = baseURLNET + "CodigosUniversales/GetUniversalCodes/";
         public static string addProductSatCodeNET = baseURLNET + "ProductSatCode/Create/";
 
 

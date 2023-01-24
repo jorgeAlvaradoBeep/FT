@@ -30,7 +30,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.AssingUCVCommands
             MessageBoxResult result = MessageBox.Show("Seguro que desea cancelar\nSi cancela, nada se guardara", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                VM.SelectedProduct = new Models.Products.ProductCodes();
+                VM.SelectedProduct = null;
+                VM.ProductToModify = new Models.Products.ProductCodesEF();
             }
 
         }

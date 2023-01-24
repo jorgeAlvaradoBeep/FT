@@ -33,38 +33,51 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.AssingUCVCommands
 
         public async void Execute(object parameter)
         {
-            string messages = "", errMSG="";
-            if(string.IsNullOrEmpty(VM.SelectedProduct.universalCode))
+            string messages = "", errMSG = "";
+            VM.GettingData = true;
+            Response res = await WebService.ModifyData(VM.ProductToModify, URLData.editProductCodesNET);
+            if (!res.succes)
             {
-                MessageBox.Show("El codigo universal no puede ir vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error al Intentar modificar." +
+                    $"{Environment.NewLine}{res.message}","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                VM.GettingData=false;
                 return;
             }
-            WaitPlease wp = new WaitPlease();
-            wp.Show();
-            Response res = await WebService.InsertData(VM.SelectedProduct, URLData.product_complete_codes);
-            if (res.succes)
-            {
-                //Aqui actualizamos el upc del producto por el ingresado del cliente
-                
-                ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-                product addUPC = await ArticuloFactory.GetAsync(long.Parse(VM.SelectedProduct.psCode));
-                addUPC.ean13 = VM.SelectedProduct.universalCode;
+            MessageBox.Show($"Actualizacion Exitosa", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            VM.ProductToModify = new Models.Products.ProductCodesEF();
+            VM.SelectedProduct = null;
+            VM.GettingData = false;
+            //if(string.IsNullOrEmpty(VM.SelectedProduct.universalCode))
+            //{
+            //    MessageBox.Show("El codigo universal no puede ir vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return;
+            //}
+            //WaitPlease wp = new WaitPlease();
+            //wp.Show();
+            //Response res = await WebService.InsertData(VM.SelectedProduct, URLData.product_complete_codes);
+            //if (res.succes)
+            //{
+            //    //Aqui actualizamos el upc del producto por el ingresado del cliente
 
-                try
-                {
-                    await ArticuloFactory.UpdateAsync(addUPC);
-                    MessageBox.Show("Exito al modificar el UPC", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (PrestaSharpException e)
-                {
-                    MessageBox.Show("Error al agregar el UPC en ps, se debera de agregar manualmente: " + e.ResponseErrorMessage + Environment.NewLine, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                VM.SelectedProduct = new Models.Products.ProductCodes();
-            }
-            else
-                MessageBox.Show("Error al modificar: "+res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            wp.Close();
-                
+            //    ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
+            //    product addUPC = await ArticuloFactory.GetAsync(long.Parse(VM.SelectedProduct.psCode));
+            //    addUPC.ean13 = VM.SelectedProduct.universalCode;
+
+            //    try
+            //    {
+            //        await ArticuloFactory.UpdateAsync(addUPC);
+            //        MessageBox.Show("Exito al modificar el UPC", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    }
+            //    catch (PrestaSharpException e)
+            //    {
+            //        MessageBox.Show("Error al agregar el UPC en ps, se debera de agregar manualmente: " + e.ResponseErrorMessage + Environment.NewLine, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    }
+            //    VM.SelectedProduct = new Models.Products.ProductCodes();
+            //}
+            //else
+            //    MessageBox.Show("Error al modificar: "+res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //wp.Close();
+
         }
     }
 }
