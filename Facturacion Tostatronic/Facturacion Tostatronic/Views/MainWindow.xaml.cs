@@ -28,7 +28,7 @@ namespace Facturacion_Tostatronic
         {
             string prePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string path = System.IO.Path.Combine(prePath, "Tostatronic");
-            StyleManager.ApplicationTheme = new CrystalTheme();
+            StyleManager.ApplicationTheme = new Windows11Theme();
             InitializeComponent();
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);

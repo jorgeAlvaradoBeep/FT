@@ -1,0 +1,131 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.PDV.Quotes.SearchQuote"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.PDV.Quotes" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
+        mc:Ignorable="d"
+        Title="SearchQuote" Height="700" Width="900" WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <vm1:SearchQuoteVM x:Key="searchQuoteVM"/>
+    </Window.Resources>
+
+    <telerik:RadBusyIndicator DataContext="{StaticResource searchQuoteVM}" IsBusy="{Binding GettingData}">
+        <Grid DataContext="{StaticResource searchQuoteVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Cotizaciones"
+                   FontSize="34"
+                   HorizontalAlignment="Center"
+                   Grid.ColumnSpan="7"/>
+            <DatePicker x:Name="dpEventDate" 
+                        SelectedDate="{Binding SelectedDate, Mode=TwoWay}" 
+                        Height="25" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Width="150" 
+                        Margin="10"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <i:InvokeCommandAction Command="{Binding SearchQuoteDateCommand}"
+                                   CommandParameter="{Binding ElementName=dpEventDate, Path=SelectedDate}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <telerik:RadWatermarkTextBox Width="200" 
+                                         Margin="5" 
+                                         WatermarkContent="# Cotización" 
+                                         FontSize="12"
+                                         Text="{Binding CriterialSearch, UpdateSourceTrigger=PropertyChanged}"
+                                         Grid.Column="2"
+                                         Grid.ColumnSpan="2"
+                                         Grid.Row="1"
+                                         HorizontalAlignment="Left">
+                <telerik:RadWatermarkTextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding SearchQuoteCommand}"/>
+                </telerik:RadWatermarkTextBox.InputBindings>
+            </telerik:RadWatermarkTextBox>
+            <telerik:RadButton Background="Transparent" 
+                               Margin="2"
+                               Command="{Binding SearchQuoteCommand}"
+                               Grid.Row="1"
+                               Grid.Column="3"
+                               Height="30"
+                               Width="30"
+                               HorizontalAlignment="Right">
+                <telerik:RadButton.Content>
+                    <Image Source="/Images/search.png" 
+                           Stretch="Fill" />
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
+            <telerik:RadGridView x:Name="RadGrdVQuotes"
+                        ShowGroupPanel="False"
+                        CanUserFreezeColumns="False"
+                        CanUserResizeColumns="False"
+                        RowIndicatorVisibility="Collapsed"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="7"
+                        Grid.Row="2"
+                        Grid.RowSpan="7"
+                        Margin="10"
+                        AutoGenerateColumns="False" 
+                        telerik:StyleManager.Theme="Material"
+                        ItemsSource="{Binding ListOfSearchedQuotes}"
+                        IsReadOnly="True"
+                        FontSize="12">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding id_cotizacion}"
+                                                Header="# Cotización"
+                                                Width="110"
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding rfc}"
+                                                Header="RFC"
+                                                Width="200" 
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CompleteName}"
+                                                Header="Nombre Cliente"
+                                                Width="330" 
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding fecha_cotizacion}"
+                                                Header="Fecha"
+                                                Width="200" />
+                </telerik:RadGridView.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding QuoteSelectedCommand}" CommandParameter="{Binding ElementName=RadGrdVQuotes, Path=SelectedItem}"/>
+                        <i:CallMethodAction MethodName="Close"
+                           TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </telerik:RadGridView>
+        </Grid>
+    </telerik:RadBusyIndicator>
+    
+</Window>
