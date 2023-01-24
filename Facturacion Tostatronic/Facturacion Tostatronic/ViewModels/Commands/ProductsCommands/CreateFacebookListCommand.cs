@@ -1,4 +1,5 @@
 ﻿using Bukimedia.PrestaSharp.Entities;
+using Bukimedia.PrestaSharp.Entities.AuxEntities;
 using Bukimedia.PrestaSharp.Factories;
 using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.Products;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -53,6 +55,138 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
         private async void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             VM.GettingData = true;
+            //Sección para crear la lista de tabla de descuentos
+
+            Response res = await WebService.GetDataNode(URLData.getProductsNet, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "Error al extraer productos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            List<UpdateProductM> productos = JsonConvert.DeserializeObject<List<UpdateProductM>>(res.data.ToString());
+            res = await WebService.GetDataNode(URLData.getProductCodesNET, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "Error al extraer codigo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            List<ProductCodesEF> productCodes = JsonConvert.DeserializeObject<List<ProductCodesEF>>(res.data.ToString());
+            DispatcherHelper.CheckBeginInvokeOnUI(
+                () =>
+                {
+                    // Dispatch back to the main thread
+                    VM.ProgressVal = "Obteniendo datos desde WEB.";
+                });
+
+            #region excel
+            var excelApp = new Excel.Application();
+            // Make the object visible.
+            excelApp.Visible = false;
+            excelApp.Workbooks.Add();
+            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            workSheet.Cells[1, "A"] = "Referencia";
+            workSheet.Cells[1, "B"] = "Nombre Del producto";
+            workSheet.Cells[1, "C"] = "Precio Minimo";
+            workSheet.Cells[1, "D"] = "Precio Publico";
+            workSheet.Cells[1, "E"] = "Precio Minimo Tabla";
+            workSheet.Cells[1, "F"] = "Diferencia";
+            workSheet.Cells[1, "G"] = "Cantidad";
+            workSheet.Cells[1, "H"] = "CD";
+            workSheet.Cells[1, "I"] = "C1";
+            workSheet.Cells[1, "J"] = "P1";
+            workSheet.Cells[1, "K"] = "C2";
+            workSheet.Cells[1, "L"] = "P2";
+            workSheet.Cells[1, "M"] = "C3";
+            workSheet.Cells[1, "N"] = "P3";
+            workSheet.Cells[1, "O"] = "C4";
+            workSheet.Cells[1, "P"] = "P4";
+            workSheet.Cells[1, "Q"] = "C5";
+            workSheet.Cells[1, "R"] = "P5";
+            workSheet.Cells[1, "S"] = "Codigo Woo";
+            var row = 1;
+            Microsoft.Office.Interop.Excel.Range oRange;
+            float left;
+            float top;
+            int count = 0;
+            int total = productos.Count;
+            int progress = 0;
+            int previos = progress;
+            float pmt, dif;
+            int cc, cp;
+            foreach (var producto in productos)
+            {
+                if(producto.Existencia>0)
+                {
+                    row++;
+                    count++;
+                    workSheet.Cells[row, "A"] = producto.Codigo;
+                    workSheet.Cells[row, "B"] = producto.Nombre;
+                    workSheet.Cells[row, "C"] = producto.PrecioMinimo;
+                    workSheet.Cells[row, "D"] = producto.PrecioPublico;
+                    pmt = (producto.PrecioMinimo / 0.94f);
+                    workSheet.Cells[row, "E"] = pmt.ToString("#.##");
+                    dif = producto.PrecioPublico - pmt;
+                    workSheet.Cells[row, "F"] = dif.ToString("#.##");
+                    dif = dif / 5;
+                    workSheet.Cells[row, "G"] = producto.Existencia;
+                    cc = (int)(producto.Existencia / 5);
+                    workSheet.Cells[row, "H"] = cc;
+                    workSheet.Cells[row, "I"] = cc;
+                    workSheet.Cells[row, "J"] = producto.PrecioPublico - dif;
+                    workSheet.Cells[row, "K"] = 2 * cc;
+                    workSheet.Cells[row, "L"] = producto.PrecioPublico - (2 * dif);
+                    workSheet.Cells[row, "M"] = 3 * cc;
+                    workSheet.Cells[row, "N"] = producto.PrecioPublico - (3 * dif);
+                    workSheet.Cells[row, "O"] = 4 * cc;
+                    workSheet.Cells[row, "P"] = producto.PrecioPublico - (4 * dif);
+                    workSheet.Cells[row, "Q"] = 5 * cc;
+                    workSheet.Cells[row, "R"] = producto.PrecioPublico - (5 * dif);
+                    ProductCodesEF paux = productCodes.Where(a => a.Referencia == producto.Codigo).FirstOrDefault();
+                    if (paux != null)
+                        workSheet.Cells[row, "S"] = paux.Prestashop;
+                }
+                previos = (count * 100) / total;
+                if (progress != previos)
+                {
+                    progress = previos;
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Progreso: {progress}%";
+                    });
+
+
+                }
+
+            }
+            workSheet.Columns[1].AutoFit();
+            workSheet.Columns[2].AutoFit();
+            workSheet.Columns[3].AutoFit();
+            workSheet.Columns[4].AutoFit();
+            workSheet.Columns[5].AutoFit();
+            workSheet.Columns[6].AutoFit();
+            workSheet.Columns[7].AutoFit();
+            workSheet.Columns[8].AutoFit();
+            workSheet.Columns[9].AutoFit();
+            workSheet.Columns[10].AutoFit();
+            workSheet.Columns[11].AutoFit();
+            workSheet.Columns[12].AutoFit();
+            workSheet.Columns[13].AutoFit();
+            workSheet.Columns[14].AutoFit();
+            workSheet.Columns[15].AutoFit();
+            workSheet.Columns[16].AutoFit();
+            workSheet.Columns[17].AutoFit();
+            workSheet.Columns[18].AutoFit();
+            workSheet.Columns[19].AutoFit();
+            progress = 100;
+            excelApp.Visible = true;
+            #endregion
+
+            //Seccón de actualización de codigos PS
+            /*
             //Sección que se uso para actualizar los codigos de woocommerce
             
             DispatcherHelper.CheckBeginInvokeOnUI(
@@ -240,7 +374,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         updatedList.Clear();
                     }
                 }
-            }
+            }*/
             /*
             VM.ProgressVal = $"Variantes actualizadas exitosamente.{Environment.NewLine}" +
                 $"Insertando Productos Faltantes.";
@@ -252,10 +386,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
             VM.ProgressVal = string.Empty;
             VM.GettingData = false;
-            if (error)
-                MessageBox.Show("Codigos actualizadas pero con errores", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
-                MessageBox.Show("Codigos actualizadas Correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             /*
         Response res = await WebService.GetDataForInvoice(URLData.product_public_price);
         if (!res.succes)
