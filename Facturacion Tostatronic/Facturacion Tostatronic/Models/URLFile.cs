@@ -102,6 +102,7 @@
         public static string editProductCodesNET = baseURLNET + "CodigosUniversales/Edit/";
         public static string getProductCodesIDNET = baseURLNET + "CodigosUniversales/GetUniversalCodes/";
         public static string addProductSatCodeNET = baseURLNET + "ProductSatCode/Create/";
+        public static string getProductSatCodeNET = baseURLNET + "ProductSatCode/";
 
 
     }

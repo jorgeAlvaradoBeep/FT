@@ -2,6 +2,7 @@
 using Bukimedia.PrestaSharp.Entities.AuxEntities;
 using Bukimedia.PrestaSharp.Factories;
 using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Models.WooCommerceModels;
 using Facturacion_Tostatronic.Services;
@@ -55,8 +56,84 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
         private async void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             VM.GettingData = true;
-            //Sección para crear la lista de tabla de descuentos
+        #region UPCs
+            Response res = await WebService.GetDataNode(URLData.getProductCodesNET, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "Error al extraer productos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            List<EFUniversalCodes> productCodes = JsonConvert.DeserializeObject<List<EFUniversalCodes>>(res.data.ToString());
+            res = await WebService.GetDataNode(URLData.getProductsNet, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "Error al extraer productos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
+            }
+            List<EFProduct> productos = JsonConvert.DeserializeObject<List<EFProduct>>(res.data.ToString());
+            var excelApp = new Excel.Application();
+            // Make the object visible.
+            excelApp.Visible = false;
+            excelApp.Workbooks.Add();
+            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            workSheet.Cells[1, "A"] = "Referencia";
+            workSheet.Cells[1, "B"] = "Nombre Del producto";
+            workSheet.Cells[1, "C"] = "UPC";
+            workSheet.Cells[1, "D"] = "Codigo Woo";
+            workSheet.Cells[1, "E"] = "Variante";
+            var row = 1;
+            int count = 0;
+            int total = productos.Count;
+            int progress = 0;
+            int previos = progress;
+            foreach (var producto in productos)
+            {
+                var aux = productCodes.Where(a => a.Referencia.Equals(producto.codigo)).FirstOrDefault();
+                count++;
+                if (aux!=null )
+                {
+                    if (aux.Upc != null)
+                    {
+                        if (!aux.Upc.Contains("750303"))
+                        {
+                            row++;
+                            workSheet.Cells[row, "A"] = aux.Referencia;
+                            if (producto.nombre.Length > 45)
+                                producto.nombre = producto.nombre.Remove(45);
+                            workSheet.Cells[row, "B"] = producto.nombre;
+                            workSheet.Cells[row, "C"] = aux.Upc;
+                            workSheet.Cells[row, "D"] = aux.Prestashop;
+                            if (producto.nombre.Length > 30)
+                                producto.nombre = producto.nombre.Remove(29);
+                            workSheet.Cells[row, "E"] = producto.nombre;
+                        }
+                        previos = (count * 100) / total;
+                        if (progress != previos)
+                        {
+                            progress = previos;
+                            DispatcherHelper.CheckBeginInvokeOnUI(
+                            () =>
+                            {
+                                // Dispatch back to the main thread
+                                VM.ProgressVal = $"Progreso: {progress}%";
+                            });
 
+
+                        }
+                    }
+                }
+            }
+            workSheet.Columns[1].AutoFit();
+            workSheet.Columns[2].AutoFit();
+            workSheet.Columns[3].AutoFit();
+            workSheet.Columns[4].AutoFit();
+            progress = 100;
+            excelApp.Visible = true;
+    #endregion
+            //Sección para crear la lista de tabla de descuentos
+            /*
             Response res = await WebService.GetDataNode(URLData.getProductsNet, "");
             if (!res.succes)
             {
@@ -184,6 +261,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             progress = 100;
             excelApp.Visible = true;
             #endregion
+
+            */
 
             //Seccón de actualización de codigos PS
             /*
