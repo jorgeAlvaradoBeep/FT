@@ -87,15 +87,16 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
             if (await VM.CreateAndInsertInvoice())
             {
                 MessageBox.Show("Factura creada con existo", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                VM.CompleteSale.Client = new Models.Client();
+                VM.CompleteSale.Products = new List<Models.Product>();
+                VM.SelectedCFDIUse = null;
+                VM.SelectedPaymentMethod = null;
+                VM.SelectedRegimen = null;
+                VM.SelectedPaymentForm = null;
+                VM.DataEntranceSavailable = false;
+                VM.SelectedDateChangedCommand.Execute(null);
             }
-            VM.CompleteSale.Client = new Models.Client();
-            VM.CompleteSale.Products = new List<Models.Product>();
-            VM.SelectedCFDIUse = null;
-            VM.SelectedPaymentMethod= null;
-            VM.SelectedRegimen=null;
-            VM.SelectedPaymentForm = null;
-            VM.DataEntranceSavailable = false;
-            VM.SelectedDateChangedCommand.Equals(null);//Validar que funcione correctamente. 
+            //Validar que funcione correctamente. 
 
         }
     }

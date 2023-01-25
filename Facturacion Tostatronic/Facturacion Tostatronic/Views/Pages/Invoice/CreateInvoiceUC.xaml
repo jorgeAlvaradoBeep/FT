@@ -63,18 +63,15 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <ComboBox x:Name="cmbCFDIUse" 
-                          Margin="20,1,1,1" 
-                          Width="250" 
-                          HorizontalContentAlignment="Left" 
-                          ItemsSource="{Binding CFDIUse}" 
-                          DisplayMemberPath="CompleteName" 
-                          materialDesign:HintAssist.Hint="USO CFDI*" 
-                          materialDesign:HintAssist.IsFloating="True" 
-                          IsEnabled="{Binding DataEntranceSavailable}"
-                          SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
-                    </ComboBox>
+                    <telerik:RadComboBox x:Name="cmbCFDIUse" 
+                                         Margin="10" 
+                                         Width="250" 
+                                         HorizontalContentAlignment="Left" 
+                                         ItemsSource="{Binding CFDIUse}" 
+                                         DisplayMemberPath="CompleteName"
+                                         EmptyText="Uso CFDI"
+                                         IsEnabled="{Binding DataEntranceSavailable}"
+                                         SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Margin="20,1,1,1" 

@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Facturacion_Tostatronic.Views" 
         xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations"
-        xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services"
+        xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
         Title="Crear Factura" Height="800" Width="1000"
         WindowState="Maximized"
@@ -50,18 +50,17 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <ComboBox x:Name="cmbCFDIUse" 
-                          Margin="20,1,1,1" 
-                          Width="250" 
-                          HorizontalContentAlignment="Left" 
-                          ItemsSource="{Binding CFDIUse}" 
-                          DisplayMemberPath="CompleteName" 
-                          materialDesign:HintAssist.Hint="USO CFDI*" 
-                          materialDesign:HintAssist.IsFloating="True" 
-                          IsEnabled="{Binding DataEntranceSavailable}"
-                          SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay}">
+                <telerik:RadComboBox x:Name="cmbCFDIUse" 
+                                     Margin="10" 
+                                     Width="250" 
+                                     HorizontalContentAlignment="Left" 
+                                     ItemsSource="{Binding CFDIUse}" 
+                                     DisplayMemberPath="CompleteName"
+                                     EmptyText="Uso CFDI"
+                                     IsEnabled="{Binding DataEntranceSavailable}"
+                                     SelectedItem="{Binding SelectedCFDIUse, Mode=TwoWay}">
                     
-                </ComboBox>
+                </telerik:RadComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Margin="20,1,1,1" Width="335" Text="{Binding CompleteSale.Client.CompleteName}" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Razon Social*" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataEntranceSavailable}"/>
