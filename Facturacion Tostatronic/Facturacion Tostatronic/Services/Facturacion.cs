@@ -134,8 +134,9 @@ namespace Facturacion_Tostatronic.Services
 
         public async static Task<string> CreaFactura(string folio, string formaPago, string metodoDePago, List<ProductoSat> productos, float subtotal, string rfc, string rz, string usoCFDI, string mail, float iva, float total, string regimenFiscal, string CPCliente)
         {
-            string pathCer = Directory.GetCurrentDirectory() + @"/Fiel/Certifiado.cer";
-            string pathKey = Directory.GetCurrentDirectory() + @"/Fiel/Key.key";
+            
+            string pathCer = Directory.GetCurrentDirectory() + @"\Fiel\Certifiado.cer";
+            string pathKey = Directory.GetCurrentDirectory() + @"\Fiel\Key.key";
             string clavePrivada = "Jorge1995";
 
             //Obtenemos el numero

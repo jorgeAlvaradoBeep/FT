@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Automation.Peers;
 using Telerik.Windows.Controls;
 
 namespace Facturacion_Tostatronic
@@ -29,6 +30,7 @@ namespace Facturacion_Tostatronic
             string prePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string path = System.IO.Path.Combine(prePath, "Tostatronic");
             StyleManager.ApplicationTheme = new Windows11Theme();
+            AutomationManager.AutomationMode = AutomationMode.Disabled;
             InitializeComponent();
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
