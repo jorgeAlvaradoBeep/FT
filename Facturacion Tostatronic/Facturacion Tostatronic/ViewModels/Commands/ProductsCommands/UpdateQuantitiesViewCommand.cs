@@ -1,5 +1,6 @@
 ﻿using Bukimedia.PrestaSharp;
 using Bukimedia.PrestaSharp.Entities;
+using Bukimedia.PrestaSharp.Entities.AuxEntities;
 using Bukimedia.PrestaSharp.Factories;
 using Chilkat;
 using Facturacion_Tostatronic.Models;
@@ -73,10 +74,25 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             };
             while (!endWhile1)
             {
+                DispatcherHelper.CheckBeginInvokeOnUI(
+                () =>
+                {
+                    // Dispatch back to the main thread
+                    VM.ProgressVal = $"Pagína #{pageNumber1-1}{Environment.NewLine}" +
+                    $"Productos Cargados: {productsTemp.Count}";
+                });
                 var res2 =  await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity", pageNumber1.ToString());
                 if (!res2.IsSuccessful)
                 {
-                    MessageBox.Show(res2.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Pagína #{pageNumber1 - 1}{Environment.NewLine}" +
+                        $"Productos Cargados: {productsTemp.Count}" +
+                        $"Error en la descarga de los productos de la Pagína{Environment.NewLine}" +
+                        $"Motivos: {res2.ErrorMessage}";
+                    });
                 }
                 else
                 {
@@ -91,16 +107,100 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     {
                         endWhile1 = true;
                     }
-                    DispatcherHelper.CheckBeginInvokeOnUI(
-                    () =>
-                    {
-                        // Dispatch back to the main thread
-                        VM.ProgressVal = $"Productos Cargados: {productsTemp.Count}";
-                    });
+                    
                     
                 }
                 
             }
+            DispatcherHelper.CheckBeginInvokeOnUI(
+            () =>
+            {
+                // Dispatch back to the main thread
+                VM.ProgressVal = $"Productos Totales Obtenidos: {productsTemp.Count}.{Environment.NewLine}" +
+                $"Comparando precios...";
+            });
+            string resultText = string.Empty;
+            List<Update> lisUpdate = new List<Update>();
+            if (productsTemp.Count > 0)
+            {
+                foreach (WooCommerceProduct p in productsTemp)
+                {
+                    if (p.Sku != null)
+                    {
+                        if (p.Sku != string.Empty)
+                        {
+                            var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
+                            if (obj != null)
+                            {
+                                //p.sale_price = obj.precioDistribuidor.ToString();
+                                p.Sale_price = "";
+                                lisUpdate.Add(new Update()
+                                {
+                                    id = p.Id,
+                                    sku = p.Sku,
+                                    sale_price = p.Sale_price,
+                                    regular_price = p.Regular_price,
+                                    stock_quantity = p.Stock_quantity
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            //Aqui hacemos la seción de generar las listas de actualización.
+            //Aqui dividimos la lista en listas maximo de 85 elementos
+            List<List<Update>> litsToUpdate = SplitList(lisUpdate);
+            int cont = 1;
+            bool error = false;
+            foreach (List<Update> listToUpdate in litsToUpdate)
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(
+                () =>
+                {
+                    // Dispatch back to the main thread
+                    VM.ProgressVal = $"Listas De Productos a Actualizar {litsToUpdate.Count}{Environment.NewLine}" +
+                    $"Listas Actualizadas: {cont-1}/{litsToUpdate.Count}";
+                });
+                CRUDActionClass crud = new CRUDActionClass()
+                {
+                    create = new List<Create>(),
+                    delete = new List<Delete>(),
+                    update = listToUpdate
+                };
+                string json = JsonConvert.SerializeObject(crud,
+               Newtonsoft.Json.Formatting.None,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+                var res2 = await
+               WebService.InsertDataWooCommercer(URLData.wcBatchProduct, json);
+                if (!res2.IsSuccessful)
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Listas De Productos a Actualizar {litsToUpdate.Count}{Environment.NewLine}" +
+                        $"Listas Actualizadas: {cont - 1}/{litsToUpdate.Count}" +
+                        $"Error en la actualización de las lista:  {cont}{Environment.NewLine}" +
+                        $"Motivos: {res2.ErrorMessage}";
+                    });
+                    
+                    error = true;
+                }
+                cont++;
+            }
+
+            VM.ProgressVal = string.Empty;
+            VM.GettingData = false;
+            if (error)
+                MessageBox.Show("Existencias actualizadas pero con errores", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show("Existencias actualizadas Correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            //Version anterior de actualizacion de cantidades
+            /*
             DispatcherHelper.CheckBeginInvokeOnUI(
             () =>
             {
@@ -247,51 +347,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 MessageBox.Show("Existencias actualizadas pero con errores","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             else
                 MessageBox.Show("Existencias actualizadas Correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            /*
-            WaitPlease pw = new WaitPlease();
-            pw.Show();
-            Response res = await WebService.GetData("cs", "", URLData.product_update);
-            if (!res.succes)
-            {
-                MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
-                return;
-            }
-            List<ProductComplete> aux = JsonConvert.DeserializeObject<List<ProductComplete>>(res.data.ToString());
-            StockAvailableFactory stockAvailableFactory = new StockAvailableFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-            List<stock_available> stockList = await GetStocks(stockAvailableFactory);
-            List<stock_available> updatedList = new List<stock_available>();
-            foreach (ProductComplete p in aux)
-            {
-                if(p.PrestashopID!= null)
-                {
-                    var obj = stockList.FirstOrDefault(x => x.id_product == long.Parse(p.PrestashopID));
-                    if (obj != null)
-                    {
-                        if (obj.quantity != (int)p.Existence)
-                        {
-                            obj.quantity = (int)p.Existence;
-                            obj.out_of_stock = 2;
-                            updatedList.Add(obj);
-                        }
-
-                    }
-
-                }
-            }
-            try
-            {
-                await stockAvailableFactory.UpdateListAsync(updatedList);
-                MessageBox.Show("Cantidades actualizados correctamente" + res.message, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (PrestaSharpException e)
-            {
-                MessageBox.Show("Error al actualizar cantidades: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
-                return;
-            }
-
-            pw.Close();
             */
         }
 
@@ -314,11 +369,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 error = false;
             return error;
         }
+        /*
         private async Task<List<stock_available>> GetStocks(StockAvailableFactory factory)
         {
             var stockList = await factory.GetAllAsync();
             return stockList;
-        }
+        }*/
 
         public static List<List<Update>> SplitList(List<Update> toUpdateProducts, int nSize = 85)
         {
