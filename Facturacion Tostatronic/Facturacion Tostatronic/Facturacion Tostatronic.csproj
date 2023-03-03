@@ -293,6 +293,7 @@
     <Compile Include="Models\Products\SucursalProduct\SucursalProduct.cs" />
     <Compile Include="Models\Products\UpdateProductM.cs" />
     <Compile Include="Models\Products\WooCommerceProduct.cs" />
+    <Compile Include="Models\Products\WooCommerceUpdateSimple.cs" />
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Services\Facturacion\opensslkey.cs" />
     <Compile Include="Services\Facturacion\SelloDigital.cs" />
     <Compile Include="Services\Facturacion\StringWriterWithEncoding.cs" />
+    <Compile Include="Services\Fields.cs" />
     <Compile Include="Services\HtmlUtilities.cs" />
     <Compile Include="Services\IPageViewModel.cs" />
     <Compile Include="Services\NavigationContentTemplateSelector.cs" />

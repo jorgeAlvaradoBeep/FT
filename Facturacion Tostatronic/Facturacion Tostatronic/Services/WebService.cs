@@ -230,6 +230,47 @@ namespace Facturacion_Tostatronic.Services
                 return null;
             }
         }
+
+        //Obtenemos un dato simple de WooCommerce
+        public static async Task<IRestResponse> GetSingleDataWooCommercer(string url, List<Fields> fields)
+        {
+            // En el caso de Sandbox 
+            var client = new RestClient();
+            client.Timeout = 25000;
+            client.BaseUrl = new System.Uri(url);
+            client.Authenticator =
+                OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
+            //client.AddDefaultQueryParameter("fields", fields);
+            if(fields.Count>0)
+            {
+                foreach(var field in fields)    
+                {
+                    client.AddDefaultQueryParameter(field.FieldName, field.FieldValue);
+                }
+            }
+            
+            var request = new RestRequest(Method.GET);
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return null;
+            }
+        }
         public static async Task<IRestResponse> GetProductVariationsWooCommercer(string url, string id)
         {
             // En el caso de Sandbox 
@@ -245,6 +286,42 @@ namespace Facturacion_Tostatronic.Services
             client.AddDefaultQueryParameter("page", "1");
 
             var request = new RestRequest(Method.GET);
+            IRestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (TimeoutException e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Tiempo de espera agotado... " + e.Message;
+                return null;
+            }
+            catch (Exception e)
+            {
+                Response result = new Response();
+                result.succes = false;
+                result.message = "Error... " + e.Message;
+                return null;
+            }
+        }
+
+        //Modificamos productos en WooCommerce
+        public static async Task<IRestResponse> ModifyDataWooCommercer(string url, string jsonToInsert)
+        {
+            // En el caso de Sandbox 
+            var client = new RestClient();
+            client.Timeout = 35000;
+            client.BaseUrl = new System.Uri(url);
+            client.Authenticator =
+                OAuth1Authenticator.ForProtectedResource(URLData.wcKey, URLData.wcSecret, string.Empty, string.Empty);
+
+            var request = new RestRequest(Method.PUT);
+            request.AddParameter("application/json", jsonToInsert, ParameterType.RequestBody);
+
+            request.AddHeader("Content-Type", "application/json");
             IRestResponse response;
             try
             {

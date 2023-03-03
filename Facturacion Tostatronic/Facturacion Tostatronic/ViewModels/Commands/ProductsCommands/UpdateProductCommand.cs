@@ -5,6 +5,8 @@ using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Products;
+using GalaSoft.MvvmLight.Threading;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,51 +76,70 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 VM.GettingData = true;
                 string messages = string.Empty;
                 string errMSG = string.Empty;
-
-                ProductFactory ArticuloFactory = new ProductFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-                product updateProduct = await ArticuloFactory.GetAsync(long.Parse(VM.Product.PrestashopID));
-
-                //Actualizamos precio de producto directamente en la base de datos sin WS
-                Response res = await WebService.InsertData(VM.Product, "https://tostatronic.com/store/NewWBST/updateProductSinglePrice.php");
-                if (!res.succes)
+                List<Fields> fields = new List<Fields>();
+                Fields nf = new Fields()
                 {
-                    errMSG += "Error: " + res.message + Environment.NewLine + "No se actualizaron precios";
+                    FieldName = "sku",
+                    FieldValue = VM.Product.Code
+                };
+                fields.Add(nf);
+                var res2 = await WebService.GetSingleDataWooCommercer(URLData.wcProducts, fields);
+                if (!res2.IsSuccessful)
+                {
+                    MessageBox.Show($"Error al traer el producto {VM.Product.Name} de la pagina WEB" +
+                        $"{Environment.NewLine}Error: {res2.ErrorMessage}","Error",MessageBoxButton.OK, MessageBoxImage.Error);
                     VM.GettingData = false;
+                    return;
                 }
-
-                //Omitimos la actualización por WEBService nativo para cambiarlo por webservice propio
-                //updateProduct.wholesale_price = Convert.ToDecimal(VM.Product.BuyPrice);
-                //updateProduct.price = Convert.ToDecimal(VM.Product.PublicPrice);
-
-                //try
-                //{
-                //    await ArticuloFactory.UpdateAsync(updateProduct);
-                //    messages += "Exito al actualizar precios en la pagina" + Environment.NewLine;
-                //}
-                //catch (PrestaSharpException e)
-                //{
-                //    errMSG += "Error al actualizar precios en la pagina: " + e.ResponseErrorMessage + Environment.NewLine;
-                //}
-
-                // Aqui actualizamos las cantidades en prestashop
-                StockAvailableFactory stockAvailableFactory = new StockAvailableFactory(URLData.psBaseUrl, URLData.psAccount, URLData.psPassword);
-                long stockAvailableId = updateProduct.associations.stock_availables[0].id;
-                stock_available myStockAvailable = stockAvailableFactory.Get(stockAvailableId);
-                myStockAvailable.quantity = (int)VM.Product.Existence; // Number of available products
-                myStockAvailable.out_of_stock = 2; // Must enable orders
-
-                try
+                else
                 {
-                    await stockAvailableFactory.UpdateAsync(myStockAvailable);
-                    messages += "Exito al actualizar cantidades en la pagina" + Environment.NewLine;
-                }
-                catch (PrestaSharpException e)
-                {
-                    errMSG += "Error al actualizar cantidades en la pagina: " + e.ResponseErrorMessage + Environment.NewLine;
-                }
 
-                //Hacemos el procesod e actualizar los precios especificos en PS
-                messages += await SetSpecificPrices();
+                    List<WooCommerceProduct> aux = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString());
+                    if(aux==null)
+                    {
+                        MessageBox.Show($"Error al traer el producto {VM.Product.Name} de la pagina WEB" +
+                        $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        VM.GettingData = false;
+                        return;
+                    }
+                    if(aux.Count==0)
+                    {
+                        MessageBox.Show($"Error al traer el producto {VM.Product.Name} de la pagina WEB" +
+                        $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        VM.GettingData = false;
+                        return;
+                    }
+                    WooCommerceProduct product = aux[0];
+                    WooCommerceUpdateSimple updatedProduct = new WooCommerceUpdateSimple();
+                    updatedProduct.regular_price = VM.Product.PublicPrice.ToString();
+                    updatedProduct.stock_quantity = (int)VM.Product.Existence;
+                    updatedProduct.tiered_pricing_fixed_rules = string.Empty;
+                    decimal d;
+                    foreach (SpecificPrice sP in VM.Product.SpecificPrices)
+                    {
+                        d = Decimal.Round((decimal)sP.Price, 2);
+                        updatedProduct.tiered_pricing_fixed_rules += $"{sP.Quantity}:{(float)d},";
+                    }
+                    updatedProduct.tiered_pricing_fixed_rules= updatedProduct.tiered_pricing_fixed_rules.Remove(updatedProduct.tiered_pricing_fixed_rules.Length-1,1);
+                    string json = JsonConvert.SerializeObject(updatedProduct,
+                                    Newtonsoft.Json.Formatting.None,
+                                    new JsonSerializerSettings
+                                    {
+                                        NullValueHandling = NullValueHandling.Ignore
+                                    });
+                    res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts+$"/{product.Id}", json);
+                    if (!res2.IsSuccessful)
+                    {
+                        errMSG = $"Error al actualizar el producto {VM.Product.Name} en la pagina WEB" +
+                            $"{Environment.NewLine}Error: {res2.ErrorMessage}";
+                    }
+                    else
+                    {
+                        messages = "Prodcuto Actualizado con exito";
+                    }
+                }
+                
+                //messages += await SetSpecificPrices();
 
                 VM.GettingData = false;
                 MessageBox.Show("Exitos: " + Environment.NewLine + messages + "Errores" + Environment.NewLine + errMSG);
