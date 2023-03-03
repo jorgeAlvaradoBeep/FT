@@ -30,21 +30,21 @@
 								 RowStyleSelector="{StaticResource rowStyleSelector}"
 								 Margin="0" GroupRenderMode="Flat"
 								 RowIndicatorVisibility="Collapsed"
-								 IsReadOnly="True"
+								 IsReadOnly="False"
 								 ShowColumnSortIndexes="True"
 								 AutoGenerateColumns="False"
 								 CanUserFreezeColumns="False"
-								 CanUserResizeColumns="False"
                                  Grid.Row="1"
                                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewToggleRowDetailsColumn />
                     <telerik:GridViewDataColumn Header="Codigo"
 												DataMemberBinding="{Binding Codigo}" 
-                                                Width="120"/>
+                                                Width="120"
+                                                />
                     <telerik:GridViewDataColumn Header="Nombre"
 												DataMemberBinding="{Binding Nombre}"
-                                                Width="255"/>
+                                                Width="555"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
 												DataMemberBinding="{Binding Existencia}"
                                                 Width="80"/>

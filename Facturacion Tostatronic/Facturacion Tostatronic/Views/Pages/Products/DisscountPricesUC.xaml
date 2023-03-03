@@ -1,19 +1,21 @@
-﻿<Window x:Class="Facturacion_Tostatronic.Views.Products.DisscountPrices"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
-        xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Products"
-        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Products" 
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        mc:Ignorable="d"
-        Title="DisscountPrices" Height="760" Width="1360">
-    <Window.Resources>
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Products.DisscountPricesUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" 
+             xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:global="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="760" 
+             d:DesignWidth="1360"
+             Background="White">
+    <UserControl.Resources>
         <vm1:DisscountPricesVM x:Key="disscountPruicesVM"/>
-    </Window.Resources>
+    </UserControl.Resources>
     <telerik:RadBusyIndicator DataContext="{StaticResource disscountPruicesVM}" IsBusy="{Binding GettingData}">
         <Grid DataContext="{StaticResource disscountPruicesVM}">
             <Grid.ColumnDefinitions>
@@ -114,10 +116,20 @@
             <TextBox x:Name="txtBuyPrice" Text="{Binding Product.BuyPrice, Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Compra:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
             <TextBox x:Name="txtMinPrice" Text="{Binding Product.MinimumPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Minimo:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
             <TextBox x:Name="txtDisPrice" Text="{Binding Product.DistributorPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Distribuidor:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
-            <TextBox x:Name="txtPubPrice" Text="{Binding Product.PublicPrice, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Margin="5" FontSize="16" HorizontalContentAlignment="Left" materialDesign:HintAssist.Hint="Precio Publico:" materialDesign:HintAssist.IsFloating="True" IsEnabled="{Binding DataUpdated}" Visibility="{Binding BaseProductVisibility}" GotKeyboardFocus="DataSelect"/>
-            
-            
-            
+            <TextBox x:Name="txtPubPrice" 
+                     Text="{Binding Product.PublicPrice, Mode=TwoWay}" 
+                     Grid.Row="3" Grid.Column="2" 
+                     Grid.ColumnSpan="1" Margin="5" 
+                     FontSize="16" 
+                     HorizontalContentAlignment="Left" 
+                     materialDesign:HintAssist.Hint="Precio Publico:" 
+                     materialDesign:HintAssist.IsFloating="True" 
+                     IsEnabled="{Binding DataUpdated}" 
+                     Visibility="{Binding BaseProductVisibility}" 
+                     GotKeyboardFocus="DataSelect"/>
+
+
+
             <telerik:GroupBox Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" Grid.RowSpan="11" Header="Precios específicos" FontSize="24" Foreground="#FF848484" Visibility="{Binding SpecificProductVisibility}">
                 <telerik:LayoutControlGroup Orientation="Vertical">
                     <telerik:LayoutControlGroup Orientation="Vertical">
@@ -233,4 +245,4 @@
             </Button>
         </Grid>
     </telerik:RadBusyIndicator>
-</Window>
+</UserControl>

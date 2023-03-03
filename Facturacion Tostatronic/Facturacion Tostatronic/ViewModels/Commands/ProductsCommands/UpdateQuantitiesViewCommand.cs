@@ -132,8 +132,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
                             if (obj != null)
                             {
-                                //p.sale_price = obj.precioDistribuidor.ToString();
-                                p.Sale_price = "";
+                                p.Sale_price = obj.DistributorPrice.ToString();
+                                //p.Sale_price = "";
                                 lisUpdate.Add(new Update()
                                 {
                                     id = p.Id,

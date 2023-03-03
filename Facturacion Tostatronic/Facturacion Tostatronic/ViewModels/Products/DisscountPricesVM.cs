@@ -11,9 +11,11 @@ using System.Windows;
 namespace Facturacion_Tostatronic.ViewModels.Products
 {
     
-    public class DisscountPricesVM : BaseNotifyPropertyChanged
+    public class DisscountPricesVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         #region Properties
+
+        public string Name { get; set; } = "DisscountPricesVM";
         private ProductComplete product;
 
         public ProductComplete Product
