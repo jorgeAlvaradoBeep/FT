@@ -8,7 +8,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local1="clr-namespace:Facturacion_Tostatronic.Validations" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
-             xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:ui="clr-namespace:Facturacion_Tostatronic.Services" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              Background="White"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">

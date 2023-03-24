@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Clients.ClientRegimenChangeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Clients" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="800"
+             Background="White">
+    <UserControl.Resources>
+        <vm:ClientRegimenChangeVM x:Key="clientRegimenChangeVM"/>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource clientRegimenChangeVM}"
+                              IsBusy="{Binding GettingData}">
+        <StackPanel>
+            <telerik:RadAutoCompleteBox	WatermarkContent="Ingrese el cliente..."
+									    x:Name="ClientsAutoCompleteBox"
+									    TextSearchMode="Contains"
+									    AutoCompleteMode="Suggest"
+									    SelectionMode="Single"
+									    TextSearchPath="CompleteName"
+									    ItemsSource="{Binding Clients}"
+                                        SelectedItem="{Binding ClientComplete, Mode=TwoWay}"
+									    Margin="20"
+                                        Height="25"
+                                        VerticalAlignment="Top"
+									    NoResultsContent="Song could not be found." 
+                                        Cursor="IBeam"/>
+            <telerik:RadComboBox    x:Name="ClientTypeSelection" 
+                                    FontFamily="Segoe UI"
+                                    ClearSelectionButtonVisibility="Visible"
+                                    ItemsSource="{Binding ClientType}" 
+                                    SelectedItem="{Binding SelectedClientType, Mode=TwoWay}"
+                                    EmptyText="Tipo de cliente" 
+                                    Height="40"
+                                    Margin="10"
+                                    IsEnabled="{Binding Editable}"/>
+            <telerik:RadComboBox    x:Name="ClientRegimenSelection" 
+                                    FontFamily="Segoe UI"
+                                    ItemsSource="{Binding RegimenFiscal}" 
+                                    SelectedItem="{Binding RegimenFiscalSelected, Mode=TwoWay}"
+                                    EmptyText="Regimen Fiscal" 
+                                    DisplayMemberPath="CompleteName"
+                                    Height="40"
+                                    Margin="10"
+                                    Padding="100"
+                                    IsEnabled="{Binding Editable}"/>
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                <telerik:RadPathButton  Margin="5"
+                                        Height="60"
+                                        Width="60"
+                                        HorizontalAlignment="Center"
+                                        PathGeometry="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z"
+                                        Content="Guardar"
+                                        Command="{Binding ModifyClientRegimenCommand}"
+                                        IsEnabled="{Binding Editable}"/>
+                <telerik:RadPathButton  Margin="5"
+                                        Height="60"
+                                        Width="60"
+                                        HorizontalAlignment="Center"
+                                        PathGeometry="M8.2 5L6.2 3H17L21 7V17.8L19 15.8V7.83L16.17 5H8.2M15 10V6H9.2L13.2 10H15M22.11 21.46L20.84 22.73L19.1 21C19.07 21 19.03 21 19 21H5C3.89 21 3 20.1 3 19V5C3 4.97 3 4.93 3 4.9L1.11 3L2.39 1.73L22.11 21.46M17.11 19L14.59 16.5C14.08 17.39 13.12 18 12 18C10.34 18 9 16.66 9 15C9 13.88 9.61 12.92 10.5 12.41L8.11 10H6V7.89L5 6.89V19H17.11Z"
+                                        Content="Cancelar"
+                                        IsEnabled="{Binding Editable}"
+                                        Command="{Binding CancellModifyClientCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </telerik:RadBusyIndicator>
+</UserControl>

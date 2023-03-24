@@ -48,6 +48,7 @@ using Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands;
 using Facturacion_Tostatronic.ViewModels.Products;
 using System.Threading;
 using GalaSoft.MvvmLight.Threading;
+using Facturacion_Tostatronic.ViewModels.Sales;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -688,7 +689,7 @@ namespace Facturacion_Tostatronic.ViewModels
             salesItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
                 new NavigationViewItemModel() { Title = "Generara Venta" },
-                new NavigationViewItemModel() { Title = "Ver Ventas" },
+                new NavigationViewItemModel() { Title = "Ver Ventas", VMName="SeeSalesVM" },
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -794,6 +795,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new AssingUCVM());
             ViewsList.Add(new SeeProductVM());
             ViewsList.Add(new DisscountPricesVM());
+            ViewsList.Add(new SeeSalesVM());
         }
          IPageViewModel GetView(string vmName)
         {

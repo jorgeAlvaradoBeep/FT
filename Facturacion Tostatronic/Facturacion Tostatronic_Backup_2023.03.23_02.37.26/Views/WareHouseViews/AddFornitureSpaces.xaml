@@ -1,0 +1,134 @@
+﻿<Page x:Class="Facturacion_Tostatronic.Views.WareHouseViews.AddFornitureSpaces"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.WareHouseViews" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.WareHouse"
+      d:DesignHeight="450" d:DesignWidth="1200"
+      Title="Agregar espacios del mueble"
+      Background="White">
+    <Page.Resources>
+        <vm:AddFornitureSpacesVM x:Key="addFornitureSpacesVM"/>
+    </Page.Resources>
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" DataContext="{StaticResource addFornitureSpacesVM}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Mode="Standard" 
+                                      Grid.Column="0" 
+                                      Grid.Row="0" 
+                                      Grid.RowSpan="2"
+                                      Grid.ColumnSpan="8" 
+                                      Margin="5,5,0,0">
+                <TextBlock Text="Agregar Espacios a Mueble" 
+                           FontSize="32px"  
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+            </materialDesign:ColorZone>
+            <ComboBox Grid.Row="2"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="2"
+                      Margin="5,0,0,0"
+                      materialDesign:HintAssist.Hint="Seleccione Almacen*" 
+                      materialDesign:HintAssist.IsFloating="True"
+                      ItemsSource="{Binding WareHouseList}"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding SelectedWareHouse}">
+            </ComboBox>
+            <ComboBox Grid.Row="2"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="2"
+                      Grid.Column="2"
+                      Margin="5,0,0,0"
+                      ItemsSource="{Binding SelectedWareHouse.Localizations}"
+                      SelectedItem="{Binding SelectedLocalization}"
+                      DisplayMemberPath="Name"
+                      materialDesign:HintAssist.Hint="Seleccione Localizacion*" 
+                      materialDesign:HintAssist.IsFloating="True">
+            </ComboBox>
+            <ComboBox Grid.Row="2"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="2"
+                      Grid.Column="4"
+                      Margin="5,0,0,0"
+                      ItemsSource="{Binding SelectedLocalization.OrganizationFornitures}"
+                      SelectedItem="{Binding SelectedForniture}"
+                      DisplayMemberPath="Name"
+                      materialDesign:HintAssist.Hint="Seleccione Mueble*" 
+                      materialDesign:HintAssist.IsFloating="True">
+            </ComboBox>
+            <telerik:RadGridView x:Name="RadGrdVFornitureSpaces"
+                                ShowGroupPanel="False"
+                                CanUserFreezeColumns="False"
+                                CanUserResizeColumns="False"
+                                RowIndicatorVisibility="Collapsed"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Grid.Row="4"
+                                Grid.RowSpan="10"
+                                Margin="5"
+                                AutoGenerateColumns="False" 
+                                telerik:StyleManager.Theme="Material"
+                                ItemsSource="{Binding SelectedForniture.Spaces}"
+                                GroupRenderMode="Flat"
+                                NewRowPosition="Bottom"
+                                Visibility="{Binding AddSpacesGridVisible}"
+                                ValidationType="Default"
+                                ScrollMode="RealTime">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
+                                                Header="Nombre del espacio"
+                                                Width="350"
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewColumn     Header="Eliminar"
+											    Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Delete" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Button Grid.Row="10"
+                    Grid.RowSpan="4"
+                    Grid.Column="4"
+                    Height="100"
+                    Margin="5,5,5,5"
+                    Background="Green"
+                    Command="{Binding SaveSpacesCommand}">
+                <StackPanel>
+                    <Image Source="/Images/save.png" Width="40" Height="40"/>
+                    <TextBlock Text="Guardar almacen" FontSize="14"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </telerik:RadBusyIndicator>
+    
+</Page>

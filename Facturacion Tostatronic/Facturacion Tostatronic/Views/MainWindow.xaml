@@ -9,12 +9,14 @@
         xmlns:viewsc="clr-namespace:Facturacion_Tostatronic.Views.Pages.Clients" 
         xmlns:viewsin="clr-namespace:Facturacion_Tostatronic.Views.Pages.Invoice" 
         xmlns:viewsp="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" 
+        xmlns:viewssl="clr-namespace:Facturacion_Tostatronic.Views.Pages.Sales" 
         xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
         xmlns:vmw="clr-namespace:Facturacion_Tostatronic.ViewModels.WareHouse"
         xmlns:vmc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.AddClient"
         xmlns:vmce="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients"
         xmlns:vmcc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands"
         xmlns:vmp="clr-namespace:Facturacion_Tostatronic.ViewModels.Products"
+        xmlns:vmsls="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Facturacion Tostatronic" Height="450" Width="800"
@@ -68,6 +70,10 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vmp:DisscountPricesVM}">
             <viewsp:DisscountPricesUC />
+        </DataTemplate>
+        <!--Secci[on de ventas-->
+        <DataTemplate DataType="{x:Type vmsls:SeeSalesVM}">
+            <viewssl:SeeSalesUC />
         </DataTemplate>
         
         <!--Seccion de estilos-->

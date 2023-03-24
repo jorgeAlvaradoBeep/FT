@@ -84,6 +84,7 @@
         public static string getClientByRFC = baseURLNET + "Clientes/ClientRFC/";
         public static string getClients = baseURLNET + "Clientes";
         public static string getClientOrders = baseURLNET + "Ventas/ClientOrdersWT/";
+        public static string getDatedOrders = baseURLNET + "Ventas/SeeDatedOrder/";
         public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products";

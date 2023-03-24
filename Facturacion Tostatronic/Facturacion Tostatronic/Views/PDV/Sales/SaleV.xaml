@@ -88,8 +88,8 @@
 											    Header="Cantidad"
 											    Width="120"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding DisplayPrice, StringFormat={}{0:C}}"
-											Header="PU"
-											Width="130" />
+											    Header="PU"
+											    Width="130" />
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Subtotal, StringFormat={}{0:C}}"
 											Header="Subtotal"
 											Width="100" 

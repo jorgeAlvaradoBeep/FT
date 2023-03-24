@@ -1,0 +1,329 @@
+﻿<Window xmlns:tr="http://schemas.telerik.com/wpf"  x:Class="Facturacion_Tostatronic.Views.PDV.Sales.SaleV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.PDV.Sales"
+        xmlns:local2="clr-namespace:Facturacion_Tostatronic.Views.AttachedProperties"
+        mc:Ignorable="d"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
+        Title="Ventas" Height="760" Width="1360"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    <Window.Resources>
+        <vm1:SaleVM x:Key="saleVM"/>
+        <Style TargetType="telerik:RadGridView">
+            <Setter Property="local2:GridViewAttachedProperties.ScrollToNewItem" Value="True" />
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SetIvaPrices, Source={StaticResource saleVM}}"
+                    Gesture="F1" />
+        <KeyBinding Command="{Binding UndoIvaPrices, Source={StaticResource saleVM}}"
+                    Gesture="F2" />
+        <KeyBinding Command="{Binding GetQuoteCommand, Source={StaticResource saleVM}}"
+                    Gesture="F8" />
+    </Window.InputBindings>
+    <telerik:RadBusyIndicator DataContext="{StaticResource saleVM}" IsBusy="{Binding GettingData}">
+        <Grid DataContext="{StaticResource saleVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerik:RadGridView x:Name="RadGrdVSales"
+                             ShowGroupPanel="False"
+							 CanUserFreezeColumns="False"
+                             CanUserResizeColumns="False"
+							 RowIndicatorVisibility="Collapsed"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="4"
+                             Grid.Row="3"
+                             Grid.RowSpan="7"
+                             Margin="10"
+							 AutoGenerateColumns="False" 
+                             telerik:StyleManager.Theme="Material"
+                             ItemsSource="{Binding CompleteSale.SaledProducts, Mode=TwoWay}"
+                             ScrollMode="RealTime"
+                             >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="RowEditEnded">
+                        <i:InvokeCommandAction Command="{Binding ChangeSaledQuantityCommand}" CommandParameter="{Binding ElementName=RadGrdVSales, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Code}"
+											Header="ID Producto"
+											Width="180"
+                                            TextWrapping="Wrap"
+                                            IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
+											Header="Nombre Producto"
+											Width="340" 
+                                            TextWrapping="Wrap"
+                                            IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SaledQuantity,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+											    Header="Cantidad"
+											    Width="120"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding DisplayPrice, StringFormat={}{0:C}}"
+											Header="PU"
+											Width="130" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Subtotal, StringFormat={}{0:C}}"
+											Header="Subtotal"
+											Width="100" 
+                                            IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Existence}"
+											Header="Existencia"
+											Width="100" 
+                                            IsReadOnly="True"/>
+                    <telerik:GridViewColumn     Header="Eliminar"
+											Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Delete"
+                                                    Command="{Binding DeleteProductFromSalecommand, Source={StaticResource saleVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                    <telerik:GridViewColumn Header="Buscar"
+											Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Buscar"
+                                                    Command="{Binding SearchProductFromSalecommand, Source={StaticResource saleVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <telerik:LayoutControlGroup HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" 
+                                    Grid.Column="0" 
+                                    Grid.ColumnSpan="4" 
+                                    Grid.RowSpan="3" 
+                                    Orientation="Vertical">
+
+                <telerik:LayoutControlGroup Orientation="Horizontal">
+                    <telerik:Label Content="{Binding CompleteSale.ClientSale.RFC}" 
+                               Margin="10" 
+                               Width="300"
+                               FontSize="20" 
+                               HorizontalAlignment="Stretch"/>
+                    <telerik:RadButton Background="Transparent" 
+                                   Margin="20,10,0,0"
+                                   Command="{Binding CallSearchClientViewCommand}">
+                        <telerik:RadButton.Content>
+                            <Image Source="/Images/search.png" 
+                               Stretch="Fill" />
+                        </telerik:RadButton.Content>
+                    </telerik:RadButton>
+                </telerik:LayoutControlGroup>
+                <telerik:Label Content="{Binding CompleteSale.ClientSale.Name}" 
+                           Margin="10" 
+                           Width="430"
+                           Height="50"
+                           FontSize="20" 
+                           HorizontalAlignment="Stretch"/>
+            </telerik:LayoutControlGroup>
+            <ComboBox x:Name="cmbPriceType" 
+                  Grid.Column="2"
+                  Grid.ColumnSpan="2"
+                  Grid.RowSpan="2"
+                  Margin="20,1,1,1" 
+                  Width="250" 
+                  SelectedIndex="{Binding CompleteSale.PriceType, Mode=TwoWay}"
+                  HorizontalContentAlignment="Left" 
+                  ItemsSource="{Binding ClientType, Mode=TwoWay}"
+                  materialDesign:HintAssist.Hint="Tipo de precio*" 
+                  materialDesign:HintAssist.IsFloating="True"
+                  FontSize="24">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SetSelectedPriceCommand}" CommandParameter="{Binding ElementName=cmbPriceType, Path=SelectedIndex}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+            </ComboBox>
+            <telerik:LayoutControlGroup HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" 
+                                    Grid.Column="4" 
+                                    Grid.ColumnSpan="4" 
+                                    Grid.RowSpan="3" 
+                                    Orientation="Vertical">
+                <telerik:Label Content="Productos:" 
+                               Margin="10" 
+                               FontSize="34" 
+                               HorizontalAlignment="Left" 
+                               Width="530"/>
+                <telerik:LayoutControlGroup Orientation="Horizontal"
+                                            HorizontalAlignment="Stretch"
+                                            Width="575">
+                    <telerik:RadWatermarkTextBox Width="500" 
+                                             Margin="5" 
+                                             WatermarkContent="Ingrese el codigo o nombre del producto" 
+                                             FontSize="20"
+                                             Text="{Binding ProductCriterialSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <telerik:RadWatermarkTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SearchProductsForSalecommand}"/>
+                        </telerik:RadWatermarkTextBox.InputBindings>
+                    </telerik:RadWatermarkTextBox>
+                    <telerik:RadButton Background="Transparent" 
+                                   Margin="2"
+                                   Command="{Binding SearchProductsForSalecommand}">
+                        <telerik:RadButton.Content>
+                            <Image Source="/Images/search.png" 
+                               Stretch="Fill" />
+                        </telerik:RadButton.Content>
+                    </telerik:RadButton>
+                </telerik:LayoutControlGroup>
+            </telerik:LayoutControlGroup>
+    <telerik:RadGridView x:Name="RadGrdVProducts"
+                        ShowGroupPanel="False"
+                        CanUserFreezeColumns="False"
+                        CanUserResizeColumns="False"
+                        RowIndicatorVisibility="Collapsed"
+                        Grid.Column="4"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="3"
+                        Grid.RowSpan="7"
+                        Margin="10"
+                        AutoGenerateColumns="False" 
+                        telerik:StyleManager.Theme="Material"
+                        ItemsSource="{Binding CompleteSale.SearchedProducts}"
+                        IsReadOnly="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Code}"
+                                                Header="ID Producto"
+                                                Width="180"
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
+                                                Header="Nombre Producto"
+                                                Width="370" 
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Existence}"
+                                                Header="Cantidad"
+                                                Width="120" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding DisplayPrice}"
+                      Header="Precio Unitario"
+                      Width="130" />
+                </telerik:RadGridView.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SaleProductCommand}" CommandParameter="{Binding ElementName=RadGrdVProducts, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </telerik:RadGridView>
+            <telerik:LayoutControlGroup HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="0" 
+                                    Grid.RowSpan="2"
+                                    Grid.Row="10" 
+                                    Orientation="Vertical">
+                <Label Content="Facturar?"
+                   HorizontalAlignment="Center"
+                   FontSize="24"/>
+                <!--Validar funcionamiento TabIndex=" iva, si falla, ver en sublime text"-->
+                <CheckBox   HorizontalAlignment="Center"
+                            Margin="3"
+                            IsChecked="{Binding CompleteSale.NeedFactura, Mode=TwoWay}"/>
+            </telerik:LayoutControlGroup>
+            <Label Grid.Row="10"
+               Grid.Column="1"
+               Content="Subtotal"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+            <Label Grid.Row="11"
+               Grid.Column="1"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=CompleteSale.SubTotal, StringFormat={}{0:C}}"/>
+            </Label>
+            <Label Grid.Row="10"
+               Grid.Column="2"
+               Content="IVA"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+            <Label Grid.Row="11"
+               Grid.Column="2"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=CompleteSale.IVA, StringFormat={}{0:C}}"/>
+            </Label>
+            <Label Grid.Row="10"
+               Grid.Column="3"
+               Content="Total"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+            <Label Grid.Row="11"
+               Grid.Column="3"
+               FontSize="40"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=CompleteSale.Total, StringFormat={}{0:C}}"/>
+            </Label>
+            <Button Grid.Row="10"
+                Grid.RowSpan="2"
+                Grid.Column="6"
+                Height="100"
+                Margin="5,5,5,5"
+                Background="Green"
+                Command="{Binding SaveSaleCommand}">
+                <StackPanel>
+                    <Image Source="/Images/sale.png" Width="40" Height="40"/>
+                    <TextBlock Text="Vender" FontSize="24"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="10"
+                Grid.RowSpan="2"
+                Grid.Column="5"
+                Height="100"
+                Margin="0,5,0,5"
+                    Command="{Binding CancelCommand}">
+                <StackPanel>
+                    <Image Source="/Images/cancel.png" Width="40" Height="40"/>
+                    <TextBlock Text="Cancelar" FontSize="24"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="10"
+                    Grid.RowSpan="2"
+                    Grid.Column="4"
+                    Height="100"
+                    Margin="5"
+                    Background="Gray"
+                    Command="{Binding SaveQuateCommand}">
+                <StackPanel>
+                    <Image Source="/Images/sale.png" Width="40" Height="40"/>
+                    <TextBlock Text="Cotizar" FontSize="24"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Window>
