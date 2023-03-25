@@ -292,10 +292,14 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EFClientF\EFClient.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
+    <Compile Include="Models\EF Models\EFProduct\EFQuoteProduct.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFSaleProducts.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFUniversalCodes.cs" />
+    <Compile Include="Models\EF Models\EFSale\CompleteSaleEF.cs" />
+    <Compile Include="Models\EF Models\EFSale\CotizacionEF.cs" />
     <Compile Include="Models\EndSale.cs" />
     <Compile Include="Models\InvoiceData.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -435,8 +439,12 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdatePublicPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateQuantitiesViewCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateSucursalPriceCommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\PrintTicketOfSalecommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\SearchQuoteSSVCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SearchSaleSSVCommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\SeeQuotePDFCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SeeSalePDFCommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\SelectedDateChangedQuoteCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SelectedDateChangedSaleCommand.cs" />
     <Compile Include="ViewModels\Commands\SaleSelectedCommand.cs" />
     <Compile Include="ViewModels\Commands\SeeInvoiceCommand.cs" />
@@ -468,6 +476,7 @@
     <Compile Include="ViewModels\Products\SeeProductVM.cs" />
     <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
     <Compile Include="ViewModels\Sales\SearchQuoteVM.cs" />
+    <Compile Include="ViewModels\Sales\SeeQuatitionsVM.cs" />
     <Compile Include="ViewModels\Sales\SeeSalesVM.cs" />
     <Compile Include="ViewModels\WareHouse\AddProductsToSpaceVM.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveLocalizationFornituresCommand.cs" />
@@ -554,6 +563,9 @@
     </Compile>
     <Compile Include="Views\Pages\Products\UpdateImageUC.xaml.cs">
       <DependentUpon>UpdateImageUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Sales\SeeQuatitionsUC.xaml.cs">
+      <DependentUpon>SeeQuatitionsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Sales\SeeSalesUC.xaml.cs">
       <DependentUpon>SeeSalesUC.xaml</DependentUpon>
@@ -732,6 +744,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Products\UpdateImageUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Sales\SeeQuatitionsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

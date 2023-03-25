@@ -28,7 +28,7 @@ namespace Facturacion_Tostatronic.Models.Products
         public float Existencia
         {
             get { return existence; }
-            set { existence = value; }
+            set { SetValue(ref existence, value); }
         }
         private float minimumQuantity;
 

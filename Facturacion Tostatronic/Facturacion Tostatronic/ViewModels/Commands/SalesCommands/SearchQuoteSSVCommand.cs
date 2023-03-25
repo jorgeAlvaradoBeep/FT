@@ -1,26 +1,24 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.Models.EF_Models.EFSale;
+using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Services;
+using Facturacion_Tostatronic.ViewModels.Sales;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using Facturacion_Tostatronic.ViewModels.Sales;
-using Facturacion_Tostatronic.Models;
-using Facturacion_Tostatronic.Services;
-using Newtonsoft.Json.Linq;
-using System.Collections.ObjectModel;
-using System.Security.AccessControl;
-using Facturacion_Tostatronic.Models.EF_Models.EFSale;
-using Newtonsoft.Json;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
 {
-    public class SearchSaleSSVCommand : ICommand
+    public class SearchQuoteSSVCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        public SeeSalesVM VM { get; set; }
-        public SearchSaleSSVCommand(SeeSalesVM vm)
+        public SeeQuatitionsVM VM { get; set; }
+        public SearchQuoteSSVCommand(SeeQuatitionsVM vm)
         {
             VM = vm;
         }
@@ -41,7 +39,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             if (int.TryParse(VM.Folio, out invoiceNumber))
             {
                 VM.GettinData = true;
-                Response r = await WebService.GetDataNode(URLData.getSpecificOrder, VM.Folio);
+                Response r = await WebService.GetDataNode(URLData.getSpecificQuoteNET, VM.Folio);
                 if (!r.succes)
                 {
                     if (!string.IsNullOrEmpty(r.message))
@@ -49,25 +47,25 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     else
                         MessageBox.Show("Error al traer datos de ventas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     VM.GettinData = false;
-                    VM.Sales = new ObservableCollection<CompleteSaleEF>();
+                    VM.Quatition = new ObservableCollection<CotizacionEF>();
                     return;
                 }
 
-                VM.Sales = JsonConvert.DeserializeObject<ObservableCollection<CompleteSaleEF>>(r.data.ToString());
+                VM.Quatition = JsonConvert.DeserializeObject<ObservableCollection<CotizacionEF>>(r.data.ToString());
                 VM.GettinData = false;
             }
             else
             {
-                if(VM.Folio==null) 
+                if (VM.Folio == null)
                 {
-                    VM.SelectedDateChangedSaleCommand.Execute(null);
+                    VM.SelectedDateChangedQuoteCommand.Execute(null);
                 }
-                else if(String.IsNullOrEmpty(VM.Folio))
-                    VM.SelectedDateChangedSaleCommand.Execute(null);
+                else if (String.IsNullOrEmpty(VM.Folio))
+                    VM.SelectedDateChangedQuoteCommand.Execute(null);
                 else
                     MessageBox.Show("El campo de busqueda esta con letras.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-                
+
         }
     }
 }

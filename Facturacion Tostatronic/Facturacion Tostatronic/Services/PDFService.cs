@@ -12,12 +12,13 @@ using Facturacion_Tostatronic.Models;
 using System.Windows;
 using System.Globalization;
 using System.Diagnostics;
+using Facturacion_Tostatronic.Models.EF_Models.EFClientF;
 
 namespace Facturacion_Tostatronic.Services
 {
     public class PDFService
     {
-        public static MemoryStream CreatePDF(string folio, string fecha, List<Product> productos, Client cliente, decimal impuesto)
+        public static MemoryStream CreatePDF(string folio, string fecha, List<Product> productos, EFClient cliente, decimal impuesto)
         {
             // Create a Document object
             string tv;
@@ -119,9 +120,11 @@ namespace Facturacion_Tostatronic.Services
             clienteYEmpresa.SpacingAfter = 10;
 
             string clientData = cliente.CompleteName + "\n" +
-                   "CP: " + cliente.CP + "\n" +
-                   "R.F.C.: " + cliente.Rfc + "\n" +
-                   "Correo: " + cliente.Email;
+                   "Dirección: " + cliente.domicilio + "\n" +
+                   "CP: " + cliente.codigoPostal + "\n" +
+                   "R.F.C.: " + cliente.rfc + "\n" +
+                   "Correo: " + cliente.correoElectronico+ "\n"+
+                   "Tel: " + cliente.celular;
             PdfPCell client = new PdfPCell(new Phrase("Cliente", titleFontNegro));
             client.HorizontalAlignment = 1;
             client.Border = Rectangle.LEFT_BORDER | Rectangle.RIGHT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER; ; ;

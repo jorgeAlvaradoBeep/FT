@@ -118,7 +118,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                 return;
                             }
                             else
+                            {
+                                VM.Products = VM.Products;
                                 MessageBox.Show("Producto Actualizado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
                         }
                         else
                         {
@@ -128,7 +131,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         
                     }
 
-                        VM.GettingData = false;
+                    VM.GettingData = false;
                     
                 }
             }

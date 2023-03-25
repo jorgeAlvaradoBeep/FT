@@ -1,21 +1,21 @@
-﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Sales.SeeSalesUC"
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Sales.SeeQuatitionsUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Sales" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-             xmlns:localb="clr-namespace:Facturacion_Tostatronic.Validations"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
              mc:Ignorable="d" 
-             d:DesignHeight="450" 
-             d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
     <UserControl.Resources>
-        <vm:SeeSalesVM x:Key="seeSaleVM"/>
+        <vm:SeeQuatitionsVM x:Key="seeQuatitionsVM"/>
     </UserControl.Resources>
-    <telerik:RadBusyIndicator DataContext="{StaticResource seeSaleVM}"
+
+
+    <telerik:RadBusyIndicator DataContext="{StaticResource seeQuatitionsVM}"
                               IsBusy="{Binding GettinData}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                                              Height="35"
                                              Text="{Binding Folio, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
                     <telerik:RadWatermarkTextBox.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding SearchSaleSSVCommand}"/>
+                        <KeyBinding Key="Return" Command="{Binding SearchQuoteSSVCommand}"/>
                     </telerik:RadWatermarkTextBox.InputBindings>
                 </telerik:RadWatermarkTextBox>
                 <DatePicker x:Name="dpEventDate" 
@@ -48,32 +48,32 @@
                             Margin="10">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectedDateChanged">
-                            <i:InvokeCommandAction Command="{Binding SelectedDateChangedSaleCommand}"
+                            <i:InvokeCommandAction Command="{Binding SelectedDateChangedQuoteCommand}"
                                                    CommandParameter="{Binding ElementName=dpEventDate, Path=SelectedDate}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </DatePicker>
             </StackPanel>
-<telerik:RadGridView    x:Name="RadGridView2" 
-                        GroupRenderMode="Flat"
-                        ItemsSource="{Binding Sales}"
-                        VerticalAlignment="Top"
-                        RowIndicatorVisibility="Collapsed"
-                        AutoGenerateColumns="False"
-                        CanUserFreezeColumns="False"
-                        BorderThickness="0"
-                        CanUserResizeColumns="True"
-                        ShowGroupPanel="False"
-                        BorderBrush="{x:Null}"
-                        Margin="10"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="5"
-                        Grid.Row="1"
-                        Grid.RowSpan="3"
-                        IsReadOnly="True">
+            <telerik:RadGridView    x:Name="RadGridView2" 
+                                    GroupRenderMode="Flat"
+                                    ItemsSource="{Binding Quatition}"
+                                    VerticalAlignment="Top"
+                                    RowIndicatorVisibility="Collapsed"
+                                    AutoGenerateColumns="False"
+                                    CanUserFreezeColumns="False"
+                                    BorderThickness="0"
+                                    CanUserResizeColumns="True"
+                                    ShowGroupPanel="False"
+                                    BorderBrush="{x:Null}"
+                                    Margin="10"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="3"
+                                    IsReadOnly="True">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="Folio"
-                                     DataMemberBinding="{Binding idVenta}" 
+                                     DataMemberBinding="{Binding idCotizacion}" 
                                                 Width="150"/>
                     <telerik:GridViewDataColumn Header="ID Cliente"
                                      DataMemberBinding="{Binding idClienteNavigation.rfc}"
@@ -82,24 +82,14 @@
                                      DataMemberBinding="{Binding idClienteNavigation.CompleteName}"
                                                 Width="450"/>
                     <telerik:GridViewDataColumn Header="Fecha"
-                                                DataMemberBinding="{Binding fechaDeVenta}"
+                                                DataMemberBinding="{Binding fechaCotizacion}"
                                                 Width="150"/>
-                    <telerik:GridViewColumn Header="Re-Imprimir"
-                                            Width="100">
-                        <telerik:GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <telerik:RadButton  Content="Imprimir"
-                                                    Command="{Binding PrintTicketOfSalecommand, Source={StaticResource seeSaleVM}}"
-                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
-                            </DataTemplate>
-                        </telerik:GridViewColumn.CellTemplate>
-                    </telerik:GridViewColumn>
                     <telerik:GridViewColumn Header="Ver nota"
                                             Width="100">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <telerik:RadButton  Content="Ver"
-                                                    Command="{Binding SeeSalePDFCommand, Source={StaticResource seeSaleVM}}"
+                                                    Command="{Binding SeeQuotePDFCommand, Source={StaticResource seeQuatitionsVM}}"
                                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>

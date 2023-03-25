@@ -20,15 +20,21 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <telerik:RadWatermarkTextBox WatermarkContent="Buscar Producto"
-                                         Height="30"
-                                         Grid.Row="0"
-                                         Margin="8"
-                                         Text="{Binding SearchCriterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="0">
+                <telerik:RadWatermarkTextBox WatermarkContent="Buscar Producto"
+                                             Height="30"
+                                             Margin="10"
+                                             Width="500"
+                                             Text="{Binding SearchCriterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <telerik:RadButton Content="Recargar Tabla"
+                                   Margin="10"/>
+            </StackPanel>
+            
             <telerik:RadGridView x:Name="RadGridView1"
-								 ItemsSource="{Binding Products}"
-								 RowStyleSelector="{StaticResource rowStyleSelector}"
-								 Margin="0" GroupRenderMode="Flat"
+								 ItemsSource="{Binding Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								 Margin="0" 
+                                 GroupRenderMode="Flat"
 								 RowIndicatorVisibility="Collapsed"
 								 IsReadOnly="False"
 								 ShowColumnSortIndexes="True"
@@ -39,26 +45,26 @@
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewToggleRowDetailsColumn />
                     <telerik:GridViewDataColumn Header="Codigo"
-												DataMemberBinding="{Binding Codigo}" 
+												DataMemberBinding="{Binding Codigo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                 Width="120"
                                                 />
                     <telerik:GridViewDataColumn Header="Nombre"
-												DataMemberBinding="{Binding Nombre}"
+												DataMemberBinding="{Binding Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="555"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
-												DataMemberBinding="{Binding Existencia}"
+												DataMemberBinding="{Binding Existencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="80"/>
                     <telerik:GridViewDataColumn Header="P. Compra"
-												DataMemberBinding="{Binding PrecioCompra}"
+												DataMemberBinding="{Binding PrecioCompra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="80"/>
                     <telerik:GridViewDataColumn Header="P. Publico"
-												DataMemberBinding="{Binding PrecioPublico}"
+												DataMemberBinding="{Binding PrecioPublico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="80"/>
                     <telerik:GridViewDataColumn Header="P. Distribuidor"
-												DataMemberBinding="{Binding PrecioDistribuidor}"
+												DataMemberBinding="{Binding PrecioDistribuidor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="80"/>
                     <telerik:GridViewDataColumn Header="P. Minimo"
-												DataMemberBinding="{Binding PrecioMinimo}"
+												DataMemberBinding="{Binding PrecioMinimo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="80"/>
                 </telerik:RadGridView.Columns>
                 <telerik:RadGridView.RowDetailsTemplate>

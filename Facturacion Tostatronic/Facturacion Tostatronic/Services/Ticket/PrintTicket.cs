@@ -1,4 +1,6 @@
-﻿using Facturacion_Tostatronic.Models.Products;
+﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFSale;
+using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Models.Sales;
 using RawPrint;
 using System;
@@ -90,6 +92,81 @@ namespace Facturacion_Tostatronic.Services.Ticket
             {
                 MessageBox.Show("Error Creado Ticket: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false; }
+        }
+
+        public static bool ImprimeTicketEF(CompleteSaleEF sale, List<Product> products)
+        {
+            try
+            {
+                double varTOTAL = 0;
+                double varIVA = 0;
+                NewTicket ticket = new NewTicket();
+                //Ticket ticket = new Ticket();
+                //ticket.Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                //ticket.Path = Path.Combine(ticket.Path, "Tostatronic");
+                ticket.MaxChar = 40;
+                ticket.MaxCharDescription = 15;
+                //if (!Directory.Exists(ticket.Path))
+                //    Directory.CreateDirectory(ticket.Path);
+                //ticket.FileName = $"\\{sale.IDSale}.pdf";
+                string imagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"MEGAsync\Imagenes Nuevas Pagina\NI\Ticket.png");
+                if (File.Exists(imagePath))
+                    ticket.HeaderImage = Image.FromFile(imagePath);
+                //ticket.HeaderImage = imagePath;
+                ticket.AddHeaderLine(GetCenterText("TOSTATRONIC"));
+                ticket.AddHeaderLine(GetCenterText("Venta de componentes electronicos"));
+                ticket.AddSubHeaderLine("\n");
+                ticket.AddSubHeaderLine("Folio: " + sale.idVenta);
+                ticket.AddSubHeaderLine("Le atendió: Jorge alvarado");
+                ticket.AddSubHeaderLine("Fecha y Hora: " +
+                    DateTime.Now);
+                ticket.AddSubHeaderLine("Cliente: " +
+                    sale.idClienteNavigation.CompleteName);
+                decimal subtotal=0;
+                foreach (Product a in products)
+                {
+                    //ticket.AddItem(a.SaledQuantity.ToString(), a.Name, a.DisplayPrice.ToString(), a.Subtotal.ToString());
+                    decimal p, sub;
+                    Decimal.TryParse(a.priceAtMoment, out p);
+                    Decimal.TryParse(a.SubTotal, out sub);
+                    ticket.AddItem(a.quantity.ToString(), a.name, p.ToString("$0.00"), sub.ToString("$0.00"));
+                    subtotal += sub;
+                }
+                varTOTAL = Convert.ToDouble(subtotal);
+                //subtotal = subtotal * Convert.ToDecimal(sale.impuesto);
+                varIVA = Convert.ToDouble(subtotal)*0.16;
+
+                //El metodo AddTotal requiere 2 parametros, 
+                //la descripcion del total, y el precio 
+                ticket.AddTotal("SUBTOTAL", varTOTAL.ToString("$0.00"));
+                ticket.AddTotal("IVA", varIVA.ToString("$0.00"));
+                ticket.AddTotal("TOTAL", (varTOTAL + varIVA).ToString("$0.00"));
+                ticket.AddTotal("", "");//Ponemos un total 
+                //en blanco que sirve de espacio 
+                
+                ticket.AddTotal("", "");//Ponemos un total 
+                //en blanco que sirve de espacio 
+                //El metodo AddFooterLine funciona igual que la cabecera 
+                ticket.AddFooterLine(GetCenterText("Gracias por su preferencia"));
+                ticket.AddFooterLine(GetCenterText("Tostatronic le desea un buen dia"));
+                //Generamos
+                try
+                {
+                    ticket.PrintTicket(ConfigurationManager.AppSettings.Get("PrinterName"));
+                    //ticket.PrintTi();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al imprimir: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error Creado Ticket: " + e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
         }
 
         static string GetCenterText(string text)

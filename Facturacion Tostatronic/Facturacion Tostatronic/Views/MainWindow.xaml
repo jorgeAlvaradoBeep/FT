@@ -75,6 +75,9 @@
         <DataTemplate DataType="{x:Type vmsls:SeeSalesVM}">
             <viewssl:SeeSalesUC />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmsls:SeeQuatitionsVM}">
+            <viewssl:SeeQuatitionsUC />
+        </DataTemplate>
         
         <!--Seccion de estilos-->
         <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">

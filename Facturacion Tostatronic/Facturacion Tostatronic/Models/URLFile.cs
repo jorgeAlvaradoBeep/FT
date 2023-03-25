@@ -74,9 +74,9 @@
         public static string regimenFiscal = baseURLNode + "Regimen/";
 
         //URL Para API de .net
-        //const string baseURLNET = "http://192.168.3.15:5249/api/";
+        const string baseURLNET = "http://192.168.3.15:5249/api/";
         //const string baseURLNET = "http://192.168.68.106:5249/api/";
-        const string baseURLNET = "http://143.198.173.21:5249/api/";
+        //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";
@@ -85,6 +85,7 @@
         public static string getClients = baseURLNET + "Clientes";
         public static string getClientOrders = baseURLNET + "Ventas/ClientOrdersWT/";
         public static string getDatedOrders = baseURLNET + "Ventas/SeeDatedOrder/";
+        public static string getSpecificOrder = baseURLNET + "Ventas/GetSpecificSale/";
         public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products";
@@ -104,6 +105,9 @@
         public static string getProductCodesIDNET = baseURLNET + "CodigosUniversales/GetUniversalCodes/";
         public static string addProductSatCodeNET = baseURLNET + "ProductSatCode/Create/";
         public static string getProductSatCodeNET = baseURLNET + "ProductSatCode/";
+        public static string getDatedQuotesNET = baseURLNET + "Cotizacion/SeeDatedQoute/";
+        public static string getSpecificQuoteNET = baseURLNET + "Cotizacion/GetSpecificQoute/";
+        public static string getProductsForQuote = baseURLNET + "ProductosDeCotizacion/";
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFSale;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands.SalesCommands;
 using System;
@@ -61,9 +62,9 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             }
         }
 
-		private ObservableCollection<Sale> sales;
+		private ObservableCollection<CompleteSaleEF> sales;
 
-		public ObservableCollection<Sale> Sales
+		public ObservableCollection<CompleteSaleEF> Sales
 		{
 			get { return sales; }
 			set { SetValue(ref sales, value); }
@@ -73,6 +74,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         public SelectedDateChangedSaleCommand SelectedDateChangedSaleCommand { get; set; }
         public SearchSaleSSVCommand SearchSaleSSVCommand { get; set; }
         public SeeSalePDFCommand SeeSalePDFCommand { get; set; }
+        public PrintTicketOfSalecommand PrintTicketOfSalecommand { get; set; }
         public string Error
         {
             get
@@ -121,8 +123,9 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
 			SelectedDateChangedSaleCommand = new SelectedDateChangedSaleCommand(this);
             SearchSaleSSVCommand = new SearchSaleSSVCommand(this);
             SeeSalePDFCommand = new SeeSalePDFCommand(this);
+            PrintTicketOfSalecommand = new PrintTicketOfSalecommand(this);
 
-			Sales = new ObservableCollection<Sale>();
+			Sales = new ObservableCollection<CompleteSaleEF>();
 
             SelectedDateChangedSaleCommand.Execute(null);
         }

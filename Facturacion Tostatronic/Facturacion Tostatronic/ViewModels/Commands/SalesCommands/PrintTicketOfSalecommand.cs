@@ -1,31 +1,25 @@
-﻿using Facturacion_Tostatronic.Models;
+﻿using Facturacion_Tostatronic.Models.EF_Models.EFSale;
+using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using Facturacion_Tostatronic.Models.Products;
 using Telerik.Windows.Controls.GridView;
-using Facturacion_Tostatronic.Models.CFDI;
-using Facturacion_Tostatronic.Models.Clients;
-using Newtonsoft.Json;
-using System.Security.AccessControl;
-using Facturacion_Tostatronic.Models.WareHouse;
-using Facturacion_Tostatronic.Models.EF_Models.EFSale;
+using Facturacion_Tostatronic.Services.Ticket;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
 {
-    public class SeeSalePDFCommand : ICommand
+    public class PrintTicketOfSalecommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
         public SeeSalesVM VM { get; set; }
-        public SeeSalePDFCommand(SeeSalesVM vm)
+        public PrintTicketOfSalecommand(SeeSalesVM vm)
         {
             VM = vm;
         }
@@ -40,7 +34,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             var row = parameter as GridViewRow;
             CompleteSaleEF item = (CompleteSaleEF)row.DataContext;
             VM.GettinData = true;
-            Response r = await WebService.GetData("sale_number", item.idVenta.ToString(), URLData.products) ;
+            Response r = await WebService.GetData("sale_number", item.idVenta.ToString(), URLData.products);
 
             if (!r.succes)
             {
@@ -58,16 +52,16 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                 quantity = (string)x["quantity"],
                 priceAtMoment = (string)x["priceAtMoment"],
                 satCode = (string)x["satCode"]
-            }).ToList(); 
+            }).ToList();
             decimal impuesto = Convert.ToDecimal(item.impuesto);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             path = System.IO.Path.Combine(path, "Tostatronic");
             await Task.Run(() =>
             {
-                PDFService.CreatePDF(item.idVenta.ToString(),DateTime.Now.ToShortDateString(),products,item.idClienteNavigation,impuesto);
-                PDFService.Ver($"{path}\\{item.idVenta}.pdf");
+                PrintTicket.ImprimeTicketEF(item, products);
+                //PDFService.CreatePDF(item.idVenta.ToString(), DateTime.Now.ToShortDateString(), products, item.idClienteNavigation, impuesto);
             });
-            VM.GettinData=false;
+            VM.GettinData = false;
         }
     }
 }

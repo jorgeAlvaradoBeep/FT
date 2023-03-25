@@ -690,6 +690,7 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 new NavigationViewItemModel() { Title = "Generara Venta" },
                 new NavigationViewItemModel() { Title = "Ver Ventas", VMName="SeeSalesVM" },
+                new NavigationViewItemModel() { Title = "Ver Cotizaciones", VMName="SeeQuatitionsVM" },
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -796,6 +797,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new SeeProductVM());
             ViewsList.Add(new DisscountPricesVM());
             ViewsList.Add(new SeeSalesVM());
+            ViewsList.Add(new SeeQuatitionsVM());
         }
          IPageViewModel GetView(string vmName)
         {
