@@ -84,6 +84,7 @@ namespace Facturacion_Tostatronic.ViewModels
         public ViewClientsMenuCommand ViewClientsMenuCommand { get; set; }
         public CallSucursalPriceCommand CallSucursalPriceCommand { get; set; }
         public CallSeeProductsCommand CallSeeProductsCommand { get; set; }
+        public AddNewWareHouseCommand AddNewWareHouseCommand { get; set; }
         #endregion
         #region menuPages
         private Visibility menuPageOne;
@@ -210,6 +211,7 @@ namespace Facturacion_Tostatronic.ViewModels
             GetNewPICommand = new GetNewPICommand();
             CreateFacebookListCommand = new CreateFacebookListCommand(this);
             ViewClientsMenuCommand = new ViewClientsMenuCommand(this);
+            AddNewWareHouseCommand = new AddNewWareHouseCommand();
             CallSucursalPriceCommand = new CallSucursalPriceCommand();
             CallSeeProductsCommand = new CallSeeProductsCommand();
             #endregion
@@ -771,6 +773,9 @@ namespace Facturacion_Tostatronic.ViewModels
                     break;
                 case "Lista De Productos Facebook":
                     CreateFacebookListCommand.Execute(null);
+                    break;
+                case "Agregar Almacen":
+                    AddNewWareHouseCommand.Execute(null);
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);

@@ -13,10 +13,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SubMenuCommands.WareHouseC
     public class AddNewWareHouseCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        public WareHouseMenuVM VM { get; set; }
-        public AddNewWareHouseCommand(WareHouseMenuVM vm)
+        public AddNewWareHouseCommand()
         {
-            VM = vm;
         }
 
         public bool CanExecute(object parameter)

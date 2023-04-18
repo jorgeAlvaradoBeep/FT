@@ -64,7 +64,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             path = System.IO.Path.Combine(path, "Tostatronic");
             await Task.Run(() =>
             {
-                PDFService.CreatePDF(item.idVenta.ToString(),DateTime.Now.ToShortDateString(),products,item.idClienteNavigation,impuesto);
+                PDFService.CreatePDF(item.idVenta.ToString(),DateTime.Now.ToShortDateString(),products,item.idClienteNavigation,impuesto,"Venta");
                 PDFService.Ver($"{path}\\{item.idVenta}.pdf");
             });
             VM.GettinData=false;

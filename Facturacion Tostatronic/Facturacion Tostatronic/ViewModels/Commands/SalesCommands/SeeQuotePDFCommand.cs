@@ -64,7 +64,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     auxL.Add(auxProduct);
 
                 }
-                PDFService.CreatePDF(item.idCotizacion.ToString(), DateTime.Now.ToShortDateString(), auxL, item.idClienteNavigation, impuesto);
+                PDFService.CreatePDF(item.idCotizacion.ToString(), DateTime.Now.ToShortDateString(), auxL, item.idClienteNavigation, impuesto, "Cotización");
                 PDFService.Ver($"{path}\\{item.idCotizacion}.pdf");
             });
             VM.GettinData = false;

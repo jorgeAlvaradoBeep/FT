@@ -22,7 +22,7 @@ namespace Facturacion_Tostatronic.ViewModels.Menus
 
         public WareHouseMenuVM()
         {
-            AddNewWareHouseCommand = new AddNewWareHouseCommand(this);
+            //AddNewWareHouseCommand = new AddNewWareHouseCommand(this);
             AddFornitureSpacesCommand = new AddFornitureSpacesCommand(this);
             IsBusy = false;
         }

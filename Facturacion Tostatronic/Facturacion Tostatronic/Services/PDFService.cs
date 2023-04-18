@@ -18,11 +18,11 @@ namespace Facturacion_Tostatronic.Services
 {
     public class PDFService
     {
-        public static MemoryStream CreatePDF(string folio, string fecha, List<Product> productos, EFClient cliente, decimal impuesto)
+        public static MemoryStream CreatePDF(string folio, string fecha, List<Product> productos, EFClient cliente, decimal impuesto, string tipo)
         {
             // Create a Document object
             string tv;
-            tv = "Venta";
+            tv = tipo;
 
             Document document = new Document(PageSize.LETTER, 30, 30, 30, 30);
 
