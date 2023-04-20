@@ -16,5 +16,6 @@ namespace Facturacion_Tostatronic.Models.Products
         public int Stock_quantity { get; set; }
         public List<WooCommerceProduct> Variantes { get; set; }
         public object tiered_pricing_fixed_rules { get; set; }
+        public int Parent_id { get; set; }
     }
 }

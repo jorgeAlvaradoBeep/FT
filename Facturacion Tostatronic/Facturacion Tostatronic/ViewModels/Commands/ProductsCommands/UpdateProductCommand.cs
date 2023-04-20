@@ -127,7 +127,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                     {
                                         NullValueHandling = NullValueHandling.Ignore
                                     });
-                    res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts+$"/{product.Id}", json);
+                    if(product.Parent_id!=0)
+                        res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts + $"/{product.Parent_id}/variations/{product.Id}", json);
+                    else
+                        res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts+$"/{product.Id}", json);
                     if (!res2.IsSuccessful)
                     {
                         errMSG = $"Error al actualizar el producto {VM.Product.Name} en la pagina WEB" +
