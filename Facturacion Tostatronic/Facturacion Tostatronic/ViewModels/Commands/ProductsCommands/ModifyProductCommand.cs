@@ -59,6 +59,67 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 {
                     //Vamos a actualizar los datos en la pagina
                     //Primero Validamos si el producto es variacion o simple
+
+                    //Nueva sección de actualización de producto en la pagína.
+                    List<Fields> fields = new List<Fields>();
+                    Fields nf = new Fields()
+                    {
+                        FieldName = "sku",
+                        FieldValue = cC.Codigo
+                    };
+                    fields.Add(nf);
+                    var res2 = await WebService.GetSingleDataWooCommercer(URLData.wcProducts, fields);
+                    if (!res2.IsSuccessful)
+                    {
+                        MessageBox.Show($"Error al traer el producto {cC.Nombre} de la pagina WEB" +
+                            $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        VM.GettingData = false;
+                        return;
+                    }
+                    else
+                    {
+
+                        List<WooCommerceProduct> aux = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString());
+                        if (aux == null)
+                        {
+                            MessageBox.Show($"Error al traer el producto {cC.Nombre} de la pagina WEB" +
+                            $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            VM.GettingData = false;
+                            return;
+                        }
+                        if (aux.Count == 0)
+                        {
+                            MessageBox.Show($"Error al traer el producto {cC.Nombre} de la pagina WEB" +
+                            $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            VM.GettingData = false;
+                            return;
+                        }
+                        WooCommerceProduct product = aux[0];
+                        WooCommerceUpdateSimple updatedProduct = new WooCommerceUpdateSimple();
+                        updatedProduct.regular_price = cC.PrecioPublico.ToString();
+                        updatedProduct.stock_quantity = (int)cC.Existencia;
+                        string json = JsonConvert.SerializeObject(updatedProduct,
+                                    Newtonsoft.Json.Formatting.None,
+                                    new JsonSerializerSettings
+                                    {
+                                        NullValueHandling = NullValueHandling.Ignore
+                                    });
+                        if (product.Parent_id != 0)
+                            res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts + $"/{product.Parent_id}/variations/{product.Id}", json);
+                        else
+                            res2 = await WebService.ModifyDataWooCommercer(URLData.wcProducts + $"/{product.Id}", json);
+                        if (!res2.IsSuccessful)
+                        {
+                            MessageBox.Show($"Error al actualizar el producto {cC.Nombre} en la pagina WEB" +
+                                $"{Environment.NewLine}Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Prodcuto Actualizado con exito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+
+                    /*
                     res = await WebService.GetDataNode(URLData.getProductTypeNET, cC.Codigo);
                     if (!res.succes)
                     {
@@ -130,7 +191,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         }
                         
                     }
-
+                    */
                     VM.GettingData = false;
                     
                 }
