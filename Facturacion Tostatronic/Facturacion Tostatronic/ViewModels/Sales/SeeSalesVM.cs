@@ -70,11 +70,44 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
 			set { SetValue(ref sales, value); }
 		}
 
+        private List<Product> productsOfSale;
+
+        public List<Product> ProductsOfSale
+        {
+            get { return productsOfSale; }
+            set { SetValue(ref productsOfSale, value); }
+        }
+
+        private float subtotal;
+
+        public float SubTotal
+        {
+            get { return subtotal; }
+            set { SetValue(ref subtotal, value); }
+        }
+
+        private float iva;
+
+        public float Iva
+        {
+            get { return iva; }
+            set { SetValue(ref iva, value); }
+        }
+
+        private float total;
+
+        public float Total
+        {
+            get { return total; }
+            set { SetValue(ref total, value); }
+        }
+
         //Region de comandos
         public SelectedDateChangedSaleCommand SelectedDateChangedSaleCommand { get; set; }
         public SearchSaleSSVCommand SearchSaleSSVCommand { get; set; }
         public SeeSalePDFCommand SeeSalePDFCommand { get; set; }
         public PrintTicketOfSalecommand PrintTicketOfSalecommand { get; set; }
+        public SaleSelectedSaleCommand SaleSelectedSaleCommand { get; set; }
         public string Error
         {
             get
@@ -118,12 +151,14 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
 		{
 			GettinData = false;
             SelectedDate = DateTime.Now;
+            ProductsOfSale = new List<Product>();
 
-			//Region de declaraci[on de comandos
-			SelectedDateChangedSaleCommand = new SelectedDateChangedSaleCommand(this);
+            //Region de declaraci[on de comandos
+            SelectedDateChangedSaleCommand = new SelectedDateChangedSaleCommand(this);
             SearchSaleSSVCommand = new SearchSaleSSVCommand(this);
             SeeSalePDFCommand = new SeeSalePDFCommand(this);
             PrintTicketOfSalecommand = new PrintTicketOfSalecommand(this);
+            SaleSelectedSaleCommand = new SaleSelectedSaleCommand(this);
 
 			Sales = new ObservableCollection<CompleteSaleEF>();
 

@@ -50,19 +50,29 @@
                                                 Width="255"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
 												DataMemberBinding="{Binding Existence}"
-                                                Width="80"/>
+                                                Width="120"/>
                     <telerik:GridViewDataColumn Header="P. Compra"
 												DataMemberBinding="{Binding BuyPrice}"
-                                                Width="80"/>
+                                                Width="120"/>
                     <telerik:GridViewDataColumn Header="P. Publico"
 												DataMemberBinding="{Binding PublicPrice}"
-                                                Width="80"/>
+                                                Width="120"/>
                     <telerik:GridViewDataColumn Header="P. Distribuidor"
 												DataMemberBinding="{Binding DistributorPrice}"
-                                                Width="80"/>
+                                                Width="120"/>
                     <telerik:GridViewDataColumn Header="P. Minimo"
 												DataMemberBinding="{Binding MinimumQuantity}"
-                                                Width="80"/>
+                                                Width="120"/>
+                    <telerik:GridViewColumn     Header="Guardar"
+											Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Delete"
+                                                    Command="{Binding SaveProductInfoCommand, Source={StaticResource seeProductVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
                 <telerik:RadGridView.RowDetailsTemplate>
                     <DataTemplate>

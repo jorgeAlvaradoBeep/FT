@@ -53,19 +53,29 @@
                                                 Width="555"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
 												DataMemberBinding="{Binding Existencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="80"/>
+                                                Width="100"/>
                     <telerik:GridViewDataColumn Header="P. Compra"
-												DataMemberBinding="{Binding PrecioCompra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="80"/>
+												DataMemberBinding="{Binding PrecioCompra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}'}"
+                                                Width="100"/>
                     <telerik:GridViewDataColumn Header="P. Publico"
-												DataMemberBinding="{Binding PrecioPublico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="80"/>
+												DataMemberBinding="{Binding PrecioPublico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}'}"
+                                                Width="100"/>
                     <telerik:GridViewDataColumn Header="P. Distribuidor"
-												DataMemberBinding="{Binding PrecioDistribuidor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="80"/>
+												DataMemberBinding="{Binding PrecioDistribuidor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}'}"
+                                                Width="100"/>
                     <telerik:GridViewDataColumn Header="P. Minimo"
-												DataMemberBinding="{Binding PrecioMinimo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="80"/>
+												DataMemberBinding="{Binding PrecioMinimo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:C}'}"
+                                                Width="100"/>
+                    <telerik:GridViewColumn     Header="Guardar"
+											    Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Guardar"
+                                                    Command="{Binding SaveProductInfoCommand, Source={StaticResource seeProductVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
                 <telerik:RadGridView.RowDetailsTemplate>
                     <DataTemplate>
