@@ -26,7 +26,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -54,36 +58,43 @@
                     </i:Interaction.Triggers>
                 </DatePicker>
             </StackPanel>
-<telerik:RadGridView    x:Name="RadGridView2" 
-                        GroupRenderMode="Flat"
-                        ItemsSource="{Binding Sales}"
-                        VerticalAlignment="Top"
-                        RowIndicatorVisibility="Collapsed"
-                        AutoGenerateColumns="False"
-                        CanUserFreezeColumns="False"
-                        BorderThickness="0"
-                        CanUserResizeColumns="True"
-                        ShowGroupPanel="False"
-                        BorderBrush="{x:Null}"
-                        Margin="10"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="5"
-                        Grid.Row="1"
-                        Grid.RowSpan="3"
-                        IsReadOnly="True">
+            <telerik:RadGridView    x:Name="RadGridView2" 
+                                    GroupRenderMode="Flat"
+                                    ItemsSource="{Binding Sales}"
+                                    VerticalAlignment="Top"
+                                    RowIndicatorVisibility="Collapsed"
+                                    AutoGenerateColumns="False"
+                                    CanUserFreezeColumns="False"
+                                    BorderThickness="0"
+                                    CanUserResizeColumns="True"
+                                    ShowGroupPanel="False"
+                                    BorderBrush="{x:Null}"
+                                    Margin="10"
+                                    Grid.Column="3"
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="6"
+                                    IsReadOnly="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SaleSelectedSaleCommand}" CommandParameter="{Binding ElementName=RadGridView2, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn Header="Folio"
                                      DataMemberBinding="{Binding idVenta}" 
-                                                Width="150"/>
-                    <telerik:GridViewDataColumn Header="ID Cliente"
+                                                Width="60"/>
+                    <telerik:GridViewDataColumn Header="RFC"
                                      DataMemberBinding="{Binding idClienteNavigation.rfc}"
-                                                Width="150"/>
+                                                Width="120"/>
                     <telerik:GridViewDataColumn Header="Nombre o Razon Social"
-                                     DataMemberBinding="{Binding idClienteNavigation.CompleteName}"
-                                                Width="450"/>
+                                                DataMemberBinding="{Binding idClienteNavigation.CompleteName}"
+                                                Width="200"
+                                                TextWrapping="Wrap"/>
                     <telerik:GridViewDataColumn Header="Fecha"
                                                 DataMemberBinding="{Binding fechaDeVenta}"
-                                                Width="150"/>
+                                                Width="100"
+                                                TextWrapping="Wrap"/>
                     <telerik:GridViewColumn Header="Re-Imprimir"
                                             Width="100">
                         <telerik:GridViewColumn.CellTemplate>
@@ -106,6 +117,82 @@
                     </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
+            <telerik:RadGridView  x:Name="RDGVProducts" 
+                                  GroupRenderMode="Flat"
+							      ItemsSource="{Binding ProductsOfSale}"
+                                  VerticalAlignment="Top"
+							      RowIndicatorVisibility="Collapsed"
+							      AutoGenerateColumns="False"
+							      CanUserFreezeColumns="False"
+							      BorderThickness="0"
+							      CanUserResizeColumns="False"
+							      ShowGroupPanel="False"
+							      BorderBrush="{x:Null}"
+							      Margin="10"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  Grid.Row="1"
+                                  Grid.RowSpan="6"
+                                  IsReadOnly="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Codigo"
+											    DataMemberBinding="{Binding idProduct}" 
+                                                Width="175"/>
+                    <telerik:GridViewDataColumn Header="Nombre"
+											    DataMemberBinding="{Binding name}"
+                                                Width="200"
+                                                TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn Header="Cantidad"
+                                                DataMemberBinding="{Binding quantity}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="PU"
+                                                DataMemberBinding="{Binding priceAtMoment}"
+												DataFormatString="{}{0:c2}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Sub Total"
+                                                DataMemberBinding="{Binding SubTotal}"
+                                                UniqueName="TotalValue"
+												DataFormatString="{}{0:c2}"
+                                                Width="170"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Label Grid.Row="7"
+                   Grid.Column="0"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=SubTotal, StringFormat={}{0:C}}"
+                           VerticalAlignment="Center"/>
+            </Label>
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=Iva, StringFormat={}{0:C}}"
+                           VerticalAlignment="Center"/>
+            </Label>
+            <Label Grid.Row="7"
+                   Grid.Column="2"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=Total, StringFormat={}{0:C}}"
+                           VerticalAlignment="Center"/>
+            </Label>
+            <telerik:RadButton Background="Transparent" 
+                               Margin="2"
+                               Command="{Binding }"
+                               Grid.Row="7"
+                               Grid.Column="3"
+                               Height="45"
+                               Width="45"
+                               HorizontalAlignment="Center">
+                <telerik:RadButton.Content>
+                    <Image Source="/Images/print.png" 
+                           Stretch="Fill" />
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
         </Grid>
     </telerik:RadBusyIndicator>
 </UserControl>

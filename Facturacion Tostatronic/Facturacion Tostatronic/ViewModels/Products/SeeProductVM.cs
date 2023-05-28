@@ -64,6 +64,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
         }
 
         public ModifyProductCommand ModifyProductCommand { get; set; }
+        public SaveProductInfoCommand SaveProductInfoCommand { get; set; }
 
         public SeeProductVM()
         {
@@ -71,6 +72,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             Products = new ObservableCollection<UpdateProductM>();
             GettingData = true;
             ModifyProductCommand = new ModifyProductCommand(this);
+            SaveProductInfoCommand = new SaveProductInfoCommand(this);
             Task.Run(() =>
             {
                 Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getProductsNet);

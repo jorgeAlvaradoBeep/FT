@@ -424,6 +424,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\GetProductsWNImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\ModifyProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SaveNewImageCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\SaveProductInfoCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductForSucursalPrice.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SearchProductsForDisscountPricecommand.cs" />
@@ -440,6 +441,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateQuantitiesViewCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateSucursalPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\PrintTicketOfSalecommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\SaleSelectedSaleCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SearchQuoteSSVCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SearchSaleSSVCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SeeQuotePDFCommand.cs" />
