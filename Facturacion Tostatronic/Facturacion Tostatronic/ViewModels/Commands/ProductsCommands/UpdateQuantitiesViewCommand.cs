@@ -40,6 +40,13 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
         public async void Execute(object parameter)
         {
+            MessageBoxResult result = MessageBox.Show("Estás por actualizar precios y cantidades, ¿Estás seguro?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.No)
+            {
+                MessageBox.Show("Operación Cancelada por el Usuario", "Abortado", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             VM.GettingData = true;
             DispatcherHelper.CheckBeginInvokeOnUI(
                 () =>
@@ -81,7 +88,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     VM.ProgressVal = $"Pagína #{pageNumber1-1}{Environment.NewLine}" +
                     $"Productos Cargados: {productsTemp.Count}";
                 });
-                var res2 =  await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity", pageNumber1.ToString());
+                var res2 =  await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity,parent_id", pageNumber1.ToString());
                 if (!res2.IsSuccessful)
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(
@@ -121,6 +128,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             });
             string resultText = string.Empty;
             List<Update> lisUpdate = new List<Update>();
+            List<WooCommerceProduct> lisVariationsFathers = new List<WooCommerceProduct>();
             if (productsTemp.Count > 0)
             {
                 foreach (WooCommerceProduct p in productsTemp)
@@ -132,18 +140,25 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
                             if (obj != null)
                             {
-                                //p.Sale_price = obj.DistributorPrice.ToString();
-                                p.Sale_price = "";
-                                lisUpdate.Add(new Update()
+                                if(obj.Existence!= p.Stock_quantity || obj.PublicPrice!=float.Parse(p.Regular_price))
                                 {
-                                    id = p.Id,
-                                    sku = p.Sku,
-                                    sale_price = p.Sale_price,
-                                    regular_price = p.Regular_price,
-                                    stock_quantity = p.Stock_quantity
-                                });
+                                    //p.Sale_price = obj.DistributorPrice.ToString();
+                                    p.Sale_price = "";
+                                    lisUpdate.Add(new Update()
+                                    {
+                                        id = p.Id,
+                                        sku = p.Sku,
+                                        sale_price = p.Sale_price,
+                                        regular_price = p.Regular_price,
+                                        stock_quantity = p.Stock_quantity
+                                    });
+                                }
+                                
+                                
                             }
                         }
+                        else
+                            lisVariationsFathers.Add(p);
                     }
                 }
             }
@@ -192,6 +207,119 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 cont++;
             }
 
+            //Seccion de variantes
+
+            //Aqu[i obtenemos las listas de las variantes
+            DispatcherHelper.CheckBeginInvokeOnUI(
+            () =>
+            {
+                // Dispatch back to the main thread
+                VM.ProgressVal = $"Productos individuales Actualizados{Environment.NewLine}" +
+                $"Obteniendo {lisVariationsFathers.Count} productos de variantes";
+            });
+            endWhile1 = false;
+            pageNumber1 = 1;
+            List<List<WooCommerceProduct>> variationProducts = new List<List<WooCommerceProduct>>();
+            List<UpdateVaration> listToUpdateVariantes = new List<UpdateVaration>();
+            DispatcherHelper.CheckBeginInvokeOnUI(
+            () =>
+            {
+                // Dispatch back to the main thread
+                VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}" +
+                $"Extrayendo datos de: {lisVariationsFathers[pageNumber1 - 1].Name}";
+            });
+            int errorCounter = 0;
+            while (!endWhile1)
+            {
+                var res2 = await WebService.GetSingleDataWooCommercer($"{URLData.wcProducts}/{lisVariationsFathers[pageNumber1 - 1].Id}/variations", new List <Fields>());
+                if (!res2.IsSuccessful)
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Pagína #{pageNumber1 - 1}{Environment.NewLine}" +
+                        $"Productos Cargados: {productsTemp.Count}" +
+                        $"Error en la descarga de los productos de la Pagína{Environment.NewLine}" +
+                        $"Motivos: {res2.ErrorMessage}";
+                    });
+                }
+                else
+                {
+                    List<WooCommerceProduct> products2 = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString(), settings);
+                    if(products2!=null)
+                    {
+                        if(products2.Count>0)
+                        {
+                            //variationProducts.Add(products2);
+                            //Aqui actualkizamos las variantes
+                            DispatcherHelper.CheckBeginInvokeOnUI(
+                            () =>
+                            {
+                                // Dispatch back to the main thread
+                                VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}" +
+                                $"Extrayendo datos de: {lisVariationsFathers[pageNumber1 - 1].Name}" +
+                                $"Productos a actualizar: {products2.Count}";
+                            });
+                            foreach (WooCommerceProduct product in products2)
+                            {
+                                listToUpdateVariantes.Add(new UpdateVaration()
+                                {
+                                    Sku = product.Sku,
+                                    Id = product.Id,
+                                    Regular_price = product.Regular_price,
+                                    Stock_quantity = product.Stock_quantity,
+                                    Parent_id = product.Parent_id
+                                    
+                                });
+                            }
+                            DispatcherHelper.CheckBeginInvokeOnUI(
+                            () =>
+                            {
+                                // Dispatch back to the main thread
+                                VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
+                                $"Datos extraidos de: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
+                                $"Actualizando {products2.Count} productos.";
+                            });
+                            if ( !await UpdateProductVariants(listToUpdateVariantes, pageNumber1 - 1, lisVariationsFathers[pageNumber1 - 1].Id))
+                            {
+                                pageNumber1++;
+                                if (pageNumber1 >= lisVariationsFathers.Count)
+                                    endWhile1 = true;
+                            }
+                            else
+                            {
+                                DispatcherHelper.CheckBeginInvokeOnUI(
+                                () =>
+                                {
+                                    // Dispatch back to the main thread
+                                    VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
+                                    $"Error al Actualizar a: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
+                                    $"Reintentando...";
+                                });
+                                if(errorCounter>=3)
+                                {
+                                    errorCounter = 0;
+                                    DispatcherHelper.CheckBeginInvokeOnUI(
+                                    () =>
+                                    {
+                                        // Dispatch back to the main thread
+                                        VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
+                                        $"Error al Actualizar a: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
+                                        $"Limite excedido de intentos...";
+                                    });
+                                    pageNumber1++;
+                                    if (pageNumber1 >= lisVariationsFathers.Count)
+                                        endWhile1 = true;
+                                }
+                            }
+                            listToUpdateVariantes.Clear();
+                        }
+                    }
+                }
+
+            }
+            //Finaliza la seccion de variantes
             VM.ProgressVal = string.Empty;
             VM.GettingData = false;
             if (error)
@@ -350,10 +478,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             */
         }
 
-        private async Task<bool> UpdateProductVariants(List<Update> variantsToBeUpdated, int cont, int idProduct)
+        private async Task<bool> UpdateProductVariants(List<UpdateVaration> variantsToBeUpdated, int cont, int idProduct)
         {
             bool error;
-            CRUDActionClass crud = new CRUDActionClass() { create = new List<Create>(), delete = new List<Delete>(), update = variantsToBeUpdated };
+            CRUDActionVarationsClass crud = new CRUDActionVarationsClass() { create = new List<Create>(), delete = new List<Delete>(), update = variantsToBeUpdated };
             string json = JsonConvert.SerializeObject(crud, Newtonsoft.Json.Formatting.None,
                             new JsonSerializerSettings
                             {
@@ -362,7 +490,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             var res2 = await WebService.InsertDataWooCommercer($"{URLData.wcProducts}/{idProduct}/variations/batch", json);
             if (!res2.IsSuccessful)
             {
-                MessageBox.Show($"Error en la lista #{cont}{Environment.NewLine}Error: " + res2.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                DispatcherHelper.CheckBeginInvokeOnUI(
+                    () =>
+                    {
+                        // Dispatch back to the main thread
+                        VM.ProgressVal = $"Error en la lista #{cont}{Environment.NewLine}Error: {res2.ErrorMessage}";
+                    });
                 error = true;
             }
             else

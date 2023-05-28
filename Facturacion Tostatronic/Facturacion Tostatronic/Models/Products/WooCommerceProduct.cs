@@ -8,6 +8,10 @@ namespace Facturacion_Tostatronic.Models.Products
 {
     public class WooCommerceProduct
     {
+        public WooCommerceProduct()
+        {
+                
+        }
         public string Sku { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }

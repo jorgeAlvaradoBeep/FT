@@ -333,9 +333,11 @@
     <Compile Include="Models\WareHouse\WareHouseM.cs" />
     <Compile Include="Models\WooCommerceModels\Create.cs" />
     <Compile Include="Models\WooCommerceModels\CRUDActionClass.cs" />
+    <Compile Include="Models\WooCommerceModels\CRUDActionVarationsClass.cs" />
     <Compile Include="Models\WooCommerceModels\Delete.cs" />
     <Compile Include="Models\WooCommerceModels\ProductBaseClase.cs" />
     <Compile Include="Models\WooCommerceModels\Update.cs" />
+    <Compile Include="Models\WooCommerceModels\UpdateVaration.cs" />
     <Compile Include="Services\Facturacion.cs" />
     <Compile Include="Services\Facturacion\CFDI4.cs" />
     <Compile Include="Services\Facturacion\opensslkey.cs" />
