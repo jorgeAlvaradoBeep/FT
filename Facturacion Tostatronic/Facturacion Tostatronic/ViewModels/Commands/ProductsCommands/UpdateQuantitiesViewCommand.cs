@@ -88,7 +88,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     VM.ProgressVal = $"Pagína #{pageNumber1-1}{Environment.NewLine}" +
                     $"Productos Cargados: {productsTemp.Count}";
                 });
-                var res2 =  await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity,parent_id", pageNumber1.ToString());
+                var res2 =  await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity", pageNumber1.ToString());
                 if (!res2.IsSuccessful)
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(
@@ -140,10 +140,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
                             if (obj != null)
                             {
-                                if(obj.Existence!= p.Stock_quantity || obj.PublicPrice!=float.Parse(p.Regular_price))
+                                if(obj.Existence!= p.Stock_quantity)
                                 {
                                     //p.Sale_price = obj.DistributorPrice.ToString();
                                     p.Sale_price = "";
+                                    p.Stock_quantity = (int)obj.Existence;
+                                    p.Regular_price = obj.PublicPrice.ToString();
                                     lisUpdate.Add(new Update()
                                     {
                                         id = p.Id,
@@ -188,8 +190,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 });
-                var res2 = await
-               WebService.InsertDataWooCommercer(URLData.wcBatchProduct, json);
+                var res2 = await WebService.InsertDataWooCommercer(URLData.wcBatchProduct, json);
                 if (!res2.IsSuccessful)
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(
@@ -220,7 +221,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             endWhile1 = false;
             pageNumber1 = 1;
             List<List<WooCommerceProduct>> variationProducts = new List<List<WooCommerceProduct>>();
-            List<UpdateVaration> listToUpdateVariantes = new List<UpdateVaration>();
+            List<Update> listToUpdateVariantes = new List<Update>();
             DispatcherHelper.CheckBeginInvokeOnUI(
             () =>
             {
@@ -263,15 +264,28 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             });
                             foreach (WooCommerceProduct product in products2)
                             {
-                                listToUpdateVariantes.Add(new UpdateVaration()
+                                var obj = aux.FirstOrDefault(x => x.Code == product.Sku);
+                                if (obj != null)
                                 {
-                                    Sku = product.Sku,
-                                    Id = product.Id,
-                                    Regular_price = product.Regular_price,
-                                    Stock_quantity = product.Stock_quantity,
-                                    Parent_id = product.Parent_id
-                                    
-                                });
+                                    if (obj.Existence != product.Stock_quantity)
+                                    {
+                                        product.Sale_price = obj.DistributorPrice.ToString();
+                                        //product.Sale_price = "";
+                                        product.Stock_quantity = (int)obj.Existence;
+                                        product.Regular_price = obj.PublicPrice.ToString();
+                                        listToUpdateVariantes.Add(new Update()
+                                        {
+                                            id = product.Id,
+                                            sku = product.Sku,
+                                            sale_price = "",
+                                            regular_price = product.Regular_price,
+                                            stock_quantity = product.Stock_quantity
+                                        });
+
+
+                                    }
+                                }
+                                
                             }
                             DispatcherHelper.CheckBeginInvokeOnUI(
                             () =>
@@ -478,7 +492,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             */
         }
 
-        private async Task<bool> UpdateProductVariants(List<UpdateVaration> variantsToBeUpdated, int cont, int idProduct)
+        private async Task<bool> UpdateProductVariants(List<Update> variantsToBeUpdated, int cont, int idProduct)
         {
             bool error;
             CRUDActionVarationsClass crud = new CRUDActionVarationsClass() { create = new List<Create>(), delete = new List<Delete>(), update = variantsToBeUpdated };

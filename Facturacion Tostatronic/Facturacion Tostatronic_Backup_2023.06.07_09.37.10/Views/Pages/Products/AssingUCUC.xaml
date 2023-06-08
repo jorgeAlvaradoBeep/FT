@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Products.AssingUCUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             Background="White">
+    <UserControl.Resources>
+        <vm:AssingUCVM x:Key="assingUCVM"/>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource assingUCVM}"
+                              IsBusy="{Binding GettingData}">
+        <Grid DataContext="{StaticResource assingUCVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="5,5,0,0" Height="46">
+                <TextBlock Text="Asignar Codigo Universal" FontSize="38px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </materialDesign:ColorZone>
+            <Label Content="{Binding SelectedProduct.codigo}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+            <Label Content="{Binding SelectedProduct.nombre}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+            <telerik:RadWatermarkTextBox WatermarkContent="UPC"
+                                         Height="30"
+                                         Grid.Row="3"
+                                         Margin="8"
+                                         Text="{Binding ProductToModify.Upc}"/>
+            <telerik:RadWatermarkTextBox WatermarkContent="Codigo WooCommerce"
+                                         Height="30"
+                                         Grid.Row="4"
+                                         Margin="8"
+                                         Text="{Binding ProductToModify.Prestashop}"/>
+            <telerik:RadWatermarkTextBox WatermarkContent="Producto Padre?"
+                                         Height="30"
+                                         Grid.Row="5"
+                                         Margin="8"
+                                         Text="{Binding ProductToModify.InternationalSku}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
+                
+                <telerik:RadWatermarkTextBox Name="txtIDProduct"
+                                             WatermarkContent="Buscar Producto"
+                                             Text="{Binding ProductID,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Width="235">
+                    <telerik:RadWatermarkTextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding SearchProductCommand}"/>
+                    </telerik:RadWatermarkTextBox.InputBindings>
+                </telerik:RadWatermarkTextBox>
+                <Button Height="30" Width="70" Margin="5px" Command="{Binding SearchProductCommand}">
+                    <StackPanel>
+                        <Image Source="/Images/search.png" Width="20" Height="20"/>
+                    </StackPanel>
+                    <Button.CommandParameter>
+                        <Binding Path="(Validation.HasError)"  ElementName="txtIDSale"/>
+                    </Button.CommandParameter>
+                </Button>
+            </StackPanel>
+            <ListView x:Name="lstProducts" 
+                      Margin="5,-35,5,5" 
+                      ItemsSource="{Binding Products}" 
+                      SelectedItem="{Binding SelectedProduct, Mode=TwoWay}" 
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+              ScrollViewer.CanContentScroll="False" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="5">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SelectedProductCommand}" CommandParameter="{Binding ElementName=lstProducts, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="200" DisplayMemberBinding="{Binding codigo}" />
+                        <GridViewColumn Header="Nombre" Width="500" DisplayMemberBinding="{Binding nombre}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Height="50" Grid.Column="1" Grid.Row="7" Grid.RowSpan="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding SaveUPCCommand}" Visibility="{Binding MenuPageOne}">
+                <StackPanel>
+                    <Image Source="/Images/save.png" Width="20" Height="20"/>
+                    <TextBlock Text="Guardar" FontSize="10"/>
+                </StackPanel>
+            </Button>
+            <Button Height="50" Grid.Column="0" Grid.Row="7" Grid.RowSpan="2" HorizontalAlignment="Stretch" Margin="5px" Command="{Binding CancelUPCCommand}" Visibility="{Binding MenuPageOne}">
+                <StackPanel>
+                    <Image Source="/Images/cancel.png" Width="20" Height="20"/>
+                    <TextBlock Text="Cancelar" FontSize="10"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>
