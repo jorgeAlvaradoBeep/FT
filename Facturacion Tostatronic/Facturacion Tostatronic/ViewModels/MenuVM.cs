@@ -265,6 +265,7 @@ namespace Facturacion_Tostatronic.ViewModels
         public async void GenerateProductList()
         {
             int progress = 0;
+
             ProgressWindow pw = new ProgressWindow();
             pw.Show();
             Response res = await WebService.GetDataForInvoice(URLData.product_list);
@@ -275,6 +276,15 @@ namespace Facturacion_Tostatronic.ViewModels
                 return;
             }
             List<ProductList> products = JsonConvert.DeserializeObject<List<ProductList>>(res.data.ToString());
+            //MessageBoxResult result = MessageBox.Show("¿Desea agregar los productos con existencia 0?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            //if (result == MessageBoxResult.No)
+            //{
+            //    foreach(ProductList product in products)
+            //    {
+            //        if(product.ex)
+            //    }
+            //}
             bool finish = await Task.Run(() => GenerateProductListExcel(products, ref progress, pw));
             pw.Close();
 
@@ -693,6 +703,7 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Generara Venta" },
                 new NavigationViewItemModel() { Title = "Ver Ventas", VMName="SeeSalesVM" },
                 new NavigationViewItemModel() { Title = "Ver Cotizaciones", VMName="SeeQuatitionsVM" },
+                new NavigationViewItemModel() { Title = "Nueva Orden" },
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -776,6 +787,9 @@ namespace Facturacion_Tostatronic.ViewModels
                     break;
                 case "Agregar Almacen":
                     AddNewWareHouseCommand.Execute(null);
+                    break;
+                case "Nueva Orden":
+                    GetNewPICommand.Execute(null);
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);

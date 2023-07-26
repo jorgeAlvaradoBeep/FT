@@ -5,8 +5,10 @@ using System.Linq;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace XSDToXML.Utils
 {
@@ -35,7 +37,7 @@ namespace XSDToXML.Utils
             }
             catch (NullReferenceException ex)
             {
-                throw new NullReferenceException("Clave privada incorrecta, revisa que la clave que escribes corresponde a los sellos digitales cargados");
+                MessageBox.Show("Clave privada incorrecta, revisa que la clave que escribes corresponde a los sellos digitales cargados","Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             string sellodigital = Convert.ToBase64String(bytesFirmados);
             return sellodigital;

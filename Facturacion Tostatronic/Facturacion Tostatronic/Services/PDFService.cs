@@ -280,7 +280,7 @@ namespace Facturacion_Tostatronic.Services
             totalVV.HorizontalAlignment = 1;
             itemTable.AddCell(totalVV);
 
-            PdfPCell cell = new PdfPCell(new Phrase("***Garantia d 1 mes despues de efectuada la venta***", bodyFont));
+            PdfPCell cell = new PdfPCell(new Phrase("***Garantia de 1 més despúes de efectuada la venta***", bodyFont));
             cell.Colspan = 4;
             cell.HorizontalAlignment = 1;
             itemTable.AddCell(cell);
