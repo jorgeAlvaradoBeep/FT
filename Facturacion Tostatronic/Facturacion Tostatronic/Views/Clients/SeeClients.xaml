@@ -34,7 +34,7 @@
 								 RowStyleSelector="{StaticResource rowStyleSelector}"
 								 Margin="0" GroupRenderMode="Flat"
 								 RowIndicatorVisibility="Collapsed"
-								 IsReadOnly="True"
+								 IsReadOnly="False"
 								 ShowColumnSortIndexes="True"
 								 AutoGenerateColumns="False"
 								 CanUserFreezeColumns="False"
@@ -51,7 +51,8 @@
                                                 Width="300"/>
                     <telerik:GridViewDataColumn Header="RFC"
 												DataMemberBinding="{Binding Rfc}"
-                                                Width="150"/>
+                                                Width="150"
+                                                IsEnabled="True"/>
                     <telerik:GridViewDataColumn Header="email"
 												DataMemberBinding="{Binding CorreoElectronico}"
                                                 Width="150"/>

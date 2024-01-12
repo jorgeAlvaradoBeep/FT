@@ -76,10 +76,19 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                     value.Image = Path.Combine(imagePath, value.Image);
                     if (File.Exists(value.Image))
                     {
-                        //File.Copy(value.Image, Path.Combine(imagePathBase + @"\Tostatronic\temp.png"),true);
-                        oldImage = CreateSource(value.Image);
-                        //ImageSource = Path.Combine(imagePathBase + @"\Tostatronic\temp.png");
-                        ImageSource = oldImage;
+                        try 
+                        {
+                            //File.Copy(value.Image, Path.Combine(imagePathBase + @"\Tostatronic\temp.png"), true);
+                            //string auxImage = Path.Combine(imagePathBase + @"\Tostatronic\temp.png");
+                            oldImage = CreateSource(value.Image);
+                            ImageSource = oldImage;
+                        }
+                        catch(Exception ex) 
+                        {
+                            MessageBox.Show($"Error al copiar imagen.{Environment.NewLine}" +
+                                $"Motivo: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        
                     }
                     else
                     {

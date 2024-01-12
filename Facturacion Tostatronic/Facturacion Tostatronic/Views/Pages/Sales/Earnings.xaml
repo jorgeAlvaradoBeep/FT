@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Sales.Earnings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Sales" 
+      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Background="White">
+    <UserControl.Resources>
+        <vm:EarningsVM x:Key="earningVM"/>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource earningVM}"
+                              IsBusy="{Binding GettinData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        Grid.ColumnSpan="5"
+                        Orientation="Vertical">
+                <DatePicker x:Name="dpEventDate" 
+                            SelectedDate="{Binding SelectedDate, Mode=TwoWay}" 
+                            Height="35" 
+                            Margin="10">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedDateChanged">
+                            <i:InvokeCommandAction Command="{Binding DaySalesSelectedDateCommand}"
+                                                   CommandParameter="{Binding ElementName=dpEventDate, Path=SelectedDate}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
+            </StackPanel>
+            <telerik:RadGridView    x:Name="RadGridView2" 
+                                    GroupRenderMode="Flat"
+                                    ItemsSource="{Binding Sales}"
+                                    VerticalAlignment="Top"
+                                    RowIndicatorVisibility="Collapsed"
+                                    AutoGenerateColumns="False"
+                                    CanUserFreezeColumns="False"
+                                    BorderThickness="0"
+                                    CanUserResizeColumns="True"
+                                    ShowGroupPanel="False"
+                                    BorderBrush="{x:Null}"
+                                    Margin="10"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="3"
+                                    IsReadOnly="False">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Folio"
+                                     DataMemberBinding="{Binding idVenta}" 
+                                                Width="150"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="ID Cliente"
+                                     DataMemberBinding="{Binding idClienteNavigation.rfc}"
+                                                Width="150"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="Nombre o Razon Social"
+                                     DataMemberBinding="{Binding idClienteNavigation.CompleteName}"
+                                                Width="250"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="Total Ingreso"
+                                                DataMemberBinding="{Binding total, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="Total Costo"
+                                                DataMemberBinding="{Binding Costototal, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="IVA Venta"
+                                                DataMemberBinding="{Binding iva, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="IVA Pagada"
+                                                DataMemberBinding="{Binding ivaPagada, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="IVA a Pagar"
+                                                DataMemberBinding="{Binding ivaAPagar, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="IVA Retenido"
+                                                DataMemberBinding="{Binding IVARetenido, Mode=TwoWay, StringFormat={}{0:C}}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="IVA Final"
+                                                DataMemberBinding="{Binding IVAFinal, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="ISR Retenido"
+                                                DataMemberBinding="{Binding ISRRetenido, Mode=TwoWay, StringFormat={}{0:C}}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Envio"
+                                                DataMemberBinding="{Binding Envio, Mode=TwoWay, StringFormat={}{0:C}}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Comisión"
+                                                DataMemberBinding="{Binding Comision, Mode=TwoWay, StringFormat={}{0:C}}"
+                                                Width="100"/>
+                    <telerik:GridViewDataColumn Header="Ganancia Total"
+                                                DataMemberBinding="{Binding Ganancia, StringFormat={}{0:C}}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn Header="% Ganancia"
+                                                DataMemberBinding="{Binding PGanancia, StringFormat={}{0}%}"
+                                                Width="100"
+                                                IsReadOnly="True"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Label Content="Total Ganancias: "
+                   Grid.Row="4"
+                   Grid.Column="3"
+                   FontSize="24"/>
+            <Label Content="{Binding TotalEarnings, StringFormat={}{0:C}}"
+                   Grid.Row="4"
+                   Grid.Column="4"
+                   FontSize="24"/>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

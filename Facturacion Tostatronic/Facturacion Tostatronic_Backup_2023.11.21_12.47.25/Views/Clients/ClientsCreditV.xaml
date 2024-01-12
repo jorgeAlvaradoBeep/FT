@@ -1,0 +1,158 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.Clients.ClientsCreditV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Clients" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands"
+        mc:Ignorable="d"
+        Title="ClientsCreditV" Height="900" Width="1100">
+    <Window.Resources>
+        <vm1:ClientsCreditVM x:Key="clientsCreditVM"/>
+    </Window.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource clientsCreditVM}"
+                              IsBusy="{Binding IsBusy}">
+        <Grid DataContext="{StaticResource clientsCreditVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Mode="Standard" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="3" Height="35">
+                <TextBlock Text="Credito Clientes" FontSize="25px"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </materialDesign:ColorZone>
+
+            <telerik:Label Content="{Binding Client.Client.RFC}" 
+                           Margin="5" 
+                           Width="200"
+                           FontSize="20" 
+                           HorizontalAlignment="Left"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"/>
+            <telerik:RadButton Background="Transparent" 
+                               Margin="2"
+                               Command="{Binding CallSearchClientCreditCommand}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Height="35"
+                               Width="35"
+                               HorizontalAlignment="Center">
+                <telerik:RadButton.Content>
+                    <Image Source="/Images/search.png" 
+                               Stretch="Fill" />
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
+            <telerik:Label Content="{Binding Client.Client.Name}" 
+                           Margin="5"
+                           Height="25"
+                           FontSize="14" 
+                           HorizontalAlignment="Stretch"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="2"/>
+
+            <telerik:RadGridView x:Name="RadGrdVClientSales"
+                                 ShowGroupPanel="False"
+							     CanUserFreezeColumns="False"
+                                 CanUserResizeColumns="False"
+							     RowIndicatorVisibility="Collapsed"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="5"
+                                 Grid.Row="3"
+                                 Grid.RowSpan="7"
+                                 Margin="2"
+							     AutoGenerateColumns="False" 
+                                 telerik:StyleManager.Theme="Material"
+                                 ItemsSource="{Binding Client.Sales}"
+                                 ScrollMode="RealTime">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding IDSale}"
+											    Header="ID"
+											    Width="100"
+                                                TextWrapping="Wrap"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}"
+											    Header="Fecha Venta"
+											    Width="150" 
+                                                TextWrapping="Wrap"
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotalAmount, StringFormat={}{0:C}}"
+											    Header="Subtotal"
+											    Width="150"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding TAX}"
+											    Header="Impuesto"
+											    Width="125" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Total, StringFormat={}{0:C}}"
+											    Header="Total"
+											    Width="150" 
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding AmountPayed, StringFormat={}{0:C}}"
+											    Header="Abonado"
+											    Width="150" 
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding AmountToPay, StringFormat={}{0:C}}"
+											    Header="Restante"
+											    Width="150" 
+                                                IsReadOnly="True"/>
+                    <telerik:GridViewColumn     Header="¿Abonar?"
+											    Width="80" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Abonar"
+                                                    Command="{Binding GetPaymentForSaleCommand, Source={StaticResource clientsCreditVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <Label Content="Deuda Total:"
+                   Grid.Row="10"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalContentAlignment="Right"
+                   FontSize="30"/>
+            <Label Grid.Row="10"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   FontSize="30">
+                <TextBlock Text="{Binding Client.TotalAmountToPay,StringFormat={}{0:C}}"/>
+            </Label>
+
+            <telerik:RadButton Background="Transparent" 
+                               Margin="2"
+                               Command="{Binding }"
+                               Grid.Row="10"
+                               Grid.Column="4"
+                               Height="65"
+                               Width="65"
+                               HorizontalAlignment="Center">
+                <telerik:RadButton.Content>
+                    <Image Source="/Images/print.png" 
+                           Stretch="Fill" />
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Window>

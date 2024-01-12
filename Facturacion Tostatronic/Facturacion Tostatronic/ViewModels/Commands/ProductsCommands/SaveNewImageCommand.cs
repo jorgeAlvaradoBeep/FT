@@ -41,6 +41,14 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
             VM.NewImageSource = null;
             //VM.NewImageSource = Path.Combine(VM.imagePath, "no_image.png");
             VM.SelectedItem.Image = VM.SelectedItem.Code + ".png";
+            if (File.Exists(Path.Combine(VM.imagePath, VM.SelectedItem.Image)))
+            {
+                File.Delete(Path.Combine(VM.imagePath, VM.SelectedItem.Image));
+                File.Copy(VM.NewImagePath, Path.Combine(VM.imagePath, VM.SelectedItem.Image), true);
+                VM.GettingData = false;
+                MessageBox.Show("Exito al Cambiar imagen", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             Response res = await WebService.InsertData(VM.SelectedItem, URLData.product_updtae_image);
             if (!res.succes)
             {
@@ -48,8 +56,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 VM.GettingData = false;
                 return;
             }
-            if (File.Exists(Path.Combine(VM.imagePath, VM.SelectedItem.Image)))
-                File.Delete(Path.Combine(VM.imagePath, VM.SelectedItem.Image));
             File.Copy(VM.NewImagePath, Path.Combine(VM.imagePath, VM.SelectedItem.Image), true);
 
             VM.Clear();

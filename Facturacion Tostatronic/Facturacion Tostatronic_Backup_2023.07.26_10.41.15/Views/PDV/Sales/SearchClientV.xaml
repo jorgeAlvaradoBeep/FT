@@ -1,0 +1,113 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.PDV.Sales.SearchClientV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.PDV.Sales" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:vm1="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="Seleccione Cliente" Height="450" Width="800"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <vm1:SearchClientVM x:Key="searchClientVM"/>
+    </Window.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource searchClientVM}" IsBusy="{Binding ChargingData}">
+        <Grid DataContext="{StaticResource searchClientVM}" FocusManager.FocusedElement="{Binding ElementName=txtCS}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerik:LayoutControlGroup HorizontalAlignment="Center" 
+                                    VerticalAlignment="Top" 
+                                    Grid.Column="1" 
+                                    Grid.ColumnSpan="5" 
+                                    Grid.RowSpan="3" 
+                                    Orientation="Vertical">
+                <telerik:Label Content="Seleccione Cliente:" 
+                           Margin="5" 
+                           FontSize="12" 
+                           HorizontalAlignment="Left"/>
+                <telerik:LayoutControlGroup Orientation="Horizontal">
+                    <telerik:RadWatermarkTextBox x:Name="txtCS"
+                                                 HorizontalAlignment="Stretch"
+                                                 Margin="5" 
+                                                 WatermarkContent="Ingrese el  nombre, apellido paterno, materno o RFC del cliente" 
+                                                 FontSize="12"
+                                                 Text="{Binding SearchCriterial, UpdateSourceTrigger=PropertyChanged}">
+                        <telerik:RadWatermarkTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SearchClientCommand}"/>
+                        </telerik:RadWatermarkTextBox.InputBindings>
+                    </telerik:RadWatermarkTextBox>
+                    <telerik:RadButton Background="Transparent" 
+                                   Margin="5,0,0,0"
+                                   Command="{Binding SearchClientCommand}">
+                        <telerik:RadButton.Content>
+                            <Image Source="/Images/search.png" 
+                               Stretch="Fill" />
+                        </telerik:RadButton.Content>
+                    </telerik:RadButton>
+                </telerik:LayoutControlGroup>
+            </telerik:LayoutControlGroup>
+            <telerik:RadGridView x:Name="RadGrdVSerachClients"
+                             ShowGroupPanel="False"
+							 CanUserFreezeColumns="False"
+                             CanUserResizeColumns="False"
+							 RowIndicatorVisibility="Collapsed"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="7"
+                             Grid.Row="3"
+                             Grid.RowSpan="9"
+                             Margin="10"
+							 AutoGenerateColumns="False" 
+                             telerik:StyleManager.Theme="Material"
+                             FontSize="12"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding Clients}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SelectedSalesClient}" 
+                                               CommandParameter="{Binding ElementName=RadGrdVSerachClients, Path=SelectedItem}"/>
+                        <i:CallMethodAction MethodName="Close"
+                           TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding ID}"
+											Header="ID cliente"
+											Width="100"
+                                            TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding RFC}"
+											Header="RFC"
+											Width="150" 
+                                            TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
+											    Header="Nombre"
+											    Width="500"
+                                                TextWrapping="Wrap"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Window>

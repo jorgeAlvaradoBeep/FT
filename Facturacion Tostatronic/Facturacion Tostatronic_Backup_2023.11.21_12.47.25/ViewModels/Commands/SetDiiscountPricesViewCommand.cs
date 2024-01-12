@@ -1,0 +1,32 @@
+﻿using Facturacion_Tostatronic.Views.Products;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace Facturacion_Tostatronic.ViewModels.Commands
+{
+    public class SetDiiscountPricesViewCommand : ICommand
+    {
+        public MenuVM VM { get; set; }
+        public event EventHandler CanExecuteChanged;
+
+        public SetDiiscountPricesViewCommand(MenuVM vm)
+        {
+            VM = vm;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            DisscountPrices dP = new DisscountPrices();
+            dP.ShowDialog();
+        }
+    }
+}

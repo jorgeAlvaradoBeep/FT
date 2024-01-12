@@ -140,8 +140,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
                             if (obj != null)
                             {
-                                if(obj.Existence!= p.Stock_quantity)
-                                {
+                                //if(obj.Existence!= p.Stock_quantity)
+                                //{
                                     //p.Sale_price = obj.DistributorPrice.ToString();
                                     p.Sale_price = "";
                                     p.Stock_quantity = (int)obj.Existence;
@@ -154,9 +154,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                         regular_price = p.Regular_price,
                                         stock_quantity = p.Stock_quantity
                                     });
-                                }
-                                
-                                
+                                //}                                
                             }
                         }
                         else
@@ -267,23 +265,23 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                 var obj = aux.FirstOrDefault(x => x.Code == product.Sku);
                                 if (obj != null)
                                 {
-                                    if (obj.Existence != product.Stock_quantity)
-                                    {
-                                        product.Sale_price = obj.DistributorPrice.ToString();
-                                        //product.Sale_price = "";
+                                    //if (obj.Existence != product.Stock_quantity)
+                                    //{
+                                        //product.Sale_price = obj.DistributorPrice.ToString();
+                                        product.Sale_price = "";
                                         product.Stock_quantity = (int)obj.Existence;
                                         product.Regular_price = obj.PublicPrice.ToString();
                                         listToUpdateVariantes.Add(new Update()
                                         {
                                             id = product.Id,
                                             sku = product.Sku,
-                                            sale_price = "",
+                                            sale_price = product.Sale_price,
                                             regular_price = product.Regular_price,
                                             stock_quantity = product.Stock_quantity
                                         });
 
 
-                                    }
+                                    //}
                                 }
                                 
                             }
@@ -295,39 +293,55 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                 $"Datos extraidos de: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
                                 $"Actualizando {products2.Count} productos.";
                             });
-                            if ( !await UpdateProductVariants(listToUpdateVariantes, pageNumber1 - 1, lisVariationsFathers[pageNumber1 - 1].Id))
+                            if(listToUpdateVariantes.Count >0)
                             {
-                                pageNumber1++;
-                                if (pageNumber1 >= lisVariationsFathers.Count)
-                                    endWhile1 = true;
-                            }
-                            else
-                            {
-                                DispatcherHelper.CheckBeginInvokeOnUI(
-                                () =>
+                                if (!await UpdateProductVariants(listToUpdateVariantes, pageNumber1 - 1, lisVariationsFathers[pageNumber1 - 1].Id))
                                 {
-                                    // Dispatch back to the main thread
-                                    VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
-                                    $"Error al Actualizar a: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
-                                    $"Reintentando...";
-                                });
-                                if(errorCounter>=3)
+                                    pageNumber1++;
+                                    if (pageNumber1 >= lisVariationsFathers.Count)
+                                        endWhile1 = true;
+                                }
+                                else
                                 {
-                                    errorCounter = 0;
+                                    errorCounter++;
                                     DispatcherHelper.CheckBeginInvokeOnUI(
                                     () =>
                                     {
                                         // Dispatch back to the main thread
                                         VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
                                         $"Error al Actualizar a: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
-                                        $"Limite excedido de intentos...";
+                                        $"Reintentando...";
                                     });
-                                    pageNumber1++;
-                                    if (pageNumber1 >= lisVariationsFathers.Count)
-                                        endWhile1 = true;
+                                    if (errorCounter >= 3)
+                                    {
+                                        errorCounter = 0;
+                                        DispatcherHelper.CheckBeginInvokeOnUI(
+                                        () =>
+                                        {
+                                            // Dispatch back to the main thread
+                                            VM.ProgressVal = $"Variantes Actualizadas: {pageNumber1 - 1}/{lisVariationsFathers.Count}{Environment.NewLine}" +
+                                            $"Error al Actualizar a: {lisVariationsFathers[pageNumber1 - 1].Name}{Environment.NewLine}" +
+                                            $"Limite excedido de intentos...";
+                                        });
+                                        pageNumber1++;
+                                        if (pageNumber1 >= lisVariationsFathers.Count)
+                                            endWhile1 = true;
+                                    }
                                 }
                             }
+                            else
+                            {
+                                pageNumber1++;
+                                if (pageNumber1 >= lisVariationsFathers.Count)
+                                    endWhile1 = true;
+                            }
                             listToUpdateVariantes.Clear();
+                        }
+                        else
+                        {
+                            pageNumber1++;
+                            if (pageNumber1 >= lisVariationsFathers.Count)
+                                endWhile1 = true;
                         }
                     }
                 }

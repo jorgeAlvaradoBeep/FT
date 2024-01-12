@@ -31,7 +31,7 @@
 								 RowStyleSelector="{StaticResource rowStyleSelector}"
 								 Margin="0" GroupRenderMode="Flat"
 								 RowIndicatorVisibility="Collapsed"
-								 IsReadOnly="True"
+								 IsReadOnly="False"
 								 ShowColumnSortIndexes="True"
 								 AutoGenerateColumns="False"
 								 CanUserFreezeColumns="False"
