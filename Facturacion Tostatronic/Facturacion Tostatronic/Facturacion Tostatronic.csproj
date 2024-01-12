@@ -292,6 +292,7 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EF Orders\EFOrderProduct.cs" />
     <Compile Include="Models\EF Models\EFClientF\EFClient.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
@@ -389,6 +390,7 @@
     <Compile Include="ViewModels\Commands\MenuCommands\ViewClientsMenuCommand.cs" />
     <Compile Include="ViewModels\Commands\MenuCommands\ViewUpdateImageCommand.cs" />
     <Compile Include="ViewModels\Commands\MenuCommands\ViewWarehouseMenuCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\SearchQuoteCommand.cs" />
@@ -478,6 +480,7 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveProductsTospaceCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
+    <Compile Include="ViewModels\Orders\MakeOrderVM.cs" />
     <Compile Include="ViewModels\Products\DisscountPricesVM.cs" />
     <Compile Include="ViewModels\Products\SeeProductVM.cs" />
     <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
@@ -552,6 +555,9 @@
     </Compile>
     <Compile Include="Views\Pages\Invoice\SeeInvoiceUC.xaml.cs">
       <DependentUpon>SeeInvoiceUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Orders\MakeOrderUC.xaml.cs">
+      <DependentUpon>MakeOrderUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Products\AddProductUC.xaml.cs">
       <DependentUpon>AddProductUC.xaml</DependentUpon>
@@ -730,6 +736,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Invoice\SeeInvoiceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Orders\MakeOrderUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
