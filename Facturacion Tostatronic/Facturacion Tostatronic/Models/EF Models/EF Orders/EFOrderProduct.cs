@@ -9,6 +9,12 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
 {
     public class EFOrderProduct: BaseNotifyPropertyChanged
     {
+        public EFOrderProduct(string code, string name)
+        {
+            _codigo = code;
+            _nombreES = name;   
+        }
+
         private string _codigo;
 
         public string codigo
@@ -30,12 +36,56 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             get { return _nombreEN; }
             set { SetValue(ref _nombreEN, value); Modificado = true; }
         }
-        public int cantidad { get; set; }
-        public float precio { get; set; }
-        public float subTotal { get; set; }
-        public float targetPrice { get; set; }
-        public bool Modificado { get; set; }
-        public bool Nuevo { get; set; }
-        public string imagen { get; set; }
+        private int _cantidad;
+
+        public int cantidad
+        {
+            get { return _cantidad; }
+            set { SetValue(ref _cantidad, value); Modificado = true; }
+        }
+        private float _precio;
+
+        public float precio
+        {
+            get { return _precio; }
+            set { SetValue(ref _precio, value); }
+        }
+
+        private float _subTotal;
+
+        public float subTotal
+        {
+            get { return _subTotal; }
+            set { SetValue(ref _subTotal, value); }
+        }
+        private float _targetPrice;
+
+        public float targetPrice
+        {
+            get { return _targetPrice; }
+            set { SetValue(ref _targetPrice, value); }
+        }
+        private bool modificado;
+
+        public bool Modificado
+        {
+            get { return modificado; }
+            set { SetValue(ref modificado, value); }
+        }
+
+        private bool nuevo;
+
+        public bool Nuevo
+        {
+            get { return nuevo; }
+            set { SetValue(ref nuevo, value); }
+        }
+        private string _imagen;
+
+        public string imagen
+        {
+            get { return _imagen; }
+            set { SetValue(ref _imagen, value); Modificado = true; }
+        }
     }
 }

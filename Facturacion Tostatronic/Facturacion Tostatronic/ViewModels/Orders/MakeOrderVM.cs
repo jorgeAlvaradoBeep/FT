@@ -1,5 +1,6 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Services;
+using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,21 +21,28 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             get { return gettinData; }
             set { SetValue(ref gettinData, value); }
         }
-        private ObservableCollection<EFOrderProduct> orderProducts;
+        private bool isProductExtractionenabled;
 
-        public ObservableCollection<EFOrderProduct> OrderProducts
+        public bool IsProductExtractionenabled
         {
-            get { return orderProducts; }
-            set { SetValue(ref orderProducts, value); }
+            get { return isProductExtractionenabled; }
+            set { SetValue(ref isProductExtractionenabled, value); }
         }
+
+
+        public EFOrder Order { get; set; }
         #endregion
         #region CommandsDeclarations
+        GetNewOrderCommand GetNewOrderCommand;
         #endregion
 
         public MakeOrderVM()
         {
-            OrderProducts = new ObservableCollection<EFOrderProduct>();
+            Order = new EFOrder();
+            Order.Products = new ObservableCollection<EFOrderProduct>();
             GettingData = false;
+            isProductExtractionenabled = true;
+            GetNewOrderCommand = new GetNewOrderCommand(this);
         }
     }
 }

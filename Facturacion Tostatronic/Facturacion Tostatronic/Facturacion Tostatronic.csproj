@@ -292,6 +292,7 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EF Orders\EFOrder.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrderProduct.cs" />
     <Compile Include="Models\EF Models\EFClientF\EFClient.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />

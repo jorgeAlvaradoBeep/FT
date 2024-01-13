@@ -34,7 +34,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Button Content="Extraer Productos" IsEnabled="{Binding IsEnabled}" Grid.Row="0" Command="{Binding ExtractCommand}"/>
+            <Button Content="Extraer Productos" 
+                    IsEnabled="{Binding IsProductExtractionenabled}" 
+                    Grid.Row="0" 
+                    Command="{Binding GetNewOrderCommand}"/>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBox Width="600" Margin="5" />

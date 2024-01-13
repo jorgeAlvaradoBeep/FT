@@ -18,7 +18,7 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
     /// <summary>
     /// Lógica de interacción para MakeOrderUC.xaml
     /// </summary>
-    public partial class MakeOrderUC : Page
+    public partial class MakeOrderUC : UserControl
     {
         public MakeOrderUC()
         {

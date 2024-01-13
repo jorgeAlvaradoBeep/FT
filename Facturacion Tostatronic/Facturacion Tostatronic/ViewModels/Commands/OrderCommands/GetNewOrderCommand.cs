@@ -7,6 +7,7 @@ using Facturacion_Tostatronic.ViewModels.Orders;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
+using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands
 {
@@ -36,12 +37,17 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands
                 return;
             }
             List<ProductList> products = JsonConvert.DeserializeObject<List<ProductList>>(res.data.ToString());
-            foreach (ProductList product in products) 
+            await Task.Run((() => 
             {
-                EFOrderProduct newProduct = new EFOrderProduct();
-
-            }
+                foreach (ProductList product in products)
+                {
+                    EFOrderProduct newProduct = new EFOrderProduct(product.idProduct, product.name);
+                    VM.Order.Products.Add(newProduct);
+                }
+            }));
+            
             VM.GettingData = false;
+            VM.IsProductExtractionenabled = false;
         }
     }
 }
