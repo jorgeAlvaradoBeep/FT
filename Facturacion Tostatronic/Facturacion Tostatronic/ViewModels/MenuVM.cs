@@ -49,6 +49,7 @@ using Facturacion_Tostatronic.ViewModels.Products;
 using System.Threading;
 using GalaSoft.MvvmLight.Threading;
 using Facturacion_Tostatronic.ViewModels.Sales;
+using Facturacion_Tostatronic.ViewModels.Orders;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -707,6 +708,12 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Ganancias", VMName="EarningsVM" }
             };
 
+            var orderItem = new NavigationViewItemModel() { Icon = "&#xe908;", Title = "Ordenes" };
+            orderItem.SubItems = new ObservableCollection<NavigationViewItemModel>
+            {
+                new NavigationViewItemModel() { Title = "Crear Orden", VMName="MakeOrderVM" }
+            };
+
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
             clientsItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
@@ -753,6 +760,7 @@ namespace Facturacion_Tostatronic.ViewModels
             return new List<NavigationViewItemModel>
             {
                 salesItem,
+                orderItem,
                 clientsItem,
                 warehouseItem,
                 facturacionItem,
@@ -819,6 +827,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new SeeSalesVM());
             ViewsList.Add(new SeeQuatitionsVM());
             ViewsList.Add(new EarningsVM());
+            ViewsList.Add(new MakeOrderVM());
         }
          IPageViewModel GetView(string vmName)
         {

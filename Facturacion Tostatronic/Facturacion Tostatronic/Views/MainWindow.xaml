@@ -10,6 +10,7 @@
         xmlns:viewsin="clr-namespace:Facturacion_Tostatronic.Views.Pages.Invoice" 
         xmlns:viewsp="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" 
         xmlns:viewssl="clr-namespace:Facturacion_Tostatronic.Views.Pages.Sales" 
+        xmlns:viewor="clr-namespace:Facturacion_Tostatronic.Views.Pages.Orders" 
         xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels"
         xmlns:vmw="clr-namespace:Facturacion_Tostatronic.ViewModels.WareHouse"
         xmlns:vmc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.AddClient"
@@ -17,6 +18,7 @@
         xmlns:vmcc="clr-namespace:Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands"
         xmlns:vmp="clr-namespace:Facturacion_Tostatronic.ViewModels.Products"
         xmlns:vmsls="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
+        xmlns:vmor="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Facturacion Tostatronic" Height="450" Width="800"
@@ -81,8 +83,12 @@
         <DataTemplate DataType="{x:Type vmsls:EarningsVM}">
             <viewssl:Earnings />
         </DataTemplate>
+        <!--Seccion Ordenes -->
+        <DataTemplate DataType="{x:Type vmor:MakeOrderVM}">
+            <viewor:MakeOrderUC/>
+        </DataTemplate>
         <!--Seccion de estilos-->
-        <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
+            <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
             <Setter Property="IconTemplate">
                 <Setter.Value>
                     <DataTemplate>

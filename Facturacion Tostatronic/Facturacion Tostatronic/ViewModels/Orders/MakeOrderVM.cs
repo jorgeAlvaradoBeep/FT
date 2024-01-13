@@ -33,7 +33,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public EFOrder Order { get; set; }
         #endregion
         #region CommandsDeclarations
-        GetNewOrderCommand GetNewOrderCommand;
+        public GetNewOrderCommand GetNewOrderCommand { get; set; }
         #endregion
 
         public MakeOrderVM()

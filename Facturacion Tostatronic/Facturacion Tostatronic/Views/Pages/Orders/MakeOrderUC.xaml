@@ -45,7 +45,7 @@
             </StackPanel>
 
             <telerik:RadGridView Grid.Row="2" 
-                     ItemsSource="{Binding Productos}" 
+                     ItemsSource="{Binding Order.Products}" 
                      AutoGenerateColumns="False"
                      VerticalAlignment="Top"
                      RowIndicatorVisibility="Collapsed"
@@ -55,13 +55,13 @@
                      ShowGroupPanel="False"
                      IsReadOnly="False">
                 <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Codigo}" Header="Código" Width="120"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEsp}" Header="Nombre (ES)" Width="220"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreIng}" Header="Nombre (EN)"  Width="220"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding codigo}" Header="Código" Width="120"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreES}" Header="Nombre (ES)" Width="220"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreEN}" Header="Nombre (EN)"  Width="220"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding cantidad}" Header="Cantidad"  Width="60"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding subTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding targetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Modificado}" Header="Modificado"/>
                     <telerik:GridViewColumn Header="Imagen">
                         <!-- Agregar la lógica para mostrar la imagen -->
