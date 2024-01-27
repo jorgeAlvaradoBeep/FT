@@ -75,8 +75,8 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.15:5249/api/";
-        //const string baseURLNET = "http://192.168.68.102:5249/api/";
-        const string baseURLNET = "http://143.198.173.21:5249/api/";
+        const string baseURLNET = "http://192.168.68.132:5249/api/";
+        //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";
@@ -87,6 +87,7 @@
         public static string getDatedOrders = baseURLNET + "Ventas/SeeDatedOrder/";
         public static string getSpecificOrder = baseURLNET + "Ventas/GetSpecificSale/";
         public static string getDayOrdersWT = baseURLNET + "Ventas/DayOrdersWT/";
+        public static string getOrderComplete = baseURLNET + "Ventas/OrderWT/";
         public static string regimenFiscalesNet = baseURLNET + "RegimenFiscal";
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products";
@@ -109,6 +110,10 @@
         public static string getDatedQuotesNET = baseURLNET + "Cotizacion/SeeDatedQoute/";
         public static string getSpecificQuoteNET = baseURLNET + "Cotizacion/GetSpecificQoute/";
         public static string getProductsForQuote = baseURLNET + "ProductosDeCotizacion/";
+        public static string Orders = baseURLNET + "Ordenes/";
+        public static string OpenOrders = baseURLNET + "Ordenes/AvailableOrders/";
+        public static string ProductOrderInfo = baseURLNET + "ProductOrderInfo/";
+        public static string InserProductOrderInfoList = baseURLNET + "ProductOrderInfo/Create/Bulk";
 
 
     }

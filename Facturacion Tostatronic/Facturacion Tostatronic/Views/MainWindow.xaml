@@ -87,6 +87,9 @@
         <DataTemplate DataType="{x:Type vmor:MakeOrderVM}">
             <viewor:MakeOrderUC/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmor:OrderCheckVM}">
+            <viewor:OrderCheckUC/>
+        </DataTemplate>
         <!--Seccion de estilos-->
             <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
             <Setter Property="IconTemplate">

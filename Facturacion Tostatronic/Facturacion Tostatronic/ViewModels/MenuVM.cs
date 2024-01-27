@@ -711,7 +711,8 @@ namespace Facturacion_Tostatronic.ViewModels
             var orderItem = new NavigationViewItemModel() { Icon = "&#xe908;", Title = "Ordenes" };
             orderItem.SubItems = new ObservableCollection<NavigationViewItemModel>
             {
-                new NavigationViewItemModel() { Title = "Crear Orden", VMName="MakeOrderVM" }
+                new NavigationViewItemModel() { Title = "Crear Orden", VMName="MakeOrderVM" },
+                new NavigationViewItemModel() { Title = "Seguir Orden", VMName="OrderCheckVM" }
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -828,6 +829,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new SeeQuatitionsVM());
             ViewsList.Add(new EarningsVM());
             ViewsList.Add(new MakeOrderVM());
+            ViewsList.Add(new OrderCheckVM());
         }
          IPageViewModel GetView(string vmName)
         {

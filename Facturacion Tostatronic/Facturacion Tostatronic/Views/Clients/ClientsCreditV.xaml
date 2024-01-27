@@ -123,6 +123,7 @@
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewColumn>
+                    
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
             <Label Content="Deuda Total:"

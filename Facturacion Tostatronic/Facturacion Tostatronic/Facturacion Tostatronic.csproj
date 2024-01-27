@@ -253,6 +253,7 @@
       <HintPath>..\lib\RCWPF\2023.3.1114.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2023.3.1114.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Data, Version=2023.3.1114.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWPF\2023.3.1114.45\Telerik.Windows.Data.dll</HintPath>
       <Private>True</Private>
@@ -292,8 +293,14 @@
     <Compile Include="Models\Clients\CreditSale.cs" />
     <Compile Include="Models\Clients\SalePayment.cs" />
     <Compile Include="Models\CompleteSale.cs" />
+    <Compile Include="Models\EF Models\EF Orders\APIOrder.cs" />
+    <Compile Include="Models\EF Models\EF Orders\APIProductOrderInformation.cs" />
+    <Compile Include="Models\EF Models\EF Orders\APIProductosOrdenes.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrder.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrderProduct.cs" />
+    <Compile Include="Models\EF Models\EF Orders\ExcelParametersM.cs" />
+    <Compile Include="Models\EF Models\EF Orders\OrderComplete.cs" />
+    <Compile Include="Models\EF Models\EF Orders\ProductOrderComplete.cs" />
     <Compile Include="Models\EF Models\EFClientF\EFClient.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
@@ -301,6 +308,7 @@
     <Compile Include="Models\EF Models\EFProduct\EFSaleProducts.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFUniversalCodes.cs" />
     <Compile Include="Models\EF Models\EFSale\CompleteSaleEF.cs" />
+    <Compile Include="Models\EF Models\EFSale\CompleteSaleWProductsEF.cs" />
     <Compile Include="Models\EF Models\EFSale\CotizacionEF.cs" />
     <Compile Include="Models\EF Models\EFSale\EarningSale.cs" />
     <Compile Include="Models\EndSale.cs" />
@@ -362,6 +370,7 @@
     <Compile Include="Validations\CPValidationRule.cs" />
     <Compile Include="Validations\EmailsValidation.cs" />
     <Compile Include="Validations\EmailValidationRule.cs" />
+    <Compile Include="Validations\LetrasValidationRule.cs" />
     <Compile Include="Validations\Productos\EmptyDataRule.cs" />
     <Compile Include="Validations\RFCValidationRule.cs" />
     <Compile Include="ViewModels\AssingUCVM.cs" />
@@ -375,6 +384,7 @@
     <Compile Include="ViewModels\Commands\AssingUCVCommands\SelectedProductCommand.cs" />
     <Compile Include="ViewModels\Commands\CallSeeProductsCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\AddClient\SaveClientCommand.cs" />
+    <Compile Include="ViewModels\Commands\Clients\Credit\SeSalePDFCCComnand.cs" />
     <Compile Include="ViewModels\Commands\Clients\ModifyClient\CancellModifyClientCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\CallSearchClientCreditCommand.cs" />
     <Compile Include="ViewModels\Commands\Clients\Credit\GetPaymentForSaleCommand.cs" />
@@ -391,7 +401,11 @@
     <Compile Include="ViewModels\Commands\MenuCommands\ViewClientsMenuCommand.cs" />
     <Compile Include="ViewModels\Commands\MenuCommands\ViewUpdateImageCommand.cs" />
     <Compile Include="ViewModels\Commands\MenuCommands\ViewWarehouseMenuCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\AddNewRowCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\GetAvailableOrdersCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\SaveOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\SearchQuoteCommand.cs" />
@@ -481,7 +495,9 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveProductsTospaceCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
+    <Compile Include="ViewModels\Orders\ImportFromExcelVM.cs" />
     <Compile Include="ViewModels\Orders\MakeOrderVM.cs" />
+    <Compile Include="ViewModels\Orders\OrderCheckVM.cs" />
     <Compile Include="ViewModels\Products\DisscountPricesVM.cs" />
     <Compile Include="ViewModels\Products\SeeProductVM.cs" />
     <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
@@ -536,6 +552,9 @@
     <Compile Include="Views\Menus\SubMenuContent.xaml.cs">
       <DependentUpon>SubMenuContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrdersV\ImportFromExcelV.xaml.cs">
+      <DependentUpon>ImportFromExcelV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Clients\AddClientUC.xaml.cs">
       <DependentUpon>AddClientUC.xaml</DependentUpon>
     </Compile>
@@ -559,6 +578,9 @@
     </Compile>
     <Compile Include="Views\Pages\Orders\MakeOrderUC.xaml.cs">
       <DependentUpon>MakeOrderUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Orders\OrderCheckUC.xaml.cs">
+      <DependentUpon>OrderCheckUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Products\AddProductUC.xaml.cs">
       <DependentUpon>AddProductUC.xaml</DependentUpon>
@@ -712,6 +734,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OrdersV\ImportFromExcelV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Clients\AddClientUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -741,6 +767,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Orders\MakeOrderUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Orders\OrderCheckUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

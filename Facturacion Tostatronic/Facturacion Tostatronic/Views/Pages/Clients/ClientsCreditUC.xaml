@@ -124,6 +124,16 @@
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewColumn>
+                    <telerik:GridViewColumn Header="¿Ver?"
+							                Width="110" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Ver PDF"
+            Command="{Binding SeSalePDFCCComnand, Source={StaticResource clientsCreditVM}}"
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
             <Label Content="Deuda Total:"

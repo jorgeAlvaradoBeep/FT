@@ -25,7 +25,8 @@
         </Style>
     </UserControl.Resources>
     <telerik:RadBusyIndicator DataContext="{StaticResource makeOrderVM}"
-                              IsBusy="{Binding GettinData}">
+                              IsBusy="{Binding GettingData}"
+                              BusyContent="{Binding ProgressVal,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
@@ -40,8 +41,20 @@
                     Command="{Binding GetNewOrderCommand}"/>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <TextBox Width="600" Margin="5" />
-                <Button Content="Buscar"/>
+                <telerik:RadAutoCompleteBox Width="600"
+                                            Margin="5"
+                                            ItemsSource="{Binding AllProducts}"
+                                            SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                                            VerticalContentAlignment="Bottom"
+                                            AutoCompleteMode="Suggest"  
+                                            DisplayMemberPath="Nombre" 
+                                            TextSearchPath="Nombre" 
+                                            SelectionMode="Single"
+                                            TextSearchMode="Contains" 
+                                            NoResultsContent="Sin Resultados"
+                                            WatermarkContent="Ingrese Producto..."  />
+                <Button Content="Agregar"
+                        Command="{Binding AddNewRowCommand}"/>
             </StackPanel>
 
             <telerik:RadGridView Grid.Row="2" 
@@ -53,26 +66,34 @@
                      BorderThickness="0"
                      CanUserResizeColumns="True"
                      ShowGroupPanel="False"
-                     IsReadOnly="False">
+                     IsReadOnly="False"
+                                 >
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding codigo}" Header="Código" Width="120"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreES}" Header="Nombre (ES)" Width="220"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreEN}" Header="Nombre (EN)"  Width="220"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding cantidad}" Header="Cantidad"  Width="60"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding subTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding targetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreES}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding nombreEN}" Header="Nombre (EN)"  Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding subTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding targetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Link}" Header="Link" Width="80" TextWrapping="NoWrap"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Modificado}" Header="Modificado"/>
-                    <telerik:GridViewColumn Header="Imagen">
-                        <!-- Agregar la lógica para mostrar la imagen -->
-                    </telerik:GridViewColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Image}" Header="Imagen"/>
                     <telerik:GridViewColumn Header="Eliminar">
-                        <!-- Agregar botón o lógica para eliminar -->
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton Content="Delete"  
+                                                   Command="telerik:RadGridViewCommands.Delete" 
+                                                   CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewColumn>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
 
-            <Button Content="Guardar" Grid.Row="3" Command="{Binding SaveCommand}"/>
+            <Button Content="Guardar" 
+                    Grid.Row="3" 
+                    Command="{Binding SaveOrderCommand}"/>
         </Grid>
     </telerik:RadBusyIndicator>
 </UserControl>

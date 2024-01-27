@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Orders.OrderCheckUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Orders" 
+             xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+    <UserControl.Resources>
+        <vm:OrderCheckVM x:Key="orderCheckVM"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource orderCheckVM}"
+                              IsBusy="{Binding GettingData}"
+                              BusyContent="{Binding ProgressVal,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <telerik:RadRibbonComboBox Width="280"
+                                       HorizontalAlignment="Left"
+                                       ItemsSource="{Binding Orders}"
+                                       Margin="10,0,0,0"
+                                       DisplayMemberPath="OrdenID"
+                                       IsEnabled="{Binding OrderListAvailable}"
+                                       SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"/>
+            <Button Content="Extraer Productos" 
+                    IsEnabled="{Binding OrderListAvailable}" 
+                    Grid.Row="0" 
+                    Command="{Binding GetAvailableOrdersCommand}"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <telerik:RadAutoCompleteBox Width="600"
+                                            Margin="5"
+                                            ItemsSource="{Binding AllProducts}"
+                                            VerticalContentAlignment="Bottom"
+                                            AutoCompleteMode="Suggest"  
+                                            DisplayMemberPath="Nombre" 
+                                            TextSearchPath="Nombre" 
+                                            SelectionMode="Single"
+                                            TextSearchMode="Contains" 
+                                            NoResultsContent="Sin Resultados"
+                                            WatermarkContent="Ingrese Producto..." 
+                                            IsEnabled="{Binding IsProductExtractionenabled}"/>
+                <Button Content="Agregar"
+                        Command="{Binding AddNewRowCommand}"
+                        IsEnabled="{Binding IsProductExtractionenabled}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2">
+                <Label Content="Costo Envio:"
+                       Width="95"
+                       VerticalAlignment="Center"
+                       FontSize="16"/>
+                <telerik:RadNumericUpDown Width="135"
+                                          Margin="0,0,0,5"/>
+                <Label Content="Agentes Ad:"
+                       Width="95"
+                       VerticalAlignment="Center"
+                       FontSize="16"/>      
+                <telerik:RadNumericUpDown Width="135"
+                          Margin="0,0,0,5"/>
+                <Label Content="Tipo Cambio:"
+                       Width="105"
+                       VerticalAlignment="Center"
+                       FontSize="16"/>
+                <telerik:RadNumericUpDown Width="135"
+                          Margin="0,0,0,5"/>
+            </StackPanel>
+            <telerik:RadGridView Grid.Row="3" 
+                 ItemsSource="{Binding ComlpleteOrder.ProductosDeOrdenesNavigation}" 
+                 AutoGenerateColumns="False"
+                 VerticalAlignment="Top"
+                 RowIndicatorVisibility="Collapsed"
+                 CanUserFreezeColumns="False"
+                 BorderThickness="0"
+                 CanUserResizeColumns="True"
+                 ShowGroupPanel="False"
+                 IsReadOnly="False"
+                             >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEn}" Header="Nombre (EN)"  Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Link}" Header="Link" Width="80" TextWrapping="NoWrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Modificado}" Header="Modificado"/>
+                    <telerik:GridViewColumn Header="Eliminar">
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton Content="Delete"  
+                                               Command="telerik:RadGridViewCommands.Delete" 
+                                               CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="4">
+                <Label Content="Sub Material USD: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="Total USD: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="Gasto Material MXN: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="IVA MXN: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="Envio MXN: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="5">
+                <Label Content="Gastos E/A: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="Total Gatos MXN: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="$999,999.00"
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="% Ganancia:"
+                       Width="95"
+                       VerticalAlignment="Center"
+                       FontSize="16"/>
+                <telerik:RadNumericUpDown Width="135"
+                          Margin="0,0,0,5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="6"
+                        HorizontalAlignment="Center">
+                <Button Content="Guardar" 
+                        Command="{Binding SaveOrderCommand}"
+                        IsEnabled="{Binding IsProductExtractionenabled}"/>
+                <Button Content="Importar Desde Excel" 
+                        IsEnabled="{Binding IsProductExtractionenabled}"/>
+                <Button Content="Exportar A Excel" 
+                        IsEnabled="{Binding IsProductExtractionenabled}"
+                        Command="{Binding ImportExcelFileCommand}"/>
+            </StackPanel>
+
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

@@ -13,6 +13,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands
     {
         public CallSearchClientCreditCommand CallSearchClientCreditCommand { get; set; }
         public GetPaymentForSaleCommand GetPaymentForSaleCommand { get; set; }
+        public SeSalePDFCCComnand SeSalePDFCCComnand { get; set; }
         public string Name { get; set; } = "ClientsCreditVM";
         private bool isBusy;
 
@@ -36,6 +37,7 @@ namespace Facturacion_Tostatronic.ViewModels.Clients.CreditClientsCommands
             IsBusy = false;
             CallSearchClientCreditCommand = new CallSearchClientCreditCommand(this);
             GetPaymentForSaleCommand = new GetPaymentForSaleCommand(this);
+            SeSalePDFCCComnand = new SeSalePDFCCComnand(this);
             Client = new CreditClient();
             client.Sales = new System.Collections.ObjectModel.ObservableCollection<CreditSale>();
         }

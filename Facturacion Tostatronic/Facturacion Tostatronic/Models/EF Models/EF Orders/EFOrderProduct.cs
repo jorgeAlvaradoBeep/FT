@@ -9,10 +9,20 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
 {
     public class EFOrderProduct: BaseNotifyPropertyChanged
     {
-        public EFOrderProduct(string code, string name)
+        public EFOrderProduct(string code, string name, string image)
         {
             _codigo = code;
             _nombreES = name;   
+            this.image = image;
+        }
+        public EFOrderProduct()
+        {
+            
+        }
+        public EFOrderProduct(bool exist)
+        {
+            ProductInfoExist = exist;
+            
         }
 
         private string _codigo;
@@ -87,5 +97,21 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             get { return _imagen; }
             set { SetValue(ref _imagen, value); Modificado = true; }
         }
+        private string _link;
+
+        public string Link
+        {
+            get { return _link; }
+            set { SetValue(ref _link, value); Modificado = true; }
+        }
+        private string image;
+
+        public string Image
+        {
+            get { return image; }
+            set { SetValue(ref image, value); Modificado = true; }
+        }
+
+        public bool ProductInfoExist { get; set; } = false;
     }
 }

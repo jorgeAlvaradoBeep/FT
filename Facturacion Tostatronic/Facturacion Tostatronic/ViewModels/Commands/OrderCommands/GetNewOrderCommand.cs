@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using System.Threading.Tasks;
+using Facturacion_Tostatronic.Models.Products;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands
 {
@@ -41,11 +44,52 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands
             {
                 foreach (ProductList product in products)
                 {
-                    EFOrderProduct newProduct = new EFOrderProduct(product.idProduct, product.name);
+                    EFOrderProduct newProduct = new EFOrderProduct(product.idProduct, product.name, product.image);
                     VM.Order.Products.Add(newProduct);
                 }
             }));
-            
+            res = await WebService.GetDataForInvoice(URLData.getProductsNet);
+            if (res.succes)
+            {
+                VM.AllProducts = JsonConvert.DeserializeObject<ObservableCollection<UpdateProductM>>(res.data.ToString());
+            }
+            else
+                MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            List<APIProductOrderInformation> productInformationList = new List<APIProductOrderInformation>();
+            res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
+            if (res.succes)
+            {
+                productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
+            }
+            else
+                MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            if (productInformationList.Count > 0)
+            {
+                await Task.Run((() =>
+                {
+                    foreach (EFOrderProduct product in VM.Order.Products)
+                    {
+                        var pt = productInformationList.Where(pr => pr.CodigoProducto == product.codigo).ToList();
+                        if (pt.Count > 0) 
+                        {
+                            var p = pt[0];
+                            if (p != null)
+                            {
+                                if (!string.IsNullOrEmpty(p.CodigoProducto))
+                                {
+                                    product.nombreES = p.NombreEs;
+                                    product.nombreEN = p.NombreEn;
+                                    product.Link = p.Link;
+                                    product.ProductInfoExist = true;
+                                    product.Modificado = false;
+                                }
+                            }
+                        }
+                        
+                    }
+                }));
+            }
             VM.GettingData = false;
             VM.IsProductExtractionenabled = false;
         }

@@ -10,6 +10,14 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
 {
     public class EFOrder: BaseNotifyPropertyChanged
     {
+		private int orderID;
+
+		public int IDOrden
+		{
+			get { return orderID; }
+			set { SetValue(ref orderID, value); }
+		}
+
 		private ObservableCollection<EFOrderProduct> products;
 
 		public ObservableCollection<EFOrderProduct> Products
