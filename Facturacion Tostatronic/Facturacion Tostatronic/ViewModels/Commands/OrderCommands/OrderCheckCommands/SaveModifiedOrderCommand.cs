@@ -62,7 +62,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                         $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}";
                 }
                 else
+                {
                     message += $"Exito al agregar los productos nuevos{Environment.NewLine}";
+                    foreach (var item in VM.ComlpleteOrder.ProductosDeOrdenesNavigation)
+                    {
+                        if(item.Nuevo)
+                            item.Nuevo = false;
+                    }
+                }
+                    
 
                 res = await WebService.InsertData(ProductInfo, URLData.InserProductOrderInfoList);
                 if (!res.succes)
@@ -88,7 +96,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                         $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}";
                 }
                 else
-                    message += $"Exito al agregar los productos nuevos{Environment.NewLine}";
+                {
+                    message += $"Exito al modificar los datos de la orden{Environment.NewLine}";
+                    foreach (var item in VM.ComlpleteOrder.ProductosDeOrdenesNavigation)
+                    {
+                        if (!item.Nuevo && item.Modificado)
+                            item.Modificado = false;
+                    }
+                }
+                    
             }
             //Seccion para editar informaci[on de productos nuevos.
             if (modificacionDatos.Count > 0)
@@ -105,7 +121,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                         $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}";
                 }
                 else
+                {
+                    foreach (var item in VM.ComlpleteOrder.ProductosDeOrdenesNavigation)
+                    {
+                        if (!item.Nuevo && item.ModificadoProducto)
+                            item.ModificadoProducto = false;
+                    }
                     message += $"Exito al editar los productos de la orden.{Environment.NewLine}";
+                }
+                    
             }
 
             //Seccion para insertar la informacion de productos nuevos
@@ -123,7 +147,36 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                         $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}";
                 }
                 else
+                {
                     message += $"Exito al agregar la informacion de los productos{Environment.NewLine}";
+                    foreach (var item in VM.ComlpleteOrder.ProductosDeOrdenesNavigation)
+                    {
+                        if (!item.ProductInfoExist)
+                            item.ProductInfoExist = true;
+                    }
+                }
+                    
+            }
+            //Seccion Para eliminar Productos de las ordenes
+            if (VM.ProductosEliminados.Count > 0)
+            {
+                ProductosDeOrdenesNuevos = new List<APIProductosOrdenes>();
+                foreach (var item in VM.ProductosEliminados)
+                {
+                    ProductosDeOrdenesNuevos.Add(new APIProductosOrdenes(VM.ComlpleteOrder.OrdenID,item.CodigoProducto,item.Cantidad, item.Precio, item.TargetPrice));
+                }
+                Response res = await WebService.InsertData(ProductosDeOrdenesNuevos, URLData.OrderProductsDelete);
+                if (!res.succes)
+                {
+                    message += $"ERROR-> Error al Eliminar Productos de la orden." +
+                        $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}";
+                }
+                else
+                {
+                    VM.ProductosEliminados = new List<ProductOrderComplete>();
+                    message += $"Exito al eliminar los productos{Environment.NewLine}";
+                }
+                    
             }
             MessageBox.Show(message);
             VM.GettingData = false;

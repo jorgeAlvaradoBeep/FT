@@ -123,6 +123,8 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         }
         public List<APIProductOrderInformation> productInformationList { get; set; }
 
+        public List<ProductOrderComplete> ProductosEliminados { get; set; }
+
         public readonly SynchronizationContext _syncContext;
 
         #endregion
@@ -133,6 +135,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public ExportOrderToExcelCommand ExportOrderToExcelCommand { get; set; }
         public AddNewProductToOrderCommand AddNewProductToOrderCommand { get; set; }
         public SaveModifiedOrderCommand SaveModifiedOrderCommand { get; set; }
+        public DeleteProductFromOrdercommand DeleteProductFromOrdercommand { get; set; }
         #endregion
 
         public OrderCheckVM()
@@ -142,12 +145,16 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             ComlpleteOrder = new OrderComplete();
             AllProducts = new ObservableCollection<UpdateProductM>();
             ComlpleteOrder.ProductosDeOrdenesNavigation = new ObservableCollection<ProductOrderComplete>();
+            ProductosEliminados = new List<ProductOrderComplete>();
+            productInformationList = new List<APIProductOrderInformation>();
+            
             GetAvailableOrdersCommand = new GetAvailableOrdersCommand(this);
             ImportExcelFileCommand = new ImportExcelFileCommand(this);
             ExportOrderToExcelCommand = new ExportOrderToExcelCommand(this);
             AddNewProductToOrderCommand = new AddNewProductToOrderCommand(this);
             SaveModifiedOrderCommand = new SaveModifiedOrderCommand(this);
-            productInformationList = new List<APIProductOrderInformation>();
+            DeleteProductFromOrdercommand = new DeleteProductFromOrdercommand(this);
+            
         }
 
         async void GetOrderData()

@@ -404,6 +404,7 @@
     <Compile Include="ViewModels\Commands\OrderCommands\AddNewRowCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\AddNewProductToOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\DeleteProductFromOrdercommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ExportOrderToExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\GetAvailableOrdersCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />

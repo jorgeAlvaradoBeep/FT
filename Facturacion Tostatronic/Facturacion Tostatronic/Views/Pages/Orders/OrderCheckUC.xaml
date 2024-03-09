@@ -112,9 +112,9 @@
                     <telerik:GridViewColumn Header="Eliminar">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <telerik:RadButton Content="Delete"  
-                                               Command="telerik:RadGridViewCommands.Delete" 
-                                               CommandParameter="{Binding}" />
+                                <telerik:RadButton  Content="Delete"
+                                                    Command="{Binding DeleteProductFromOrdercommand, Source={StaticResource orderCheckVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewColumn>

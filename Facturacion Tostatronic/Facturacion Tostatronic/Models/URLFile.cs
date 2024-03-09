@@ -116,6 +116,7 @@
         public static string ProductOrderInfoEdit = baseURLNET + "ProductOrderInfo/Edit/";
         public static string InserProductOrderInfoList = baseURLNET + "ProductOrderInfo/Create/Bulk";
         public static string OrderProducts = baseURLNET + "ProductosOrdenes/";
+        public static string OrderProductsDelete = baseURLNET + "ProductosOrdenes/Delete/";
         public static string InserOrderProductsList = baseURLNET + "ProductosOrdenes/Create/Bulk";
         public static string OrderProductsEditList = baseURLNET + "ProductosOrdenes/Edit/";
 
