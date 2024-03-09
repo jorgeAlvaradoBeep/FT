@@ -140,8 +140,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                             var obj = aux.FirstOrDefault(x => x.Code == p.Sku);
                             if (obj != null)
                             {
-                                //if(obj.Existence!= p.Stock_quantity)
-                                //{
+                                if(obj.Existence!= p.Stock_quantity)
+                                {
                                     //p.Sale_price = obj.DistributorPrice.ToString();
                                     p.Sale_price = "";
                                     p.Stock_quantity = (int)obj.Existence;
@@ -154,7 +154,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                         regular_price = p.Regular_price,
                                         stock_quantity = p.Stock_quantity
                                     });
-                                //}                                
+                                }                                
                             }
                         }
                         else
@@ -265,8 +265,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                 var obj = aux.FirstOrDefault(x => x.Code == product.Sku);
                                 if (obj != null)
                                 {
-                                    //if (obj.Existence != product.Stock_quantity)
-                                    //{
+                                    if (obj.Existence != product.Stock_quantity)
+                                    {
                                         //product.Sale_price = obj.DistributorPrice.ToString();
                                         product.Sale_price = "";
                                         product.Stock_quantity = (int)obj.Existence;
@@ -281,7 +281,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                                         });
 
 
-                                    //}
+                                    }
                                 }
                                 
                             }

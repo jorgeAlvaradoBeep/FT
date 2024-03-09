@@ -87,6 +87,41 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             get { return allProducts; }
             set { SetValue(ref allProducts, value); }
         }
+        private UpdateProductM selectedProduct;
+        public UpdateProductM SelectedProduct
+        {
+            get { return selectedProduct; }
+            set
+            {
+                if (value != null)
+                {
+                    if (value != selectedProduct)
+                    {
+                        SetValue(ref selectedProduct, value);
+                        if (ComlpleteOrder.ProductosDeOrdenesNavigation.Where(x => x.NombreEs.Equals(selectedProduct.Nombre)).Count() == 0)
+                        {
+                            bool proInfExist = productInformationList.Where(x=> x.NombreEs==SelectedProduct.Nombre).Count()>0 ? true : false;
+                            ProductOrderComplete aux = new ProductOrderComplete(SelectedProduct.Codigo, 0, 0, 0, true);
+                            aux.ProductInfoExist = proInfExist;
+                            aux.NombreEs = SelectedProduct.Nombre;
+                            if(proInfExist) 
+                            {
+                                var proList = productInformationList.Where(x => x.NombreEs == SelectedProduct.Nombre).ToList();
+                                if(proList.Count() > 0)
+                                {
+                                    aux.NombreEn = proList[0].NombreEn;
+                                    aux.Link = proList[0].Link;
+                                }
+                            }
+                            ComlpleteOrder.ProductosDeOrdenesNavigation.Add(aux);
+                        }
+                        SelectedProduct = null;
+                    }
+                }
+
+            }
+        }
+        public List<APIProductOrderInformation> productInformationList { get; set; }
 
         public readonly SynchronizationContext _syncContext;
 
@@ -95,6 +130,9 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         #region Commands
         public GetAvailableOrdersCommand GetAvailableOrdersCommand { get; set; }
         public ImportExcelFileCommand ImportExcelFileCommand { get; set; }
+        public ExportOrderToExcelCommand ExportOrderToExcelCommand { get; set; }
+        public AddNewProductToOrderCommand AddNewProductToOrderCommand { get; set; }
+        public SaveModifiedOrderCommand SaveModifiedOrderCommand { get; set; }
         #endregion
 
         public OrderCheckVM()
@@ -106,6 +144,10 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             ComlpleteOrder.ProductosDeOrdenesNavigation = new ObservableCollection<ProductOrderComplete>();
             GetAvailableOrdersCommand = new GetAvailableOrdersCommand(this);
             ImportExcelFileCommand = new ImportExcelFileCommand(this);
+            ExportOrderToExcelCommand = new ExportOrderToExcelCommand(this);
+            AddNewProductToOrderCommand = new AddNewProductToOrderCommand(this);
+            SaveModifiedOrderCommand = new SaveModifiedOrderCommand(this);
+            productInformationList = new List<APIProductOrderInformation>();
         }
 
         async void GetOrderData()
@@ -138,11 +180,11 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 ObservableCollection<ProductOrderComplete> listaProductos = new ObservableCollection<ProductOrderComplete>();
                 foreach (APIProductosOrdenes pro in sl.ProductosDeOrdenesNavigation) 
                 {
-                    listaProductos.Add(new ProductOrderComplete(pro.CodigoProducto, pro.Cantidad, pro.Precio, pro.TargetPrice));
+                    listaProductos.Add(new ProductOrderComplete(pro.CodigoProducto, pro.Cantidad, pro.Precio, pro.TargetPrice,false));
                 }
                 //ComlpleteOrder.ProductosDeOrdenesNavigation = listaProductos;
                 res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
-                List < APIProductOrderInformation > productInformationList = new List < APIProductOrderInformation >();
+                
                 if (res.succes)
                 {
                     productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
@@ -167,11 +209,13 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                                     product.Link = p.Link;
                                     product.ProductInfoExist = true;
                                     product.Modificado = false;
+                                    product.ModificadoProducto = false;
                                     product.Nuevo = false;
                                 }
                             }
                         }
-
+                        else
+                            product.ProductInfoExist=false;
                     }
                 }
                 if(listaProductos.Count > 0) 

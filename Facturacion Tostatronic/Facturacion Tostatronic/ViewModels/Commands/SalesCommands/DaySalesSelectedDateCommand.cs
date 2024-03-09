@@ -56,11 +56,39 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         float ct = 0;
                         foreach(EFSaleProducts sp in s.ProductosDeVenta)
                         {
-                            if(sp.productoNavigation.nombre.Contains("Envio"))
+                            if(sp.productoNavigation!=null)
                             {
-                                s.Envio = (float)sp.productoNavigation.precioCompra;
-                            }else
-                                ct += (float)sp.productoNavigation.precioCompra*sp.cantidadComprada;
+                                if (sp.productoNavigation.nombre.Contains("Envio"))
+                                {
+                                    s.Envio = (float)sp.productoNavigation.precioCompra;
+                                }
+                                else
+                                    ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
+                            }
+                            else
+                            {
+                                r = await WebService.GetDataNode(URLData.getProductsNet, sp.idProducto);
+                                if (!r.succes)
+                                {
+                                    if (!string.IsNullOrEmpty(r.message))
+                                        MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    else
+                                        MessageBox.Show($"Error al traer datos del producto {sp.idProducto}" +
+                                            $"{Environment.NewLine}El calculo de costos puede no ser exacto,", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                
+                                }
+                                else
+                                {
+                                    sp.productoNavigation = JsonConvert.DeserializeObject<EFProduct>(r.data.ToString());
+                                    if (sp.productoNavigation.nombre.Contains("Envio"))
+                                    {
+                                        s.Envio = (float)sp.productoNavigation.precioCompra;
+                                    }
+                                    else
+                                        ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
+                                }
+                            }
+                            
                         }
                         s.ivaPagada = ct-(ct/1.16f);
                         s.ivaAPagar = s.iva - s.ivaPagada;

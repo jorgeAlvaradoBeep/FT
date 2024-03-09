@@ -305,8 +305,11 @@ namespace Facturacion_Tostatronic.Services
                     errorMessage = $"Factura Creada correctamente {Environment.NewLine}Error al insertar en la BD: {r.message}{Environment.NewLine}";
                 string pXMl = @path + "\\" + folio + ".xml";
                 string pPDF = @path + "\\" + folio + ".pdf";
-                File.Move(pathXML, pXMl);
-                File.Move(pathPDF, pPDF);
+                try
+                {
+                    File.Move(pathXML, pXMl);
+                    File.Move(pathPDF, pPDF);
+                }catch (Exception) { }
                 try
                 {
                     errorMessage = await Task.Run(() => Email(new string[] { mail }, pXMl, pPDF));

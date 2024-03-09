@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,18 @@ using System.Threading.Tasks;
 
 namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
 {
-    public class ProductOrderComplete
+    public class ProductOrderComplete : BaseNotifyPropertyChanged
     {
         public ProductOrderComplete()
         {
+            Modificado = false;
+            ModificadoProducto = false;
+        }
+        public ProductOrderComplete(bool nuevo)
+        {
+            Modificado = false;
+            ModificadoProducto = false;
+            Nuevo = nuevo;
         }
         public ProductOrderComplete(string codigoProducto, int cantidad, float precio, float targetPrice)
         {
@@ -17,6 +26,9 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             Cantidad = cantidad;
             Precio = precio;
             TargetPrice = targetPrice;
+            Modificado=false; 
+            ModificadoProducto=false;
+            ProductInfoExist=false;
         }
         public ProductOrderComplete(string codigoProducto, int cantidad, float precio, float targetPrice, bool nuevo)
         {
@@ -25,6 +37,9 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             Precio = precio;
             TargetPrice = targetPrice;
             Nuevo = nuevo;
+            Modificado = false; 
+            ModificadoProducto = false;
+            ProductInfoExist = false;
         }
         public int IDOrden { get; set; }
         public string CodigoProducto { get; set; }
@@ -76,8 +91,15 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             set { link = value; ModificadoProducto = true; }
         }
 
-        public bool Nuevo { get; set; } = false;
-        public bool Modificado { get; set; } = false;
+        public bool Nuevo { get; set; }
+        private bool modificado;
+
+        public bool Modificado
+        {
+            get { return modificado; }
+            set { SetValue(ref modificado, value); }
+        }
+
         public bool ProductInfoExist { get; set; } = false;
         public decimal SubTotal { get; set; }
         public decimal PrecioMXN { get; set; }
@@ -99,8 +121,13 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public decimal Publico { get; set; }
         public float PorcentajePublico { get; set; }
         public decimal SubPublico { get; set; }
+        private bool modificadoProducto;
 
-        public bool ModificadoProducto { get; set; } = false;
+        public bool ModificadoProducto
+        {
+            get { return modificadoProducto; }
+            set { SetValue(ref modificadoProducto, value); }
+        }
 
     }
 }

@@ -53,6 +53,7 @@
                 <telerik:RadAutoCompleteBox Width="600"
                                             Margin="5"
                                             ItemsSource="{Binding AllProducts}"
+                                            SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
                                             VerticalContentAlignment="Bottom"
                                             AutoCompleteMode="Suggest"  
                                             DisplayMemberPath="Nombre" 
@@ -63,7 +64,7 @@
                                             WatermarkContent="Ingrese Producto..." 
                                             IsEnabled="{Binding IsProductExtractionenabled}"/>
                 <Button Content="Agregar"
-                        Command="{Binding AddNewRowCommand}"
+                        Command="{Binding AddNewProductToOrderCommand}"
                         IsEnabled="{Binding IsProductExtractionenabled}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
@@ -107,7 +108,7 @@
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Link}" Header="Link" Width="80" TextWrapping="NoWrap"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Modificado}" Header="Modificado"/>
+                    
                     <telerik:GridViewColumn Header="Eliminar">
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -177,13 +178,14 @@
                         Grid.Row="6"
                         HorizontalAlignment="Center">
                 <Button Content="Guardar" 
-                        Command="{Binding SaveOrderCommand}"
+                        Command="{Binding SaveModifiedOrderCommand}"
                         IsEnabled="{Binding IsProductExtractionenabled}"/>
                 <Button Content="Importar Desde Excel" 
-                        IsEnabled="{Binding IsProductExtractionenabled}"/>
-                <Button Content="Exportar A Excel" 
                         IsEnabled="{Binding IsProductExtractionenabled}"
                         Command="{Binding ImportExcelFileCommand}"/>
+                <Button Content="Exportar A Excel" 
+                        IsEnabled="{Binding IsProductExtractionenabled}"
+                        Command="{Binding ExportOrderToExcelCommand}"/>
             </StackPanel>
 
         </Grid>

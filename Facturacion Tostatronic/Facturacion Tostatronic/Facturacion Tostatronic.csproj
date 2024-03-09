@@ -403,8 +403,11 @@
     <Compile Include="ViewModels\Commands\MenuCommands\ViewWarehouseMenuCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\AddNewRowCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\AddNewProductToOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ExportOrderToExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\GetAvailableOrdersCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveModifiedOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\SaveOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />
