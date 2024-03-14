@@ -37,13 +37,13 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
-            <telerik:RadRibbonComboBox Width="280"
-                                       HorizontalAlignment="Left"
-                                       ItemsSource="{Binding Orders}"
-                                       Margin="10,0,0,0"
-                                       DisplayMemberPath="OrdenID"
-                                       IsEnabled="{Binding OrderListAvailable}"
-                                       SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"/>
+            <telerik:RadComboBox Width="280"
+                                 HorizontalAlignment="Left"
+                                 ItemsSource="{Binding Orders}"
+                                 Margin="10,5,0,0"
+                                 DisplayMemberPath="OrdenID"
+                                 IsEnabled="{Binding OrderListAvailable}"
+                                 SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"/>
             <Button Content="Extraer Productos" 
                     IsEnabled="{Binding OrderListAvailable}" 
                     Grid.Row="0" 
@@ -74,19 +74,22 @@
                        VerticalAlignment="Center"
                        FontSize="16"/>
                 <telerik:RadNumericUpDown Width="135"
-                                          Margin="0,0,0,5"/>
+                                          Margin="0,0,0,5"
+                                          Value="{Binding ComlpleteOrder.CostoEnvio}"/>
                 <Label Content="Agentes Ad:"
                        Width="95"
                        VerticalAlignment="Center"
                        FontSize="16"/>      
                 <telerik:RadNumericUpDown Width="135"
-                          Margin="0,0,0,5"/>
+                                          Margin="0,0,0,5"
+                                          Value="{Binding ComlpleteOrder.CostoAA}"/>
                 <Label Content="Tipo Cambio:"
                        Width="105"
                        VerticalAlignment="Center"
                        FontSize="16"/>
                 <telerik:RadNumericUpDown Width="135"
-                          Margin="0,0,0,5"/>
+                                          Margin="0,0,0,5"
+                                          Value="{Binding ComlpleteOrder.TipoCambio}"/>
             </StackPanel>
             <telerik:RadGridView Grid.Row="3" 
                  ItemsSource="{Binding ComlpleteOrder.ProductosDeOrdenesNavigation}" 
@@ -125,7 +128,7 @@
                 <Label Content="Sub Material USD: "
                        VerticalAlignment="Center"
                        FontSize="12"/>
-                <Label Content="$999,999.00"
+                <Label Content="{Binding ComlpleteOrder.SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        VerticalAlignment="Center"
                        FontSize="12"/>
                 <Label Content="Total USD: "
@@ -172,7 +175,8 @@
                        VerticalAlignment="Center"
                        FontSize="16"/>
                 <telerik:RadNumericUpDown Width="135"
-                          Margin="0,0,0,5"/>
+                                          Margin="0,0,0,5"
+                                          Value="{Binding ComlpleteOrder.PorcentajeGanancia}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Grid.Row="6"
@@ -186,6 +190,9 @@
                 <Button Content="Exportar A Excel" 
                         IsEnabled="{Binding IsProductExtractionenabled}"
                         Command="{Binding ExportOrderToExcelCommand}"/>
+                <Button Content="Guardar Info Orden" 
+                        IsEnabled="{Binding IsProductExtractionenabled}"
+                        Command="{Binding SaveOrderInfoCommand}"/>
             </StackPanel>
 
         </Grid>

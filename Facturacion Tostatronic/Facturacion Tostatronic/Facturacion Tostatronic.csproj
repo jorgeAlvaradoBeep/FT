@@ -253,7 +253,9 @@
       <HintPath>..\lib\RCWPF\2023.3.1114.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2023.3.1114.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2023.3.1114.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2023_2_606_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Data, Version=2023.3.1114.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWPF\2023.3.1114.45\Telerik.Windows.Data.dll</HintPath>
       <Private>True</Private>
@@ -403,12 +405,15 @@
     <Compile Include="ViewModels\Commands\MenuCommands\ViewWarehouseMenuCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\AddNewRowCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\ImportOrderFromExcelCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\UpdateOrderFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\AddNewProductToOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\DeleteProductFromOrdercommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ExportOrderToExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\GetAvailableOrdersCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveModifiedOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveOrderInfoCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\SaveOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />

@@ -136,11 +136,13 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public AddNewProductToOrderCommand AddNewProductToOrderCommand { get; set; }
         public SaveModifiedOrderCommand SaveModifiedOrderCommand { get; set; }
         public DeleteProductFromOrdercommand DeleteProductFromOrdercommand { get; set; }
+        public SaveOrderInfoCommand SaveOrderInfoCommand { get; set; }
         #endregion
 
         public OrderCheckVM()
         {
             IsProductExtractionenabled = false;
+            _syncContext = SynchronizationContext.Current;
             Orders = new ObservableCollection<APIOrder>();
             ComlpleteOrder = new OrderComplete();
             AllProducts = new ObservableCollection<UpdateProductM>();
@@ -154,6 +156,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             AddNewProductToOrderCommand = new AddNewProductToOrderCommand(this);
             SaveModifiedOrderCommand = new SaveModifiedOrderCommand(this);
             DeleteProductFromOrdercommand = new DeleteProductFromOrdercommand(this);
+            SaveOrderInfoCommand = new SaveOrderInfoCommand(this);
             
         }
 
@@ -229,8 +232,10 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 {
                     foreach(var product in listaProductos) 
                     {
+                        product.SubTotal = (decimal)(product.Cantidad * product.Precio);
                         ComlpleteOrder.ProductosDeOrdenesNavigation.Add(product);
                     }
+                    ComlpleteOrder.GetsubTotal();
                 }
             }
             GettingData = false;

@@ -74,8 +74,8 @@
         public static string regimenFiscal = baseURLNode + "Regimen/";
 
         //URL Para API de .net
-        //const string baseURLNET = "http://192.168.3.15:5249/api/";
-        const string baseURLNET = "http://192.168.68.102:5249/api/";
+        const string baseURLNET = "http://192.168.3.18:5249/api/";
+        //const string baseURLNET = "http://192.168.68.102:5249/api/";
         //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
@@ -117,6 +117,7 @@
         public static string InserProductOrderInfoList = baseURLNET + "ProductOrderInfo/Create/Bulk";
         public static string OrderProducts = baseURLNET + "ProductosOrdenes/";
         public static string OrderProductsDelete = baseURLNET + "ProductosOrdenes/Delete/";
+        public static string OrderProductsDeleteAll = baseURLNET + "ProductosOrdenes/DeleteAll/";
         public static string InserOrderProductsList = baseURLNET + "ProductosOrdenes/Create/Bulk";
         public static string OrderProductsEditList = baseURLNET + "ProductosOrdenes/Edit/";
 

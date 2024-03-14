@@ -50,7 +50,8 @@
                                                 />
                     <telerik:GridViewDataColumn Header="Nombre"
 												DataMemberBinding="{Binding Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="555"/>
+                                                Width="555"
+                                                TextWrapping="Wrap"/>
                     <telerik:GridViewDataColumn Header="Cantidad"
 												DataMemberBinding="{Binding Existencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Width="100"/>

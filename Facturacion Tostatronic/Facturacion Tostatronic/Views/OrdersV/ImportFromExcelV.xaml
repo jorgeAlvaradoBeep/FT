@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.OrdersV" 
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders" xmlns:local3="clr-namespace:Facturacion_Tostatronic.Validations"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders" 
+        xmlns:local3="clr-namespace:Facturacion_Tostatronic.Validations" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="ImportFromExcelV" Height="400" Width="410">
+        Title="ImportFromExcelV" Height="800" Width="810">
     <Window.Resources>
         <vm:ImportFromExcelVM x:Key="importFromExcel"/>
     </Window.Resources>
     <telerik:RadBusyIndicator DataContext="{StaticResource importFromExcel}"
-                              IsBusy="{Binding GettingData}">
+                              IsBusy="{Binding GettingData}"
+                              BusyContent="{Binding PorcentajeDeAvance}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="90"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
-
             <telerik:RadFilePathPicker Margin="5" 
                                        FilePath="{Binding ImagePath, Mode=TwoWay}" 
                                        IsEnabled="{Binding SelectFileAvailable}"/>
@@ -49,14 +52,15 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -68,23 +72,61 @@
                          Grid.Column="1" 
                          MaxLength="2"/>
                 <Label Content="Nombre Es:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="1" Grid.Column="1" MaxLength="2"/>
-                <Label Content="Nombre En:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="2" Grid.Column="1" MaxLength="2"/>
-                <Label Content="Qty:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="3" Grid.Column="1" MaxLength="2"/>
-                <Label Content="Price:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="4" Grid.Column="1" MaxLength="2"/>
-                <Label Content="Target Price:" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="5" Grid.Column="1" MaxLength="2"/>
-                <Label Content="Link:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
-                <TextBox Width="50" Grid.Row="6" Grid.Column="1" MaxLength="2"/>
+                <TextBox Width="50" Grid.Row="1" Grid.Column="1" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnNombreEs}"/>
+                
+                <Label Content="Nombre En:" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="5,0,0,0"/>
+                <TextBox Width="50" Grid.Row="0" Grid.Column="3" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnNombreEn}"/>
+
+                <Label Content="Qty:" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="5,0,0,0"/>
+                <TextBox Width="50" Grid.Row="1" Grid.Column="3" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnQty}"/>
+
+                <Label Content="Price:" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" Margin="5,0,0,0"/>
+                <TextBox Width="50" Grid.Row="0" Grid.Column="5" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnPrecio}"/>
+
+                <Label Content="Target Price:" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right" Margin="5,0,0,0"/>
+                <TextBox Width="50" Grid.Row="1" Grid.Column="5" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnTargetPrice}"/>
+
+                <Label Content="Link:" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Right" Margin="5,0,0,0"/>
+                <TextBox Width="50" Grid.Row="0" Grid.Column="7" MaxLength="2"
+                         Text="{Binding ExcelFile.ColumnLink}"/>
             </Grid>
+            <telerik:RadGridView Grid.Row="3" 
+                                 ItemsSource="{Binding Productos}" 
+                                 AutoGenerateColumns="False"
+                                 VerticalAlignment="Top"
+                                 RowIndicatorVisibility="Collapsed"
+                                 CanUserFreezeColumns="False"
+                                 BorderThickness="1"
+                                 CanUserResizeColumns="True"
+                                 ShowGroupPanel="False"
+                                 IsReadOnly="True"
+                 >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEn}" Header="Nombre (EN)"  Width="220" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Link}" Header="Link" Width="80" TextWrapping="NoWrap"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
             <StackPanel Orientation="Horizontal"
-                Grid.Row="3"
-                HorizontalAlignment="Center">
+                        Grid.Row="4"
+                        HorizontalAlignment="Center">
                 <telerik:RadButton Content="Importar"
-                           Margin="5"/>
+                                   Margin="5"
+                                   Command="{Binding ImportOrderFromExcelCommand}"/>
+                <telerik:RadButton Content="Establecer Actualización"
+                                   Margin="5"
+                                   Command="{Binding UpdateOrderFromExcelCommand}">
+                </telerik:RadButton>
             </StackPanel>
         </Grid>
     </telerik:RadBusyIndicator>
