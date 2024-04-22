@@ -113,14 +113,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                     WooCommerceUpdateSimple updatedProduct = new WooCommerceUpdateSimple();
                     updatedProduct.regular_price = VM.Product.PublicPrice.ToString();
                     updatedProduct.stock_quantity = (int)VM.Product.Existence;
-                    updatedProduct.tiered_pricing_fixed_rules = string.Empty;
                     decimal d;
                     foreach (SpecificPrice sP in VM.Product.SpecificPrices)
                     {
                         d = Decimal.Round((decimal)sP.Price, 2);
-                        updatedProduct.tiered_pricing_fixed_rules += $"{sP.Quantity}:{(float)d},";
+                        updatedProduct.tiered_pricing_fixed_rules.Add((int)sP.Quantity, d);
                     }
-                    updatedProduct.tiered_pricing_fixed_rules= updatedProduct.tiered_pricing_fixed_rules.Remove(updatedProduct.tiered_pricing_fixed_rules.Length-1,1);
                     string json = JsonConvert.SerializeObject(updatedProduct,
                                     Newtonsoft.Json.Formatting.None,
                                     new JsonSerializerSettings

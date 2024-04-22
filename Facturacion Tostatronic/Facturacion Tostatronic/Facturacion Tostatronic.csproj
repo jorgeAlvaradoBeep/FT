@@ -330,6 +330,7 @@
     <Compile Include="Models\Products\ProductSaleSearch.cs" />
     <Compile Include="Models\Products\SpecificPrice.cs" />
     <Compile Include="Models\Products\SucursalProduct\SucursalProduct.cs" />
+    <Compile Include="Models\Products\TiredPriceModel.cs" />
     <Compile Include="Models\Products\UpdateProductM.cs" />
     <Compile Include="Models\Products\WooCommerceProduct.cs" />
     <Compile Include="Models\Products\WooCommerceUpdateSimple.cs" />
