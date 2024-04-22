@@ -12,7 +12,8 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
     public class EarningsVM : BaseNotifyPropertyChanged, IPageViewModel
     {
         public string Name { get; set; } = "EarningsVM";
-		private List<EarningSale> sales;
+        #region Propiedades
+        private List<EarningSale> sales;
 
 		public List<EarningSale> Sales
 		{
@@ -42,9 +43,28 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             get { return totalEarnings; }
             set { SetValue(ref totalEarnings, value); }
         }
+        private float totalVentas;
+
+        public float TotalVentas
+        {
+            get { return totalVentas; }
+            set { SetValue(ref totalVentas, value); }
+        }
+        private int numberOfSales;
+
+        public int NumberOfSales
+        {
+            get { return numberOfSales; }
+            set { SetValue(ref numberOfSales, value); }
+        }
 
 
+        #endregion
+
+        #region Comandos
         public DaySalesSelectedDateCommand DaySalesSelectedDateCommand { get; set; }
+        public ChangeDataInfoCommand ChangeDataInfoCommand { get; set; }
+        #endregion
         public EarningsVM()
         {
             Sales = new List<EarningSale>();
@@ -52,6 +72,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             SelectedDate = DateTime.Now;
 
             DaySalesSelectedDateCommand = new DaySalesSelectedDateCommand(this);
+            ChangeDataInfoCommand = new ChangeDataInfoCommand(this);
             DaySalesSelectedDateCommand.Execute(this);
         }
     }

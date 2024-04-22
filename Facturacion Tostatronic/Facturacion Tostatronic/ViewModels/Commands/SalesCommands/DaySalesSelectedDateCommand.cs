@@ -49,6 +49,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                 {
                     VM.Sales = JsonConvert.DeserializeObject<List<EarningSale>>(r.data.ToString());
                     float total = 0;
+                    float totalSales = 0;
                     foreach (EarningSale s in VM.Sales)
                     {
                         if (s.iva == 0)
@@ -97,9 +98,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         s.Comision = 0;
                         s.Costototal = ct;
                         s.getTotal();
-                        total += s.Ganancia;   
+                        total += s.Ganancia;
+                        totalSales += s.total;
                     }
                     VM.TotalEarnings = total;
+                    VM.TotalVentas = totalSales;
+                    VM.NumberOfSales = VM.Sales.Count;
                 }
                 catch(Exception ex) 
                 {

@@ -469,6 +469,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdatePublicPriceCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateQuantitiesViewCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\UpdateSucursalPriceCommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\ChangeDataInfoCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\DaySalesSelectedDateCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\PrintTicketOfSalecommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SaleSelectedSaleCommand.cs" />
