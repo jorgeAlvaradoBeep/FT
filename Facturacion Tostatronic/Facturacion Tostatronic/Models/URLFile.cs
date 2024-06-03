@@ -92,6 +92,7 @@
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products/";
         public static string editProductsNet = baseURLNET + "Products/Edit/";
+        public static string deleteProductsNet = baseURLNET + "Products/Eliminar/";
         public static string searchProductsNet = baseURLNET + "Products/SearchProduct/";
         public static string getTotalForSale = baseURLNET + "ProductosDeVenta/SaleTotal/";
         public static string getOrderData = baseURLNET + "ProductosDeVenta/";

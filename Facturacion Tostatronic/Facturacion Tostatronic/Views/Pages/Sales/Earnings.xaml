@@ -127,14 +127,21 @@
                                                 IsReadOnly="True"/>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
-            <Label Content="Total Ganancias: "
-                   Grid.Row="4"
-                   Grid.Column="3"
-                   FontSize="24"/>
-            <Label Content="{Binding TotalEarnings, StringFormat={}{0:C}}"
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="3">
+                <Label Content="Total Ganancias: "
+                       Grid.Row="4"
+                       Grid.Column="3"
+                       FontSize="24"/>
+                <Button Content="Importar Comisiones" Command="{Binding ImportCommissionFromExcelCommand}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="4">
+                <Label Content="{Binding TotalEarnings, StringFormat={}{0:C}}"
                    Grid.Row="4"
                    Grid.Column="4"
                    FontSize="24"/>
+                <telerik:RadFilePathPicker Margin="5" 
+           FilePath="{Binding ImagePath, Mode=TwoWay}"/>
+            </StackPanel>
             <StackPanel Orientation="Vertical"
                         Grid.Row="4"
                         Grid.Column="1"
@@ -157,7 +164,20 @@
                             FontSize="24"/>
                 </StackPanel>
             </StackPanel>
-
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="5">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Fila Inicio" FontSize="24"/>
+                    <telerik:RadNumericUpDown Value="{Binding FilaInicio}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Fila Fin" FontSize="24"/>
+                    <telerik:RadNumericUpDown Value="{Binding FilaFin}" />
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </telerik:RadBusyIndicator>
 </UserControl>

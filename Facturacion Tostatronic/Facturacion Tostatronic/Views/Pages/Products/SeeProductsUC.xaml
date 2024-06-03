@@ -3,14 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:RowSelec="clr-namespace:Facturacion_Tostatronic.Views.Clients.SeeClientStyles"
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:RowSelec="clr-namespace:Facturacion_Tostatronic.Views.Clients.SeeClientStyles" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <vm:SeeProductVM x:Key="seeProductVM"/>
     </UserControl.Resources>
+    <!--<UserControl.DataContext>
+        <vm:SeeProductVM/>
+    </UserControl.DataContext>-->
+    
     <telerik:RadBusyIndicator DataContext="{StaticResource seeProductVM}"
-                              IsBusy="{Binding GettingData}">
+        IsBusy="{Binding GettingData}">
+        <!-- Contenido de la ventana -->
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding SeeProductsLoadedCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid>
             <Grid.Resources>
                 <telerik:BinaryImageConverter x:Key="converter" />
@@ -28,7 +38,8 @@
                                              Width="500"
                                              Text="{Binding SearchCriterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <telerik:RadButton Content="Recargar Tabla"
-                                   Margin="10"/>
+                                   Margin="10"
+                                   Command="{Binding SeeProductsLoadedCommand}"/>
             </StackPanel>
             
             <telerik:RadGridView x:Name="RadGridView1"
@@ -74,6 +85,22 @@
                                 <telerik:RadButton  Content="Guardar"
                                                     Command="{Binding SaveProductInfoCommand, Source={StaticResource seeProductVM}}"
                                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
+                            </DataTemplate>
+                        </telerik:GridViewColumn.CellTemplate>
+                    </telerik:GridViewColumn>
+                    <telerik:GridViewColumn Header="Eliminar"
+									        Width="100" >
+                        <telerik:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:RadButton  Content="Eliminar"
+                                                    Command="{Binding DeleteProductCommand, Source={StaticResource seeProductVM}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}"
+                                                    Background="Red"
+                                                    FontWeight="Bold"
+                                                    Foreground="White"
+                                                    BorderBrush="White"
+                                                    BorderThickness="2"
+                                                    CornerRadius="2"/>
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>
                     </telerik:GridViewColumn>
