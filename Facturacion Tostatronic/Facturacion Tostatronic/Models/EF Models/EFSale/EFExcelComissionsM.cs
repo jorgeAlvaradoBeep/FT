@@ -11,5 +11,6 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFSale
         public int SaleID { get; set; }
         public float Comission { get; set; }
         public float Shipping { get; set; }
+        public string Folio { get; set; }
     }
 }

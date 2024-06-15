@@ -29,19 +29,47 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFEarnings
             get { return folioPlataforma; }
             set { SetValue(ref folioPlataforma, value); }
         }
+        private int plataformaId;
+
+        public int PlataformaId
+        {
+            get { return plataformaId; }
+            set { SetValue(ref plataformaId, value); }
+        }
 
         private Plataforma plataforma;
         public Plataforma Plataforma
         {
             get { return plataforma; }
-            set { SetValue(ref plataforma, value); }
+            set 
+            { 
+                SetValue(ref plataforma, value); 
+                if(Plataforma!=null)
+                {
+                    if (string.IsNullOrEmpty(Plataforma.Nombre))
+                        return;
+                    if(Plataforma.Nombre.Equals("Tienda"))
+                    {
+                        FolioPlataforma = VentaId.ToString();
+                    }
+                }
+            }
         }
+        private int metodoPagoId;
 
+        public int MetodoPagoId
+        {
+            get { return metodoPagoId; }
+            set { SetValue(ref metodoPagoId, value); }
+        }
         private EFMetodoPago metodoPago;
         public EFMetodoPago MetodoPago
         {
             get { return metodoPago; }
-            set { SetValue(ref metodoPago, value); }
+            set 
+            { 
+                SetValue(ref metodoPago, value); 
+            }
         }
 
         private float comision;
@@ -58,8 +86,8 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFEarnings
             set { SetValue(ref envio, value); }
         }
 
-        private float ganancia;
-        public float Ganancia
+        private float? ganancia;
+        public float? Ganancia
         {
             get { return ganancia; }
             set { SetValue(ref ganancia, value); }

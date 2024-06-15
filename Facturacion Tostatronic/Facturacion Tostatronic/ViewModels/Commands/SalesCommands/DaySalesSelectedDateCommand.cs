@@ -68,20 +68,22 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         }
                         else
                         {
-                            var comisiones = JsonConvert.DeserializeObject<List<EFComisiones>>(r.data.ToString());
-                            foreach (EarningSale s in VM.Sales)
+                            if (r.data != null)
                             {
-                                var comision = comisiones.FirstOrDefault(c => c.VentaId == s.idVenta);
-                                if (comision != null)
+                                var comisiones = JsonConvert.DeserializeObject<List<EFComisiones>>(r.data.ToString());
+                                foreach (EarningSale s in VM.Sales)
                                 {
-                                    s.Comisiones = comision;
-                                }
-                                else
-                                {
-                                    s.Comisiones = new EFComisiones();
+                                    var comision = comisiones.FirstOrDefault(c => c.VentaId == s.idVenta);
+                                    if (comision != null)
+                                    {
+                                        s.Comisiones = comision;
+                                    }
+                                    else
+                                    {
+                                        s.Comisiones = new EFComisiones();
+                                    }
                                 }
                             }
-                        
                         }
                     }
                     
@@ -90,15 +92,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         if (s.iva == 0)
                             s.iva = s.total - (s.total / 1.16f);
                         float ct = 0;
+                        s.Comisiones.VentaId = s.idVenta;   
                         foreach(EFSaleProducts sp in s.ProductosDeVenta)
                         {
                             if(sp.productoNavigation!=null)
                             {
-                                if (sp.productoNavigation.nombre.Contains("Envio"))
-                                {
-                                    s.Comisiones.Envio = (float)sp.productoNavigation.precioCompra;
-                                }
-                                else
+                                if (!sp.productoNavigation.nombre.Contains("Envio"))
                                     ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
                             }
                             else
@@ -116,11 +115,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                                 else
                                 {
                                     sp.productoNavigation = JsonConvert.DeserializeObject<EFProduct>(r.data.ToString());
-                                    if (sp.productoNavigation.nombre.Contains("Envio"))
-                                    {
-                                        s.Comisiones.Envio = (float)sp.productoNavigation.precioCompra;
-                                    }
-                                    else
+                                    if (!sp.productoNavigation.nombre.Contains("Envio"))
                                         ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
                                 }
                             }
@@ -133,7 +128,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         s.ISRRetenido = 0;
                         s.Costototal = ct;
                         s.getTotal();
-                        total += s.Comisiones.Ganancia;
+                        total += s.Comisiones.Ganancia ?? 0.0f;
                         totalSales += s.total;
                     }
                     VM.TotalEarnings = total;

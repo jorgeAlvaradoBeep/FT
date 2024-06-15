@@ -1,9 +1,13 @@
-﻿using Facturacion_Tostatronic.Models.EF_Models.EFSale;
+﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFEarnings;
+using Facturacion_Tostatronic.Models.EF_Models.EFSale;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands.SalesCommands;
 using GalaSoft.MvvmLight.Threading;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -105,6 +109,18 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         }
         public int FilaInicio { get; set; }
         public int FilaFin { get; set; }
+        private ObservableCollection<Plataforma> plataformasDisponibles;
+        public ObservableCollection<Plataforma> PlataformasDisponibles
+        {
+            get { return plataformasDisponibles; }
+            set { SetValue(ref plataformasDisponibles, value); }
+        }
+        private ObservableCollection<EFMetodoPago> metodosDePagoDisponibles;
+        public ObservableCollection<EFMetodoPago> MetodosDePagoDisponibles
+        {
+            get { return metodosDePagoDisponibles; }
+            set { SetValue(ref metodosDePagoDisponibles, value); }
+        }
 
         public readonly SynchronizationContext _syncContext;
 
@@ -114,6 +130,8 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         public DaySalesSelectedDateCommand DaySalesSelectedDateCommand { get; set; }
         public ChangeDataInfoCommand ChangeDataInfoCommand { get; set; }
         public ImportCommissionFromExcelCommand ImportCommissionFromExcelCommand { get; set; }
+        public SaveComissionCommand SaveComissionCommand { get; set; }
+
         #endregion
         public EarningsVM()
         {
@@ -126,9 +144,40 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             DaySalesSelectedDateCommand = new DaySalesSelectedDateCommand(this);
             ChangeDataInfoCommand = new ChangeDataInfoCommand(this);
             ImportCommissionFromExcelCommand = new ImportCommissionFromExcelCommand(this);
+            SaveComissionCommand = new SaveComissionCommand(this);
+            PlataformasDisponibles = new ObservableCollection<Plataforma>();
+            MetodosDePagoDisponibles = new ObservableCollection<EFMetodoPago>();
+            CargarPlataformasDisponibles();
             DaySalesSelectedDateCommand.Execute(this);
         }
+        private async void CargarPlataformasDisponibles()
+        {
+            // Aquí deberías cargar las plataformas desde la base de datos
+            // Este es un ejemplo, debes adaptarlo a cómo accedes a tu base de datos
+            var res = await WebService.GetDataNode(URLData.Plataformas, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error al cargar las plataformas disponibles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var plataformas = JsonConvert.DeserializeObject<List<Plataforma>>(res.data.ToString());
+            foreach (var plataforma in plataformas)
+            {
+                PlataformasDisponibles.Add(plataforma);
+            }
 
+            res = await WebService.GetDataNode(URLData.MetodosDePago, "");
+            if (!res.succes)
+            {
+                MessageBox.Show("Error al cargar los metodos de pago disponibles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var metodos = JsonConvert.DeserializeObject<List<EFMetodoPago>>(res.data.ToString());
+            foreach (var metodo in metodos)
+            {
+                MetodosDePagoDisponibles.Add(metodo);
+            }
+        }
         #region LecturaExcel
         bool ValidateFile()
         {

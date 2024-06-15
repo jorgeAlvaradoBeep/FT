@@ -40,7 +40,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             foreach (EarningSale s in VM.Sales)
             {
                 s.getTotal();
-                total += s.Ganancia;
+                total += s.Comisiones.Ganancia ?? 0.0f;
             }
             VM.TotalEarnings = total;
         }

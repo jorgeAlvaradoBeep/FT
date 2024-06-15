@@ -67,8 +67,9 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                 var data = finishList.Where(x => x.SaleID==item.idVenta).FirstOrDefault();
                 if(data != null)
                 {
-                    item.Comision = data.Comission;
-                    item.Envio = data.Shipping;
+                    item.Comisiones.Comision = data.Comission;
+                    item.Comisiones.Envio = data.Shipping;
+                    item.Comisiones.FolioPlataforma = data.Folio;
                 }
             }
         }
@@ -93,7 +94,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                         {
                             if (VM.Sales.Any(x => x.idVenta == resultA))
                             {
-                                worksheet.Cells[row, 1].Value = VM.Sales.Where(x => x.idVenta == resultA).FirstOrDefault().Ganancia;
+                                worksheet.Cells[row, 1].Value = VM.Sales.Where(x => x.idVenta == resultA).FirstOrDefault().Comisiones.Ganancia;
                             }
                         }
                         
@@ -141,7 +142,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     {
                         string valueF = worksheet.Cells[row, 6].Text; // Columna F
                         string valueG = worksheet.Cells[row, 7].Text; // Columna G
-                        string valueA = worksheet.Cells[row, 1].Text; // Columna G
+                        string valueA = worksheet.Cells[row, 1].Text; // Columna A
+                        string valueB = worksheet.Cells[row, 2].Text; // Columna B
                         adicion = new EFExcelComissionsM();
                         // Eliminar símbolos de pesos y comas
                         valueF = valueF.Replace("$", "").Replace(",", "");
@@ -155,6 +157,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                             adicion.Comission = resultF;
                             adicion.Shipping = resultG;
                             adicion.SaleID = resultA;
+                            adicion.Folio = valueB;
                             products.Add(adicion);
                         }
                         else
