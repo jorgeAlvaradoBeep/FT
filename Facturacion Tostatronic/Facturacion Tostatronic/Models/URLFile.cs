@@ -121,6 +121,8 @@
         public static string OrderProductsDeleteAll = baseURLNET + "ProductosOrdenes/DeleteAll/";
         public static string InserOrderProductsList = baseURLNET + "ProductosOrdenes/Create/Bulk";
         public static string OrderProductsEditList = baseURLNET + "ProductosOrdenes/Edit/";
+        public static string Comisiones = baseURLNET + "Comisiones/";
+        public static string ComisionesDeVentas = baseURLNET + "Comisiones/ComosionesDeVentas?";
 
 
     }

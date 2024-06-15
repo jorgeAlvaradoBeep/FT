@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EFClientF;
+using Facturacion_Tostatronic.Models.EF_Models.EFEarnings;
 using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Services;
 using System;
@@ -11,6 +12,12 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFSale
 {
     public class EarningSale: BaseNotifyPropertyChanged
     {
+        public EarningSale()
+        {
+            Comisiones = new EFComisiones();
+            Comisiones.Plataforma = new Plataforma();
+            Comisiones.MetodoPago = new EFMetodoPago();
+        }
         public int idVenta { get; set; }
         public int idUsuario { get; set; }
         public int idCliente { get; set; }
@@ -49,28 +56,10 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFSale
             get { return isrRetenido; }
             set { SetValue(ref isrRetenido, value); getTotal(); }
         }
+        //Seccion de las comisiones
+        public EFComisiones Comisiones { get; set; }
 
-        private float envio;
 
-        public float Envio
-        {
-            get { return envio; }
-            set { SetValue(ref envio, value); getTotal(); }
-        }
-        private float comision;
-
-        public float Comision
-        {
-            get { return comision; }
-            set { SetValue(ref comision, value); getTotal(); }
-        }
-        private float ganancia;
-
-        public float Ganancia
-        {
-            get { return ganancia; }
-            set { SetValue(ref ganancia, value); PGanancia = (Ganancia / Costototal) * 100; }
-        }
         private float pGanancia;
 
         public float PGanancia
@@ -92,7 +81,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFSale
         public void getTotal()
         {
             if(Costototal > 0)
-                Ganancia = total - Costototal - ivaAPagar - ISRRetenido - comision - envio - IVARetenido;
+                Comisiones.Ganancia = total - Costototal - ivaAPagar - ISRRetenido - Comisiones.Comision - Comisiones.Envio - IVARetenido;
         }
     }
 }

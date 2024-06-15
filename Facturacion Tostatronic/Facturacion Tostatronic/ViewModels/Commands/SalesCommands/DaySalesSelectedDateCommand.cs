@@ -13,6 +13,7 @@ using System.Windows;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
+using Facturacion_Tostatronic.Models.EF_Models.EFEarnings;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
 {
@@ -50,6 +51,40 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     VM.Sales = JsonConvert.DeserializeObject<List<EarningSale>>(r.data.ToString());
                     float total = 0;
                     float totalSales = 0;
+                    //Ahora extraemos las comisiones si existen de las ventas del dia seleccionado
+                    var ids = VM.Sales.Select(sale => sale.idVenta).ToList();
+                    if(ids!=null || ids.Count!=0)
+                    {
+                        var idsQueryString = string.Join("&", ids.Select(id => $"ids={id}"));
+                        r = await WebService.GetDataNode(URLData.ComisionesDeVentas, idsQueryString);
+                        if (!r.succes)
+                        {
+                            if (!string.IsNullOrEmpty(r.message))
+                                MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            else
+                                MessageBox.Show($"Error al traer las comisiones" +
+                                    $"{Environment.NewLine}Motivo: {r.message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        }
+                        else
+                        {
+                            var comisiones = JsonConvert.DeserializeObject<List<EFComisiones>>(r.data.ToString());
+                            foreach (EarningSale s in VM.Sales)
+                            {
+                                var comision = comisiones.FirstOrDefault(c => c.VentaId == s.idVenta);
+                                if (comision != null)
+                                {
+                                    s.Comisiones = comision;
+                                }
+                                else
+                                {
+                                    s.Comisiones = new EFComisiones();
+                                }
+                            }
+                        
+                        }
+                    }
+                    
                     foreach (EarningSale s in VM.Sales)
                     {
                         if (s.iva == 0)
@@ -61,7 +96,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                             {
                                 if (sp.productoNavigation.nombre.Contains("Envio"))
                                 {
-                                    s.Envio = (float)sp.productoNavigation.precioCompra;
+                                    s.Comisiones.Envio = (float)sp.productoNavigation.precioCompra;
                                 }
                                 else
                                     ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
@@ -83,22 +118,22 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                                     sp.productoNavigation = JsonConvert.DeserializeObject<EFProduct>(r.data.ToString());
                                     if (sp.productoNavigation.nombre.Contains("Envio"))
                                     {
-                                        s.Envio = (float)sp.productoNavigation.precioCompra;
+                                        s.Comisiones.Envio = (float)sp.productoNavigation.precioCompra;
                                     }
                                     else
                                         ct += (float)sp.productoNavigation.precioCompra * sp.cantidadComprada;
                                 }
                             }
-                            
                         }
+
+                        //Seccion para calcular comisiones si no existieron
                         s.ivaPagada = ct-(ct/1.16f);
                         s.ivaAPagar = s.iva - s.ivaPagada;
                         s.IVARetenido = 0;
                         s.ISRRetenido = 0;
-                        s.Comision = 0;
                         s.Costototal = ct;
                         s.getTotal();
-                        total += s.Ganancia;
+                        total += s.Comisiones.Ganancia;
                         totalSales += s.total;
                     }
                     VM.TotalEarnings = total;

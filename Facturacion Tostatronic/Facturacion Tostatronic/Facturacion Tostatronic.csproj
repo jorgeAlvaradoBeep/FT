@@ -319,6 +319,9 @@
     <Compile Include="Models\EF Models\EF Orders\OrderComplete.cs" />
     <Compile Include="Models\EF Models\EF Orders\ProductOrderComplete.cs" />
     <Compile Include="Models\EF Models\EFClientF\EFClient.cs" />
+    <Compile Include="Models\EF Models\EFEarnings\EFComisiones.cs" />
+    <Compile Include="Models\EF Models\EFEarnings\EFMetodoPago.cs" />
+    <Compile Include="Models\EF Models\EFEarnings\Plataforma.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFCodigoSAT.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFProduct.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFQuoteProduct.cs" />
