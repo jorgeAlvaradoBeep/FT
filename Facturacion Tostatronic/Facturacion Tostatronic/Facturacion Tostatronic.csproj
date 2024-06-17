@@ -503,6 +503,7 @@
     <Compile Include="ViewModels\Commands\SalesCommands\SeeSalePDFCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SelectedDateChangedQuoteCommand.cs" />
     <Compile Include="ViewModels\Commands\SalesCommands\SelectedDateChangedSaleCommand.cs" />
+    <Compile Include="ViewModels\Commands\SalesCommands\VaseSaleComissionCommand.cs" />
     <Compile Include="ViewModels\Commands\SaleSelectedCommand.cs" />
     <Compile Include="ViewModels\Commands\SeeInvoiceCommand.cs" />
     <Compile Include="ViewModels\Commands\SeeInvoiceCommands\CloseFormCommand.cs" />
@@ -535,6 +536,7 @@
     <Compile Include="ViewModels\Products\DisscountPricesVM.cs" />
     <Compile Include="ViewModels\Products\SeeProductVM.cs" />
     <Compile Include="ViewModels\Products\SucursalPricesVM.cs" />
+    <Compile Include="ViewModels\Sales\DialogComisionesVM.cs" />
     <Compile Include="ViewModels\Sales\EarningsVM.cs" />
     <Compile Include="ViewModels\Sales\SearchQuoteVM.cs" />
     <Compile Include="ViewModels\Sales\SeeQuatitionsVM.cs" />
@@ -648,6 +650,9 @@
     </Compile>
     <Compile Include="Views\PDV\Quotes\SearchQuote.xaml.cs">
       <DependentUpon>SearchQuote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PDV\Sales\DialogComisiones.xaml.cs">
+      <DependentUpon>DialogComisiones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PDV\Sales\DialogPaymentV.xaml.cs">
       <DependentUpon>DialogPaymentV.xaml</DependentUpon>
@@ -849,6 +854,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PDV\Quotes\SearchQuote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PDV\Sales\DialogComisiones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

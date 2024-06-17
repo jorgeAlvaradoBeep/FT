@@ -78,7 +78,9 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                     {
                         MessageBox.Show($"Error al imprimir: {ex.Message + Environment.NewLine}La venta se guardo exitosamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                                           
+                    Application.Current.Properties["Folio"] = VM.CompleteSale.IDSale;
+                    DialogComisiones dCom = new DialogComisiones();
+                    dCom.ShowDialog();
                     VM.GettingData = false;
                     VM.InitializeCompleteSale();
                 }

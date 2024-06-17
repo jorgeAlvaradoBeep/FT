@@ -1,0 +1,80 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.PDV.Sales.DialogComisiones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.PDV.Sales" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="Establecer Comisiones" Height="470" Width="400">
+    <Window.DataContext>
+        <vm:DialogComisionesVM/>
+    </Window.DataContext>
+    <telerik:RadBusyIndicator IsBusy="{Binding GettingData}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="{Binding Comision.VentaId}" 
+                   Grid.Row="0" 
+                   Margin="0,0,0,10"
+                   HorizontalAlignment="Center"
+                   FontSize="24"
+                   FontWeight="Bold"/>
+
+            <telerik:RadComboBox x:Name="cbPlataforma" Grid.Row="1" Margin="0,5,0,10" 
+                                 ItemsSource="{Binding PlataformasDisponibles}"
+                                 DisplayMemberPath="Nombre" 
+                                 SelectedValue="{Binding Comision.PlataformaId, Mode=TwoWay}"
+                                 SelectedValuePath="Id" 
+                                 IsEditable="False"/>
+
+            <telerik:RadWatermarkTextBox x:Name="txtFolioPlataforma" Grid.Row="2" Margin="0,0,0,10" 
+                                         WatermarkContent="Folio de Plataforma"
+                                         Text="{Binding Comision.FolioPlataforma, Mode=TwoWay}"/>
+
+            <telerik:RadComboBox x:Name="cbMetodoPago" Grid.Row="3" Margin="0,0,0,10" 
+                                 Text="Método de Pago" 
+                                 ItemsSource="{Binding MetodosDePagoDisponibles}"
+                                 SelectedValue="{Binding Comision.MetodoPagoId, Mode=TwoWay}"
+                                 DisplayMemberPath="Nombre" 
+                                 SelectedValuePath="Id" IsEditable="False"/>
+
+            <Label Content="Comision" Grid.Row="4"/>
+            <telerik:RadWatermarkTextBox x:Name="txtComision" Grid.Row="5" Margin="0,0,0,10" 
+                                         WatermarkContent="Comisión de la Plataforma" 
+                                         InputScope="Number"
+                                         Text="{Binding Comision.Comision, Mode=TwoWay}"
+                                         GotKeyboardFocus="DataSelect"/>
+            <Label Content="Envio" Grid.Row="6"/>
+            <telerik:RadWatermarkTextBox x:Name="txtMontoEnvio" Grid.Row="7" Margin="0,0,0,10" 
+                                         WatermarkContent="Monto de Envío" InputScope="Number"
+                                         Text="{Binding Comision.Envio}"
+                                         GotKeyboardFocus="DataSelect"/>
+
+            <Button Content="Guardar" 
+                    Grid.Row="8" 
+                    HorizontalAlignment="Center" Width="100" 
+                    Margin="0,10,0,0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding VaseSaleComissionCommand}"/>
+                        <i:CallMethodAction MethodName="Close"
+                                            TargetObject="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</Window>

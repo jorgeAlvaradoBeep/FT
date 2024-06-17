@@ -75,8 +75,8 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.18:5249/api/";
-        const string baseURLNET = "http://192.168.68.105:5249/api/";
-        //const string baseURLNET = "http://143.198.173.21:5249/api/";
+        //const string baseURLNET = "http://192.168.68.105:5249/api/";
+        const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";

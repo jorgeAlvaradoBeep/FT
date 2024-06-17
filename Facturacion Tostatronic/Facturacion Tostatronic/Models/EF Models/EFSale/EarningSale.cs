@@ -81,7 +81,11 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFSale
         public void getTotal()
         {
             if(Costototal > 0)
+            {
                 Comisiones.Ganancia = total - Costototal - ivaAPagar - ISRRetenido - Comisiones.Comision - Comisiones.Envio - IVARetenido;
+                PGanancia = ((Comisiones.Ganancia ?? 0.0f)/Costototal)*100;
+            }
+                
         }
     }
 }
