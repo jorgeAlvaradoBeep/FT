@@ -13,6 +13,6 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFProduct
         public int cantidadComprada { get; set; }
         public double precioAlMomento { get; set; }
         public int descuento { get; set; }
-        public EFProduct productoNavigation { get; set; }
+        public EFProduct productoNavigation { get; set; } = new EFProduct();
     }
 }

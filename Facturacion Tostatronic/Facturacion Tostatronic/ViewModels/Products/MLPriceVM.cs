@@ -52,7 +52,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 Task.Run(() => SelectedProduct.UPC = GetUPC(SelectedProduct.Code));
                 ProductData.NumberOfPiecesOfPackage = 1;
                 ProductData.PriceToCalculate = SelectedProduct.MinimumPrice;
-                ProductData.PublicationPrice = 25;
+                ProductData.PublicationPrice = 30;
                 ProductData.ClassicPublicationComission = 14.5f;
                 ProductData.ClassicPublicationShippingCost = 110;
                 ProductData.PremiumublicationComission = 19.5f;

@@ -332,6 +332,7 @@
     <Compile Include="Models\EF Models\EFSale\CotizacionEF.cs" />
     <Compile Include="Models\EF Models\EFSale\EarningSale.cs" />
     <Compile Include="Models\EF Models\EFSale\EFExcelComissionsM.cs" />
+    <Compile Include="Models\EF Models\EFSale\EFUpdateComisionCost.cs" />
     <Compile Include="Models\EndSale.cs" />
     <Compile Include="Models\InvoiceData.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -428,6 +429,7 @@
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\ImportOrderFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\UpdateOrderFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\AddNewProductToOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\CalculatePirceCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\DeleteProductFromOrdercommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ExportOrderToExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\GetAvailableOrdersCommand.cs" />
@@ -530,6 +532,7 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SaveProductsTospaceCommand.cs" />
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
+    <Compile Include="ViewModels\Orders\CalculatePricesVM.cs" />
     <Compile Include="ViewModels\Orders\ImportFromExcelVM.cs" />
     <Compile Include="ViewModels\Orders\MakeOrderVM.cs" />
     <Compile Include="ViewModels\Orders\OrderCheckVM.cs" />
@@ -587,6 +590,9 @@
     </Compile>
     <Compile Include="Views\Menus\SubMenuContent.xaml.cs">
       <DependentUpon>SubMenuContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersV\CalculatePricesV.xaml.cs">
+      <DependentUpon>CalculatePricesV.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdersV\ImportFromExcelV.xaml.cs">
       <DependentUpon>ImportFromExcelV.xaml</DependentUpon>
@@ -770,6 +776,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menus\SubMenuContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersV\CalculatePricesV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

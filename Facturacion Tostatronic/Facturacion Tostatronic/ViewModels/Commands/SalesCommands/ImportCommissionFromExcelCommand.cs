@@ -15,6 +15,10 @@ using Facturacion_Tostatronic.Models.EF_Models.EFSale;
 using OfficeOpenXml;
 using System.Globalization;
 using System.IO;
+using Facturacion_Tostatronic.Models.EF_Models.EFEarnings;
+using Facturacion_Tostatronic.Services;
+using Facturacion_Tostatronic.Models;
+using Newtonsoft.Json;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
 {
@@ -36,6 +40,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
 
         public async void Execute(object parameter)
         {
+            /*
             if (VM.FilaInicio == 0)
             {
                 MessageBox.Show("Error: La Fila de inicio no puede ser la 1. Verifique",
@@ -57,7 +62,104 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             VM.ChangeDataInfoCommand.Execute(VM);
             InsertEarningExcel();
             VM.GettinData = false;
-            //Aqui haremos lo que continua para actualizar la orden.
+            //Aqui haremos lo que continua para actualizar la orden.*/
+
+            //Codigo auxiliar para poder actualizar los costos de las comisiones
+
+            //Seccion de actualizacion de costos de comisiones
+            /*
+            VM.GettinData = true;
+            Response r = await WebService.GetDataNode(URLData.GetSalesTotalNet,"");
+            if (!r.succes)
+            {
+                if (!string.IsNullOrEmpty(r.message))
+                    MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Error al traer datos de ventas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettinData = false;
+                return;
+            }
+            else
+            {
+                try
+                {
+                    List<EFComisiones> eFComisiones = JsonConvert.DeserializeObject<List<EFComisiones>>(r.data.ToString(), new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    });
+
+                    // Usage example:
+                    int chunkSize = 50;
+                    List<int> idList = eFComisiones.Select(x => x.VentaId).ToList();
+                    List<List<int>> subLists = SplitList(idList, chunkSize);
+                    string error = string.Empty;
+                    string info2 = string.Empty;
+                    foreach(var subList in subLists)
+                    {
+                        List< EFUpdateComisionCost > updatedComision =  new List<EFUpdateComisionCost>();
+                        string info = await GetComissions(subList);
+                        List<EarningSale> updateComisionsCost = JsonConvert.DeserializeObject<List<EarningSale>>(info);
+                        foreach (var item in updateComisionsCost)
+                        {
+                            decimal ct = 0;
+                            foreach(var productInfo in item.ProductosDeVenta)
+                            {
+                                if(productInfo.productoNavigation == null)
+                                    continue;
+                                if(productInfo.productoNavigation.nombre.Contains("Envio") || productInfo.productoNavigation.nombre.Contains("envio"))
+                                    continue;
+                                ct += (decimal)productInfo.productoNavigation.precioCompra * productInfo.cantidadComprada;
+                            }
+                            item.Costototal = (float)ct;
+                            updatedComision.Add(new EFUpdateComisionCost() { Id = item.Comisiones.Id, CostoMercancia=(decimal)item.Costototal, VentaId=item.idVenta });
+                        }
+                        foreach (var item in updatedComision)
+                        {
+                            item.Id = eFComisiones.Where(x => x.VentaId == item.VentaId).FirstOrDefault().Id;
+                        }
+                        r = await WebService.ModifyData(updatedComision,URLData.UpdateComisionCost);
+                        if (!r.succes)
+                        {
+                            if (!string.IsNullOrEmpty(r.message))
+                                error += r.message + Environment.NewLine;
+                            else
+                                error += "Error al actualizar costos de comisiones" + Environment.NewLine;
+                        }
+                        else
+                        {
+                            info2+= $"Se actualizaron {updatedComision.Count} comisiones correctamente{Environment.NewLine}";
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(error))
+                        MessageBox.Show($"Actualizacion con errores {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        MessageBox.Show(info2, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show($"Error al traer las comisiones" +
+                        $"{Environment.NewLine}Motivo: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                VM.GettinData = false;
+            }*/
+        }
+        //Borrar despues de actualizar los costos
+        async Task<string> GetComissions(List<int> ids)
+        {
+            string idsString = string.Join("&", ids.Select(x => $"ids={x}"));
+            Response r = await WebService.GetDataNode(URLData.GetVTotalNet, idsString);
+            if (!r.succes)
+            {
+                if (!string.IsNullOrEmpty(r.message))
+                    MessageBox.Show(r.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Error al traer datos de ventas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                VM.GettinData = false;
+                return string.Empty;
+            }
+            else
+            {
+                return r.data.ToString();
+            }
         }
         void InsertProductToGrid(List<EFExcelComissionsM> finishList)
         {
@@ -201,6 +303,15 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
             Marshal.ReleaseComObject(xlWorkbook);
             Marshal.ReleaseComObject(xlApp);
             return products;
+        }
+        public static List<List<T>> SplitList<T>(List<T> list, int chunkSize)
+        {
+            List<List<T>> splitList = new List<List<T>>();
+            for (int i = 0; i < list.Count; i += chunkSize)
+            {
+                splitList.Add(list.GetRange(i, Math.Min(chunkSize, list.Count - i)));
+            }
+            return splitList;
         }
     }
 }

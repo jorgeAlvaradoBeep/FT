@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Models.Sales;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.Services.Ticket;
@@ -78,6 +79,28 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                     {
                         MessageBox.Show($"Error al imprimir: {ex.Message + Environment.NewLine}La venta se guardo exitosamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                    //Codigo para extraer el costo de venta
+                    decimal ct = 0;
+                    EFProduct aux;
+                    foreach (var item in VM.CompleteSale.SaledProducts)
+                    {
+                        if(item.Name.Contains("Envio")||item.Name.Contains("envio"))
+                        {
+                            continue;
+                        }
+                        Response res2 = await WebService.GetDataNode(URLData.getProductsNet, item.Code.ToString());
+                        if (res2.succes)
+                        {
+                            aux = Newtonsoft.Json.JsonConvert.DeserializeObject<EFProduct>(res2.data.ToString());
+                            ct += (decimal)(aux.precioCompra * item.SaledQuantity);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al cargar los productos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    Application.Current.Properties["CostoVenta"] = ct;
                     Application.Current.Properties["Folio"] = VM.CompleteSale.IDSale;
                     DialogComisiones dCom = new DialogComisiones();
                     dCom.ShowDialog();

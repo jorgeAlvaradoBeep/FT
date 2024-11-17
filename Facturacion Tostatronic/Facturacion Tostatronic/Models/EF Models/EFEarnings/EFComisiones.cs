@@ -22,6 +22,13 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EFEarnings
             get { return ventaId; }
             set { SetValue(ref ventaId, value); }
         }
+        private decimal costoMercancia;
+
+        public decimal CostoMercancia
+        {
+            get { return costoMercancia; }
+            set { SetValue(ref costoMercancia, value); }
+        }
 
         private string folioPlataforma;
         public string FolioPlataforma

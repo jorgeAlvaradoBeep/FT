@@ -1,0 +1,188 @@
+﻿<Window x:Class="Facturacion_Tostatronic.Views.OrdersV.CalculatePricesV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.OrdersV" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
+        mc:Ignorable="d"
+        Title="Calcular Precios" Height="450" Width="800">
+    <Window.Resources>
+        <vm:CalculatePricesVM x:Key="calculatePricesVM"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource calculatePricesVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="0"
+                    Margin="5">
+            <Label Content="Costo Envio:"
+           Width="95"
+           VerticalAlignment="Center"
+           FontSize="16"/>
+            <telerik:RadNumericUpDown Width="135"
+                              Margin="0,0,0,5"
+                              Value="{Binding OrdenComplete.CostoEnvio}"/>
+            <Label Content="Agentes Ad:"
+           Width="95"
+           VerticalAlignment="Center"
+           FontSize="16"/>
+            <telerik:RadNumericUpDown Width="135"
+                              Margin="0,0,0,5"
+                              Value="{Binding OrdenComplete.CostoAA}"/>
+            <Label Content="Tipo Cambio:"
+           Width="105"
+           VerticalAlignment="Center"
+           FontSize="16"/>
+            <telerik:RadNumericUpDown Width="135"
+                              Margin="0,0,0,5"
+                              Value="{Binding OrdenComplete.TipoCambio}"/>
+        </StackPanel>
+        <telerik:RadGridView Grid.Row="1" 
+                     x:Name="radGridView"
+                     ItemsSource="{Binding OrdenComplete.ProductosDeOrdenesNavigation}" 
+                     AutoGenerateColumns="False"
+                     VerticalAlignment="Top"
+                     RowIndicatorVisibility="Collapsed"
+                     CanUserFreezeColumns="False"
+                     BorderThickness="0"
+                     CanUserResizeColumns="True"
+                     ShowGroupPanel="False"
+                     IsReadOnly="False"
+                 >
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXN}" Header="MXN" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeOrden}" Header="% Pedido" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvio}" Header="Costo Envio" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvioPP}" Header="Costo E/A PP" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoAI}" Header="Costo Ant Imp" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Costo}" Header="Precio IVA" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoActual}" Header="Precio IVA" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoActual}" 
+                            Header="Minimo Act" 
+                            DataFormatString="{}{0:C}" 
+                            Width="Auto" 
+                            TextWrapping="WrapWithOverflow">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding MinimoBackground}">
+                                <TextBlock Text="{Binding MinimoActual, StringFormat=C}" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}" Header="Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorActual}" Header="Distribuidor Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Distribuidor}" Header="Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoRecomendado}" Header="Publico R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoActual}" Header="Publico Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Publico}" Header="Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="2">
+            <Label Content="Gastos EA MXN: "
+                   VerticalAlignment="Center"/>
+            <Label Content="{Binding GastosEA, StringFormat={}{0:C2}}"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+
+            <Label Content="Total Porcentaje: "
+                   VerticalAlignment="Center"/>
+            <Label Content="{Binding TotalPorcentaje, StringFormat={}{0:P0}}"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="3">
+            <Label Content="Sub Material USD: "
+                   VerticalAlignment="Center"
+                   FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=C}"
+                   VerticalAlignment="Center"
+                   FontSize="12"
+                   FontWeight="Bold"/>
+            <Label Content="Total USD: "
+                   VerticalAlignment="Center"
+                   FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.TotalUSD, StringFormat=C}"
+                   VerticalAlignment="Center"
+                   FontSize="12"/>
+            <Label Content="Gasto Material MXN: "
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.GastoMaterialMx, StringFormat=C}"
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="IVA MXN: "
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.IVAMx, StringFormat=C}"
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="Envio MXN: "
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.EnvioMx, StringFormat=C}"
+           VerticalAlignment="Center"
+           FontSize="12"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="4">
+            <Label Content="Gastos E/A: "
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.GastosEA, StringFormat=C}"
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="Total Gatos MXN: "
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="{Binding OrdenComplete.TotalGastosMx, StringFormat=C}"
+           VerticalAlignment="Center"
+           FontSize="12"/>
+            <Label Content="% Ganancia:"
+           Width="95"
+           VerticalAlignment="Center"
+           FontSize="16"/>
+            <telerik:RadNumericUpDown Width="135"
+                              Margin="0,0,0,5"
+                              Value="{Binding OrdenComplete.PorcentajeGanancia}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="6"
+            HorizontalAlignment="Center">
+            <Button Content="Guardar" 
+            Command="{Binding SaveModifiedOrderCommand}"
+            IsEnabled="{Binding IsProductExtractionenabled}"/>
+            <Button Content="Importar Desde Excel" 
+            IsEnabled="{Binding IsProductExtractionenabled}"
+            Command="{Binding ImportExcelFileCommand}"/>
+            <Button Content="Exportar A Excel" 
+            IsEnabled="{Binding IsProductExtractionenabled}"
+            Command="{Binding ExportOrderToExcelCommand}"/>
+            <Button Content="Guardar Info Orden" 
+            IsEnabled="{Binding IsProductExtractionenabled}"
+            Command="{Binding SaveOrderInfoCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

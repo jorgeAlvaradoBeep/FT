@@ -137,6 +137,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public SaveModifiedOrderCommand SaveModifiedOrderCommand { get; set; }
         public DeleteProductFromOrdercommand DeleteProductFromOrdercommand { get; set; }
         public SaveOrderInfoCommand SaveOrderInfoCommand { get; set; }
+        public CalculatePirceCommand CalculatePirceCommand { get; set; }
         #endregion
 
         public OrderCheckVM()
@@ -157,6 +158,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             SaveModifiedOrderCommand = new SaveModifiedOrderCommand(this);
             DeleteProductFromOrdercommand = new DeleteProductFromOrdercommand(this);
             SaveOrderInfoCommand = new SaveOrderInfoCommand(this);
+            CalculatePirceCommand = new CalculatePirceCommand(this);
             
         }
 

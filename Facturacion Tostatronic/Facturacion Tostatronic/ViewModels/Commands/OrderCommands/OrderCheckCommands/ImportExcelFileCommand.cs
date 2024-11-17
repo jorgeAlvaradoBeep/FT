@@ -64,16 +64,56 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
             {
                 if (newProducts.Count > 0)
                 {
-                    VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Clear();
-                    foreach (ProductOrderComplete item in newProducts)
+                    ObservableCollection<ProductOrderComplete> productosDeOrdenActualizada = new ObservableCollection<ProductOrderComplete>();
+                    var productosExistentes = VM.ComlpleteOrder.ProductosDeOrdenesNavigation.ToList();
+
+                    //Primero damos de alta los productos que no existen en la orden
+                    var productosNuevos = newProducts.Where(a => !productosExistentes.Any(b => b.CodigoProducto == a.CodigoProducto)).ToList();
+                    foreach (ProductOrderComplete item in productosNuevos)
                     {
                         if (VM.productInformationList.Where(x => x.CodigoProducto.Equals(item.CodigoProducto)).Count() > 0)
                             item.ProductInfoExist = true;
                         else
                             item.ProductInfoExist = false;
+
                         item.Nuevo = true;
                         item.Modificado = false;
                         item.ModificadoProducto = false;
+                        productosDeOrdenActualizada.Add(item);
+                    }
+
+                    //Ahora actualizamos los productos que ya existen en la orden
+                    foreach (ProductOrderComplete item in productosExistentes)
+                    {
+                        var aux = newProducts.Where(x => x.CodigoProducto == item.CodigoProducto).ToList();
+                        if (aux != null)
+                        {
+                            if (aux.Count > 0)
+                            {
+                                if (item.Cantidad != aux[0].Cantidad || item.Precio != aux[0].Precio
+                                    || item.TargetPrice != aux[0].TargetPrice)
+                                {
+                                    item.Cantidad = aux[0].Cantidad;
+                                    item.Precio = aux[0].Precio;
+                                    item.SubTotal = aux[0].SubTotal;
+                                    item.TargetPrice = aux[0].TargetPrice;
+                                    item.Modificado = true;
+                                }
+                                if(item.NombreEs != aux[0].NombreEs || item.NombreEn != aux[0].NombreEn || item.Link != aux[0].Link)
+                                {
+                                    item.NombreEs = aux[0].NombreEs;
+                                    item.NombreEn = aux[0].NombreEn;    
+                                    item.Link = aux[0].Link;
+                                    item.ModificadoProducto = true;
+                                }
+                                    
+                            }
+                        }
+                        productosDeOrdenActualizada.Add(item);
+                    }
+                    VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Clear();
+                    foreach (ProductOrderComplete item in productosDeOrdenActualizada)
+                    {
                         VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Add(item);
                     }
                     //Si esto funciona, lo que se tiene que hacer es mandar a eliminar los productos de la orden y dar 

@@ -47,7 +47,9 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         {
             Comision = new EFComisiones();
             Comision.VentaId = (int)Application.Current.Properties["Folio"];
+            Comision.CostoMercancia = (decimal)Application.Current.Properties["CostoVenta"];
             Application.Current.Properties["Folio"] = null;
+            Application.Current.Properties["CostoVenta"] = null;
             PlataformasDisponibles = new ObservableCollection<Plataforma>();
             MetodosDePagoDisponibles = new ObservableCollection<EFMetodoPago>();
             VaseSaleComissionCommand = new VaseSaleComissionCommand(this);

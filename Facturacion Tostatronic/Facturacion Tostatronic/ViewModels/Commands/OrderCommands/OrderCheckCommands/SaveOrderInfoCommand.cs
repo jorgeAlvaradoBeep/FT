@@ -48,7 +48,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
             updateOrder.PorcentajeGanancia = VM.ComlpleteOrder.PorcentajeGanancia;
             updateOrder.SubTotal = VM.ComlpleteOrder.SubTotal;
 
-            Response res = await WebService.InsertData(updateOrder,URLData.Orders);
+            Response res = await WebService.ModifyData(updateOrder,$"{URLData.EditOrders}/{updateOrder.OrdenID}");
             if (!res.succes)
             {
                 MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

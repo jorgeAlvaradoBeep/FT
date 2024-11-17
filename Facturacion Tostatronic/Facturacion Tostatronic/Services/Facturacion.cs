@@ -153,10 +153,8 @@ namespace Facturacion_Tostatronic.Services
             oComprobante.Version = "4.0";
             oComprobante.Serie = "H";
             oComprobante.Folio = folio;
-            //oComprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             oComprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             //oComprobante.Fecha = DateTime.Now.AddDays(-3).ToString("yyyy-MM-ddTHH:mm:ss");
-            //oComprobante.Fecha = "2019-06-11T10:52:20";
             //oComprobante.Sello = "faltante"; //sig video
             oComprobante.FormaPago = formaPago;
             oComprobante.NoCertificado = numeroCertificado;

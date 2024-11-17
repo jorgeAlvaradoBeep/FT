@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
+using Facturacion_Tostatronic.Models.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 
 namespace Facturacion_Tostatronic.Views.Pages.Orders
 {
@@ -23,6 +26,27 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
         public OrderCheckUC()
         {
             InitializeComponent();
+        }
+        private void RadAutoCompleteBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var autoCompleteBox = sender as Telerik.Windows.Controls.RadAutoCompleteBox;
+            // Suponiendo que el SelectedItem es un objeto que contiene el código del producto
+            var selectedProductCode = (autoCompleteBox.SelectedItem as UpdateProductM)?.Codigo;
+
+            if (selectedProductCode != null)
+            {
+                // Busca el primer elemento en los ítems del RadGridView que coincida con el código del producto seleccionado
+                var itemToScrollTo = radGridView.Items.Cast<ProductOrderComplete>().FirstOrDefault(product => product.CodigoProducto == selectedProductCode);
+
+                if (itemToScrollTo != null)
+                {
+                    // Si el producto existe, desplázate hasta él en el RadGridView
+                    radGridView.ScrollIntoView(itemToScrollTo);
+
+                    // Opcional: Realiza acciones adicionales después de desplazarte hasta el elemento, como seleccionarlo
+                    radGridView.SelectedItem = itemToScrollTo;
+                }
+            }
         }
     }
 }

@@ -141,21 +141,21 @@ namespace Facturacion_Tostatronic.Models.Products
             p = p * NumberOfPiecesOfPackage;
             p += PublicationPrice;
             p = p / (1 - (ClassicPublicationComission / 100));
-            p /= 0.9f;
+            //p /= 0.9f;
             ClassicPriceWOS = p;
             p = PriceToCalculate;
             p = p * NumberOfPiecesOfPackage;
             p += PublicationPrice;
             p += ClassicPublicationShippingCost;
             p = p / (1 - (ClassicPublicationComission / 100));
-            p /= 0.9f;
+            //p /= 0.9f;
             ClassicPriceWS = p;
 
             p = PriceToCalculate;
             p = p * NumberOfPiecesOfPackage;
             p += PublicationPrice;
             p = p / (1 - (PremiumublicationComission / 100));
-            p /= 0.9f;
+            //p /= 0.9f;
 
             PremiumPriceWOS = p;
             p = PriceToCalculate;
@@ -163,7 +163,7 @@ namespace Facturacion_Tostatronic.Models.Products
             p += PublicationPrice;
             p += PremiumPublicationShippingCost;
             p = p / (1 - (PremiumublicationComission / 100));
-            p /= 0.9f;
+            //p /= 0.9f;
             PremiumPriceWS = p + PremiumPublicationShippingCost;
         }
 

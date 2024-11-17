@@ -3,8 +3,8 @@
     public class URLData
     {
         //const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
-        //const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
-        const string baseURL = "http://143.198.173.21/factura_api/controller/";//Prueba de enlace con servidor dedicado
+        const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        //const string baseURL = "http://143.198.173.21/factura_api/controller/";//Prueba de enlace con servidor dedicado
         public static string factured_sales = baseURL+"Sales/factured_sales.php";
         public static string invoice_save = baseURL+ "Sales/invoice_save.php";
         public static string sales = baseURL+ "Sales/sales.php";
@@ -75,8 +75,8 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.18:5249/api/";
-        //const string baseURLNET = "http://192.168.68.105:5249/api/";
-        const string baseURLNET = "http://143.198.173.21:5249/api/";
+        const string baseURLNET = "http://192.168.68.116:5249/api/";
+        //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
         public static string rfcExist = baseURLNET + "Clientes/RFCExist/";
@@ -112,6 +112,7 @@
         public static string getSpecificQuoteNET = baseURLNET + "Cotizacion/GetSpecificQoute/";
         public static string getProductsForQuote = baseURLNET + "ProductosDeCotizacion/";
         public static string Orders = baseURLNET + "Ordenes/";
+        public static string EditOrders = baseURLNET + "Ordenes/Edit";
         public static string OpenOrders = baseURLNET + "Ordenes/AvailableOrders/";
         public static string ProductOrderInfo = baseURLNET + "ProductOrderInfo/";
         public static string ProductOrderInfoEdit = baseURLNET + "ProductOrderInfo/Edit/";
@@ -126,6 +127,11 @@
         public static string ComisionesDeVentas = baseURLNET + "Comisiones/ComosionesDeVentas?";
         public static string Plataformas = baseURLNET + "Plataforma/";
         public static string MetodosDePago = baseURLNET + "MetodoPago/";
+
+        //Borrar despues de actualizar los costos
+        public static string GetSalesTotalNet = baseURLNET + "Comisiones/CostosComisiones";
+        public static string UpdateComisionCost = baseURLNET + "Comisiones/UpdateCost";
+        public static string GetVTotalNet = baseURLNET + "Ventas/OrderListWT/";
 
 
     }

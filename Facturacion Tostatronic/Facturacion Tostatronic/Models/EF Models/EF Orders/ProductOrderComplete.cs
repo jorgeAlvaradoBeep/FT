@@ -1,6 +1,7 @@
 ﻿using Facturacion_Tostatronic.Services;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,16 +109,20 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public decimal CostoEnvioPP { get; set; }
         public decimal CostoAI { get; set; }
         public decimal Costo { get; set; }
+        public decimal CostoActual { get; set; }
         public decimal MinimoRecomendado { get; set; }
+        public decimal MinimoActual { get; set; }
         public decimal SubMinimoRecomendado { get; set; }
         public decimal Minimo { get; set; }
         public float PorcentajeMinimo { get; set; }
         public decimal SubMinimo { get; set; }
         public decimal DistribuidorRecomendado { get; set; }
+        public decimal DistribuidorActual { get; set; }
         public decimal Distribuidor { get; set; }
         public float PorcentajeDistribuidor { get; set; }
         public decimal SubDistribuidor { get; set; }
         public decimal PublicoRecomendado { get; set; }
+        public decimal PublicoActual { get; set; }
         public decimal Publico { get; set; }
         public float PorcentajePublico { get; set; }
         public decimal SubPublico { get; set; }
@@ -128,6 +133,15 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             get { return modificadoProducto; }
             set { SetValue(ref modificadoProducto, value); }
         }
+
+        private SolidBrush _minimoBackground;
+
+        public SolidBrush MinimoBackground
+        {
+            get { return _minimoBackground; }
+            set { SetValue(ref _minimoBackground, value); }
+        }
+
 
     }
 }
