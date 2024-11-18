@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.OrdersV" 
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
+        xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Calcular Precios" Height="450" Width="800">
     <Window.Resources>
@@ -46,7 +46,7 @@
                               Value="{Binding OrdenComplete.TipoCambio}"/>
         </StackPanel>
         <telerik:RadGridView Grid.Row="1" 
-                     x:Name="radGridView"
+                     x:Name="radGv"
                      ItemsSource="{Binding OrdenComplete.ProductosDeOrdenesNavigation}" 
                      AutoGenerateColumns="False"
                      VerticalAlignment="Top"
@@ -55,47 +55,130 @@
                      BorderThickness="0"
                      CanUserResizeColumns="True"
                      ShowGroupPanel="False"
-                     IsReadOnly="False"
-                 >
+                     IsReadOnly="False">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="RowEditEnded">
+                    <i:InvokeCommandAction Command="{Binding UpdateTPCommand}" CommandParameter="{Binding ElementName=radGv, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXN}" Header="MXN" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Precio Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTarget}" Header="SubTotal Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXN}" Header="MXN" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeOrden}" Header="% Pedido" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvio}" Header="Costo Envio" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvioPP}" Header="Costo E/A PP" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoAI}" Header="Costo Ant Imp" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Costo}" Header="Precio IVA" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoActual}" Header="Precio IVA" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXNTarget}" Header="MXN Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeTarget}" Header="% Pedido Tar" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvio}" Header="Costo Envio" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvioPP}" Header="Costo E/A PP" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoEnvioTarget}" Header="Costo Envio Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoPPTaerget}" Header="Costo E/A Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoAI}" Header="Costo Ant Imp" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoTarget}" Header="Costo Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Background" Value="LightGreen"/>
+                            <!-- Validación dinámica -->
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CostoMenorTarget}" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Costo}" Header="Precio IVA" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Foreground" Value="Black"/>
+                            <!-- Validación dinámica -->
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CostoMenor}" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoActual}" Header="Costo Actual" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendadoTarget}" Header="Minimo R Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoActual}" 
                             Header="Minimo Act" 
-                            DataFormatString="{}{0:C}" 
-                            Width="Auto" 
-                            TextWrapping="WrapWithOverflow">
-                    <telerik:GridViewDataColumn.CellTemplate>
-                        <DataTemplate>
-                            <Border Background="{Binding MinimoBackground}">
-                                <TextBlock Text="{Binding MinimoActual, StringFormat=C}" 
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center"/>
-                            </Border>
-                        </DataTemplate>
-                    </telerik:GridViewDataColumn.CellTemplate>
+                            DataFormatString="{}{0:C}"
+                                             IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Foreground" Value="Black"/>
+                            <!-- Validación dinámica -->
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MinimoMenor}" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
                 </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}" Header="Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorActual}" Header="Distribuidor Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorActual}" Header="Distribuidor Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Distribuidor}" Header="Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoRecomendado}" Header="Publico R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoActual}" Header="Publico Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoRecomendado}" Header="Publico R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoActual}" Header="Publico Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Publico}" Header="Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
         <StackPanel Orientation="Horizontal"
@@ -109,6 +192,17 @@
             <Label Content="Total Porcentaje: "
                    VerticalAlignment="Center"/>
             <Label Content="{Binding TotalPorcentaje, StringFormat={}{0:P0}}"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+            <Label Content="Subtotal Target: "
+                    VerticalAlignment="Center"/>
+            <Label Content="{Binding SubTotalTarget, StringFormat={}{0:C2}}"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+
+            <Label Content="Porcentaje Target: "
+                   VerticalAlignment="Center"/>
+            <Label Content="{Binding PorcentageTarget, StringFormat={}{0:P0}}"
                    VerticalAlignment="Center"
                    FontWeight="Bold"/>
         </StackPanel>

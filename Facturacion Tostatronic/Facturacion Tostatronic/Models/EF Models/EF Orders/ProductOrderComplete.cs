@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
 {
@@ -112,6 +113,10 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public decimal CostoActual { get; set; }
         public decimal MinimoRecomendado { get; set; }
         public decimal MinimoActual { get; set; }
+        private bool minimoMenor;
+        public bool MinimoMenor => MinimoActual < MinimoRecomendado;
+        public bool CostoMenor => CostoActual < Costo;
+
         public decimal SubMinimoRecomendado { get; set; }
         public decimal Minimo { get; set; }
         public float PorcentajeMinimo { get; set; }
@@ -134,14 +139,67 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             set { SetValue(ref modificadoProducto, value); }
         }
 
-        private SolidBrush _minimoBackground;
+        #region TargetPrice
+        private decimal subTarget;
 
-        public SolidBrush MinimoBackground
+        public decimal SubTarget
         {
-            get { return _minimoBackground; }
-            set { SetValue(ref _minimoBackground, value); }
+            get { return subTarget; }
+            set { SetValue(ref subTarget, value); }
+        }
+        private decimal precioMxnTarget;
+
+        public decimal PrecioMXNTarget
+        {
+            get { return precioMxnTarget; }
+            set { SetValue(ref precioMxnTarget, value); }
         }
 
+        private float porcentajeTarget;
 
+        public float PorcentajeTarget
+        {
+            get { return porcentajeTarget; }
+            set { SetValue(ref porcentajeTarget, value); }
+        }
+        private decimal costoEnvioTarget;
+
+        public decimal CostoEnvioTarget
+        {
+            get { return costoEnvioTarget; }
+            set { SetValue(ref costoEnvioTarget, value); }
+        }
+        private decimal costoPPTarget;
+
+        public decimal CostoPPTaerget
+        {
+            get { return costoPPTarget; }
+            set { SetValue(ref costoPPTarget, value); }
+        }
+        private decimal costoTarget;
+
+        public decimal CostoTarget
+        {
+            get { return costoTarget; }
+            set { SetValue(ref costoTarget, value);
+                CostoMenorTarget = CostoActual < costoTarget;
+            }
+        }
+        private decimal miniRecomendadoTarget;
+
+        public decimal MinimoRecomendadoTarget
+        {
+            get { return miniRecomendadoTarget; }
+            set { SetValue(ref miniRecomendadoTarget, value); }
+        }
+
+        private bool costoMenorTarget;
+
+        public bool CostoMenorTarget
+        {
+            get { return costoMenorTarget; }
+            set { SetValue(ref costoMenorTarget, value); }
+        }
+        #endregion
     }
 }
