@@ -756,6 +756,7 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Actualizar Cantidades" },
                 new NavigationViewItemModel() { Title = "Lista De Productos Facebook" },
                 new NavigationViewItemModel() { Title = "Actualizar Codigo Universal",VMName="AssingUCVM" },
+                new NavigationViewItemModel() { Title = "Orden Nueva",VMName="LoadNewPricesVM" },
             };
 
             return new List<NavigationViewItemModel>
@@ -830,6 +831,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new EarningsVM());
             ViewsList.Add(new MakeOrderVM());
             ViewsList.Add(new OrderCheckVM());
+            ViewsList.Add(new LoadNewPricesVM());
         }
          IPageViewModel GetView(string vmName)
         {

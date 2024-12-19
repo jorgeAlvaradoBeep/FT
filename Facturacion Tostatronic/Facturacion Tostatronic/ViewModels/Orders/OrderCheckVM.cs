@@ -127,6 +127,15 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
 
         public readonly SynchronizationContext _syncContext;
 
+        private int totalProductos;
+
+        public int TotalProductos
+        {
+            get { return totalProductos; }
+            set { SetValue(ref totalProductos, value); }
+        }
+
+
         #endregion
 
         #region Commands
@@ -150,7 +159,8 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             ComlpleteOrder.ProductosDeOrdenesNavigation = new ObservableCollection<ProductOrderComplete>();
             ProductosEliminados = new List<ProductOrderComplete>();
             productInformationList = new List<APIProductOrderInformation>();
-            
+            TotalProductos= 0;
+
             GetAvailableOrdersCommand = new GetAvailableOrdersCommand(this);
             ImportExcelFileCommand = new ImportExcelFileCommand(this);
             ExportOrderToExcelCommand = new ExportOrderToExcelCommand(this);
@@ -174,6 +184,14 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             }
             var aux = JsonConvert.DeserializeObject<List<APIOrder>>(res.data.ToString());
             APIOrder sl = aux[0];
+            res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
+
+            if (res.succes)
+            {
+                productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
+            }
+            else
+                MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             res = await WebService.GetDataForInvoice(URLData.getProductsNet);
             if (res.succes)
             {
@@ -195,15 +213,6 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                     listaProductos.Add(new ProductOrderComplete(pro.CodigoProducto, pro.Cantidad, pro.Precio, pro.TargetPrice,false));
                 }
                 //ComlpleteOrder.ProductosDeOrdenesNavigation = listaProductos;
-                res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
-                
-                if (res.succes)
-                {
-                    productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
-                }
-                else
-                    MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 if (productInformationList.Count > 0)
                 {
                     foreach (ProductOrderComplete product in listaProductos)
@@ -238,6 +247,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                         ComlpleteOrder.ProductosDeOrdenesNavigation.Add(product);
                     }
                     ComlpleteOrder.GetsubTotal();
+                    TotalProductos = ComlpleteOrder.ProductosDeOrdenesNavigation.Count;
                 }
             }
             GettingData = false;

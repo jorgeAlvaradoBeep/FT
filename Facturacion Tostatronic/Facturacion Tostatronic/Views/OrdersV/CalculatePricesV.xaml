@@ -150,16 +150,13 @@
                     </telerik:GridViewDataColumn.CellStyle>
                 </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding CostoActual}" Header="Costo Actual" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendadoTarget}" Header="Minimo R Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoActual}" 
-                            Header="Minimo Act" 
-                            DataFormatString="{}{0:C}"
-                                             IsReadOnly="True">
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
                     <telerik:GridViewDataColumn.CellStyle>
                         <Style TargetType="telerik:GridViewCell">
                             <!-- Color de texto negro por defecto -->
                             <Setter Property="Foreground" Value="Black"/>
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="Cyan"/>
                             <!-- Validación dinámica -->
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding MinimoMenor}" Value="True">
@@ -169,6 +166,26 @@
                         </Style>
                     </telerik:GridViewDataColumn.CellStyle>
                 </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendadoTarget}" Header="Minimo R Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellStyle>
+                        <Style TargetType="telerik:GridViewCell">
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Foreground" Value="Black"/>
+                            <!-- Color de texto negro por defecto -->
+                            <Setter Property="Background" Value="Cyan"/>
+                            <!-- Validación dinámica -->
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding BMinimoRecomendadoTarget}" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:GridViewDataColumn.CellStyle>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoActual}" 
+                                            Header="Minimo Act" 
+                                            DataFormatString="{}{0:C}"
+                                            IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}" Header="Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
@@ -265,15 +282,9 @@
         <StackPanel Orientation="Horizontal"
             Grid.Row="6"
             HorizontalAlignment="Center">
-            <Button Content="Guardar" 
-            Command="{Binding SaveModifiedOrderCommand}"
+            <Button Content="Guardar Target Prices" 
+            Command="{Binding SaverTargetPricesOrderCommand}"
             IsEnabled="{Binding IsProductExtractionenabled}"/>
-            <Button Content="Importar Desde Excel" 
-            IsEnabled="{Binding IsProductExtractionenabled}"
-            Command="{Binding ImportExcelFileCommand}"/>
-            <Button Content="Exportar A Excel" 
-            IsEnabled="{Binding IsProductExtractionenabled}"
-            Command="{Binding ExportOrderToExcelCommand}"/>
             <Button Content="Guardar Info Orden" 
             IsEnabled="{Binding IsProductExtractionenabled}"
             Command="{Binding SaveOrderInfoCommand}"/>

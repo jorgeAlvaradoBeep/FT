@@ -168,6 +168,13 @@
                 <Label Content="{Binding ComlpleteOrder.EnvioMx, StringFormat={}{0:C}}"
                        VerticalAlignment="Center"
                        FontSize="12"/>
+                <Label Content="Total Productos: "
+                       VerticalAlignment="Center"
+                       FontSize="12"/>
+                <Label Content="{Binding TotalProductos}"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       FontWeight="Bold"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Grid.Row="5">

@@ -2,6 +2,7 @@
 using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
+using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.CheckPricesCommands;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using System;
@@ -69,6 +70,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         #endregion
         #region Comandos
         public ICommand UpdateTPCommand { get; }
+        public SaverTargetPricesOrderCommand SaverTargetPricesOrderCommand { get; set; }
         #endregion
 
         public CalculatePricesVM()
@@ -83,6 +85,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 TotalPorcentaje = 0;
                 Task.Run(() => SetProducsInfo());
                 UpdateTPCommand = new RelayCommand<ProductOrderComplete>(UpdateTP);
+                SaverTargetPricesOrderCommand = new SaverTargetPricesOrderCommand(this);
             }
             else
             {
@@ -94,6 +97,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             var aux = OrdenComplete.ProductosDeOrdenesNavigation.FirstOrDefault(p => p.CodigoProducto == editedItem.CodigoProducto);
             aux.TargetPrice = editedItem.TargetPrice;
             aux.SubTarget = (decimal)aux.TargetPrice*aux.Cantidad;
+            aux.PorcentajeOrden = editedItem.PorcentajeOrden;
             GettingData = true;
             Task.Run(async () => await GetSubTotalMxn());
             GettingData = false;
@@ -103,21 +107,30 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         {
             decimal newSubtotal=0;
             float newPorcentaje = 0;
+            float newPorcentajeOrden = 0;
             foreach (var item in OrdenComplete.ProductosDeOrdenesNavigation)
             {
                 newSubtotal += item.SubTarget;
                 newPorcentaje += item.PorcentajeTarget;
+                newPorcentajeOrden += item.PorcentajeOrden;
             }
             foreach (var item in OrdenComplete.ProductosDeOrdenesNavigation)
             {
                 item.PorcentajeTarget = (float)item.SubTarget / (float)newSubtotal;
                 item.PrecioMXNTarget = (decimal)(item.TargetPrice * OrdenComplete.TipoCambio);
                 item.CostoEnvioTarget = (decimal)item.PorcentajeTarget * OrdenComplete.GastosEA;   
+                item.CostoEnvio = (decimal)item.PorcentajeOrden * OrdenComplete.GastosEA;   
                 item.CostoPPTaerget = item.CostoEnvioTarget / item.Cantidad;
+                item.CostoEnvioPP = item.CostoEnvio / item.Cantidad;
                 item.CostoTarget = (item.CostoPPTaerget + item.PrecioMXNTarget)*1.16m;
+                item.Costo = (item.CostoEnvioPP + item.PrecioMXN)*1.16m;
+                float porWinDe = (float)(OrdenComplete.PorcentajeGanancia) / 100;
+                item.MinimoRecomendadoTarget = (item.CostoTarget / (1 - (decimal)porWinDe));
+                item.MinimoRecomendado = (item.Costo / (1 - (decimal)porWinDe));
             }
             SubTotalTarget = newSubtotal;
             PorcentageTarget = newPorcentaje;
+            TotalPorcentaje = (decimal)newPorcentajeOrden;
         }
 
         void SetProducsInfo()
@@ -150,11 +163,30 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                             product.DistribuidorActual = (decimal)productM.PrecioDistribuidor;
                             product.PublicoActual = (decimal)productM.PrecioPublico;
                             product.CostoActual = (decimal)productM.PrecioCompra;
+                            if(product.TargetPrice==0)
+                            {
+                                product.TargetPrice = product.Precio;
+                                product.SubTarget = product.SubTotal;
+                                product.PrecioMXNTarget = product.PrecioMXN;
+                                product.PorcentajeTarget = product.PorcentajeOrden;
+                                product.CostoEnvioTarget = product.CostoEnvio;
+                                product.CostoPPTaerget = product.CostoEnvioPP;
+                                product.CostoTarget = product.Costo;
+                                product.MinimoRecomendadoTarget = product.MinimoRecomendado;
+                            }
+                            else
+                            {
+                                product.SubTarget = (decimal)(product.Cantidad*product.TargetPrice);
+                                product.PrecioMXNTarget = (decimal)(product.TargetPrice* OrdenComplete.TipoCambio);
+                            }
+                        }
+                        else
+                        {
                             product.TargetPrice = product.Precio;
                             product.SubTarget = product.SubTotal;
                             product.PrecioMXNTarget = product.PrecioMXN;
                             product.PorcentajeTarget = product.PorcentajeOrden;
-                            product.CostoEnvioTarget = product.CostoEnvio;  
+                            product.CostoEnvioTarget = product.CostoEnvio;
                             product.CostoPPTaerget = product.CostoEnvioPP;
                             product.CostoTarget = product.Costo;
                             product.MinimoRecomendadoTarget = product.MinimoRecomendado;
@@ -170,6 +202,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 GastosEA += product.CostoEnvio;
                 TotalPorcentaje += (decimal)product.PorcentajeOrden; 
             }
+            Task.Run(async () => await GetSubTotalMxn());
         }
 
     }

@@ -75,7 +75,7 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.18:5249/api/";
-        const string baseURLNET = "http://192.168.100.38:5249/api/";
+        const string baseURLNET = "http://192.168.100.179:5249/api/";
         //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
@@ -122,6 +122,7 @@
         public static string OrderProductsDeleteAll = baseURLNET + "ProductosOrdenes/DeleteAll/";
         public static string InserOrderProductsList = baseURLNET + "ProductosOrdenes/Create/Bulk";
         public static string OrderProductsEditList = baseURLNET + "ProductosOrdenes/Edit/";
+        public static string OrderProductsTargetPriceEditList = baseURLNET + "ProductosOrdenes/EditTarget/";
         public static string Comisiones = baseURLNET + "Comisiones/";
         public static string SaveComission = baseURLNET + "Comisiones/AgregarMultiples/";
         public static string ComisionesDeVentas = baseURLNET + "Comisiones/ComosionesDeVentas?";

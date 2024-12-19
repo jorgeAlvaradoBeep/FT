@@ -190,7 +190,16 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public decimal MinimoRecomendadoTarget
         {
             get { return miniRecomendadoTarget; }
-            set { SetValue(ref miniRecomendadoTarget, value); }
+            set { SetValue(ref miniRecomendadoTarget, value);
+                BMinimoRecomendadoTarget = MinimoActual < MinimoRecomendadoTarget;
+            }
+        }
+        private bool bMiniRecomendadoTarget;
+
+        public bool BMinimoRecomendadoTarget
+        {
+            get { return bMiniRecomendadoTarget; }
+            set { SetValue(ref bMiniRecomendadoTarget, value); }
         }
 
         private bool costoMenorTarget;

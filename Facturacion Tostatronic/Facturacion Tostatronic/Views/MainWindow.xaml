@@ -73,6 +73,9 @@
         <DataTemplate DataType="{x:Type vmp:DisscountPricesVM}">
             <viewsp:DisscountPricesUC />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmp:LoadNewPricesVM}">
+            <viewsp:LoadNewPrices />
+        </DataTemplate>
         <!--Secci[on de ventas-->
         <DataTemplate DataType="{x:Type vmsls:SeeSalesVM}">
             <viewssl:SeeSalesUC />

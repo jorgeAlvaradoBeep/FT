@@ -42,20 +42,102 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
 
         private async void SetOrder(object sender, CancelEventArgs e)
         {
+            VM.GettingData = true;
             await Task.Run(() => setNewOrderInfo());
             Response res = await WebService.GetDataNode(URLData.OrderProductsDeleteAll, VM.ComlpleteOrder.OrdenID.ToString());
             if (!res.succes)
             {
                 MessageBox.Show($"ERROR-> Error al eliminar los productos nuevos de la orden #{VM.ComlpleteOrder.OrdenID}." +
-                    $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}","Error", MessageBoxButton.OK,MessageBoxImage.Error);
+                    $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}" +
+                    $"Favor de presionar el boton guardar para intentar guardar los cambios de nuevo.","Error", MessageBoxButton.OK,MessageBoxImage.Error);
+                VM.GettingData = false;
+                return;
             }
             else
             {
-                MessageBox.Show($"Exito al agregar los productos nuevos{Environment.NewLine}" +
-                    $"Favor de presionar el boton de GUARDAR, para guardar los datos nuevos.");
+                res= await InsertaNewProductsToOrder();
+                if (!res.succes)
+                {
+                    MessageBox.Show($"ERROR-> Error al insertar los productos nuevos de la orden #{VM.ComlpleteOrder.OrdenID}." +
+                        $"{Environment.NewLine}Razon: {res.message}{Environment.NewLine}" +
+                        $"Favor de presionar el boton guardar para intentar guardar los cambios de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    VM.GettingData = false;
+                    return;
+                }
+                else
+                {
+                    //Asignamos los nuevos Totales
+                    //await GetSubTotalMxn();
+                }
+                MessageBox.Show($"Exito al actualizar la orden{Environment.NewLine}", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            VM.GettingData = false;
         }
 
+        #region SetNewOrderInfo
+        void setNewOrderInfo()
+        {
+            List<ProductOrderComplete> newProducts = (List<ProductOrderComplete>)Application.Current.Properties["NewOrderInfo"];
+            if (newProducts != null)
+            {
+                if (newProducts.Count > 0)
+                {
+                    VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Clear();
+                    foreach (ProductOrderComplete item in newProducts)
+                    {
+                        if (VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Where(x => x.CodigoProducto == item.CodigoProducto).ToArray().Length > 0)
+                        {
+                            continue;
+                        }
+                        var aux =  VM.productInformationList.Where(x => x.CodigoProducto == item.CodigoProducto).FirstOrDefault();
+                        if (aux!=null)
+                        {
+                            item.NombreEn = aux.NombreEn;
+                            item.ProductInfoExist = true;
+                        }
+                        else
+                        {
+                            item.ProductInfoExist = false;
+                        }
+                        VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Add(item);
+                    }
+                    VM.TotalProductos = VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Count;
+                }
+            }
+        }
+        async Task<Response> InsertaNewProductsToOrder()
+        {
+            List<APIProductosOrdenes>  ProductosDeOrdenesNuevos = new List<APIProductosOrdenes>();
+            List<APIProductOrderInformation> ProductInfo = new List<APIProductOrderInformation>();
+            foreach (var item in VM.ComlpleteOrder.ProductosDeOrdenesNavigation)
+            {
+                ProductosDeOrdenesNuevos.Add(new APIProductosOrdenes(VM.ComlpleteOrder.OrdenID, item.CodigoProducto, item.Cantidad, item.Precio, item.TargetPrice));
+                if (!item.ProductInfoExist)
+                    ProductInfo.Add(new APIProductOrderInformation(item.CodigoProducto, item.NombreEs, item.NombreEn, item.Link));
+                    
+                //if (!item.ProductInfoExist)//sE DESCOMENTA SU SE VE NECESARIO QUE SE ACTUALICEN LOS COMENTARIOS
+                //    ProductInfo.Add(new APIProductOrderInformation(item.CodigoProducto, item.NombreEs, item.NombreEn, item.Link));
+            }
+            Response res = await WebService.InsertData(ProductosDeOrdenesNuevos, URLData.InserOrderProductsList);
+            if(res.succes)
+            {
+                if(ProductInfo.Count>0)
+                {
+                    res = await WebService.InsertData(ProductInfo, URLData.InserProductOrderInfoList);
+                    if(res.succes)
+                    {
+                        foreach (var item in ProductInfo)
+                        {
+                            VM.productInformationList.Add(item);
+                        }
+                    }
+                }   
+            }
+            return res;
+        }
+        #endregion
+        #region CodigoAntiguoSetNewOrderInfo
+        /*
         void setNewOrderInfo()
         {
             VM.GettingData = true;
@@ -152,10 +234,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                                 item.TargetPrice = aux[0].TargetPrice;
                             }
                         }
-                    }*/
+                    }
                 }
             }
             VM.GettingData = false;
-        }
+        }*/
+
+        #endregion
     }
 }

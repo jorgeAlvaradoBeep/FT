@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="Facturacion_Tostatronic.Views.Pages.Products.LoadNewPrices"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Products" 
+             xmlns:local2="clr-namespace:Facturacion_Tostatronic.ViewModels.Products" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Products"
+             mc:Ignorable="d" 
+             d:DesignHeight="760" 
+             d:DesignWidth="1360"
+             Background="White">
+    <UserControl.Resources>
+        <vm:LoadNewPricesVM x:Key="loadNewPricesViewModel"/>
+        <!-- DataTemplate para Page1ViewModel -->
+        <DataTemplate DataType="{x:Type local2:UpdateProductNOVM}">
+            <local:UpdateProductUC/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <telerik:RadBusyIndicator DataContext="{StaticResource loadNewPricesViewModel}" IsBusy="{Binding IsBusy}" 
+                              BusyContent="Cargando productos...">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <telerik:LayoutControlGroup HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Grid.Column="4" 
+                        Grid.ColumnSpan="4" 
+                        Grid.RowSpan="3" 
+                        Orientation="Vertical">
+                <telerik:Label Content="Productos Cargados:" 
+                   Margin="10" 
+                   FontSize="34" 
+                   HorizontalAlignment="Left" 
+                   Width="530"/>
+                <telerik:LayoutControlGroup Orientation="Horizontal"
+                                            HorizontalAlignment="Stretch">
+                    <Label Content="Fila Inicio:" FontSize="18" 
+                           HorizontalAlignment="Left"
+                           Width="100"/>
+                    <telerik:RadNumericUpDown HorizontalAlignment="Left"
+                                              Value="{Binding FilaInicio}"/>
+                    <Label Content="Fila Fin:" 
+                           FontSize="18" 
+                           HorizontalAlignment="Left"
+                           Width="100"
+                           Margin="20,0,0,0"/>
+                    <telerik:RadNumericUpDown HorizontalAlignment="Left"
+                                              Value="{Binding FilaFin}"/>
+                </telerik:LayoutControlGroup>
+                <telerik:LayoutControlGroup Orientation="Horizontal"
+                                HorizontalAlignment="Stretch"
+                                Width="575">
+                    <telerik:RadButton 
+                   Command="{Binding LoadProductsFromExcelCommand}"
+                   BorderThickness="2"
+                   CornerRadius="10"
+                   ToolTipService.ToolTip="Cargar productos">
+                        <telerik:RadButton.Content>
+                            <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Margin="5">
+                                <!-- Texto a la izquierda -->
+                                <TextBlock Text="Cargar productos"
+                                       FontWeight="Bold"
+                                       FontSize="18"
+                                       Foreground="#FFFFFF" 
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,15,0"/>
+                                <Image Source="/Images/excel.png"
+                   Width="24" 
+                   Height="24"
+                   Stretch="Uniform"/>
+                            </StackPanel>
+                        </telerik:RadButton.Content>
+
+                        <!-- Estilo del botón -->
+                        <telerik:RadButton.Style>
+                            <Style TargetType="telerik:RadButton" 
+               BasedOn="{StaticResource {x:Type telerik:RadButton}}">
+                                <!-- Colores inspirados en la paleta de Excel -->
+                                <Setter Property="Background" Value="#217346"/>
+                                <!-- Verde principal -->
+                                <Setter Property="BorderBrush" Value="#185C34"/>
+                                <!-- Verde más oscuro para el borde -->
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="CornerRadius" Value="10"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter Property="FontSize" Value="12"/>
+
+                                <!-- Triggers para efectos visuales -->
+                                <Style.Triggers>
+                                    <!-- Efecto hover -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2D854F"/>
+                                        <!-- Verde más claro al pasar el mouse -->
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+
+                                    <!-- Efecto al presionar el botón -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#1B5C39"/>
+                                        <!-- Un verde más oscuro al presionar -->
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </telerik:RadButton.Style>
+                    </telerik:RadButton>
+                </telerik:LayoutControlGroup>
+            </telerik:LayoutControlGroup>
+            <telerik:RadGridView x:Name="RadGrdVProducts"
+                                ShowGroupPanel="False"
+                                CanUserFreezeColumns="False"
+                                CanUserResizeColumns="False"
+                                RowIndicatorVisibility="Collapsed"
+                                Grid.Column="4"
+                                Grid.ColumnSpan="3"
+                                Grid.Row="3"
+                                Grid.RowSpan="7"
+                                Margin="10"
+                                AutoGenerateColumns="False" 
+                                telerik:StyleManager.Theme="Material"
+                                ItemsSource="{Binding ProductosActualizar}"
+                                IsReadOnly="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}"
+                                    Header="ID Producto"
+                                    Width="180"
+                                    TextWrapping="Wrap"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}"
+                                    Header="Nombre Producto"
+                                    Width="370" 
+                                    TextWrapping="Wrap"/>
+                </telerik:RadGridView.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SelectedProductToUpdateCommand}" CommandParameter="{Binding ElementName=RadGrdVProducts, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </telerik:RadGridView>
+            <ContentControl Content="{Binding CurrentPage}"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Grid.ColumnSpan="4"/>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>
