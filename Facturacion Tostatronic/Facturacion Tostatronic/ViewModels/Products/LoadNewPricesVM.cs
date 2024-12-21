@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
+using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPricesCommands;
 using System;
@@ -72,9 +73,9 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             }
         }
 
-        private List<ProductOrderComplete> productosActualizar;
+        private List<ProductCompleteNewArrival> productosActualizar;
 
-        public List<ProductOrderComplete> ProductosActualizar
+        public List<ProductCompleteNewArrival> ProductosActualizar
         {
             get { return productosActualizar; }
             set
@@ -108,7 +109,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
         {
             IsBusy = false;
             PorcentajeDeAvance = "0%";
-            ProductosActualizar = new List<ProductOrderComplete>();
+            ProductosActualizar = new List<ProductCompleteNewArrival>();
             CurrentPage = null;
 
             //Comandos

@@ -343,6 +343,7 @@
     <Compile Include="Models\Products\ProductCodes.cs" />
     <Compile Include="Models\Products\ProductCodesEF.cs" />
     <Compile Include="Models\Products\ProductComplete.cs" />
+    <Compile Include="Models\Products\ProductCompleteNewArrival.cs" />
     <Compile Include="Models\Products\ProductPS.cs" />
     <Compile Include="Models\Products\ProductSaleSaled.cs" />
     <Compile Include="Models\Products\ProductSaleSearch.cs" />
@@ -474,6 +475,7 @@
     <Compile Include="ViewModels\Commands\ProductsCommands\GetProductsWNImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\LoadNewPricesCommands\LoadProductsFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\LoadNewPricesCommands\SelectedProductToUpdateCommand.cs" />
+    <Compile Include="ViewModels\Commands\ProductsCommands\LoadNewPricesCommands\UpdateProductInfoCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\ModifyProductCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\SaveNewImageCommand.cs" />
     <Compile Include="ViewModels\Commands\ProductsCommands\DeleteProductCommand.cs" />

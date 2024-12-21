@@ -148,11 +148,11 @@
                                 ItemsSource="{Binding ProductosActualizar}"
                                 IsReadOnly="True">
                 <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}"
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Code}"
                                     Header="ID Producto"
                                     Width="180"
                                     TextWrapping="Wrap"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}"
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"
                                     Header="Nombre Producto"
                                     Width="370" 
                                     TextWrapping="Wrap"/>
@@ -166,6 +166,7 @@
             <ContentControl Content="{Binding CurrentPage}"
                             Grid.Column="0"
                             Grid.Row="0"
+                            Grid.RowSpan="13"
                             Grid.ColumnSpan="4"/>
         </Grid>
     </telerik:RadBusyIndicator>

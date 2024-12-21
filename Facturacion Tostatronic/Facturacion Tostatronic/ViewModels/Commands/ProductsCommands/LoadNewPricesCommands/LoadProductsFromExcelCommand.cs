@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Facturacion_Tostatronic.Models.Products;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPricesCommands
 {
@@ -48,45 +49,45 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPr
                 VM.IsBusy = false;
             }
         }
-        List<ProductOrderComplete> GetDataFromExcel(string path)
+        List<ProductCompleteNewArrival> GetDataFromExcel(string path)
         {
             VM.IsBusy = true;
             int porcentaje = 0;
             Excel.Application xlApp = new Excel.Application();
             if (xlApp == null)
-                return new List<ProductOrderComplete>();
+                return new List<ProductCompleteNewArrival>();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(path);
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
             int rowCount = VM.FilaFin-VM.FilaInicio;
-            List<ProductOrderComplete> products = new List<ProductOrderComplete>();
-            ProductOrderComplete adicion;
+            List<ProductCompleteNewArrival> products = new List<ProductCompleteNewArrival>();
+            ProductCompleteNewArrival adicion;
             try
             {
                 float aux = 0;
                 for (int i = VM.FilaInicio; i <= VM.FilaFin; i++)
                 {
-                    adicion = new ProductOrderComplete();
+                    adicion = new ProductCompleteNewArrival();
                     // Leer el valor de la celda actual
                     if (xlRange.Cells[i,"B"] != null && xlRange.Cells[i, "B"].Value2 != null)
-                        adicion.CodigoProducto = xlRange.Cells[i, "B"].Value2.ToString();
+                        adicion.Code = xlRange.Cells[i, "B"].Value2.ToString();
 
                     if (xlRange.Cells[i, "C"] != null && xlRange.Cells[i, "C"].Value2 != null)
-                        adicion.NombreEs = xlRange.Cells[i, "C"].Value2.ToString();
+                        adicion.Name = xlRange.Cells[i, "C"].Value2.ToString();
 
                     if (xlRange.Cells[i, "D"] != null && xlRange.Cells[i, "D"].Value2 != null)
-                        adicion.Cantidad = int.Parse(xlRange.Cells[i, "D"].Value2.ToString());
+                        adicion.NewStock = int.Parse(xlRange.Cells[i, "D"].Value2.ToString());
 
                     if (xlRange.Cells[i, "L"] != null && xlRange.Cells[i, "L"].Value2 != null)
-                        adicion.Costo = decimal.Parse(xlRange.Cells[i, "D"].Value2.ToString());
+                        adicion.BuyPrice = float.Parse(xlRange.Cells[i, "L"].Value2.ToString());
 
                     if (xlRange.Cells[i, "P"] != null && xlRange.Cells[i, "P"].Value2 != null)
-                        adicion.Minimo = decimal.Parse(xlRange.Cells[i, "P"].Value2.ToString());
+                        adicion.MinimumPrice = float.Parse(xlRange.Cells[i, "P"].Value2.ToString());
                     if (xlRange.Cells[i, "T"] != null && xlRange.Cells[i, "T"].Value2 != null)
-                        adicion.Distribuidor = decimal.Parse(xlRange.Cells[i, "T"].Value2.ToString());
+                        adicion.DistributorPrice = float.Parse(xlRange.Cells[i, "T"].Value2.ToString());
                     if (xlRange.Cells[i, "X"] != null && xlRange.Cells[i, "X"].Value2 != null)
-                        adicion.Publico = decimal.Parse(xlRange.Cells[i, "X"].Value2.ToString());
+                        adicion.PublicPrice = float.Parse(xlRange.Cells[i, "X"].Value2.ToString());
 
                    
 

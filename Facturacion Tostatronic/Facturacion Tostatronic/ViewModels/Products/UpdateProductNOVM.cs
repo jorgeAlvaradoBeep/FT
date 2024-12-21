@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPricesCommands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +27,9 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 }
             }
         }
-        private ProductComplete productoAActualizar;
+        private ProductCompleteNewArrival productoAActualizar;
 
-        public ProductComplete ProductoAActualizar
+        public ProductCompleteNewArrival ProductoAActualizar
         {
             get { return productoAActualizar; }
             set
@@ -40,11 +41,12 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 }
             }
         }
-
-        public UpdateProductNOVM(ProductComplete updateProduct)
+        public UpdateProductInfoCommand UpdateProductInfoCommand { get; set; }
+        public UpdateProductNOVM(ProductCompleteNewArrival updateProduct)
         {
             GettingData = false;
             ProductoAActualizar = updateProduct;
+            UpdateProductInfoCommand = new UpdateProductInfoCommand(this);  
         }
 
 
