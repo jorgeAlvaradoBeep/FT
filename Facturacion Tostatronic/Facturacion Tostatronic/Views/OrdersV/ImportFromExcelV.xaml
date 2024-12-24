@@ -27,6 +27,61 @@
             <telerik:RadFilePathPicker Margin="5" 
                                        FilePath="{Binding ImagePath, Mode=TwoWay}" 
                                        IsEnabled="{Binding SelectFileAvailable}"/>
+            <!--<telerik:RadButton  Command="{Binding LoadProductsFromExcelCommand}"
+                                BorderThickness="2"
+                                CornerRadius="10"
+                                ToolTipService.ToolTip="Cargar productos">
+                <telerik:RadButton.Content>
+                    <StackPanel Orientation="Horizontal" 
+     HorizontalAlignment="Center" 
+     VerticalAlignment="Center" 
+     Margin="5">
+                        --><!-- Texto a la izquierda --><!--
+                        <TextBlock Text="Cargar productos"
+                        FontWeight="Bold"
+                        FontSize="18"
+                        Foreground="#FFFFFF" 
+                        VerticalAlignment="Center"
+                        Margin="0,0,15,0"/>
+                        <Image Source="/Images/excel.png"
+    Width="24" 
+    Height="24"
+    Stretch="Uniform"/>
+                    </StackPanel>
+                </telerik:RadButton.Content>
+
+                --><!-- Estilo del botón --><!--
+                <telerik:RadButton.Style>
+                    <Style TargetType="telerik:RadButton" 
+BasedOn="{StaticResource {x:Type telerik:RadButton}}">
+                        --><!-- Colores inspirados en la paleta de Excel --><!--
+                        <Setter Property="Background" Value="#217346"/>
+                        --><!-- Verde principal --><!--
+                        <Setter Property="BorderBrush" Value="#185C34"/>
+                        --><!-- Verde más oscuro para el borde --><!--
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                        <Setter Property="FontSize" Value="12"/>
+
+                        --><!-- Triggers para efectos visuales --><!--
+                        <Style.Triggers>
+                            --><!-- Efecto hover --><!--
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2D854F"/>
+                                --><!-- Verde más claro al pasar el mouse --><!--
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+
+                            --><!-- Efecto al presionar el botón --><!--
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1B5C39"/>
+                                --><!-- Un verde más oscuro al presionar --><!--
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </telerik:RadButton.Style>
+            </telerik:RadButton>-->
             <StackPanel Grid.Row="1" 
                         Orientation="Horizontal"
                         Margin="3"

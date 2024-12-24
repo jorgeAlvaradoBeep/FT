@@ -1,17 +1,9 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.ImportFromExcelCommands;
-using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCommands;
 using GalaSoft.MvvmLight.Threading;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -91,6 +83,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         #region Commands
         public ImportOrderFromExcelCommand ImportOrderFromExcelCommand { get; set; }
         public UpdateOrderFromExcelCommand UpdateOrderFromExcelCommand { get; set; }
+        public LoadNewOrderInfoFromExcel LoadNewOrderInfoFromExcel { get; set; }
         
 
         #endregion
@@ -107,6 +100,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
 
             ImportOrderFromExcelCommand = new ImportOrderFromExcelCommand(this);
             UpdateOrderFromExcelCommand = new UpdateOrderFromExcelCommand(this);
+            LoadNewOrderInfoFromExcel = new LoadNewOrderInfoFromExcel(this);
         }
 
         bool ValidateFile()

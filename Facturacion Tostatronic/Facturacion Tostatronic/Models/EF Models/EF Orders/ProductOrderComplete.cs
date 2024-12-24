@@ -52,7 +52,8 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             get { return cantidad; }
             set 
             { 
-                cantidad = value;
+                SetValue(ref cantidad, value);
+                SubTotal = (decimal)(Precio * Cantidad);
                 Modificado = true;
             }
         }
@@ -61,7 +62,12 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public float Precio
         {
             get { return precio; }
-            set { precio = value; Modificado = true; }
+            set 
+            {
+                SetValue(ref precio, value);
+                SubTotal = (decimal)(Precio * Cantidad);
+                Modificado = true;
+            }
         }
         private float targetPrice;
 
@@ -103,7 +109,14 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         }
 
         public bool ProductInfoExist { get; set; } = false;
-        public decimal SubTotal { get; set; }
+        private decimal subTotal;
+
+        public decimal SubTotal
+        {
+            get { return subTotal; }
+            set { SetValue(ref subTotal, value); }
+        }
+
         public decimal PrecioMXN { get; set; }
         public float PorcentajeOrden { get; set; }
         public decimal CostoEnvio { get; set; }

@@ -201,9 +201,9 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 MessageBox.Show("Error al traer productos de busqueda", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             ComlpleteOrder.OrdenID = sl.OrdenID;
             ComlpleteOrder.FechaCreacion = sl.FechaCreacion;
-            ComlpleteOrder.CostoAA = sl.CostoAA;
-            ComlpleteOrder.PorcentajeGanancia = sl.PorcentajeGanancia;
-            ComlpleteOrder.CostoEnvio = sl.CostoEnvio;
+            ComlpleteOrder.CostoAA = (float)sl.CostoAA;
+            ComlpleteOrder.PorcentajeGanancia = (int)sl.PorcentajeGanancia;
+            ComlpleteOrder.CostoEnvio = (float)sl.CostoEnvio;
             ComlpleteOrder.TipoCambio = sl.TipoCambio;
             if(sl.ProductosDeOrdenesNavigation.Count>0)
             {
@@ -241,12 +241,17 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 }
                 if(listaProductos.Count > 0) 
                 {
-                    foreach(var product in listaProductos) 
+                    decimal subTotal = 0;
+                    foreach (var product in listaProductos) 
                     {
                         product.SubTotal = (decimal)(product.Cantidad * product.Precio);
+                        subTotal += product.SubTotal;
                         ComlpleteOrder.ProductosDeOrdenesNavigation.Add(product);
                     }
-                    ComlpleteOrder.GetsubTotal();
+                    ComlpleteOrder.SubTotal = (float)subTotal;
+                    ComlpleteOrder.TotalUSD = (decimal)(ComlpleteOrder.SubTotal + ComlpleteOrder.CostoEnvio);
+                    //ComlpleteOrder.GetsubTotal();
+                    ComlpleteOrder.GetSubTotalMxn();
                     TotalProductos = ComlpleteOrder.ProductosDeOrdenesNavigation.Count;
                 }
             }

@@ -29,21 +29,21 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             set 
             {
                 SetValue(ref tipoCambio, value);
-                GetSubTotalMxn();
+                //GetSubTotalMxn();
             }
         }
 
 
         private float subtotal;
 
-        public float? SubTotal
+        public float SubTotal
         {
             get { return subtotal; }
             set { SetValue(ref subtotal, (float)value); }
         }
-        private float? costoEnvio;
+        private float costoEnvio;
 
-        public float? CostoEnvio
+        public float CostoEnvio
         {
             get { return costoEnvio; }
             set 
@@ -54,13 +54,13 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                     return;
                 }
                 TotalUSD = (decimal)(SubTotal + CostoEnvio);
-                GetSubTotalMxn();
+                //GetSubTotalMxn();
             }
         }
 
-        private float? costoAA;
+        private float costoAA;
 
-        public float? CostoAA
+        public float CostoAA
         {
             get { return costoAA; }
             set 
@@ -71,13 +71,13 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                     return;
                 }
                 GastosEA = (decimal)CostoAA + EnvioMx;
-                GetSubTotalMxn();
+                //GetSubTotalMxn();
             }
         }
 
-        private int? porcentajeGanancia;
+        private int porcentajeGanancia;
 
-        public int? PorcentajeGanancia
+        public int PorcentajeGanancia
         {
             get { return porcentajeGanancia; }
             set { SetValue(ref porcentajeGanancia, value); }
@@ -133,7 +133,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
             get { return totalGastosMx; }
             set { SetValue(ref totalGastosMx, value); }
         }
-        void GetSubTotalMxn()
+        public void GetSubTotalMxn()
         {
             if(CostoAA == null || CostoEnvio == null || TipoCambio == null || SubTotal == null)
             {

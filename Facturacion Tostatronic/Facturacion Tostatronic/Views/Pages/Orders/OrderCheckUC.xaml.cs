@@ -1,5 +1,6 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.ViewModels.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,38 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
 
                     // Opcional: Realiza acciones adicionales después de desplazarte hasta el elemento, como seleccionarlo
                     radGridView.SelectedItem = itemToScrollTo;
+                }
+            }
+        }
+
+        private void RadNumericUpDown_ValueChanged(object sender, RadRangeBaseValueChangedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                if (this.DataContext is OrderCheckVM)
+                {
+                    if(((OrderCheckVM)this.DataContext).ComlpleteOrder != null)
+                    {
+                        ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetSubTotalMxn();
+                    }
+                }
+            }
+        }
+
+        private void radGridView_CellEditEnded(object sender, GridViewCellEditEndedEventArgs e)
+        {
+            if(e.Cell.Column.UniqueName == "Cantidad" || e.Cell.Column.UniqueName == "Precio")
+            {
+                if (this.DataContext != null)
+                {
+                    if (this.DataContext is OrderCheckVM)
+                    {
+                        if (((OrderCheckVM)this.DataContext).ComlpleteOrder != null)
+                        {
+                            ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetsubTotal();
+                            ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetSubTotalMxn();
+                        }
+                    }
                 }
             }
         }

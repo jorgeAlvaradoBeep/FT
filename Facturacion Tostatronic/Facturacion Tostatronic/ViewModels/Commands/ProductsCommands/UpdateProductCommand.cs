@@ -59,7 +59,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                 }
                 VM.GettingData = true;
             
-                Response res = await WebService.InsertData(VM.Product, URLData.product_update);
+                Response res = await WebService.ModifyData(VM.Product, URLData.product_update);
                 if (!res.succes)
                 {
                     MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
