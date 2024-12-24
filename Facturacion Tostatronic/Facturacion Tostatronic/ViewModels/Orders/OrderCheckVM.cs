@@ -1,18 +1,21 @@
-﻿using Bukimedia.PrestaSharp.Entities.AuxEntities;
-using Facturacion_Tostatronic.Models;
+﻿using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.Models.WooCommerceModels;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCommands;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Facturacion_Tostatronic.ViewModels.Orders
 {
@@ -135,6 +138,13 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             set { SetValue(ref totalProductos, value); }
         }
 
+        private ProductOrderComplete selectedItem;
+
+        public ProductOrderComplete SelectedItem
+        {
+            get { return selectedItem; }
+            set { SetValue(ref selectedItem, value); }
+        }
 
         #endregion
 
@@ -169,9 +179,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             DeleteProductFromOrdercommand = new DeleteProductFromOrdercommand(this);
             SaveOrderInfoCommand = new SaveOrderInfoCommand(this);
             CalculatePirceCommand = new CalculatePirceCommand(this);
-            
         }
-
         async void GetOrderData()
         {
             GettingData = true;

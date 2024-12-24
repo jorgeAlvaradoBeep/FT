@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
+using Facturacion_Tostatronic.ViewModels.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,20 @@ namespace Facturacion_Tostatronic.Views.OrdersV
     /// </summary>
     public partial class CalculatePricesV : Window
     {
+        public CalculatePricesVM VM { get; set; }
         public CalculatePricesV()
         {
             InitializeComponent();
+            VM = new CalculatePricesVM();
+            this.DataContext = VM;
+        }
+
+        private void radGv_CellEditEnded(object sender, Telerik.Windows.Controls.GridViewCellEditEndedEventArgs e)
+        {
+            if(e.Cell.Column.UniqueName == "TargetPrice")
+            {
+                VM.UpdateTPCommand.Execute(VM.SelectedItem);
+            }
         }
     }
 }

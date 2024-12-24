@@ -24,9 +24,12 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
     /// </summary>
     public partial class OrderCheckUC : UserControl
     {
+        public OrderCheckVM VM { get; set; }
         public OrderCheckUC()
         {
             InitializeComponent();
+            VM = new OrderCheckVM();
+            this.DataContext = VM;
         }
         private void RadAutoCompleteBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -52,33 +55,21 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
 
         private void RadNumericUpDown_ValueChanged(object sender, RadRangeBaseValueChangedEventArgs e)
         {
-            if (this.DataContext != null)
+            if (VM != null)
             {
-                if (this.DataContext is OrderCheckVM)
+                if (VM.ComlpleteOrder != null)
                 {
-                    if(((OrderCheckVM)this.DataContext).ComlpleteOrder != null)
-                    {
-                        ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetSubTotalMxn();
-                    }
+                    VM.ComlpleteOrder.GetSubTotalMxn();
                 }
             }
         }
 
         private void radGridView_CellEditEnded(object sender, GridViewCellEditEndedEventArgs e)
         {
-            if(e.Cell.Column.UniqueName == "Cantidad" || e.Cell.Column.UniqueName == "Precio")
+            if (e.Cell.Column.UniqueName == "Cantidad" || e.Cell.Column.UniqueName == "Precio")
             {
-                if (this.DataContext != null)
-                {
-                    if (this.DataContext is OrderCheckVM)
-                    {
-                        if (((OrderCheckVM)this.DataContext).ComlpleteOrder != null)
-                        {
-                            ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetsubTotal();
-                            ((OrderCheckVM)this.DataContext).ComlpleteOrder.GetSubTotalMxn();
-                        }
-                    }
-                }
+                VM.ComlpleteOrder.GetsubTotal();
+                VM.ComlpleteOrder.GetSubTotalMxn();
             }
         }
     }

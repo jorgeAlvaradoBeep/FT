@@ -159,6 +159,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                         sub += prod.SubTotal;
                     }
                     SubTotal = (float)sub;
+                    TotalUSD = (decimal)(SubTotal + CostoEnvio);
                 }
             }
         }

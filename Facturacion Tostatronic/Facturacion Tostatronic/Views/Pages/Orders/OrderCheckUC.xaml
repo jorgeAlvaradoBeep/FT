@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Facturacion_Tostatronic.Views.Pages.Orders" 
              xmlns:vm="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
     <UserControl.Resources>
-        <vm:OrderCheckVM x:Key="orderCheckVM"/>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="Foreground" Value="White"/>
@@ -23,8 +23,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-    <telerik:RadBusyIndicator DataContext="{StaticResource orderCheckVM}"
-                              IsBusy="{Binding GettingData}"
+    <telerik:RadBusyIndicator IsBusy="{Binding GettingData}"
                               BusyContent="{Binding ProgressVal,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid>
             <Grid.RowDefinitions>
@@ -107,15 +106,16 @@
             </StackPanel>
             <telerik:RadGridView Grid.Row="3" 
                                  x:Name="radGridView"
-                 ItemsSource="{Binding ComlpleteOrder.ProductosDeOrdenesNavigation}" 
-                 AutoGenerateColumns="False"
-                 VerticalAlignment="Top"
-                 RowIndicatorVisibility="Collapsed"
-                 CanUserFreezeColumns="False"
-                 BorderThickness="0"
-                 CanUserResizeColumns="True"
-                 ShowGroupPanel="False"
-                 IsReadOnly="False"
+                                 ItemsSource="{Binding ComlpleteOrder.ProductosDeOrdenesNavigation}" 
+                                 AutoGenerateColumns="False"
+                                 VerticalAlignment="Top"
+                                 RowIndicatorVisibility="Collapsed"
+                                 CanUserFreezeColumns="False"
+                                 BorderThickness="0"
+                                 CanUserResizeColumns="True"
+                                 ShowGroupPanel="False"
+                                 IsReadOnly="False"
+                                 SelectedItem="{Binding SelectedItem}"
                                  CellEditEnded="radGridView_CellEditEnded">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
@@ -131,7 +131,7 @@
                         <telerik:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <telerik:RadButton  Content="Delete"
-                                                    Command="{Binding DeleteProductFromOrdercommand, Source={StaticResource orderCheckVM}}"
+                                                    Command="{Binding DeleteProductFromOrdercommand}"
                                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=telerik:GridViewRow}}" />
                             </DataTemplate>
                         </telerik:GridViewColumn.CellTemplate>

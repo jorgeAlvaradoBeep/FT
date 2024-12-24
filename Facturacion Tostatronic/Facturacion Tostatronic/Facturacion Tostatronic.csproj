@@ -1126,6 +1126,7 @@
     <Resource Include="Images\credit.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Convertidores\" />
     <Folder Include="Models\MenuM\" />
     <Folder Include="ViewModels\Commands\NewMenuCommands\" />
   </ItemGroup>

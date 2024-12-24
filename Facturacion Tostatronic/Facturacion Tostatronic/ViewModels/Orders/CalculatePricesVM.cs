@@ -66,6 +66,13 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             get { return porcentageTarget; }
             set { SetValue(ref porcentageTarget, value); }
         }
+        private ProductOrderComplete selectedItem;
+
+        public ProductOrderComplete SelectedItem
+        {
+            get { return selectedItem; }
+            set { SetValue(ref selectedItem, value); }
+        }
 
         #endregion
         #region Comandos
@@ -135,6 +142,8 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
 
         void SetProducsInfo()
         {
+            SubTotalTarget = 0;
+            PorcentageTarget = 0;
             if (OrdenComplete.ProductosDeOrdenesNavigation == null)
             {
                 return;
@@ -200,9 +209,11 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                     product.PublicoActual = 0;
                 }
                 GastosEA += product.CostoEnvio;
-                TotalPorcentaje += (decimal)product.PorcentajeOrden; 
+                TotalPorcentaje += (decimal)product.PorcentajeOrden;
+                SubTotalTarget += product.SubTarget;
+                porcentageTarget += product.PorcentajeTarget;
             }
-            Task.Run(async () => await GetSubTotalMxn());
+            //Task.Run(async () => await GetSubTotalMxn());
         }
 
     }
