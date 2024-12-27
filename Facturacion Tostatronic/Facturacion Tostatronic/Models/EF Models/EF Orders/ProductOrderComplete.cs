@@ -120,9 +120,23 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public decimal PrecioMXN { get; set; }
         public float PorcentajeOrden { get; set; }
         public decimal CostoEnvio { get; set; }
-        public decimal CostoEnvioPP { get; set; }
+        private decimal costoEnvioPP;
+
+        public decimal CostoEnvioPP
+        {
+            get { return costoEnvioPP; }
+            set { SetValue(ref costoEnvioPP, value); }
+        }
+
         public decimal CostoAI { get; set; }
-        public decimal Costo { get; set; }
+        private decimal costo;
+
+        public decimal Costo
+        {
+            get { return costo; }
+            set { SetValue(ref costo, value); }
+        }
+
         public decimal CostoActual { get; set; }
         public decimal MinimoRecomendado { get; set; }
         public decimal MinimoActual { get; set; }

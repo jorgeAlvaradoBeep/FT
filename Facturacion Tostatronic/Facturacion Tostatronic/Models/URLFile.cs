@@ -128,6 +128,10 @@
         public static string ComisionesDeVentas = baseURLNET + "Comisiones/ComosionesDeVentas?";
         public static string Plataformas = baseURLNET + "Plataforma/";
         public static string MetodosDePago = baseURLNET + "MetodoPago/";
+        public static string EstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/Create/Bulk";
+        public static string GetEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/";
+        public static string GetEstablecerOrdenes = baseURLNET + "ProductosOrdenEstablecida/Ordenes";
+        public static string DeleteEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/DeleteAll/";
 
         //Borrar despues de actualizar los costos
         public static string GetSalesTotalNet = baseURLNET + "Comisiones/CostosComisiones";
