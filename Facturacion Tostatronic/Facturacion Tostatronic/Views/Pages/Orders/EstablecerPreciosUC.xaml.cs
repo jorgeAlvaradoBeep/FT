@@ -12,21 +12,32 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Facturacion_Tostatronic.Views.OrdersV
+namespace Facturacion_Tostatronic.Views.Pages.Orders
 {
     /// <summary>
-    /// Lógica de interacción para EstablecerPreciosV.xaml
+    /// Lógica de interacción para EstablecerPreciosUC.xaml
     /// </summary>
-    public partial class EstablecerPreciosV : Window
+    public partial class EstablecerPreciosUC : UserControl
     {
         public EstablecerPreciosVM VM { get; set; }
-        public EstablecerPreciosV(OrderComplete orderComplete)
+        public EstablecerPreciosUC()
         {
             InitializeComponent();
-            VM = new EstablecerPreciosVM(orderComplete);
+            VM = new EstablecerPreciosVM();
             this.DataContext = VM;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await VM.GetOrders();
+        }
+
+        private async void cbOrdenes_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

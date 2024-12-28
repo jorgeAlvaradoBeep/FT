@@ -226,9 +226,6 @@
                 <Button Content="Calcular Precio" 
                         IsEnabled="{Binding IsProductExtractionenabled}"
                         Command="{Binding CalculatePirceCommand}"/>
-                <Button Content="Establecer Precio" 
-                        IsEnabled="{Binding IsProductExtractionenabled}"
-                        Command="{Binding StablishFinallPricescommand}"/>
             </StackPanel>
 
         </Grid>

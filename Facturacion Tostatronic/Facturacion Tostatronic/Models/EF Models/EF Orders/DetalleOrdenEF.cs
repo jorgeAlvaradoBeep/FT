@@ -95,7 +95,6 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 publico = source.Publico
             };
         }
-
         // 3) Implementación de INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

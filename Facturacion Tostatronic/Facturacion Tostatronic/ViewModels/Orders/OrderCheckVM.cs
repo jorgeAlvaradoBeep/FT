@@ -157,7 +157,6 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public DeleteProductFromOrdercommand DeleteProductFromOrdercommand { get; set; }
         public SaveOrderInfoCommand SaveOrderInfoCommand { get; set; }
         public CalculatePirceCommand CalculatePirceCommand { get; set; }
-        public StablishFinallPricescommand StablishFinallPricescommand { get; set; }
         #endregion
 
         public OrderCheckVM()
@@ -180,7 +179,6 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             DeleteProductFromOrdercommand = new DeleteProductFromOrdercommand(this);
             SaveOrderInfoCommand = new SaveOrderInfoCommand(this);
             CalculatePirceCommand = new CalculatePirceCommand(this);
-            StablishFinallPricescommand = new StablishFinallPricescommand(this);
         }
         async void GetOrderData()
         {

@@ -312,6 +312,7 @@
     <Compile Include="Models\EF Models\EF Orders\APIProductOrderInformation.cs" />
     <Compile Include="Models\EF Models\EF Orders\APIProductosOrdenes.cs" />
     <Compile Include="Models\EF Models\EF Orders\DetalleOrdenEF.cs" />
+    <Compile Include="Models\EF Models\EF Orders\DetalleOrdenExtendido.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrder.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrderProduct.cs" />
     <Compile Include="Models\EF Models\EF Orders\EFOrderProductsTargetPrice.cs" />
@@ -440,7 +441,6 @@
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveModifiedOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveOrderInfoCommand.cs" />
-    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\StablishFinallPricescommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\SaveOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />
@@ -605,9 +605,6 @@
     <Compile Include="Views\OrdersV\CalculatePricesV.xaml.cs">
       <DependentUpon>CalculatePricesV.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrdersV\EstablecerPreciosV.xaml.cs">
-      <DependentUpon>EstablecerPreciosV.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\OrdersV\ImportFromExcelV.xaml.cs">
       <DependentUpon>ImportFromExcelV.xaml</DependentUpon>
     </Compile>
@@ -631,6 +628,9 @@
     </Compile>
     <Compile Include="Views\Pages\Invoice\SeeInvoiceUC.xaml.cs">
       <DependentUpon>SeeInvoiceUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Orders\EstablecerPreciosUC.xaml.cs">
+      <DependentUpon>EstablecerPreciosUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Orders\MakeOrderUC.xaml.cs">
       <DependentUpon>MakeOrderUC.xaml</DependentUpon>
@@ -803,10 +803,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OrdersV\EstablecerPreciosV.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\OrdersV\ImportFromExcelV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -836,6 +832,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Invoice\SeeInvoiceUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Orders\EstablecerPreciosUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
