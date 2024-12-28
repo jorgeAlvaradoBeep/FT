@@ -145,19 +145,115 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
         public bool CostoMenor => CostoActual < Costo;
 
         public decimal SubMinimoRecomendado { get; set; }
-        public decimal Minimo { get; set; }
-        public float PorcentajeMinimo { get; set; }
-        public decimal SubMinimo { get; set; }
-        public decimal DistribuidorRecomendado { get; set; }
+        private decimal minimo;
+
+        public decimal Minimo
+        {
+            get { return minimo; }
+            set 
+            {
+                SetValue(ref minimo, value);
+                if (Minimo != 0)
+                {
+                    SubMinimo = Cantidad * Minimo;
+                    PorcentajeMinimo = (((float)Minimo / 1.16f) - (float)CostoAI) / ((float)Minimo / 1.16f);
+                }
+            }
+        }
+
+        private decimal subMinimo;
+
+        public decimal SubMinimo
+        {
+            get { return subMinimo; }
+            set { SetValue(ref subMinimo, value); }
+        }
+
+        private float porcentajeMinimo;
+
+        public float PorcentajeMinimo
+        {
+            get { return porcentajeMinimo; }
+            set { SetValue(ref porcentajeMinimo, value); }
+        }
+
+        private decimal distribuidorRecomendado;
+
+        public decimal DistribuidorRecomendado
+        {
+            get { return distribuidorRecomendado; }
+            set { SetValue(ref distribuidorRecomendado, value); }
+        }
+
         public decimal DistribuidorActual { get; set; }
-        public decimal Distribuidor { get; set; }
-        public float PorcentajeDistribuidor { get; set; }
-        public decimal SubDistribuidor { get; set; }
-        public decimal PublicoRecomendado { get; set; }
+        private decimal distribuidor;
+        private float porcentajeDistribuidor;
+        private decimal subDistribuidor;
+
+        public decimal Distribuidor
+        {
+            get { return distribuidor; }
+            set
+            {
+                SetValue(ref distribuidor, value);
+                if (Distribuidor != 0)
+                {
+                    SubDistribuidor = Cantidad * Distribuidor;
+                    PorcentajeDistribuidor = (((float)Distribuidor / 1.16f) - (float)CostoAI) / ((float)Distribuidor / 1.16f);
+                }
+            }
+        }
+
+        public float PorcentajeDistribuidor
+        {
+            get { return porcentajeDistribuidor; }
+            set { SetValue(ref porcentajeDistribuidor, value); }
+        }
+
+        public decimal SubDistribuidor
+        {
+            get { return subDistribuidor; }
+            set { SetValue(ref subDistribuidor, value); }
+        }
+
+        private decimal publicoRecomendado;
+
+        public decimal PublicoRecomendado
+        {
+            get { return publicoRecomendado; }
+            set { SetValue(ref publicoRecomendado, value); }
+        }
         public decimal PublicoActual { get; set; }
-        public decimal Publico { get; set; }
-        public float PorcentajePublico { get; set; }
-        public decimal SubPublico { get; set; }
+        private decimal publico;
+        private float porcentajePublico;
+        private decimal subPublico;
+
+        public decimal Publico
+        {
+            get { return publico; }
+            set
+            {
+                SetValue(ref publico, value);
+                if (Publico != 0)
+                {
+                    SubPublico = Cantidad * Publico;
+                    PorcentajePublico = (((float)Publico / 1.16f) - (float)CostoAI) / ((float)Publico / 1.16f);
+                }
+            }
+        }
+
+        public float PorcentajePublico
+        {
+            get { return porcentajePublico; }
+            set { SetValue(ref porcentajePublico, value); }
+        }
+
+        public decimal SubPublico
+        {
+            get { return subPublico; }
+            set { SetValue(ref subPublico, value); }
+        }
+
         private bool modificadoProducto;
 
         public bool ModificadoProducto

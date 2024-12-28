@@ -440,6 +440,7 @@
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\ImportExcelFileCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveModifiedOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\SaveOrderInfoCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\OrderCheckCommands\StablishFinallPricescommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\SaveOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\GetOrdersFromPSCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\QuoteCommands\QuoteSelectedCommand.cs" />
@@ -540,6 +541,7 @@
     <Compile Include="ViewModels\Commands\WareHouseCommands\SearchProductsForSpacecommand.cs" />
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
     <Compile Include="ViewModels\Orders\CalculatePricesVM.cs" />
+    <Compile Include="ViewModels\Orders\EstablecerPreciosVM.cs" />
     <Compile Include="ViewModels\Orders\ImportFromExcelVM.cs" />
     <Compile Include="ViewModels\Orders\MakeOrderVM.cs" />
     <Compile Include="ViewModels\Orders\OrderCheckVM.cs" />
@@ -602,6 +604,9 @@
     </Compile>
     <Compile Include="Views\OrdersV\CalculatePricesV.xaml.cs">
       <DependentUpon>CalculatePricesV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersV\EstablecerPreciosV.xaml.cs">
+      <DependentUpon>EstablecerPreciosV.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdersV\ImportFromExcelV.xaml.cs">
       <DependentUpon>ImportFromExcelV.xaml</DependentUpon>
@@ -795,6 +800,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OrdersV\CalculatePricesV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersV\EstablecerPreciosV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -139,6 +139,11 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                         product.Costo = product.CostoAI * 1.16m;
                         decimal porWininw = OrdenComplete.PorcentajeGanancia / 100m;
                         product.MinimoRecomendado = (product.Costo / (1 - porWininw));
+                        product.Minimo = aux.minimo;
+                        product.Distribuidor = aux.distribuidor;
+                        product.Publico = aux.publico;
+                        product.DistribuidorRecomendado = ((product.MinimoRecomendado + 4) / (1 - 0.040484m));
+                        product.PublicoRecomendado = product.DistribuidorRecomendado / (1 - 0.15m);
                     }
                 }
                 float newPercentage = 0;
