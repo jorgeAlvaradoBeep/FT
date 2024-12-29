@@ -51,6 +51,25 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 }
             }
         }
+        private decimal _minimo;
+        public new decimal minimo
+        {
+            get => _minimo;
+            set
+            {
+                if (_minimo != value)
+                {
+                    _minimo = value;
+                    OnPropertyChanged();
+                    if (_minimo != 0)
+                    {
+                        // Realizar la operación deseada
+                        SubMinimo = cantidad * _minimo;
+                        PorcentajeMinimo = (((float)_minimo / 1.16f) - (float)precio/1.16f) / ((float)_minimo / 1.16f);
+                    }
+                }
+            }
+        }
 
         private decimal subMinimo;
 
@@ -110,7 +129,24 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 }
             }
         }
-
+        private decimal _distribuidor;
+        public new decimal distribuidor
+        {
+            get => _distribuidor;
+            set
+            {
+                if (_distribuidor != value)
+                {
+                    _distribuidor = value;
+                    OnPropertyChanged();
+                    if (_distribuidor != 0)
+                    {
+                        SubDistribuidor = cantidad * _distribuidor;
+                        PorcentajeDistribuidor = (((float)_distribuidor / 1.16f) - (float)precio / 1.16f) / ((float)_distribuidor / 1.16f);
+                    }
+                }
+            }
+        }
         private decimal subDistribuidor;
 
         public decimal SubDistribuidor
@@ -141,7 +177,24 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 }
             }
         }
-
+        private decimal _publico;
+        public new decimal publico
+        {
+            get => _publico;
+            set
+            {
+                if (_publico != value)
+                {
+                    _publico = value;
+                    OnPropertyChanged();
+                    if (_publico != 0)
+                    {
+                        SubPublico = cantidad * _publico;
+                        PorcentajePublico = (((float)_publico / 1.16f) - (float)precio / 1.16f) / ((float)_publico / 1.16f);
+                    }
+                }
+            }
+        }
         public decimal SubPublico
         {
             get => subPublico;

@@ -125,7 +125,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             {
                 var detalle = JsonConvert.DeserializeObject<List<DetalleOrdenExtendido>>(res.data.ToString());
                 res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
-
+                
                 if (res.succes)
                 {
                     productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
@@ -133,11 +133,13 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 else
                     MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                decimal costoTotal = 0;
                 foreach (var item in detalle)
                 {
                     item.Nombre = productInformationList.Where(p => p.CodigoProducto == item.codigoProducto).ToList()[0].NombreEs;
-                    CostoTotal += (decimal)item.precio * item.cantidad;
+                    costoTotal += (decimal)item.precio * item.cantidad;
                 }
+                CostoTotal = costoTotal;
             }
             GettingData = false;
         }
