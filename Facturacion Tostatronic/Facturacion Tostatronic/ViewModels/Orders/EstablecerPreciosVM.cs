@@ -85,11 +85,317 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 {
                     costoTotal = value;
                     OnPropertyChanged(nameof(CostoTotal));
+                    if (CostoTotal > 0)
+                    {
+                        IvaPagado = CostoTotal-(CostoTotal / 1.16m);
+                    }
+                }
+            }
+        }
+        private ObservableCollection<DetalleOrdenExtendido> _detallesOrden;
+
+        // Propiedad pública que expondrá la colección (para binding en XAML)
+        public ObservableCollection<DetalleOrdenExtendido> DetallesOrden
+        {
+            get => _detallesOrden;
+            set
+            {
+                if (_detallesOrden != value)
+                {
+                    _detallesOrden = value;
+                    OnPropertyChanged(nameof(DetallesOrden));
                 }
             }
         }
 
+        #region Totales
+        private decimal subTotalMinimo;
+        public decimal SubTotalMinimo
+        {
+            get => subTotalMinimo;
+            set
+            {
+                if (subTotalMinimo != value)
+                {
+                    subTotalMinimo = value;
+                    OnPropertyChanged(nameof(SubTotalMinimo));
+                    if(SubTotalMinimo > 0)
+                    {
+                        IvaMinimo = SubTotalMinimo-(SubTotalMinimo / 1.16m);
+                        ImpuestoAPagarMinimo = IvaMinimo - IvaPagado;
+                        VentaBrutaMinimo = SubTotalMinimo - ImpuestoAPagarMinimo;
+                        GananciaRealMinimo = VentaBrutaMinimo - CostoTotal;
+                        if(CostoTotal > 0 && GananciaRealMinimo>0)
+                            PorcentajeGananciaMinimo =GananciaRealMinimo / CostoTotal;
+                    }
+                }
+            }
+        }
 
+        private decimal subTotalDistribuidor;
+        public decimal SubTotalDistribuidor
+        {
+            get => subTotalDistribuidor;
+            set
+            {
+                if (subTotalDistribuidor != value)
+                {
+                    subTotalDistribuidor = value;
+                    OnPropertyChanged(nameof(SubTotalDistribuidor));
+                    if(subTotalDistribuidor > 0)
+                    {
+                        IvaDistribuidor = SubTotalDistribuidor - (SubTotalDistribuidor / 1.16m);
+                        ImpuestoAPagarDistribuidor = IvaDistribuidor - IvaPagado;
+                        VentaBrutaDistribuidor = SubTotalDistribuidor - ImpuestoAPagarDistribuidor;
+                        GananciaRealDistribuidor = VentaBrutaDistribuidor - CostoTotal;
+                        PorcentajeGananciaDistribuidor = GananciaRealDistribuidor / CostoTotal;
+                    }
+                }
+            }
+        }
+
+        private decimal subTotalPublico;
+        public decimal SubTotalPublico
+        {
+            get => subTotalPublico;
+            set
+            {
+                if (subTotalPublico != value)
+                {
+                    subTotalPublico = value;
+                    OnPropertyChanged(nameof(SubTotalPublico));
+                    if(subTotalPublico > 0)
+                    {
+                        IvaPublico = SubTotalPublico - (SubTotalPublico / 1.16m);
+                        ImpuestoAPagarPublico = IvaPublico - IvaPagado;
+                        VentaBrutaPublico = SubTotalPublico - ImpuestoAPagarPublico;
+                        GananciaRealPublico = VentaBrutaPublico - CostoTotal;
+                        PorcentajeGananciaPublico = GananciaRealPublico / CostoTotal;
+                    }
+                }
+            }
+        }
+        private decimal ivaMinimo;
+        public decimal IvaMinimo
+        {
+            get => ivaMinimo;
+            set
+            {
+                if (ivaMinimo != value)
+                {
+                    ivaMinimo = value;
+                    OnPropertyChanged(nameof(IvaMinimo));
+                }
+            }
+        }
+
+        private decimal ivaDistribuidor;
+        public decimal IvaDistribuidor
+        {
+            get => ivaDistribuidor;
+            set
+            {
+                if (ivaDistribuidor != value)
+                {
+                    ivaDistribuidor = value;
+                    OnPropertyChanged(nameof(IvaDistribuidor));
+                }
+            }
+        }
+
+        private decimal ivaPublico;
+        public decimal IvaPublico
+        {
+            get => ivaPublico;
+            set
+            {
+                if (ivaPublico != value)
+                {
+                    ivaPublico = value;
+                    OnPropertyChanged(nameof(IvaPublico));
+                }
+            }
+        }
+        private decimal ivaPagado;
+        public decimal IvaPagado
+        {
+            get => ivaPagado;
+            set
+            {
+                if (ivaPagado != value)
+                {
+                    ivaPagado = value;
+                    OnPropertyChanged(nameof(IvaPagado));
+                }
+            }
+        }
+        private decimal impuestoAPagarMinimo;
+        public decimal ImpuestoAPagarMinimo
+        {
+            get => impuestoAPagarMinimo;
+            set
+            {
+                if (impuestoAPagarMinimo != value)
+                {
+                    impuestoAPagarMinimo = value;
+                    OnPropertyChanged(nameof(ImpuestoAPagarMinimo));
+                }
+            }
+        }
+
+        private decimal impuestoAPagarDistribuidor;
+        public decimal ImpuestoAPagarDistribuidor
+        {
+            get => impuestoAPagarDistribuidor;
+            set
+            {
+                if (impuestoAPagarDistribuidor != value)
+                {
+                    impuestoAPagarDistribuidor = value;
+                    OnPropertyChanged(nameof(ImpuestoAPagarDistribuidor));
+                }
+            }
+        }
+
+        private decimal impuestoAPagarPublico;
+        public decimal ImpuestoAPagarPublico
+        {
+            get => impuestoAPagarPublico;
+            set
+            {
+                if (impuestoAPagarPublico != value)
+                {
+                    impuestoAPagarPublico = value;
+                    OnPropertyChanged(nameof(ImpuestoAPagarPublico));
+                }
+            }
+        }
+        private decimal ventaBrutaMinimo;
+        public decimal VentaBrutaMinimo
+        {
+            get => ventaBrutaMinimo;
+            set
+            {
+                if (ventaBrutaMinimo != value)
+                {
+                    ventaBrutaMinimo = value;
+                    OnPropertyChanged(nameof(VentaBrutaMinimo));
+                }
+            }
+        }
+
+        private decimal ventaBrutaDistribuidor;
+        public decimal VentaBrutaDistribuidor
+        {
+            get => ventaBrutaDistribuidor;
+            set
+            {
+                if (ventaBrutaDistribuidor != value)
+                {
+                    ventaBrutaDistribuidor = value;
+                    OnPropertyChanged(nameof(VentaBrutaDistribuidor));
+                }
+            }
+        }
+
+        private decimal ventaBrutaPublico;
+        public decimal VentaBrutaPublico
+        {
+            get => ventaBrutaPublico;
+            set
+            {
+                if (ventaBrutaPublico != value)
+                {
+                    ventaBrutaPublico = value;
+                    OnPropertyChanged(nameof(VentaBrutaPublico));
+                }
+            }
+        }
+
+        private decimal gananciaRealMinimo;
+        public decimal GananciaRealMinimo
+        {
+            get => gananciaRealMinimo;
+            set
+            {
+                if (gananciaRealMinimo != value)
+                {
+                    gananciaRealMinimo = value;
+                    OnPropertyChanged(nameof(GananciaRealMinimo));
+                }
+            }
+        }
+
+        private decimal gananciaRealDistribuidor;
+        public decimal GananciaRealDistribuidor
+        {
+            get => gananciaRealDistribuidor;
+            set
+            {
+                if (gananciaRealDistribuidor != value)
+                {
+                    gananciaRealDistribuidor = value;
+                    OnPropertyChanged(nameof(GananciaRealDistribuidor));
+                }
+            }
+        }
+
+        private decimal gananciaRealPublico;
+        public decimal GananciaRealPublico
+        {
+            get => gananciaRealPublico;
+            set
+            {
+                if (gananciaRealPublico != value)
+                {
+                    gananciaRealPublico = value;
+                    OnPropertyChanged(nameof(GananciaRealPublico));
+                }
+            }
+        }
+
+        private decimal porcentajeGananciaMinimo;
+        public decimal PorcentajeGananciaMinimo
+        {
+            get => porcentajeGananciaMinimo;
+            set
+            {
+                if (porcentajeGananciaMinimo != value)
+                {
+                    porcentajeGananciaMinimo = value;
+                    OnPropertyChanged(nameof(PorcentajeGananciaMinimo));
+                }
+            }
+        }
+
+        private decimal porcentajeGananciaDistribuidor;
+        public decimal PorcentajeGananciaDistribuidor
+        {
+            get => porcentajeGananciaDistribuidor;
+            set
+            {
+                if (porcentajeGananciaDistribuidor != value)
+                {
+                    porcentajeGananciaDistribuidor = value;
+                    OnPropertyChanged(nameof(PorcentajeGananciaDistribuidor));
+                }
+            }
+        }
+
+        private decimal porcentajeGananciaPublico;
+        public decimal PorcentajeGananciaPublico
+        {
+            get => porcentajeGananciaPublico;
+            set
+            {
+                if (porcentajeGananciaPublico != value)
+                {
+                    porcentajeGananciaPublico = value;
+                    OnPropertyChanged(nameof(PorcentajeGananciaPublico));
+                }
+            }
+        }
+        #endregion
         public List<APIProductOrderInformation> productInformationList { get; set; }
         public List<UpdateProductM> AllProducts { get; set; }
         
@@ -133,13 +439,33 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 else
                     MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                res = await WebService.GetDataNode(URLData.OrderSingle, SelectedOrder.ToString());
+                if (res.succes)
+                {
+                    OrderComplete = JsonConvert.DeserializeObject<OrderComplete>(res.data.ToString());
+                }
+                else
+                    MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 decimal costoTotal = 0;
+                decimal porGanan = (decimal)OrderComplete.PorcentajeGanancia / 100;
+                decimal subPub=0, subDis=0, subMin =0;
                 foreach (var item in detalle)
                 {
                     item.Nombre = productInformationList.Where(p => p.CodigoProducto == item.codigoProducto).ToList()[0].NombreEs;
+                    item.MinimoRecomendado = (((decimal)item.precio / 1.16m) / (1 - porGanan)) * 1.16m;
+                    item.DistribuidorRecomendado = (((item.MinimoRecomendado/ 1.16m)+4)/(1-0.0349m))*1.16m;
+                    item.PublicoRecomendado = (((decimal)item.precio / 1.16m) / (1 - (porGanan+0.2m))) * 1.16m;
                     costoTotal += (decimal)item.precio * item.cantidad;
+                    subPub += item.SubPublico;
+                    subDis += item.SubDistribuidor;
+                    subMin += item.SubMinimo;
                 }
                 CostoTotal = costoTotal;
+                SubTotalPublico = subPub;
+                SubTotalDistribuidor = subDis;
+                SubTotalMinimo = subMin;
+                DetallesOrden = new ObservableCollection<DetalleOrdenExtendido>(detalle);
             }
             GettingData = false;
         }
@@ -149,6 +475,20 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        public void GetSubTotalMinimo()
+        {
+            var sub = DetallesOrden.Sum(p =>p.SubMinimo);
+            SubTotalMinimo = sub;
+        }
+        public void GetSubTotalDistribuidor()
+        {
+            var sub = DetallesOrden.Sum(p => p.SubDistribuidor);
+            SubTotalDistribuidor = sub;
+        }
+        public void GetSubTotalPublico()
+        {
+            var sub = DetallesOrden.Sum(p => p.SubPublico);
+            SubTotalPublico = sub;
+        }
     }
 }

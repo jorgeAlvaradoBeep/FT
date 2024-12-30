@@ -112,6 +112,7 @@
         public static string getSpecificQuoteNET = baseURLNET + "Cotizacion/GetSpecificQoute/";
         public static string getProductsForQuote = baseURLNET + "ProductosDeCotizacion/";
         public static string Orders = baseURLNET + "Ordenes/";
+        public static string OrderSingle = baseURLNET + "Ordenes/Single/";
         public static string EditOrders = baseURLNET + "Ordenes/Edit";
         public static string OpenOrders = baseURLNET + "Ordenes/AvailableOrders/";
         public static string ProductOrderInfo = baseURLNET + "ProductOrderInfo/";

@@ -34,5 +34,29 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
         {
             await VM.GetOrders();
         }
+
+        private async void cbOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (VM.SelectedOrder > 0)
+            {
+                await VM.GetOrderComplete();
+            }
+        }
+
+        private void radGv_CellEditEnded(object sender, Telerik.Windows.Controls.GridViewCellEditEndedEventArgs e)
+        {
+            if(e.Cell.Column.UniqueName == "Minimo")
+            {
+                VM.GetSubTotalMinimo();
+            }
+            else if(e.Cell.Column.UniqueName == "Distribuidor")
+            {
+                VM.GetSubTotalDistribuidor();
+            }
+            else if (e.Cell.Column.UniqueName == "Publico")
+            {
+                VM.GetSubTotalPublico();
+            }
+        }
     }
 }

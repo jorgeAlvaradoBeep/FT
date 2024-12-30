@@ -196,7 +196,7 @@
                                             DataFormatString="{}{0:C}"
                                             IsReadOnly="True"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}" Header="Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="% Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeMinimo}" Header="% Minimo" DataFormatString="{}{0:P2}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                     <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorActual}" Header="Distribuidor Act" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Distribuidor}" Header="Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow"/>

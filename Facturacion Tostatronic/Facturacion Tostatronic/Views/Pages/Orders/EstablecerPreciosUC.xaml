@@ -14,7 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <telerik:RadComboBox Grid.Row="0" 
@@ -24,71 +24,165 @@
                                  SelectedIndex="-1"
                                  Text="Seleccione orden"
                                  Width="200"
-                                 Margin="10"/>
+                                 Margin="10"
+                                 SelectionChanged="cbOrdenes_SelectionChanged"/>
             <telerik:RadGridView Grid.Row="1" 
-                                 Grid.RowSpan="2"
-                             x:Name="radGv"
-                             ItemsSource="{Binding OrdenComplete.ProductosDeOrdenesNavigation}" 
-                             AutoGenerateColumns="False"
-                             VerticalAlignment="Top"
-                             RowIndicatorVisibility="Collapsed"
-                             CanUserFreezeColumns="False"
-                             BorderThickness="0"
-                             CanUserResizeColumns="True"
-                             ShowGroupPanel="False"
-                             IsReadOnly="False"
-                             SelectedItem="{Binding SelectedItem}">
+                     x:Name="radGv"
+                     ItemsSource="{Binding DetallesOrden}" 
+                     AutoGenerateColumns="False"
+                     VerticalAlignment="Top"
+                     RowIndicatorVisibility="Collapsed"
+                     CanUserFreezeColumns="False"
+                     BorderThickness="0"
+                     CanUserResizeColumns="True"
+                     ShowGroupPanel="False"
+                     IsReadOnly="False"
+                     SelectedItem="{Binding SelectedItem}"
+                                 CellEditEnded="radGv_CellEditEnded">
+
                 <telerik:RadGridView.Columns>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Costo}" Header="Costo" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}" Header="Minimo R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" UniqueName="TargetPrice">
-                        <telerik:GridViewDataColumn.CellStyle>
-                            <Style TargetType="telerik:GridViewCell">
-                                <!-- Color de texto negro por defecto -->
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </Style>
-                        </telerik:GridViewDataColumn.CellStyle>
-                    </telerik:GridViewDataColumn>
-                    <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding SubTarget}" Header="SubTotal MR" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
-                        <telerik:GridViewDataColumn.CellStyle>
-                            <Style TargetType="telerik:GridViewCell">
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </Style>
-                        </telerik:GridViewDataColumn.CellStyle>
-                    </telerik:GridViewDataColumn>-->
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}" Header="Minimo" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
-                        <telerik:GridViewDataColumn.CellStyle>
-                            <Style TargetType="telerik:GridViewCell">
-                                <!-- Color de texto negro por defecto -->
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </Style>
-                        </telerik:GridViewDataColumn.CellStyle>
-                    </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubMinimo}" Header="SubTotal M" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeMinimo}" Header="% Minimo" DataFormatString="{}{0:P}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}" Header="Distribuidor R" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Distribuidor}" Header="Distribuidor" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow">
-                        <telerik:GridViewDataColumn.CellStyle>
-                            <Style TargetType="telerik:GridViewCell">
-                                <!-- Color de texto negro por defecto -->
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </Style>
-                        </telerik:GridViewDataColumn.CellStyle>
-                    </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubDistribuidor}" Header="SubTotal D" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeDistribuidor}" Header="% D" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoRecomendado}" Header="Publico R" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Publico}" Header="Publico" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
+
+                    <!-- Asumiendo que en tu clase base tienes `public string codigoProducto { get; set; }` -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding codigoProducto}" 
+                                    Header="Código" Width="120" />
+
+                    <!-- Tu propiedad se llama 'Nombre' (no 'NombreEs'), así que lo correcto es {Binding Nombre} -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre}"
+                                    Header="Nombre (ES)" Width="220" 
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- Asumiendo que tienes `public int cantidad { get; set; }` -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding cantidad}"
+                                    Header="Cantidad" Width="60"
+                                    TextWrapping="WrapWithOverflow" />
+
+                    <!-- Asumiendo que el costo real está en la propiedad 'precio' (double en la base) -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding precio}"
+                                    Header="Costo" DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True" />
+
+                    <!-- MinimoRecomendado -> property "MinimoRecomendado" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoRecomendado}"
+                                    Header="Minimo R"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    UniqueName="TargetPrice">
                         <telerik:GridViewDataColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
                                 <Setter Property="Background" Value="LightGreen"/>
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubPublico}" Header="SubTotal P" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajePublico}" Header="% P" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+
+                    <!-- minimo -> property "minimo" (ojo con minúscula) -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding minimo}"
+                                    Header="Minimo"
+                                                UniqueName="Minimo"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+                    <!-- SubMinimo -> property "SubMinimo" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubMinimo}"
+                                    Header="SubTotal M" 
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- PorcentajeMinimo -> property "PorcentajeMinimo" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeMinimo}"
+                                    Header="% Minimo"
+                                    DataFormatString="{}{0:P}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- DistribuidorRecomendado -> "DistribuidorRecomendado" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorRecomendado}"
+                                    Header="Distribuidor R"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- distribuidor -> "distribuidor" (minúscula porque la propiedad se define con 'new decimal distribuidor' ) -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding distribuidor}"
+                                    Header="Distribuidor"
+                                    UniqueName="Distribuidor"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+                    <!-- SubDistribuidor -> "SubDistribuidor" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubDistribuidor}"
+                                    Header="SubTotal D"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- PorcentajeDistribuidor -> "PorcentajeDistribuidor" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeDistribuidor}"
+                                    Header="% D"
+                                    DataFormatString="{}{0:P}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- PublicoRecomendado -> "PublicoRecomendado" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoRecomendado}"
+                                    Header="Publico R"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- publico -> "publico" (minúscula) -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding publico}"
+                                    Header="Publico"
+                                    UniqueName="Publico"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
+
+                    <!-- SubPublico -> "SubPublico" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding SubPublico}"
+                                    Header="SubTotal P"
+                                    DataFormatString="{}{0:C}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
+
+                    <!-- PorcentajePublico -> "PorcentajePublico" -->
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajePublico}"
+                                    Header="% P"
+                                    DataFormatString="{}{0:P}"
+                                    Width="Auto"
+                                    TextWrapping="WrapWithOverflow"
+                                    IsReadOnly="True"/>
                 </telerik:RadGridView.Columns>
             </telerik:RadGridView>
             <UniformGrid Grid.Row="2" Columns="3" Rows="1" Margin="10">
@@ -113,43 +207,43 @@
                         <!-- Venta Recomendada -->
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <TextBlock Text="Venta Recomendada: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaMinimaRecomendada}" />
+                            <TextBlock Text="{Binding SubTotalMinimo, StringFormat={}{0:C}}"/>
                         </StackPanel>
 
                         <!-- IVA de Venta -->
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <TextBlock Text="IVA de Venta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaMinimoVenta}" />
+                            <TextBlock Text="{Binding IvaMinimo, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA Pagado -->
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <TextBlock Text="IVA Pagado: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaMinimoPagado}" />
+                            <TextBlock Text="{Binding IvaPagado, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA a Pagar -->
                         <StackPanel Grid.Row="4" Orientation="Horizontal">
                             <TextBlock Text="IVA a Pagar: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaMinimoAPagar}" />
+                            <TextBlock Text="{Binding ImpuestoAPagarMinimo, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Venta Bruta -->
                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                             <TextBlock Text="Venta Bruta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaMinimaBruta}" />
+                            <TextBlock Text="{Binding VentaBrutaMinimo, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Ganancia Real -->
                         <StackPanel Grid.Row="6" Orientation="Horizontal">
                             <TextBlock Text="Ganancia Real: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding GananciaMinimaReal}" />
+                            <TextBlock Text="{Binding GananciaRealMinimo, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- % Ganancia -->
                         <StackPanel Grid.Row="7" Orientation="Horizontal">
                             <TextBlock Text="% Ganancia: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding PorcentajeGananciaMinimo}" />
+                            <TextBlock Text="{Binding PorcentajeGananciaMinimo, StringFormat={}{0:P}}" />
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -175,43 +269,43 @@
                         <!-- Venta Recomendada -->
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <TextBlock Text="Venta Recomendada: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaDistRecomendada}" />
+                            <TextBlock Text="{Binding SubTotalDistribuidor, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA de Venta -->
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <TextBlock Text="IVA de Venta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaDistVenta}" />
+                            <TextBlock Text="{Binding IvaDistribuidor, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA Pagado -->
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <TextBlock Text="IVA Pagado: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaDistPagado}" />
+                            <TextBlock Text="{Binding IvaPagado, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA a Pagar -->
                         <StackPanel Grid.Row="4" Orientation="Horizontal">
                             <TextBlock Text="IVA a Pagar: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaDistAPagar}" />
+                            <TextBlock Text="{Binding ImpuestoAPagarDistribuidor, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Venta Bruta -->
                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                             <TextBlock Text="Venta Bruta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaDistBruta}" />
+                            <TextBlock Text="{Binding VentaBrutaDistribuidor, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Ganancia Real -->
                         <StackPanel Grid.Row="6" Orientation="Horizontal">
                             <TextBlock Text="Ganancia Real: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding GananciaDistReal}" />
+                            <TextBlock Text="{Binding GananciaRealDistribuidor, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- % Ganancia -->
                         <StackPanel Grid.Row="7" Orientation="Horizontal">
                             <TextBlock Text="% Ganancia: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding PorcentajeGananciaDist}" />
+                            <TextBlock Text="{Binding PorcentajeGananciaDistribuidor, StringFormat={}{0:P}}" />
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -237,43 +331,43 @@
                         <!-- Venta Recomendada -->
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <TextBlock Text="Venta Recomendada: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaPublicoRecomendada}" />
+                            <TextBlock Text="{Binding SubTotalPublico, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA de Venta -->
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <TextBlock Text="IVA de Venta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaPublicoVenta}" />
+                            <TextBlock Text="{Binding IvaPublico, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA Pagado -->
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <TextBlock Text="IVA Pagado: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaPublicoPagado}" />
+                            <TextBlock Text="{Binding IvaPagado, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- IVA a Pagar -->
                         <StackPanel Grid.Row="4" Orientation="Horizontal">
                             <TextBlock Text="IVA a Pagar: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding IvaPublicoAPagar}" />
+                            <TextBlock Text="{Binding ImpuestoAPagarPublico, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Venta Bruta -->
                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                             <TextBlock Text="Venta Bruta: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding VentaPublicoBruta}" />
+                            <TextBlock Text="{Binding VentaBrutaPublico, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- Ganancia Real -->
                         <StackPanel Grid.Row="6" Orientation="Horizontal">
                             <TextBlock Text="Ganancia Real: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding GananciaPublicoReal}" />
+                            <TextBlock Text="{Binding GananciaRealPublico, StringFormat={}{0:C}}" />
                         </StackPanel>
 
                         <!-- % Ganancia -->
                         <StackPanel Grid.Row="7" Orientation="Horizontal">
                             <TextBlock Text="% Ganancia: " FontWeight="Bold"/>
-                            <TextBlock Text="{Binding PorcentajeGananciaPublico}" />
+                            <TextBlock Text="{Binding PorcentajeGananciaPublico, StringFormat={}{0:P}}" />
                         </StackPanel>
                     </Grid>
                 </Border>

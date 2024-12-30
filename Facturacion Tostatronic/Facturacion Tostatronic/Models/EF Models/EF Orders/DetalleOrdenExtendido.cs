@@ -65,7 +65,11 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                     {
                         // Realizar la operación deseada
                         SubMinimo = cantidad * _minimo;
-                        PorcentajeMinimo = (((float)_minimo / 1.16f) - (float)precio/1.16f) / ((float)_minimo / 1.16f);
+                        var minAI = (float)_minimo / 1.16f;
+                        minAI = (float)Math.Round(minAI, 2);
+                        var costAI = (float)precio / 1.16f;
+                        costAI = (float)Math.Round(costAI, 2);
+                        PorcentajeMinimo = (minAI - costAI) / minAI;
                     }
                 }
             }
