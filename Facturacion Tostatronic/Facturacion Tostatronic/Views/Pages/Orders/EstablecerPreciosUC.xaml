@@ -24,8 +24,7 @@
                                  SelectedIndex="-1"
                                  Text="Seleccione orden"
                                  Width="200"
-                                 Margin="10"
-                                 Selected="cbOrdenes_Selected"/>
+                                 Margin="10"/>
             <telerik:RadGridView Grid.Row="1" 
                                  Grid.RowSpan="2"
                              x:Name="radGv"

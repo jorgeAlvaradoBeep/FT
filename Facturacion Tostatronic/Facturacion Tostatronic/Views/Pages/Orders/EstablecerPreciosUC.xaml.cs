@@ -34,10 +34,5 @@ namespace Facturacion_Tostatronic.Views.Pages.Orders
         {
             await VM.GetOrders();
         }
-
-        private async void cbOrdenes_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
