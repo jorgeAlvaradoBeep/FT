@@ -430,6 +430,7 @@
     <Compile Include="ViewModels\Commands\OrderCommands\AddNewRowCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\CheckPricesCommands\SaverTargetPricesOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\CheckPricesCommands\StablishOrderCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\EstablecerPreciosCommands\SavePricesCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\ImportOrderFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\LoadNewOrderInfoFromExcel.cs" />

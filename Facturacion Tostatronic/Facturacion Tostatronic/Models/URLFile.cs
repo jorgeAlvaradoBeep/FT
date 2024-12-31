@@ -3,8 +3,8 @@
     public class URLData
     {
         //const string baseURL = "http://192.168.3.15:8012/factura_api/controller/";//Enlace de prueba
-        const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
-        //const string baseURL = "http://143.198.173.21/factura_api/controller/";//Prueba de enlace con servidor dedicado
+        //const string baseURL = "http://192.168.100.29/factura_api/controller/";//Enlace de produccion
+        const string baseURL = "http://143.198.173.21/factura_api/controller/";//Prueba de enlace con servidor dedicado
         public static string factured_sales = baseURL+"Sales/factured_sales.php";
         public static string invoice_save = baseURL+ "Sales/invoice_save.php";
         public static string sales = baseURL+ "Sales/sales.php";
@@ -92,6 +92,7 @@
         public static string editRegimenFiscalesNet = baseURLNET + "Clientes/EditRegimen";
         public static string getProductsNet = baseURLNET + "Products/";
         public static string editProductsNet = baseURLNET + "Products/Edit/";
+        public static string editProductNet = baseURLNET + "Products/basics/";
         public static string deleteProductsNet = baseURLNET + "Products/Eliminar/";
         public static string searchProductsNet = baseURLNET + "Products/SearchProduct/";
         public static string getTotalForSale = baseURLNET + "ProductosDeVenta/SaleTotal/";
@@ -133,6 +134,7 @@
         public static string GetEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/";
         public static string GetEstablecerOrdenes = baseURLNET + "ProductosOrdenEstablecida/Ordenes";
         public static string DeleteEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/DeleteAll/";
+        public static string UpdateProductsEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/EditOrdenInfo/";
 
         //Borrar despues de actualizar los costos
         public static string GetSalesTotalNet = baseURLNET + "Comisiones/CostosComisiones";

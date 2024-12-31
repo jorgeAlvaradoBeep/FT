@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Products;
@@ -57,8 +58,18 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPr
                 return;
             }
             VM.GettingData = true;
-
-            Response res = await WebService.InsertData(VM.ProductoAActualizar, URLData.product_update);
+            EFProduct updateProduct = new EFProduct()
+            {
+                codigo = VM.ProductoAActualizar.Code,
+                precioCompra = VM.ProductoAActualizar.BuyPrice,
+                precioMinimo = VM.ProductoAActualizar.MinimumPrice,
+                precioDistribuidor = VM.ProductoAActualizar.DistributorPrice,
+                precioPublico = VM.ProductoAActualizar.PublicPrice,
+                cantidadMinima = (int)VM.ProductoAActualizar.MinimumQuantity,
+                existencia = (int)VM.ProductoAActualizar.Existence
+            };
+            string newUrl = URLData.editProductNet + $"{updateProduct.codigo}";
+            Response res = await WebService.ModifyData(updateProduct, newUrl);
             if (!res.succes)
             {
                 MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontrarion coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

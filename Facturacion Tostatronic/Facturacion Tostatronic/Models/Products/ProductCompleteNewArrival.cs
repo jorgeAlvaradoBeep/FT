@@ -22,6 +22,20 @@ namespace Facturacion_Tostatronic.Models.Products
             get { return newStock; }
             set { SetValue(ref newStock, value); }
         }
+        private bool newProduct;
+
+        public bool NewProduct
+        {
+            get { return newProduct; }
+            set { SetValue(ref newProduct, value); }
+        }
+        private bool procesado;
+
+        public bool Procesado
+        {
+            get { return procesado; }
+            set { SetValue(ref procesado, value); }
+        }
         public int WooID { get; set; }
         public int WooParentID { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facturacion_Tostatronic.ViewModels.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace Facturacion_Tostatronic.Views.Pages.Products
     /// </summary>
     public partial class LoadNewPrices : UserControl
     {
+        public LoadNewPricesVM VM { get; set; }
         public LoadNewPrices()
         {
             InitializeComponent();
+            VM = new LoadNewPricesVM();
+            this.DataContext = VM;
+        }
+
+        private async void cbOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await VM.GetOrderComplete();
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await VM.GetOrders();
         }
     }
 }

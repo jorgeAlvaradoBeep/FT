@@ -32,7 +32,8 @@
                      AutoGenerateColumns="False"
                      VerticalAlignment="Top"
                      RowIndicatorVisibility="Collapsed"
-                     CanUserFreezeColumns="False"
+                     CanUserFreezeColumns="true"
+                                 ScrollMode="Deferred"
                      BorderThickness="0"
                      CanUserResizeColumns="True"
                      ShowGroupPanel="False"
@@ -44,7 +45,7 @@
 
                     <!-- Asumiendo que en tu clase base tienes `public string codigoProducto { get; set; }` -->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding codigoProducto}" 
-                                    Header="Código" Width="120" />
+                                    Header="Código" Width="120"/>
 
                     <!-- Tu propiedad se llama 'Nombre' (no 'NombreEs'), así que lo correcto es {Binding Nombre} -->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre}"
@@ -77,7 +78,17 @@
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
-
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding MinimoActual}"
+                                                Header="Minimo A"
+                                                DataFormatString="{}{0:C}"
+                                                Width="Auto"
+                                                TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
                     <!-- minimo -> property "minimo" (ojo con minúscula) -->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding minimo}"
                                     Header="Minimo"
@@ -87,7 +98,16 @@
                                     TextWrapping="WrapWithOverflow">
                         <telerik:GridViewDataColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
+                                <!-- Color de texto negro por defecto -->
+                                <Setter Property="Foreground" Value="Black"/>
+                                <!-- Color de texto negro por defecto -->
                                 <Setter Property="Background" Value="LightGreen"/>
+                                <!-- Validación dinámica -->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MinimoMenor}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
@@ -115,7 +135,17 @@
                                     Width="Auto"
                                     TextWrapping="WrapWithOverflow"
                                     IsReadOnly="True"/>
-
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding DistribuidorActual}"
+                            Header="Distribuidor A"
+                            DataFormatString="{}{0:C}"
+                            Width="Auto"
+                            TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
                     <!-- distribuidor -> "distribuidor" (minúscula porque la propiedad se define con 'new decimal distribuidor' ) -->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding distribuidor}"
                                     Header="Distribuidor"
@@ -125,7 +155,16 @@
                                     TextWrapping="WrapWithOverflow">
                         <telerik:GridViewDataColumn.CellStyle>
                             <Style TargetType="telerik:GridViewCell">
+                                <!-- Color de texto negro por defecto -->
+                                <Setter Property="Foreground" Value="Black"/>
+                                <!-- Color de texto negro por defecto -->
                                 <Setter Property="Background" Value="LightGreen"/>
+                                <!-- Validación dinámica -->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DistribuidorMenor}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
                         </telerik:GridViewDataColumn.CellStyle>
                     </telerik:GridViewDataColumn>
@@ -153,7 +192,26 @@
                                     Width="Auto"
                                     TextWrapping="WrapWithOverflow"
                                     IsReadOnly="True"/>
-
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PublicoActual}"
+                            Header="Publico A"
+                            DataFormatString="{}{0:C}"
+                            Width="Auto"
+                            TextWrapping="WrapWithOverflow">
+                        <telerik:GridViewDataColumn.CellStyle>
+                            <Style TargetType="telerik:GridViewCell">
+                                <!-- Color de texto negro por defecto -->
+                                <Setter Property="Foreground" Value="Black"/>
+                                <!-- Color de texto negro por defecto -->
+                                <Setter Property="Background" Value="LightGreen"/>
+                                <!-- Validación dinámica -->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PublicoMenor}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </telerik:GridViewDataColumn.CellStyle>
+                    </telerik:GridViewDataColumn>
                     <!-- publico -> "publico" (minúscula) -->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding publico}"
                                     Header="Publico"
@@ -384,15 +442,15 @@
                    FontSize="14"
                        ContentStringFormat="{}{0:C}"
                    Margin="0,0,5,0"/>
-                <telerik:RadButton Command="{Binding StablishOrderCommand}"
+                <telerik:RadButton Command="{Binding SavePricesCommand}"
                             BorderThickness="2"
                             CornerRadius="10"
                             ToolTipService.ToolTip="Guardar Precios">
                     <telerik:RadButton.Content>
                         <StackPanel Orientation="Horizontal" 
-     HorizontalAlignment="Center" 
-     VerticalAlignment="Center" 
-     Margin="5">
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5">
                             <!-- Texto a la izquierda -->
                             <TextBlock Text="Guardar Precios"
                                     FontWeight="Bold"

@@ -38,29 +38,13 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPr
             ProductCompleteNewArrival p = (ProductCompleteNewArrival)parameter;
             if (p == null)
                 return;
+            if(p.NewProduct)
+            {
+                MessageBox.Show("No se puede actualizar un producto nuevo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             VM.IsBusy = true;
-            EFProduct updateProductMs;
-            Response rmp = await WebService.GetDataNode(URLData.getProductsNet,p.Code);
-            if (rmp.succes)
-            {
-                updateProductMs = await Task.Run(() => JsonConvert.DeserializeObject<EFProduct>(rmp.data.ToString()));
-            }
-            else
-            {
-                MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                VM.IsBusy = false;
-                return;
-            }
-            if (updateProductMs == null)
-            {
-                //Aqui se llamara a la ventana de agregar nuevo producto
-                MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                VM.IsBusy = false;
-                return;
-            }
-            p.OldStock = (int)updateProductMs.existencia;
-            p.Existence = p.OldStock + p.NewStock;
-            p.MinimumQuantity = updateProductMs.cantidadMinima;
+            
             //Seccion para obtener la informcion de los precios
             List<Fields> fields = new List<Fields>();
             Fields nf = new Fields()

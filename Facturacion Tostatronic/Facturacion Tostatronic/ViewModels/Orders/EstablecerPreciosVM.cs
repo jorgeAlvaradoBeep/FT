@@ -2,6 +2,7 @@
 using Facturacion_Tostatronic.Models.EF_Models.EF_Orders;
 using Facturacion_Tostatronic.Models.Products;
 using Facturacion_Tostatronic.Services;
+using Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.EstablecerPreciosCommands;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -398,20 +399,25 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         #endregion
         public List<APIProductOrderInformation> productInformationList { get; set; }
         public List<UpdateProductM> AllProducts { get; set; }
-        
+
         #endregion
         #region Comandos
+        public SavePricesCommand SavePricesCommand { get; set; }
         #endregion
 
         public EstablecerPreciosVM(OrderComplete _OrderComplete)
         {
             GettingData = false;
             this.OrderComplete = _OrderComplete;
+
+            SavePricesCommand = new SavePricesCommand(this);
         }
         public EstablecerPreciosVM()
         {
             GettingData = false;
             CostoTotal = 0;
+
+            SavePricesCommand = new SavePricesCommand(this);
         }
         public async Task GetOrders()
         {
@@ -446,16 +452,46 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 }
                 else
                     MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                res = await WebService.GetDataNode(URLData.getProductsNet, "");
+                if (res.succes)
+                {
+                    AllProducts = JsonConvert.DeserializeObject<List<UpdateProductM>>(res.data.ToString());
+                }
+                else
+                    MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 
+
                 decimal costoTotal = 0;
                 decimal porGanan = (decimal)OrderComplete.PorcentajeGanancia / 100;
                 decimal subPub=0, subDis=0, subMin =0;
                 foreach (var item in detalle)
                 {
                     item.Nombre = productInformationList.Where(p => p.CodigoProducto == item.codigoProducto).ToList()[0].NombreEs;
+                    if (AllProducts != null)
+                    {
+                        if (AllProducts.Count > 0)
+                        {
+                            var product = AllProducts.Where(p => p.Codigo == item.codigoProducto).FirstOrDefault();
+                            if (product != null)
+                            {
+                                item.MinimoActual = (decimal)product.PrecioMinimo;
+                                item.DistribuidorActual = (decimal)product.PrecioDistribuidor;
+                                item.PublicoActual = (decimal)product.PrecioPublico;
+                                item.UpdateComparisons();
+                            }
+                        }
+                    }
                     item.MinimoRecomendado = (((decimal)item.precio / 1.16m) / (1 - porGanan)) * 1.16m;
-                    item.DistribuidorRecomendado = (((item.MinimoRecomendado/ 1.16m)+4)/(1-0.0349m))*1.16m;
-                    item.PublicoRecomendado = (((decimal)item.precio / 1.16m) / (1 - (porGanan+0.2m))) * 1.16m;
+                    item.DistribuidorRecomendado = (item.MinimoRecomendado / 1.16m) / 0.95m;
+                    if(item.DistribuidorRecomendado > 50)
+                        item.DistribuidorRecomendado = ((item.DistribuidorRecomendado + 4 )/ (1 - 0.0349m)) * 1.16m;
+                    else
+                        item.DistribuidorRecomendado = (item.DistribuidorRecomendado / (1 - 0.0349m)) * 1.16m;
+                    item.PublicoRecomendado = (item.DistribuidorRecomendado / 1.16m) / 0.90m;
+                    if (item.PublicoRecomendado > 50)
+                        item.PublicoRecomendado = ((item.PublicoRecomendado + 4) / (1 - 0.0349m)) * 1.16m;
+                    else
+                        item.PublicoRecomendado = (item.PublicoRecomendado / (1 - 0.0349m)) * 1.16m;
                     costoTotal += (decimal)item.precio * item.cantidad;
                     subPub += item.SubPublico;
                     subDis += item.SubDistribuidor;

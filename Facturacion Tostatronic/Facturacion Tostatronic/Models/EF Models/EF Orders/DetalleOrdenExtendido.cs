@@ -70,6 +70,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                         var costAI = (float)precio / 1.16f;
                         costAI = (float)Math.Round(costAI, 2);
                         PorcentajeMinimo = (minAI - costAI) / minAI;
+                        UpdateComparisons();
                     }
                 }
             }
@@ -147,6 +148,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                     {
                         SubDistribuidor = cantidad * _distribuidor;
                         PorcentajeDistribuidor = (((float)_distribuidor / 1.16f) - (float)precio / 1.16f) / ((float)_distribuidor / 1.16f);
+                        UpdateComparisons();
                     }
                 }
             }
@@ -195,6 +197,7 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                     {
                         SubPublico = cantidad * _publico;
                         PorcentajePublico = (((float)_publico / 1.16f) - (float)precio / 1.16f) / ((float)_publico / 1.16f);
+                        UpdateComparisons();
                     }
                 }
             }
@@ -224,6 +227,89 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 }
             }
         }
+        private decimal minimoActual;
+        public decimal MinimoActual
+        {
+            get => minimoActual;
+            set
+            {
+                if (minimoActual != value)
+                {
+                    minimoActual = value;
+                    OnPropertyChanged(nameof(MinimoActual));
+                }
+            }
+        }
+
+        private decimal distribuidorActual;
+        public decimal DistribuidorActual
+        {
+            get => distribuidorActual;
+            set
+            {
+                if (distribuidorActual != value)
+                {
+                    distribuidorActual = value;
+                    OnPropertyChanged(nameof(DistribuidorActual));
+                }
+            }
+        }
+
+        private decimal publicoActual;
+        public decimal PublicoActual
+        {
+            get => publicoActual;
+            set
+            {
+                if (publicoActual != value)
+                {
+                    publicoActual = value;
+                    OnPropertyChanged(nameof(PublicoActual));
+                }
+            }
+        }
+        private bool minimoMenor;
+        public bool MinimoMenor
+        {
+            get => minimoMenor;
+            set
+            {
+                if (minimoMenor != value)
+                {
+                    minimoMenor = value;
+                    OnPropertyChanged(nameof(MinimoMenor));
+                }
+            }
+        }
+
+        private bool distribuidorMenor;
+        public bool DistribuidorMenor
+        {
+            get => distribuidorMenor;
+            set
+            {
+                if (distribuidorMenor != value)
+                {
+                    distribuidorMenor = value;
+                    OnPropertyChanged(nameof(DistribuidorMenor));
+                }
+            }
+        }
+
+        private bool publicoMenor;
+        public bool PublicoMenor
+        {
+            get => publicoMenor;
+            set
+            {
+                if (publicoMenor != value)
+                {
+                    publicoMenor = value;
+                    OnPropertyChanged(nameof(PublicoMenor));
+                }
+            }
+        }
+
 
         public ProductOrderComplete ToProductOrderComplete()
         {
@@ -242,6 +328,12 @@ namespace Facturacion_Tostatronic.Models.EF_Models.EF_Orders
                 Distribuidor = distribuidor,
                 Publico = publico
             };
+        }
+        public void UpdateComparisons()
+        {
+            MinimoMenor = MinimoActual < minimo;
+            DistribuidorMenor = DistribuidorActual < distribuidor;
+            PublicoMenor = PublicoActual < publico;
         }
     }
 }
