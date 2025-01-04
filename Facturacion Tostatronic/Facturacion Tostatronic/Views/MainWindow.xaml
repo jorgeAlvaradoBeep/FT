@@ -96,6 +96,9 @@
         <DataTemplate DataType="{x:Type vmor:EstablecerPreciosVM}">
             <viewor:EstablecerPreciosUC/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmor:FraccionesArancelariasVM}">
+            <viewor:FraccionArancelariaV/>
+        </DataTemplate>
         <!--Seccion de estilos-->
             <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">
             <Setter Property="IconTemplate">

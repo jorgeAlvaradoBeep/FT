@@ -329,6 +329,7 @@
     <Compile Include="Models\EF Models\EFProduct\EFQuoteProduct.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFSaleProducts.cs" />
     <Compile Include="Models\EF Models\EFProduct\EFUniversalCodes.cs" />
+    <Compile Include="Models\EF Models\EFProduct\FraccionArancelariaEF.cs" />
     <Compile Include="Models\EF Models\EFSale\CompleteSaleEF.cs" />
     <Compile Include="Models\EF Models\EFSale\CompleteSaleWProductsEF.cs" />
     <Compile Include="Models\EF Models\EFSale\CotizacionEF.cs" />
@@ -431,6 +432,9 @@
     <Compile Include="ViewModels\Commands\OrderCommands\CheckPricesCommands\SaverTargetPricesOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\CheckPricesCommands\StablishOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\EstablecerPreciosCommands\SavePricesCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\FraccionesCommands\FraccionesExcelFileCommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\FraccionesCommands\GeneratePICommand.cs" />
+    <Compile Include="ViewModels\Commands\OrderCommands\FraccionesCommands\SaveFraccionesCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\GetNewOrderCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\ImportOrderFromExcelCommand.cs" />
     <Compile Include="ViewModels\Commands\OrderCommands\ImportFromExcelCommands\LoadNewOrderInfoFromExcel.cs" />
@@ -544,6 +548,7 @@
     <Compile Include="ViewModels\Menus\ClientsMenuVM.cs" />
     <Compile Include="ViewModels\Orders\CalculatePricesVM.cs" />
     <Compile Include="ViewModels\Orders\EstablecerPreciosVM.cs" />
+    <Compile Include="ViewModels\Orders\FraccionesArancelariasVM.cs" />
     <Compile Include="ViewModels\Orders\ImportFromExcelVM.cs" />
     <Compile Include="ViewModels\Orders\MakeOrderVM.cs" />
     <Compile Include="ViewModels\Orders\OrderCheckVM.cs" />
@@ -633,6 +638,9 @@
     </Compile>
     <Compile Include="Views\Pages\Orders\EstablecerPreciosUC.xaml.cs">
       <DependentUpon>EstablecerPreciosUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Orders\FraccionArancelariaV.xaml.cs">
+      <DependentUpon>FraccionArancelariaV.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Orders\MakeOrderUC.xaml.cs">
       <DependentUpon>MakeOrderUC.xaml</DependentUpon>
@@ -838,6 +846,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Orders\EstablecerPreciosUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Orders\FraccionArancelariaV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

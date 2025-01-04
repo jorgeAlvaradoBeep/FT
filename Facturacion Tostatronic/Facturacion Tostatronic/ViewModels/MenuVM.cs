@@ -713,7 +713,8 @@ namespace Facturacion_Tostatronic.ViewModels
             {
                 new NavigationViewItemModel() { Title = "Crear Orden", VMName="MakeOrderVM" },
                 new NavigationViewItemModel() { Title = "Seguir Orden", VMName="OrderCheckVM" },
-                new NavigationViewItemModel() { Title = "Establecer PRecios", VMName="EstablecerPreciosVM" }
+                new NavigationViewItemModel() { Title = "Establecer Precios", VMName="EstablecerPreciosVM" },
+                new NavigationViewItemModel() { Title = "Establecer Fracciones", VMName="FraccionesArancelariasVM" }
             };
 
             var clientsItem = new NavigationViewItemModel() { Icon = "&#xe81b;", Title = "Clientes" };
@@ -834,6 +835,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new OrderCheckVM());
             ViewsList.Add(new LoadNewPricesVM());
             ViewsList.Add(new EstablecerPreciosVM());
+            ViewsList.Add(new FraccionesArancelariasVM());
         }
          IPageViewModel GetView(string vmName)
         {

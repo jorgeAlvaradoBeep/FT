@@ -135,6 +135,9 @@
         public static string GetEstablecerOrdenes = baseURLNET + "ProductosOrdenEstablecida/Ordenes";
         public static string DeleteEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/DeleteAll/";
         public static string UpdateProductsEstablecerOrden = baseURLNET + "ProductosOrdenEstablecida/EditOrdenInfo/";
+        public static string FraccionesArancelarias = baseURLNET + "FraccionArancelaria/";
+        public static string AgregarFraccionesArancelarias = baseURLNET + "FraccionArancelaria/AgregarRango/";
+        public static string ModificarFraccionesArancelarias = baseURLNET + "FraccionArancelaria/ModificarRango";
 
         //Borrar despues de actualizar los costos
         public static string GetSalesTotalNet = baseURLNET + "Comisiones/CostosComisiones";
