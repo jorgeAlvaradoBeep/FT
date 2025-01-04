@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type local2:UpdateProductNOVM}">
             <local:UpdateProductUC/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local2:AddProductVM}">
+            <local:AddProductUC/>
+        </DataTemplate>
     </UserControl.Resources>
     <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" 
                               BusyContent="Cargando productos...">
@@ -79,6 +82,7 @@
                                 AutoGenerateColumns="False" 
                                 telerik:StyleManager.Theme="Material"
                                 ItemsSource="{Binding ProductosActualizar}"
+                                 SelectedItem="{Binding SelectedProduct}"
                                 IsReadOnly="True">
                 <telerik:RadGridView.Columns>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Code}"

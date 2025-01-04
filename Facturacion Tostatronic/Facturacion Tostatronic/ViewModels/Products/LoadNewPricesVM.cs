@@ -104,6 +104,21 @@ namespace Facturacion_Tostatronic.ViewModels.Products
                 }
             }
         }
+        private ProductCompleteNewArrival selectedProduct;
+
+        public ProductCompleteNewArrival SelectedProduct
+        {
+            get { return selectedProduct; }
+            set
+            {
+                if (selectedProduct != value)
+                {
+                    selectedProduct = value;
+                    OnPropertyChanged(nameof(SelectedProduct));
+                }
+            }
+        }
+
         public List<APIProductOrderInformation> productInformationList { get; set; }
         public List<UpdateProductM> AllProducts { get; set; }
         #region Commands

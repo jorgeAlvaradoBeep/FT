@@ -79,7 +79,7 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             get { return selectedCode; }
             set { SetValue(ref selectedCode, value); }
         }
-
+        public ProductCompleteNewArrival AddedProduct { get; set; }
 
         #endregion
 
@@ -89,19 +89,28 @@ namespace Facturacion_Tostatronic.ViewModels.Products
             initialize();
             AddNewProductCommand = new AddNewProductCommand(this);
             CodigoSat = new List<SATCode>();
-            GettingData = true;  
-            Task.Run(() =>
+            AddedProduct=null;
+        }
+        public AddProductVM(ProductComplete p, ProductCompleteNewArrival addedProduct)
+        {
+            Product = p;
+            AddedProduct = addedProduct;
+            AddNewProductCommand = new AddNewProductCommand(this);
+            CodigoSat = new List<SATCode>();
+            BaseProductVisibility = Visibility.Hidden;
+            EnableProductBase = true;
+        }
+        public async Task GetCodes()
+        {
+            GettingData = true;
+            Response rmp = await WebService.GetDataNode(URLData.getCodigosSatNET, "");
+            if (rmp.succes)
             {
-                Response rmp = WebService.GetDataForInvoiceNoAsync(URLData.getCodigosSatNET);
-                if (rmp.succes)
-                {
-                    CodigoSat = JsonConvert.DeserializeObject<List<SATCode>>(rmp.data.ToString());
-                }
-                else
-                    MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                GettingData = false;
-            });
-
+                CodigoSat = JsonConvert.DeserializeObject<List<SATCode>>(rmp.data.ToString());
+            }
+            else
+                MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            GettingData = false;
         }
         public void initialize()
         {

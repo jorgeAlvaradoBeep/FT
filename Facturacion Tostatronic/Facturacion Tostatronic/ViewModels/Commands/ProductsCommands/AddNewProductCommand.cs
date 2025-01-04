@@ -103,7 +103,19 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
                         }
                     }
                     //Si no existe, procedemos con la adicion del producto.
-                    Response response = await WebService.InsertData(VM.Product, URLData.product_add_new);
+                    EFProduct product = new EFProduct()
+                    {
+                        codigo = VM.Product.Code,
+                        nombre = VM.Product.Name,
+                        precioCompra = VM.Product.BuyPrice,
+                        precioDistribuidor = VM.Product.DistributorPrice,
+                        precioMinimo = VM.Product.MinimumPrice,
+                        precioPublico = VM.Product.PublicPrice,
+                        existencia = (int)VM.Product.Existence,
+                        cantidadMinima = (int)VM.Product.MinimumQuantity,
+                        imagen = VM.Product.Image
+                    };
+                    Response response = await WebService.InsertData(product, URLData.getProductsNet);
                     string errMsg = string.Empty;
                     if (response.succes)
                     {
@@ -148,11 +160,20 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands
 
 
                         //Aqui vemos los errores generados
-                        if(!string.IsNullOrEmpty(errMsg)) { MessageBox.Show($"Producto Insertado Con Errores:{Environment.NewLine}{errMsg}",
-                            "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+                        if (!string.IsNullOrEmpty(errMsg))
+                        {
+                            MessageBox.Show($"Producto Insertado Con Errores:{Environment.NewLine}{errMsg}",
+                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                         else
+                        {
                             MessageBox.Show("Producto Insertado Correctamente",
                             "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                            if(VM.AddedProduct!= null)
+                            {
+                                VM.AddedProduct.NewProduct = false;
+                            }
+                        }
                         VM.initialize();
                     }
                     VM.GettingData= false;

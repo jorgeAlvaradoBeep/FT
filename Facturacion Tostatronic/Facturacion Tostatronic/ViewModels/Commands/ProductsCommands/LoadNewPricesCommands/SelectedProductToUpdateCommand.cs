@@ -40,7 +40,21 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.ProductsCommands.LoadNewPr
                 return;
             if(p.NewProduct)
             {
-                MessageBox.Show("No se puede actualizar un producto nuevo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("No se puede actualizar un producto nuevo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //Agregamos o llamamos a la ventana de agregar producto
+                ProductComplete productComplete = new ProductComplete()
+                {
+                    Code = p.Code,
+                    Name = p.Name,
+                    BuyPrice = p.BuyPrice,
+                    MinimumQuantity = p.MinimumQuantity,
+                    DistributorPrice = p.DistributorPrice,
+                    PublicPrice = p.PublicPrice,
+                    MinimumPrice = p.MinimumPrice,
+                    Existence = p.Existence,
+                };
+                VM.CurrentPage = new AddProductVM(productComplete, VM.SelectedProduct);
+                await ((AddProductVM)VM.CurrentPage).GetCodes();
                 return;
             }
             VM.IsBusy = true;

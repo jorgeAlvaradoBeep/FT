@@ -14,7 +14,7 @@ namespace Facturacion_Tostatronic.Models.Products
         public string Code
         {
             get { return code; }
-            set { code = value; }
+            set { SetValue(ref code, value); }
         }
         private string name;
 
