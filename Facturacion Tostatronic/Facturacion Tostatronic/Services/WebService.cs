@@ -546,10 +546,17 @@ namespace Facturacion_Tostatronic.Services
                 response = await client.ExecuteAsync(request);
                 Response result;
                 if (response.IsSuccessful)
+                {
                     result = JsonConvert.DeserializeObject<Response>(response.Content);
+                    if (result == null)
+                    {
+                        result = new Response() { succes = true, message = "Actualizado con exito", statusCode = 200 };
+                    }
+                }
                 else
 
                     result = new Response() { succes = false, message = response.ErrorMessage, statusCode = 404 };
+                
                 return result;
             }
             catch (TimeoutException e)

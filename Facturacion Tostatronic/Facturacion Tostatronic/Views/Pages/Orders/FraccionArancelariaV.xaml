@@ -40,8 +40,27 @@
                 <telerik:GridViewDataColumn Header="Descripción" DataMemberBinding="{Binding Descripcion}" TextWrapping="Wrap" IsReadOnly="True" Width="350"/>
                     <telerik:GridViewDataColumn Header="Composición" DataMemberBinding="{Binding Composicion}" TextWrapping="Wrap"/>
                     <telerik:GridViewDataColumn Header="Uso" DataMemberBinding="{Binding Uso}" TextWrapping="Wrap" Width="300"/>
-                    <telerik:GridViewDataColumn Header="Comentarios" DataMemberBinding="{Binding Comentarios}" TextWrapping="Wrap" Width="300"/>
-                <telerik:GridViewDataColumn Header="Fracción" DataMemberBinding="{Binding Fraccion}" />
+                    <telerik:GridViewDataColumn Header="Comentarios" DataMemberBinding="{Binding Comentarios}" Width="300">
+                        <!-- Plantilla para la visualización en modo lectura -->
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Comentarios}"
+                 TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+
+                        <!-- Plantilla para el modo de edición -->
+                        <telerik:GridViewDataColumn.CellEditTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Comentarios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               AcceptsReturn="True"
+               TextWrapping="Wrap"
+               VerticalScrollBarVisibility="Auto"
+               Height="100"/>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellEditTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Fracción" DataMemberBinding="{Binding Fraccion}" />
                 <telerik:GridViewDataColumn Header="Valor D" DataMemberBinding="{Binding ValorDeclarado}" DataFormatString="{}{0:C4}"/>
                 <telerik:GridViewDataColumn Header="Nuevo?" DataMemberBinding="{Binding Nuevo}" />
             </telerik:RadGridView.Columns>

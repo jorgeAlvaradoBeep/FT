@@ -19,11 +19,15 @@ namespace Facturacion_Tostatronic.Models
             get { return _priceAtMoment; }
             set 
             {  
-                SetValue(ref _priceAtMoment ,value);
-                float p,q;
-                float.TryParse(priceAtMoment, out p);
-                float.TryParse(quantity, out q);
-                SubTotal = (p * q).ToString();
+                decimal p;
+                int q;
+                decimal.TryParse(value, out p);
+                p = Math.Round(p, 4);
+                SetValue(ref _priceAtMoment, p.ToString());
+                int.TryParse(quantity, out q);
+                decimal sub = p * q;
+                sub = Math.Round(sub, 4);
+                SubTotal = sub.ToString();
             }
         }
         private string subTotal;

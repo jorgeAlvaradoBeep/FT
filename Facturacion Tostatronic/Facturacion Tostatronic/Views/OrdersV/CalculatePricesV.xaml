@@ -54,7 +54,7 @@
                              AutoGenerateColumns="False"
                              VerticalAlignment="Top"
                              RowIndicatorVisibility="Collapsed"
-                             CanUserFreezeColumns="False"
+                             CanUserFreezeColumns="True"
                              BorderThickness="0"
                              CanUserResizeColumns="True"
                              ShowGroupPanel="False"
@@ -70,7 +70,7 @@
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding CodigoProducto}" Header="Código" Width="120"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}" Header="Precio" DataFormatString="{}{0:C3}"  Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                     <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal}" Header="Sub Total" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>-->
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Precio Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" UniqueName="TargetPrice">
                         <telerik:GridViewDataColumn.CellStyle>
@@ -90,7 +90,7 @@
                         </Style>
                     </telerik:GridViewDataColumn.CellStyle>
                 </telerik:GridViewDataColumn>-->
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXN}" Header="MXN" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXN}" Header="MXN" DataFormatString="{}{0:C3}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding PorcentajeOrden}" Header="% Pedido" DataFormatString="{}{0:P}" Width="Auto" TextWrapping="WrapWithOverflow" UniqueName="Porcentaje"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding PrecioMXNTarget}" Header="MXN Tar" DataFormatString="{}{0:C}" Width="Auto" TextWrapping="WrapWithOverflow" IsReadOnly="True">
                         <telerik:GridViewDataColumn.CellStyle>

@@ -11,6 +11,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
     <UserControl.Resources>
+        <vm:OrderCheckVM x:Key="orderCheckVM"/>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Gray"/>
             <Setter Property="Foreground" Value="White"/>
@@ -23,7 +24,8 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
-    <telerik:RadBusyIndicator IsBusy="{Binding GettingData}"
+    <telerik:RadBusyIndicator DataContext="{StaticResource orderCheckVM}"
+        IsBusy="{Binding GettingData}"
                               BusyContent="{Binding ProgressVal,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid>
             <Grid.RowDefinitions>
@@ -122,7 +124,7 @@
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEs}" Header="Nombre (ES)" Width="220" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding NombreEn}" Header="Nombre (EN)"  Width="220" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Cantidad, Mode=TwoWay}" Header="Cantidad"  Width="60" TextWrapping="WrapWithOverflow" UniqueName="Cantidad"/>
-                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio, Mode=TwoWay}" Header="Precio" DataFormatString="{}{0:C}"  Width="80" TextWrapping="WrapWithOverflow" UniqueName="Precio"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio, Mode=TwoWay}" Header="Precio" DataFormatString="{}{0:C3}"  Width="80" TextWrapping="WrapWithOverflow" UniqueName="Precio"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding SubTotal, Mode=TwoWay}" Header="Sub Total" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding TargetPrice}" Header="Target Price" DataFormatString="{}{0:C}" Width="80" TextWrapping="WrapWithOverflow"/>
                     <telerik:GridViewDataColumn DataMemberBinding="{Binding Link}" Header="Link" Width="80" TextWrapping="NoWrap"/>

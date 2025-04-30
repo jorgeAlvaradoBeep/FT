@@ -75,7 +75,7 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.18:5249/api/";
-        const string baseURLNET = "http://192.168.100.179:5249/api/";
+        const string baseURLNET = "http://192.168.100.254:5249/api/";
         //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";

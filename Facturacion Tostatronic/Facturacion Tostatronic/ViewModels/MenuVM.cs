@@ -50,6 +50,7 @@ using System.Threading;
 using GalaSoft.MvvmLight.Threading;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using Facturacion_Tostatronic.ViewModels.Orders;
+using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -357,6 +358,145 @@ namespace Facturacion_Tostatronic.ViewModels
 
             return true;
         }
+        bool GenerateProductListExcel(List<ProductList> products)
+        {
+            var excelApp = new Excel.Application();
+            int progress = 0;
+            // Make the object visible.
+            excelApp.Visible = false;
+            excelApp.Workbooks.Add();
+            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            workSheet.Cells[1, "A"] = "Referencia";
+            workSheet.Cells[1, "B"] = "Nombre Del producto";
+            workSheet.Cells[1, "C"] = "Precio Publico";
+            workSheet.Cells[1, "D"] = "Precio Distribuidor";
+            workSheet.Cells[1, "E"] = "Precio Minimo";
+            workSheet.Cells[1, "F"] = "Image";
+            var row = 1;
+            Microsoft.Office.Interop.Excel.Range oRange;
+            float left;
+            float top;
+            int count = 0;
+            int total = products.Count;
+            int previos = progress;
+
+            foreach (var producto in products)
+            {
+                row++;
+                count++;
+                workSheet.Cells[row, "A"] = producto.idProduct;
+                workSheet.Cells[row, "B"] = producto.name;
+                workSheet.Cells[row, "C"] = producto.publico;
+                workSheet.Cells[row, "D"] = producto.distribuidor;
+                workSheet.Cells[row, "E"] = producto.minimo;
+                oRange = (Microsoft.Office.Interop.Excel.Range)workSheet.Cells[row, 6];
+                left = (float)((double)oRange.Left);
+                top = (float)((double)oRange.Top);
+                string basePathForMega = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                basePathForMega = Path.Combine(basePathForMega, @"MEGAsync\Imagenes\");
+                try
+                {
+                    workSheet.Shapes.AddPicture(basePathForMega + producto.image, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left + 5, top + 5, 120, 120);
+                }
+                catch (Exception ex)
+                {
+                    workSheet.Shapes.AddPicture(basePathForMega + "no_image.png", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left + 5, top + 5, 120, 120);
+                }
+                previos = (count * 100) / total;
+                if (progress != previos)
+                {
+                    if ((progress-previos) > 1)
+                    {
+                        ProgressVal = "Porcentaje de carga: " + previos;
+                    }
+                    progress = previos;
+
+                }
+
+            }
+            workSheet.Rows.RowHeight = 135;
+            workSheet.Columns[1].AutoFit();
+            workSheet.Columns[2].AutoFit();
+            workSheet.Columns[3].AutoFit();
+            workSheet.Columns[5].AutoFit();
+            progress = 100;
+            excelApp.Visible = true;
+
+            return true;
+        }
+
+        public async Task<bool> GenerateProductPromoListExcel()
+        {
+            Response res = await WebService.GetDataNode(URLData.getProductsNet,"");
+            if (!res.succes)
+            {
+                MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+                return false;
+            }
+            List<EFProduct> products = JsonConvert.DeserializeObject<List<EFProduct>>(res.data.ToString());
+            var excelApp = new Excel.Application();
+            int progress = 0;
+            // Make the object visible.
+            excelApp.Visible = false;
+            excelApp.Workbooks.Add();
+            Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+            workSheet.Cells[1, "A"] = "Referencia";
+            workSheet.Cells[1, "B"] = "Nombre Del producto";
+            workSheet.Cells[1, "C"] = "Precio Compra";
+            workSheet.Cells[1, "D"] = "Precio Minimo";
+            workSheet.Cells[1, "E"] = "Image";
+            var row = 1;
+            Microsoft.Office.Interop.Excel.Range oRange;
+            float left;
+            float top;
+            int count = 0;
+            int total = products.Count;
+            int previos = progress;
+
+            foreach (var producto in products)
+            {
+                row++;
+                count++;
+                workSheet.Cells[row, "A"] = producto.codigo;
+                workSheet.Cells[row, "B"] = producto.nombre;
+                workSheet.Cells[row, "C"] = producto.precioCompra;
+                workSheet.Cells[row, "D"] = producto.precioMinimo;
+                oRange = (Microsoft.Office.Interop.Excel.Range)workSheet.Cells[row, 5];
+                left = (float)((double)oRange.Left);
+                top = (float)((double)oRange.Top);
+                string basePathForMega = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                basePathForMega = Path.Combine(basePathForMega, @"MEGAsync\Imagenes\");
+                try
+                {
+                    workSheet.Shapes.AddPicture(basePathForMega + producto.imagen, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left + 5, top + 5, 120, 120);
+                }
+                catch (Exception ex)
+                {
+                    workSheet.Shapes.AddPicture(basePathForMega + "no_image.png", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, left + 5, top + 5, 120, 120);
+                }
+                previos = (count * 100) / total;
+                if (progress != previos)
+                {
+                    if ((progress - previos) > 1)
+                    {
+                        ProgressVal = "Porcentaje de carga: " + previos;
+                    }
+                    progress = previos;
+
+                }
+
+            }
+            workSheet.Rows.RowHeight = 135;
+            workSheet.Columns[1].AutoFit();
+            workSheet.Columns[2].AutoFit();
+            workSheet.Columns[3].AutoFit();
+            workSheet.Columns[4].AutoFit();
+            progress = 100;
+            excelApp.Visible = true;
+
+            return true;
+        }
 
         #region SetPSID
         public async void SetPSID()
@@ -433,18 +573,67 @@ namespace Facturacion_Tostatronic.ViewModels
         {
 
             int progress = 0;
-            ProgressWindow pw = new ProgressWindow();
-            pw.Show();
-            Response res = await WebService.GetData("limit", "100", URLData.product_new_product_list);
-            if (!res.succes)
+            //ProgressWindow pw = new ProgressWindow();
+            //pw.Show();
+            //Response res = await WebService.GetData("limit", "100", URLData.product_new_product_list);
+            //if (!res.succes)
+            //{
+            //    MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    pw.Close();
+            //    return;
+            //}
+            //List<ProductList> products = JsonConvert.DeserializeObject<List<ProductList>>(res.data.ToString());
+            //bool finish = await Task.Run(() => GenerateProductListExcel(products, ref progress, pw));
+            //pw.Close();
+            GettingData = true;
+            List<WooCommerceProduct> productsTemp = new List<WooCommerceProduct>();
+            int pageNumber1 = 1;
+            var settings = new JsonSerializerSettings
             {
-                MessageBox.Show(res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pw.Close();
-                return;
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            var res2 = await WebService.GetDataWooCommercer(URLData.wcProducts, "id,sku,name,stock_quantity", pageNumber1.ToString());
+            if (!res2.IsSuccessful)
+            {
+                MessageBox.Show($"Error: {res2.ErrorMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            List<ProductList> products = JsonConvert.DeserializeObject<List<ProductList>>(res.data.ToString());
-            bool finish = await Task.Run(() => GenerateProductListExcel(products, ref progress, pw));
-            pw.Close();
+            else
+            {
+                List<ProductList> products = new List<ProductList>();
+                List<WooCommerceProduct> products2 = JsonConvert.DeserializeObject<List<WooCommerceProduct>>(res2.Content.ToString(), settings);
+                List<EFProduct> productosNet = new List<EFProduct>();
+                var res3 = await WebService.GetDataNode(URLData.getProductsNet, "");
+                if(res3.succes)
+                {
+                    productosNet = JsonConvert.DeserializeObject<List<EFProduct>>(res3.data.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("Error al obtener productos de la base de datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                foreach (WooCommerceProduct p in products2)
+                {
+                    if (string.IsNullOrEmpty(p.Sku))
+                        continue;
+                    var aux2 = productosNet.FirstOrDefault(x => x.codigo == p.Sku);
+                    if (aux2 == null)
+                        continue;
+                    products.Add(new ProductList()
+                    {
+                        idProduct = p.Sku.ToString(),
+                        name = p.Name,
+                        publico = aux2.precioPublico.ToString(),
+                        distribuidor = aux2.precioDistribuidor.ToString(),
+                        minimo = aux2.precioMinimo.ToString(),
+                        image = p.Sku + ".png"
+                    });
+                }
+                if(products.Count> 0)
+                    await Task.Run(() => GenerateProductListExcel(products));
+            }
+            GettingData = false;
         }
 
         public async void UpdateDistributorPriceNP()

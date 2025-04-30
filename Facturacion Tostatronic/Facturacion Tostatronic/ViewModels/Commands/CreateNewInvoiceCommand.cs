@@ -1,4 +1,5 @@
-﻿using Facturacion_Tostatronic.Services;
+﻿using Facturacion_Tostatronic.Models.EF_Models.EFFactura;
+using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.Views;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands
             {
                 MessageBox.Show("Factura creada con existo", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 VM.CompleteSale.Client = new Models.Client();
-                VM.CompleteSale.Products = new List<Models.Product>();
+                VM.CompleteSale.Products = new List<ProductFactura>();
                 VM.SelectedCFDIUse = null;
                 VM.SelectedPaymentMethod = null;
                 VM.SelectedRegimen = null;

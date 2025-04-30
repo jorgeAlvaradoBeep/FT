@@ -57,7 +57,23 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                         SetValue(ref selectedProduct, value);
                         if (Order.Products.Where(x=> x.nombreES.Equals(selectedProduct.Nombre)).Count() == 0)
                         {
-                            EFOrderProduct aux = new EFOrderProduct(selectedProduct.Codigo, selectedProduct.Nombre, selectedProduct.Imagen);
+                            var info = ProductInformationList.Where(x => x.CodigoProducto == selectedProduct.Codigo).FirstOrDefault();
+                            EFOrderProduct aux;
+                            if (info != null)
+                            {
+                               aux = new EFOrderProduct()
+                                {
+                                    codigo = selectedProduct.Codigo,
+                                    nombreES = selectedProduct.Nombre,
+                                    cantidad = 1,
+                                    imagen = SelectedProduct.Imagen,
+                                    nombreEN = info.NombreEn,
+                                    ProductInfoExist = true,
+                                    Link = info.Link
+                                };
+                            }
+                            else
+                                aux = new EFOrderProduct(selectedProduct.Codigo, selectedProduct.Nombre, selectedProduct.Imagen);
                             Order.Products.Add(aux);
                         }
                         SelectedProduct = null;
@@ -66,6 +82,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 
             }
         }
+        public List<APIProductOrderInformation> ProductInformationList { get; set; }
         private string progressVal;
 
         public string ProgressVal
@@ -80,6 +97,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         public GetNewOrderCommand GetNewOrderCommand { get; set; }
         public SaveOrderCommand SaveOrderCommand { get; set; }
         public AddNewRowCommand AddNewRowCommand { get; set; }
+        public DeleteAllProductsCommand DeleteAllProductsCommand { get; set; }
         #endregion
 
         public MakeOrderVM()
@@ -94,6 +112,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             GetNewOrderCommand = new GetNewOrderCommand(this);
             SaveOrderCommand = new SaveOrderCommand(this);
             AddNewRowCommand = new AddNewRowCommand(this);
+            DeleteAllProductsCommand = new DeleteAllProductsCommand(this);
         }
     }
 }

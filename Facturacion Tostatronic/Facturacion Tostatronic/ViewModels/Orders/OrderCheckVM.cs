@@ -209,10 +209,20 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                 MessageBox.Show("Error al traer productos de busqueda", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             ComlpleteOrder.OrdenID = sl.OrdenID;
             ComlpleteOrder.FechaCreacion = sl.FechaCreacion;
-            ComlpleteOrder.CostoAA = (float)sl.CostoAA;
-            ComlpleteOrder.PorcentajeGanancia = (int)sl.PorcentajeGanancia;
-            ComlpleteOrder.CostoEnvio = (float)sl.CostoEnvio;
-            ComlpleteOrder.TipoCambio = sl.TipoCambio;
+            if(sl.CostoAA != null)
+            {
+                ComlpleteOrder.CostoAA = float.Parse(sl.CostoAA.ToString() != null ? sl.CostoAA.ToString() : "0");
+                ComlpleteOrder.PorcentajeGanancia = int.Parse(sl.PorcentajeGanancia.ToString() != null ? sl.PorcentajeGanancia.ToString() : "0");
+                ComlpleteOrder.CostoEnvio = float.Parse(sl.CostoEnvio.ToString() != null ? sl.CostoEnvio.ToString() : "0");
+                ComlpleteOrder.TipoCambio = sl.TipoCambio != null ? sl.TipoCambio : 0;
+            }
+            else
+            {
+                ComlpleteOrder.CostoAA = 0;
+                ComlpleteOrder.PorcentajeGanancia = 0;
+                ComlpleteOrder.CostoEnvio = 0;
+                ComlpleteOrder.TipoCambio = 0;
+            }
             if(sl.ProductosDeOrdenesNavigation.Count>0)
             {
                 ObservableCollection<ProductOrderComplete> listaProductos = new ObservableCollection<ProductOrderComplete>();
@@ -221,6 +231,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                     listaProductos.Add(new ProductOrderComplete(pro.CodigoProducto, pro.Cantidad, pro.Precio, pro.TargetPrice,false));
                 }
                 //ComlpleteOrder.ProductosDeOrdenesNavigation = listaProductos;
+                /*
                 if (productInformationList.Count > 0)
                 {
                     foreach (ProductOrderComplete product in listaProductos)
@@ -246,8 +257,52 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
                         else
                             product.ProductInfoExist=false;
                     }
+                }*/
+
+                foreach (var product in listaProductos)
+                {
+                    if (AllProducts.Count > 0)
+                    {
+                        var pt = AllProducts.Where(pr => pr.Codigo == product.CodigoProducto).ToList();
+                        if (pt.Count > 0)
+                        {
+                            var p = pt[0];
+                            if (p != null)
+                            {
+                                if (!string.IsNullOrEmpty(p.Codigo))
+                                {
+                                    product.NombreEs = p.Nombre;
+                                    product.Nuevo = false;
+                                }
+                            }
+                        }
+                    }
+                    if (productInformationList.Count > 0)
+                    {
+                        var pt = productInformationList.Where(pr => pr.CodigoProducto == product.CodigoProducto).ToList();
+                        if (pt.Count > 0)
+                        {
+                            var p = pt[0];
+                            if (p != null)
+                            {
+                                if (!string.IsNullOrEmpty(p.CodigoProducto))
+                                {
+                                    product.NombreEs = p.NombreEs;
+                                    if (p.NombreEn != null)
+                                        product.NombreEn = p.NombreEn;
+                                    product.Link = p.Link;
+                                    product.ProductInfoExist = true;
+                                    product.Modificado = false;
+                                    product.ModificadoProducto = false;
+                                    product.Nuevo = false;
+                                }
+                            }
+                        }
+                        else
+                            product.ProductInfoExist = false;
+                    }
                 }
-                if(listaProductos.Count > 0) 
+                if (listaProductos.Count > 0) 
                 {
                     decimal subTotal = 0;
                     foreach (var product in listaProductos) 

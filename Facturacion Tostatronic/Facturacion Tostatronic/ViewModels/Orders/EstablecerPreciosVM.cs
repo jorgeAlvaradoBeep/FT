@@ -403,6 +403,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
         #endregion
         #region Comandos
         public SavePricesCommand SavePricesCommand { get; set; }
+        public PriceListCommand PriceListCommand { get; set; }
         #endregion
 
         public EstablecerPreciosVM(OrderComplete _OrderComplete)
@@ -411,6 +412,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             this.OrderComplete = _OrderComplete;
 
             SavePricesCommand = new SavePricesCommand(this);
+            PriceListCommand = new PriceListCommand(this);
         }
         public EstablecerPreciosVM()
         {
@@ -418,6 +420,7 @@ namespace Facturacion_Tostatronic.ViewModels.Orders
             CostoTotal = 0;
 
             SavePricesCommand = new SavePricesCommand(this);
+            PriceListCommand = new PriceListCommand(this);
         }
         public async Task GetOrders()
         {

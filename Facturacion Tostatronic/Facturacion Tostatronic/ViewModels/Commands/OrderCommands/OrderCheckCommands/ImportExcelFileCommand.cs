@@ -84,10 +84,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                 {
                     VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Clear();
                     decimal subTotal = 0;
+                    string repitedProducts = "";
                     foreach (ProductOrderComplete item in newProducts)
                     {
                         if (VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Where(x => x.CodigoProducto == item.CodigoProducto).ToArray().Length > 0)
                         {
+                            repitedProducts += $"{item.CodigoProducto}{Environment.NewLine} ";
                             continue;
                         }
                         var aux =  VM.productInformationList.Where(x => x.CodigoProducto == item.CodigoProducto).FirstOrDefault();
@@ -103,6 +105,8 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands.OrderCheckCo
                         subTotal += item.SubTotal;
                         VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Add(item);
                     }
+                    if(!string.IsNullOrEmpty(repitedProducts))
+                        Console.WriteLine(repitedProducts);
                     VM.ComlpleteOrder.SubTotal = (float)subTotal;
                     VM.ComlpleteOrder.TotalUSD = (decimal)(VM.ComlpleteOrder.SubTotal + (float)VM.ComlpleteOrder.CostoEnvio);
                     VM.TotalProductos = VM.ComlpleteOrder.ProductosDeOrdenesNavigation.Count;

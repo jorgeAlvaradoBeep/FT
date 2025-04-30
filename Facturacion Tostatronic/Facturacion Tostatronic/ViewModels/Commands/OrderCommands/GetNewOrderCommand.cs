@@ -55,22 +55,22 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.OrderCommands
             }
             else
                 MessageBox.Show("Error al traer la información solicitada", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            List<APIProductOrderInformation> productInformationList = new List<APIProductOrderInformation>();
+            VM.ProductInformationList = new List<APIProductOrderInformation>();
             res = await WebService.GetDataForInvoice(URLData.ProductOrderInfo);
             if (res.succes)
             {
-                productInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
+                VM.ProductInformationList = JsonConvert.DeserializeObject<List<APIProductOrderInformation>>(res.data.ToString());
             }
             else
                 MessageBox.Show("Error al traer la lista información de los productos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            if (productInformationList.Count > 0)
+            if (VM.ProductInformationList.Count > 0)
             {
                 await Task.Run((() =>
                 {
                     foreach (EFOrderProduct product in VM.Order.Products)
                     {
-                        var pt = productInformationList.Where(pr => pr.CodigoProducto == product.codigo).ToList();
+                        var pt = VM.ProductInformationList.Where(pr => pr.CodigoProducto == product.codigo).ToList();
                         if (pt.Count > 0) 
                         {
                             var p = pt[0];

@@ -1,6 +1,7 @@
 ﻿using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.CFDI;
 using Facturacion_Tostatronic.Models.Clients;
+using Facturacion_Tostatronic.Models.EF_Models.EFFactura;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Commands;
 using Facturacion_Tostatronic.Views;
@@ -150,7 +151,7 @@ namespace Facturacion_Tostatronic.ViewModels
         }
 
 
-        public CompleteSale CompleteSale { get; set; }
+        public FacturaCompleta CompleteSale { get; set; }
 
         public SearchSaleCommand SearchSaleCommand { get; set; }
         public SaleSelectedCommand SaleSelectedCommand { get; set; }
@@ -174,9 +175,9 @@ namespace Facturacion_Tostatronic.ViewModels
         {
             Sales = new ObservableCollection<Sale>();
             SelectedDate = DateTime.Now;
-            CompleteSale = new CompleteSale
+            CompleteSale = new FacturaCompleta
             {
-                Products = new List<Product>(),
+                Products = new List<ProductFactura>(),
                 InvoiceData = new InvoiceData(),
                 Client = new Client()
             };
@@ -293,12 +294,12 @@ namespace Facturacion_Tostatronic.ViewModels
                 return;
             }
             var t = r.data;
-            CompleteSale.Products = ((JArray)t).Select(x => new Product
+            CompleteSale.Products = ((JArray)t).Select(x => new ProductFactura
             {
                 idProduct = (string)x["idProduct"],
                 name = (string)x["name"],
-                quantity = (string)x["quantity"],
-                priceAtMoment = (string)x["priceAtMoment"],
+                quantity = (int)x["quantity"],
+                priceAtMoment = (decimal)x["priceAtMoment"],
                 satCode = (string)x["satCode"]
             }).ToList();
             CompleteSale.Client = JsonConvert.DeserializeObject<Client>(rc.data.ToString());
@@ -326,12 +327,12 @@ namespace Facturacion_Tostatronic.ViewModels
         public async Task<bool> CreateAndInsertInvoice()
         {
             GettingData = true;
-            List<ProductoSat> articulos = new List<ProductoSat>();
-            foreach(Product a in CompleteSale.Products)
+            List<ProductoSat2> articulos = new List<ProductoSat2>();
+            foreach(ProductFactura a in CompleteSale.Products)
             {
                 if (string.IsNullOrEmpty(a.satCode))
                     a.satCode = "01010101";
-                ProductoSat ps = new ProductoSat(a.name,a.satCode,float.Parse(a.quantity),float.Parse(a.priceAtMoment),float.Parse(a.SubTotal));
+                ProductoSat2 ps = new ProductoSat2(a.name,a.satCode,a.quantity,a.priceAtMoment,a.SubTotal);
                 articulos.Add(ps);
             }
 

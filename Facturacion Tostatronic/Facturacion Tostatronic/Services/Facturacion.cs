@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.EF_Models.EFFactura;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
@@ -132,7 +133,7 @@ namespace Facturacion_Tostatronic.Services
             }
         }
 
-        public async static Task<string> CreaFactura(string folio, string formaPago, string metodoDePago, List<ProductoSat> productos, float subtotal, string rfc, string rz, string usoCFDI, string mail, float iva, float total, string regimenFiscal, string CPCliente)
+        public async static Task<string> CreaFactura(string folio, string formaPago, string metodoDePago, List<ProductoSat2> productos, float subtotal, string rfc, string rz, string usoCFDI, string mail, float iva, float total, string regimenFiscal, string CPCliente)
         {
             
             string pathCer = Directory.GetCurrentDirectory() + @"\Fiel\Certifiado.cer";
@@ -171,9 +172,12 @@ namespace Facturacion_Tostatronic.Services
 
             ComprobanteEmisor oEmisor = new ComprobanteEmisor();
 
-            oEmisor.Rfc = "AATJ9502061EA";
-            oEmisor.Nombre = "JORGE HUMBERTO ALVARADO TOSTADO";
-            oEmisor.RegimenFiscal = "612";
+            //oEmisor.Rfc = "TOS1707276R3";
+            //oEmisor.Nombre = "TOSTATRONIC";
+            //oEmisor.RegimenFiscal = "601";
+            oEmisor.Rfc = "TOS1707276R3";
+            oEmisor.Nombre = "TOSTATRONIC";
+            oEmisor.RegimenFiscal = "601";
 
             ComprobanteReceptor oReceptor = new ComprobanteReceptor();
             oReceptor.Nombre = rz;
@@ -194,7 +198,7 @@ namespace Facturacion_Tostatronic.Services
             ComprobanteConceptoImpuestosTraslado[] impuestosTrasladados;
             decimal impAux = 0;
             decimal totalDefi = 0;
-            foreach (ProductoSat a in productos)
+            foreach (ProductoSat2 a in productos)
             {
                 oConcepto = new ComprobanteConcepto();
                 impuestos = new ComprobanteConceptoImpuestos();
@@ -207,9 +211,9 @@ namespace Facturacion_Tostatronic.Services
                 else
                     oConcepto.ClaveUnidad = "H87";
                 oConcepto.Descripcion = a.Descripcion;
-                oConcepto.ValorUnitario = Math.Round(decimal.Parse(a.Precio.ToString()), 4);
+                oConcepto.ValorUnitario = a.Precio;
                 oConcepto.ObjetoImp = "02";
-                oConcepto.Importe = oConcepto.ValorUnitario*oConcepto.Cantidad;
+                oConcepto.Importe = a.Subtotal;
                 //Impuestos
                 imAux.ImporteSpecified = true;
                 imAux.TasaOCuotaSpecified = true;
