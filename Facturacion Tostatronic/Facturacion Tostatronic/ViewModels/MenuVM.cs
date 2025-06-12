@@ -51,6 +51,7 @@ using GalaSoft.MvvmLight.Threading;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using Facturacion_Tostatronic.ViewModels.Orders;
 using Facturacion_Tostatronic.Models.EF_Models.EFProduct;
+using Facturacion_Tostatronic.ViewModels.MercadoLibre;
 
 namespace Facturacion_Tostatronic.ViewModels
 {
@@ -894,6 +895,7 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Ver Ventas", VMName="SeeSalesVM" },
                 new NavigationViewItemModel() { Title = "Ver Cotizaciones", VMName="SeeQuatitionsVM" },
                 new NavigationViewItemModel() { Title = "Nueva Orden" },
+                new NavigationViewItemModel() { Title = "Ordenes Mercado Libre", VMName="MercadoLibreViewModel" },
                 new NavigationViewItemModel() { Title = "Ganancias", VMName="EarningsVM" }
             };
 
@@ -962,7 +964,7 @@ namespace Facturacion_Tostatronic.ViewModels
             };
         }
 
-        public void ApplActionMenu()
+        public async void ApplActionMenu()
         {
             switch(SelectedItemMenu.Title)
             {
@@ -985,7 +987,8 @@ namespace Facturacion_Tostatronic.ViewModels
                     UpdateQuantitiesViewCommand.Execute(null);
                     break;
                 case "Lista De Productos Facebook":
-                    CreateFacebookListCommand.Execute(null);
+                    //CreateFacebookListCommand.Execute(null);
+                    await GenerateCatalogo();
                     break;
                 case "Agregar Almacen":
                     AddNewWareHouseCommand.Execute(null);
@@ -1025,6 +1028,7 @@ namespace Facturacion_Tostatronic.ViewModels
             ViewsList.Add(new LoadNewPricesVM());
             ViewsList.Add(new EstablecerPreciosVM());
             ViewsList.Add(new FraccionesArancelariasVM());
+            ViewsList.Add(new MercadoLibreViewModel());
         }
          IPageViewModel GetView(string vmName)
         {
@@ -1033,7 +1037,119 @@ namespace Facturacion_Tostatronic.ViewModels
 
         #endregion
 
+        //Seccion para generar el catalogo
+        #region Catalogo
+        int _processedCount;
+        public int ProcessedCount
+        {
+            get => _processedCount;
+            set { SetValue(ref _processedCount, value); }
+        }
+        public async Task GenerateCatalogo()
+        {
+            GettingData = true;
+            
+            Response response = await WebService.GetDataNode(URLData.DatosCompletos, "");
+            if(response.succes)
+            {
+                List<DatosProductos> products = JsonConvert.DeserializeObject<List<DatosProductos>>(response.data.ToString());
+                if (products.Count > 0)
+                {
+                    //Removemos los productos eliiminados
+                    products.RemoveAll(x => x.Producto.eliminado == true);
+                    //Removemos los productos sin existencia
+                    products.RemoveAll(x => x.Producto.existencia ==0);
+                    //Remover los productos similares
+                    var regexRes = new Regex(@"^RESISTENCIA\s+\d+(\.\d+)?k?\s+OHMS?\s+1/4W$",RegexOptions.IgnoreCase);
 
+                    // 2) Separa resistencias del resto
+                    var resistencias = products
+                        .Where(p => regexRes.IsMatch(p.Producto.nombre))
+                        .ToList();
+
+                    var otros = products
+                        .Where(p => !regexRes.IsMatch(p.Producto.nombre))
+                        .ToList();
+                    // 3) Si hay alguna resistencia, toma la primera, renómbrala y añádela
+                    if (resistencias.Any())
+                    {
+                        // Puedes clonar o usar la instancia, según necesites
+                        var rep = resistencias.First();
+
+                        rep.Producto.nombre =
+                            "Resistencias 1/4W Película de Metal 1 Ohm-12 Mega Ohms 5 Bandas";
+                        // Opcional: ajustar imagen/QR/Link según prefieras para esta “genérica”
+
+                        otros.Add(rep);
+                    }
+                    //Hacemos lo mismo para los paquetes de 5000 resistencias
+                    var resistencias5000 = otros
+                        .Where(p => p.Producto.nombre.Contains("Paquete de 5000 resistencias"))
+                        .ToList();
+                    otros.RemoveAll(p => p.Producto.nombre.Contains("Paquete de 5000 resistencias"));
+                    if (resistencias5000.Any())
+                    {
+                        var rep = resistencias5000.First();
+                        rep.Producto.nombre =
+                            "Paquete de 5000 Resistencias 1/4W Película de Metal 1 Ohm-12 Mega Ohms 5 Bandas";
+                        // Opcional: ajustar imagen/QR/Link según prefieras para esta “genérica”
+                        otros.Add(rep);
+                    }
+                    //Ahora quitamos los capacitores ceramicos
+                    var cap = otros
+                        .Where(p => p.Producto.nombre.ToLower().Contains("capacitor electrolitico"))
+                        .ToList();
+                    otros.RemoveAll(p => p.Producto.nombre.ToLower().Contains("capacitor electrolitico"));
+                    if (cap.Any())
+                    {
+                        var rep = cap.First();
+                        rep.Producto.nombre =
+                            "Capacitores Electrolíticos 1-4700uF de 16, 25 y 50v";
+                        // Opcional: ajustar imagen/QR/Link según prefieras para esta “genérica”
+                        otros.Add(rep);
+                    }
+                    //Ahora quitamos los capacitores ceramicos
+                    var capCeramicos = otros
+                        .Where(p => p.Producto.nombre.ToLower().Contains("capacitor cerámico"))
+                        .ToList();
+                    otros.RemoveAll(p => p.Producto.nombre.ToLower().Contains("capacitor cerámico"));
+                    if (capCeramicos.Any())
+                    {
+                        var rep = capCeramicos.First();
+                        rep.Producto.nombre =
+                            "Capacitores Cerámicos Varios Valores a 50v";
+                        // Opcional: ajustar imagen/QR/Link según prefieras para esta “genérica”
+                        otros.Add(rep);
+                    }
+                    products = otros;
+                    var progress = new Progress<int>(value =>
+                    {
+                        ProcessedCount = value;
+                        DispatcherHelper.CheckBeginInvokeOnUI(
+                        () =>
+                        {
+                            // Dispatch back to the main thread
+                            ProgressVal = $"Producto: {ProcessedCount}/{products.Count}";
+                        });
+                    });
+
+                    await Task.Run(() =>
+                    {
+                        Catalogo.GenerateCatalog(products, "C:\\Users\\jorge\\Downloads\\Catalogo\\c.pdf", progress);
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("No hay productos para generar el catalogo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show(response.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            GettingData = false;
+        }
+        #endregion
 
         //Seccion de Imagenes
 

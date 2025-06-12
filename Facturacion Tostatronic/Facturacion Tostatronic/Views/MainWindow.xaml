@@ -19,6 +19,8 @@
         xmlns:vmp="clr-namespace:Facturacion_Tostatronic.ViewModels.Products"
         xmlns:vmsls="clr-namespace:Facturacion_Tostatronic.ViewModels.Sales"
         xmlns:vmor="clr-namespace:Facturacion_Tostatronic.ViewModels.Orders"
+        xmlns:vwml="clr-namespace:Facturacion_Tostatronic.Views.Pages.MercadoLibre"
+        xmlns:vml="clr-namespace:Facturacion_Tostatronic.ViewModels.MercadoLibre"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Facturacion Tostatronic" Height="450" Width="800"
@@ -98,6 +100,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vmor:FraccionesArancelariasVM}">
             <viewor:FraccionArancelariaV/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vml:MercadoLibreViewModel}">
+            <vwml:VentasMLView/>
         </DataTemplate>
         <!--Seccion de estilos-->
             <Style x:Key="ItemPreviewStyle" TargetType="telerik:RadNavigationViewItem">

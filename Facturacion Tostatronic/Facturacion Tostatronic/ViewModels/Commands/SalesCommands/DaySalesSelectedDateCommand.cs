@@ -51,6 +51,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     VM.Sales = JsonConvert.DeserializeObject<List<EarningSale>>(r.data.ToString());
                     float total = 0;
                     float totalSales = 0;
+                    decimal totalEfectividad = 0;
+                    decimal totalEfectivoCredito = 0;
+                    decimal totalTransferencias = 0;
+                    decimal totalTransferenciaCredito = 0;
+                    decimal totalCredito = 0;
+                    decimal totalDebito = 0;
                     //Ahora extraemos las comisiones si existen de las ventas del dia seleccionado
                     var ids = VM.Sales.Select(sale => sale.idVenta).ToList();
                     if(ids!=null || ids.Count!=0)
@@ -120,9 +126,38 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                                 }
                             }
                         }
-
-                        //Seccion para calcular comisiones si no existieron
-                        s.ivaPagada = ct-(ct/1.16f);
+                        if (s.Comisiones.MetodoPagoId == 1)
+                        {
+                            if (s.pagada == true)
+                            {
+                                totalEfectividad += (decimal)s.total;
+                            }
+                            else
+                            {
+                                totalEfectivoCredito += (decimal)s.total;
+                            }
+                        }
+                        else if (s.Comisiones.MetodoPagoId == 2)
+                        {
+                            if (s.pagada == true)
+                            {
+                                totalTransferencias += (decimal)s.total;
+                            }
+                            else
+                            {
+                                totalTransferenciaCredito += (decimal)s.total;
+                            }
+                        }
+                        else if (s.Comisiones.MetodoPagoId == 3)
+                        {
+                            totalCredito += (decimal)s.total;
+                        }
+                        else if (s.Comisiones.MetodoPagoId == 4)
+                        {
+                            totalDebito += (decimal)s.total;
+                        }
+                            //Seccion para calcular comisiones si no existieron
+                            s.ivaPagada = ct-(ct/1.16f);
                         s.ivaAPagar = s.iva - s.ivaPagada;
                         s.IVARetenido = 0;
                         s.ISRRetenido = 0;
@@ -134,6 +169,12 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.SalesCommands
                     VM.TotalEarnings = total;
                     VM.TotalVentas = totalSales;
                     VM.NumberOfSales = VM.Sales.Count;
+                    VM.EfectivoRecibido = totalEfectividad;
+                    VM.EfectivoPendiente = totalEfectivoCredito;
+                    VM.TransferenciaRecibido = totalTransferencias;
+                    VM.TransferenciaPendiente = totalTransferenciaCredito;
+                    VM.TarjetaCredito = totalCredito;
+                    VM.TarjetaDebito = totalDebito;
                 }
                 catch(Exception ex) 
                 {

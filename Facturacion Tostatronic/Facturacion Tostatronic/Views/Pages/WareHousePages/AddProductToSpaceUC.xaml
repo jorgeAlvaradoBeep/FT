@@ -109,7 +109,7 @@ xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:vm="clr-namespace:Fa
                                 Grid.Row="4"
                                 Grid.RowSpan="10"
                                 Margin="5"
-                                IsReadOnly="True"
+                                IsReadOnly="False"
                                 AutoGenerateColumns="False" 
                                 telerik:StyleManager.Theme="Material"
                                 ItemsSource="{Binding SelectedSpace.Products}"

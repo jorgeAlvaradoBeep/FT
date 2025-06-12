@@ -107,6 +107,51 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
                 }));
             }
         }
+
+        private decimal efectivoRecibido;
+
+        public decimal EfectivoRecibido
+        {
+            get { return efectivoRecibido; }
+            set { SetValue(ref efectivoRecibido, value); }
+        }
+        private decimal efectivoPendiente;
+
+        public decimal EfectivoPendiente
+        {
+            get { return efectivoPendiente; }
+            set { SetValue(ref efectivoPendiente, value); }
+        }
+        private decimal transferenciaRecibido;
+
+        public decimal TransferenciaRecibido
+        {
+            get { return transferenciaRecibido; }
+            set { SetValue(ref transferenciaRecibido, value); }
+        }
+        private decimal transferenciaPendiente;
+
+        public decimal TransferenciaPendiente
+        {
+            get { return transferenciaPendiente; }
+            set { SetValue(ref transferenciaPendiente, value); }
+        }
+        private decimal tarjetaCredito;
+
+        public decimal TarjetaCredito
+        {
+            get { return tarjetaCredito; }
+            set { SetValue(ref tarjetaCredito, value); }
+        }
+        private decimal tarjetaDebito;
+
+        public decimal TarjetaDebito
+        {
+            get { return tarjetaDebito; }
+            set { SetValue(ref tarjetaDebito, value); }
+        }
+
+
         public int FilaInicio { get; set; }
         public int FilaFin { get; set; }
         private ObservableCollection<Plataforma> plataformasDisponibles;
@@ -131,6 +176,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
         public ChangeDataInfoCommand ChangeDataInfoCommand { get; set; }
         public ImportCommissionFromExcelCommand ImportCommissionFromExcelCommand { get; set; }
         public SaveComissionCommand SaveComissionCommand { get; set; }
+        public SaveNewComissionInfoCommand SaveNewComissionInfoCommand { get; set; }
 
         #endregion
         public EarningsVM()
@@ -145,6 +191,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
             ChangeDataInfoCommand = new ChangeDataInfoCommand(this);
             ImportCommissionFromExcelCommand = new ImportCommissionFromExcelCommand(this);
             SaveComissionCommand = new SaveComissionCommand(this);
+            SaveNewComissionInfoCommand = new SaveNewComissionInfoCommand(this);
             PlataformasDisponibles = new ObservableCollection<Plataforma>();
             MetodosDePagoDisponibles = new ObservableCollection<EFMetodoPago>();
             CargarPlataformasDisponibles();

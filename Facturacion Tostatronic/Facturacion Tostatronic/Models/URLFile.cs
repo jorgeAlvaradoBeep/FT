@@ -75,7 +75,7 @@
 
         //URL Para API de .net
         //const string baseURLNET = "http://192.168.3.18:5249/api/";
-        const string baseURLNET = "http://192.168.100.254:5249/api/";
+        const string baseURLNET = "http://192.168.100.239:5249/api/";
         //const string baseURLNET = "http://143.198.173.21:5249/api/";
 
         public static string addClient = baseURLNET + "Clientes/Create";
@@ -138,10 +138,14 @@
         public static string FraccionesArancelarias = baseURLNET + "FraccionArancelaria/";
         public static string AgregarFraccionesArancelarias = baseURLNET + "FraccionArancelaria/AgregarRango/";
         public static string ModificarFraccionesArancelarias = baseURLNET + "FraccionArancelaria/ModificarRango";
+        public static string DatosProductos = baseURLNET + "DatosProductos/";
+        public static string UpdateLink = baseURLNET + "DatosProductos/links/";
+        public static string DatosCompletos = baseURLNET + "DatosProductos/full/";
 
         //Borrar despues de actualizar los costos
         public static string GetSalesTotalNet = baseURLNET + "Comisiones/CostosComisiones";
         public static string UpdateComisionCost = baseURLNET + "Comisiones/UpdateCost";
+        public static string GetComisionesPlataforma = baseURLNET + "Comisiones/ComosionesPlataforma/";
         public static string GetVTotalNet = baseURLNET + "Ventas/OrderListWT/";
 
 
