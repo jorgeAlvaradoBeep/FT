@@ -487,6 +487,14 @@
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SaleProductCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SaveQuateCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SaveSaleCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SaveComplexProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPCallSearchClientCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPSearchProductsCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPSaleProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPDeleteProductCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPCancelCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPChangeSaledQuantityCommand.cs" />
+    <Compile Include="ViewModels\Commands\PDVCommands\ComplexProductsCommands\CPSearchProductFromSaleCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SearchClientCommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SearchProductFromSalecommand.cs" />
     <Compile Include="ViewModels\Commands\PDVCommands\SaleCommands\SearchProductsForSalecommand.cs" />
@@ -599,6 +607,7 @@
     <Compile Include="ViewModels\Products\UpdateImageVM.cs" />
     <Compile Include="ViewModels\Sales\PaymentVM.cs" />
     <Compile Include="ViewModels\Sales\SaleVM.cs" />
+    <Compile Include="ViewModels\Sales\ComplexProductsVM.cs" />
     <Compile Include="ViewModels\Sales\SearchClientVM.cs" />
     <Compile Include="ViewModels\SeeInvoiceVM.cs" />
     <Compile Include="ViewModels\TaskProgressVM.cs" />
@@ -723,6 +732,9 @@
     </Compile>
     <Compile Include="Views\PDV\Sales\SaleV.xaml.cs">
       <DependentUpon>SaleV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PDV\Sales\ComplexProducts.xaml.cs">
+      <DependentUpon>ComplexProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PDV\Sales\SearchClientV.xaml.cs">
       <DependentUpon>SearchClientV.xaml</DependentUpon>
@@ -954,6 +966,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PDV\Sales\SaleV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PDV\Sales\ComplexProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

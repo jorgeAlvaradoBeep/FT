@@ -948,6 +948,7 @@ namespace Facturacion_Tostatronic.ViewModels
                 new NavigationViewItemModel() { Title = "Actualizar Producto",VMName="DisscountPricesVM" },
                 new NavigationViewItemModel() { Title = "Actualizar Cantidades" },
                 new NavigationViewItemModel() { Title = "Lista De Productos Facebook" },
+                new NavigationViewItemModel() { Title = "Nuevo Producto Complejo" },
                 new NavigationViewItemModel() { Title = "Actualizar Codigo Universal",VMName="AssingUCVM" },
                 new NavigationViewItemModel() { Title = "Orden Nueva",VMName="LoadNewPricesVM" },
             };
@@ -995,6 +996,10 @@ namespace Facturacion_Tostatronic.ViewModels
                     break;
                 case "Nueva Orden":
                     GetNewPICommand.Execute(null);
+                    break;
+                case "Nuevo Producto Complejo":
+                    ComplexProducts cp = new ComplexProducts();
+                    cp.Show();
                     break;
                 default:
                     var aux = GetView(SelectedItemMenu.VMName);
