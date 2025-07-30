@@ -3,6 +3,7 @@ using Facturacion_Tostatronic.ViewModels.Sales;
 using System;
 using System.Windows.Input;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
 
 namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProductsCommands
 {
@@ -35,7 +36,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProduct
                 if (product != null)
                 {
                     VM.CompleteSale.SaledProducts.Remove(product);
-                    VM.CompleteSale.CalculateTotals();
+                    VM.CompleteSale.GetSubtotal();
                 }
             }
         }

@@ -37,8 +37,7 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProduct
                     product.SaledQuantity = 1;
                 }
                 
-                product.CalculateSubtotal();
-                VM.CompleteSale.CalculateTotals();
+                VM.CompleteSale.GetSubtotal();
             }
         }
     }

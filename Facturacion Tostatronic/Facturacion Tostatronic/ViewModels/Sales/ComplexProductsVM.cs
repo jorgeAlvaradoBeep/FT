@@ -129,11 +129,7 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
                         break;
 
                     case nameof(CodigoPlataforma):
-                        if (ShowComplexProductFields && string.IsNullOrWhiteSpace(CodigoPlataforma))
-                            error = "El código de plataforma es requerido";
-                        else if (ShowComplexProductFields && !Regex.IsMatch(CodigoPlataforma ?? "", @"^[a-zA-Z0-9]+$"))
-                            error = "El código de plataforma solo puede contener caracteres alfanuméricos";
-                        else if (ShowComplexProductFields && CodigoPlataforma?.Length > 350)
+                        if (ShowComplexProductFields && !string.IsNullOrWhiteSpace(CodigoPlataforma) && CodigoPlataforma?.Length > 350)
                             error = "El código de plataforma no puede exceder 350 caracteres";
                         break;
 
@@ -148,10 +144,6 @@ namespace Facturacion_Tostatronic.ViewModels.Sales
                             error = "El SKU no puede exceder 60 caracteres";
                         break;
 
-                    case nameof(SelectedPlataforma):
-                        if (ShowComplexProductFields && SelectedPlataforma == null)
-                            error = "Debe seleccionar una plataforma";
-                        break;
                 }
 
                 return error;

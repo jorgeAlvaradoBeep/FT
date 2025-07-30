@@ -42,7 +42,6 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProduct
             {
                 // Product already exists, increase quantity
                 existingProduct.SaledQuantity++;
-                existingProduct.CalculateSubtotal();
             }
             else
             {
@@ -53,16 +52,14 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProduct
                     Name = selectedProduct.Name,
                     SaledQuantity = 1,
                     DisplayPrice = selectedProduct.DisplayPrice,
-                    Existence = selectedProduct.Existence,
-                    ID = selectedProduct.ID
+                    Existence = selectedProduct.Existence
                 };
-                saledProduct.CalculateSubtotal();
                 
                 VM.CompleteSale.SaledProducts.Add(saledProduct);
             }
 
             // Update totals
-            VM.CompleteSale.CalculateTotals();
+            VM.CompleteSale.GetSubtotal();
         }
     }
 }

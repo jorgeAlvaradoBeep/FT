@@ -1,10 +1,13 @@
 using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.Products;
+using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -32,60 +35,38 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.ComplexProduct
 
         public async void Execute(object parameter)
         {
+            if (VM.CompleteSale.ClientSale == null || String.IsNullOrEmpty(VM.CompleteSale.ClientSale.Name))
+            {
+                MessageBox.Show("Primero debe de seleccionar un cliente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
             if (string.IsNullOrEmpty(VM.ProductCriterialSearch))
             {
                 return;
             }
 
             VM.GettingData = true;
-            try
+            Response res = await WebService.GetData("cs", VM.ProductCriterialSearch, URLData.product_sale_search);
+            if (!res.succes)
             {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetAsync(URLData.product_sale_search + VM.ProductCriterialSearch);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        var products = JsonConvert.DeserializeObject<List<ProductSaleSearch>>(responseContent);
-                        
-                        if (products != null && products.Count > 0)
-                        {
-                            VM.CompleteSale.SearchedProducts = products;
-                            // Apply price type to products
-                            foreach (var product in VM.CompleteSale.SearchedProducts)
-                            {
-                                switch (VM.CompleteSale.PriceType)
-                                {
-                                    case 0:
-                                        product.DisplayPrice = product.DistributorPrice;
-                                        break;
-                                    case 1:
-                                        product.DisplayPrice = product.DistributorPrice;
-                                        break;
-                                    case 2:
-                                        product.DisplayPrice = product.PublicPrice;
-                                        break;
-                                    default:
-                                        product.DisplayPrice = product.PublicPrice;
-                                        break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron productos", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al buscar productos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
+                MessageBox.Show("Error: " + res.message + Environment.NewLine + "No se encontraron coincidencias", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 VM.GettingData = false;
+                return;
             }
+            
+            List<ProductSaleSearch> aux = JsonConvert.DeserializeObject<List<ProductSaleSearch>>(res.data.ToString());
+            foreach (ProductSaleSearch product in aux)
+            {
+                if (VM.CompleteSale.PriceType.Equals(1))
+                    product.DisplayPrice = product.DistributorPrice;
+                else if (VM.CompleteSale.PriceType.Equals(2))
+                    product.DisplayPrice = product.PublicPrice;
+                else
+                    product.DisplayPrice = product.MinimumPrice;
+            }
+            VM.CompleteSale.SearchedProducts = aux;
+            VM.GettingData = false;
         }
     }
 }

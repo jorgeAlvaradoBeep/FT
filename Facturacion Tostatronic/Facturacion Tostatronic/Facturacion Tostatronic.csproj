@@ -380,7 +380,9 @@
     <Compile Include="Models\Products\WooCommerceUpdateSimple.cs" />
     <Compile Include="Models\Sales\CompleteSaleM.cs" />
     <Compile Include="Models\Sales\PaymentM.cs" />
+    <Compile Include="Models\Sales\ProductosComplejos.cs" />
     <Compile Include="Models\Sales\Quotes.cs" />
+    <Compile Include="Models\Sales\VentasOM.cs" />
     <Compile Include="Models\SAT\SATCode.cs" />
     <Compile Include="Models\SaveInvoice.cs" />
     <Compile Include="Models\URLFile.cs" />

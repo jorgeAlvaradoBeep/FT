@@ -1,5 +1,6 @@
 using Facturacion_Tostatronic.Models;
 using Facturacion_Tostatronic.Models.EF_Models.EFEarnings;
+using Facturacion_Tostatronic.Models.Sales;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
 using System.Windows;
 using System.Windows.Input;
 
@@ -86,17 +88,10 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                         return;
                     }
 
-                    if (VM.SelectedPlataforma == null)
+                    // Validate CodigoPlataforma only if it's provided
+                    if (!string.IsNullOrWhiteSpace(VM.CodigoPlataforma) && VM.CodigoPlataforma.Length > 350)
                     {
-                        MessageBox.Show("Debe seleccionar una plataforma", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        VM.GettingData = false;
-                        return;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(VM.CodigoPlataforma) || 
-                        !System.Text.RegularExpressions.Regex.IsMatch(VM.CodigoPlataforma, @"^[a-zA-Z0-9]+$"))
-                    {
-                        MessageBox.Show("El código de plataforma es requerido y debe ser alfanumérico", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("El código de plataforma no puede exceder 350 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         VM.GettingData = false;
                         return;
                     }
@@ -109,19 +104,33 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                         return;
                     }
 
-                    // TODO: Save the complex product to the database
-                    // This would require creating an endpoint and model for complex products
-                    MessageBox.Show($"Producto complejo creado exitosamente:\n\n" +
-                        $"Nombre: {VM.Nombre}\n" +
-                        $"ID Cotización: {VM.IdCotizacion}\n" +
-                        $"Plataforma: {VM.SelectedPlataforma.Nombre}\n" +
-                        $"Código Plataforma: {VM.CodigoPlataforma}\n" +
-                        $"SKU: {VM.Sku}", 
-                        "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    // Save the complex product to the database
+                    var result = await SaveComplexProduct();
+                    if (result)
+                    {
+                        var platformInfo = VM.SelectedPlataforma != null 
+                            ? $"Plataforma: {VM.SelectedPlataforma.Nombre}\n" 
+                            : "";
+                        var codeInfo = !string.IsNullOrWhiteSpace(VM.CodigoPlataforma) 
+                            ? $"Código Plataforma: {VM.CodigoPlataforma}\n" 
+                            : "";
+                            
+                        MessageBox.Show($"Producto complejo creado exitosamente:\n\n" +
+                            $"Nombre: {VM.Nombre}\n" +
+                            $"ID Cotización: {VM.IdCotizacion}\n" +
+                            platformInfo +
+                            codeInfo +
+                            $"SKU: {VM.Sku}", 
+                            "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Reset the form
-                    VM.InitializeCompleteSale();
-                    VM.ResetComplexProductFields();
+                        // Reset the form
+                        VM.InitializeCompleteSale();
+                        VM.ResetComplexProductFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al guardar el producto complejo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -138,38 +147,56 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
         {
             try
             {
-                using (var client = new HttpClient())
+                // Convert CompleteSaleM to VentasOM format
+                var ventasOM = new VentasOM();
+                ventasOM.IDSale = 1; // Always 1 as specified
+                ventasOM.ClientSale = new Cliente();
+                
+                if (VM.CompleteSale.ClientSale != null)
                 {
-                    var quote = new
+                    ventasOM.ClientSale.IdCliente = VM.CompleteSale.ClientSale.ID;
+                    ventasOM.ClientSale.IdTipoCliente = VM.CompleteSale.ClientSale.ClientType;
+                    ventasOM.ClientSale.Nombres = VM.CompleteSale.ClientSale.Name ?? "";
+                    ventasOM.ClientSale.Rfc = VM.CompleteSale.ClientSale.RFC ?? "";
+                    ventasOM.ClientSale.CorreoElectronico = VM.CompleteSale.ClientSale.Mail ?? "";
+                }
+                
+                ventasOM.ClientSale.ApellidoPaterno = "";
+                ventasOM.ClientSale.ApellidoMaterno = "";
+                ventasOM.ClientSale.Telefono = "";
+                ventasOM.ClientSale.Domicilio = "";
+                ventasOM.ClientSale.CodigoPostal = 0;
+                ventasOM.ClientSale.Colonia = "";
+                ventasOM.ClientSale.Celular = "";
+                ventasOM.ClientSale.Descripcion = "";
+                ventasOM.ClientSale.RegimenFiscal = "";
+                ventasOM.ClientSale.Eliminado = false;
+                
+                ventasOM.PriceType = VM.CompleteSale.PriceType;
+                ventasOM.SaledProducts = new List<ProductoDeVentaOM>();
+                if (VM.CompleteSale.SaledProducts != null)
+                {
+                    foreach (var p in VM.CompleteSale.SaledProducts)
                     {
-                        id_vendedor = VM.CompleteSale.SalerID,
-                        fecha = DateTime.Now.ToString("yyyy-MM-dd"),
-                        id_cliente = VM.CompleteSale.ClientSale.ID,
-                        subtotal = VM.CompleteSale.SubTotal,
-                        iva = VM.CompleteSale.IVA,
-                        total = VM.CompleteSale.Total,
-                        productos = VM.CompleteSale.SaledProducts.Select(p => new
+                        if (p != null)
                         {
-                            id_producto = p.Code,
-                            cantidad = p.SaledQuantity,
-                            precio_unitario = p.DisplayPrice,
-                            subtotal = p.Subtotal
-                        }).ToList()
-                    };
-
-                    var json = JsonConvert.SerializeObject(quote);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                    var response = await client.PostAsync(URLData.quote_save, content);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<Response>(responseContent);
-                        if (result.succes)
-                        {
-                            return Convert.ToInt32(result.data);
+                            var product = new ProductoDeVentaOM();
+                            product.IdProducto = p.Code ?? "";
+                            product.PrecioAlMomento = p.DisplayPrice;
+                            product.CantidadComprada = p.SaledQuantity;
+                            product.Descuento = 0;
+                            ventasOM.SaledProducts.Add(product);
                         }
                     }
+                }
+                ventasOM.NeedFactura = VM.CompleteSale.NeedFactura;
+                ventasOM.FechaDeVenta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                ventasOM.SalerID = VM.CompleteSale.SalerID;
+
+                Response res = await WebService.InsertData(ventasOM, URLData.saveQuoteNET);
+                if (res.succes)
+                {
+                    return int.Parse(res.message);
                 }
             }
             catch (Exception ex)
@@ -201,6 +228,29 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar las plataformas: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task<bool> SaveComplexProduct()
+        {
+            try
+            {
+                // Create the ProductosComplejos object
+                var productosComplejos = new ProductosComplejos();
+                productosComplejos.Id = 1; // Will be set by the server
+                productosComplejos.Nombre = VM.Nombre;
+                productosComplejos.IdCotizacion = VM.IdCotizacion;
+                productosComplejos.Sku = VM.Sku;
+                productosComplejos.IdPlataforma = VM.SelectedPlataforma?.Id;
+                productosComplejos.CodigoPlataforma = VM.CodigoPlataforma;
+
+                Response res = await WebService.InsertData(productosComplejos, URLData.ProductosComplejos);
+                return res.succes;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el producto complejo: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
         }
     }

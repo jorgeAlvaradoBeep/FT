@@ -1,4 +1,5 @@
 ﻿using Facturacion_Tostatronic.Models;
+using Facturacion_Tostatronic.Models.Sales;
 using Facturacion_Tostatronic.Services;
 using Facturacion_Tostatronic.ViewModels.Sales;
 using System;
@@ -32,8 +33,54 @@ namespace Facturacion_Tostatronic.ViewModels.Commands.PDVCommands.SaleCommands
                 return;
             }
             VM.GettingData = true;
-            VM.CompleteSale.SearchedProducts = new List<Models.Products.ProductSaleSearch>();
-            Response res = await WebService.InsertData(VM.CompleteSale, URLData.quote_save);
+
+            // Convert CompleteSaleM to VentasOM format
+            var ventasOM = new VentasOM();
+            ventasOM.IDSale = 1; // Always 1 as specified
+            ventasOM.ClientSale = new Cliente();
+            
+            if (VM.CompleteSale.ClientSale != null)
+            {
+                ventasOM.ClientSale.IdCliente = VM.CompleteSale.ClientSale.ID;
+                ventasOM.ClientSale.IdTipoCliente = VM.CompleteSale.ClientSale.ClientType;
+                ventasOM.ClientSale.Nombres = VM.CompleteSale.ClientSale.Name ?? "";
+                ventasOM.ClientSale.Rfc = VM.CompleteSale.ClientSale.RFC ?? "";
+                ventasOM.ClientSale.CorreoElectronico = VM.CompleteSale.ClientSale.Mail ?? "";
+            }
+            
+            ventasOM.ClientSale.ApellidoPaterno = "";
+            ventasOM.ClientSale.ApellidoMaterno = "";
+            ventasOM.ClientSale.Telefono = "";
+            ventasOM.ClientSale.Domicilio = "";
+            ventasOM.ClientSale.CodigoPostal = 0;
+            ventasOM.ClientSale.Colonia = "";
+            ventasOM.ClientSale.Celular = "";
+            ventasOM.ClientSale.Descripcion = "";
+            ventasOM.ClientSale.RegimenFiscal = "";
+            ventasOM.ClientSale.Eliminado = false;
+            
+            ventasOM.PriceType = VM.CompleteSale.PriceType;
+            ventasOM.SaledProducts = new List<ProductoDeVentaOM>();
+            if (VM.CompleteSale.SaledProducts != null)
+            {
+                foreach (var p in VM.CompleteSale.SaledProducts)
+                {
+                    if (p != null)
+                    {
+                        var product = new ProductoDeVentaOM();
+                        product.IdProducto = p.Code ?? "";
+                        product.PrecioAlMomento = p.DisplayPrice;
+                        product.CantidadComprada = p.SaledQuantity;
+                        product.Descuento = 0;
+                        ventasOM.SaledProducts.Add(product);
+                    }
+                }
+            }
+            ventasOM.NeedFactura = VM.CompleteSale.NeedFactura;
+            ventasOM.FechaDeVenta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            ventasOM.SalerID = VM.CompleteSale.SalerID;
+
+            Response res = await WebService.InsertData(ventasOM, URLData.saveQuoteNET);
             if (!res.succes)
             {
                 MessageBox.Show("Error: " + res.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
